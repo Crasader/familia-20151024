@@ -137,7 +137,6 @@ void MediaController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void MediaController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    bool success = false;
 
     //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
     
