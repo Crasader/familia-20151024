@@ -48,12 +48,12 @@
 		4582945A1BA9753F00BE34AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458294591BA9753F00BE34AB /* MediaPlayer.framework */; };
 		4582945C1BA9762C00BE34AB /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4582945B1BA9762C00BE34AB /* video.mp4 */; };
 		4582945F1BA9A5A600BE34AB /* InfoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4582945D1BA9A5A600BE34AB /* InfoScene.cpp */; };
-		4588B4B31B4C0266008631CF /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4AD1B4C0266008631CF /* button.png */; };
-		4588B4B41B4C0266008631CF /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4AE1B4C0266008631CF /* card_back.png */; };
-		4588B4B51B4C0266008631CF /* card_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4AF1B4C0266008631CF /* card_clubs.png */; };
-		4588B4B61B4C0266008631CF /* card_diamonds.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4B01B4C0266008631CF /* card_diamonds.png */; };
-		4588B4B71B4C0266008631CF /* card_hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4B11B4C0266008631CF /* card_hearts.png */; };
-		4588B4B81B4C0266008631CF /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 4588B4B21B4C0266008631CF /* card_spades.png */; };
+		459A622E1BACEC93006425C9 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A62281BACEC93006425C9 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
+		459A622F1BACEC93006425C9 /* card_hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A62291BACEC93006425C9 /* card_hearts.png */; settings = {ASSET_TAGS = (); }; };
+		459A62301BACEC93006425C9 /* card_diamonds.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622A1BACEC93006425C9 /* card_diamonds.png */; settings = {ASSET_TAGS = (); }; };
+		459A62311BACEC93006425C9 /* card_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622B1BACEC93006425C9 /* card_clubs.png */; settings = {ASSET_TAGS = (); }; };
+		459A62321BACEC93006425C9 /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622C1BACEC93006425C9 /* card_back.png */; settings = {ASSET_TAGS = (); }; };
+		459A62331BACEC93006425C9 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622D1BACEC93006425C9 /* button.png */; settings = {ASSET_TAGS = (); }; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
@@ -209,12 +209,12 @@
 		4582945B1BA9762C00BE34AB /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		4582945D1BA9A5A600BE34AB /* InfoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoScene.cpp; sourceTree = "<group>"; };
 		4582945E1BA9A5A600BE34AB /* InfoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoScene.h; sourceTree = "<group>"; };
-		4588B4AD1B4C0266008631CF /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/button.png; sourceTree = "<group>"; };
-		4588B4AE1B4C0266008631CF /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_back.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/card_back.png; sourceTree = "<group>"; };
-		4588B4AF1B4C0266008631CF /* card_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_clubs.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/card_clubs.png; sourceTree = "<group>"; };
-		4588B4B01B4C0266008631CF /* card_diamonds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_diamonds.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/card_diamonds.png; sourceTree = "<group>"; };
-		4588B4B11B4C0266008631CF /* card_hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_hearts.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/card_hearts.png; sourceTree = "<group>"; };
-		4588B4B21B4C0266008631CF /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_spades.png; path = ../../../../Downloads/COCOS2DXSAMPLE20141107/LESSON16/after/Resources/card_spades.png; sourceTree = "<group>"; };
+		459A62281BACEC93006425C9 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_spades.png; path = ../../Card13/Resources/card_spades.png; sourceTree = "<group>"; };
+		459A62291BACEC93006425C9 /* card_hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_hearts.png; path = ../../Card13/Resources/card_hearts.png; sourceTree = "<group>"; };
+		459A622A1BACEC93006425C9 /* card_diamonds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_diamonds.png; path = ../../Card13/Resources/card_diamonds.png; sourceTree = "<group>"; };
+		459A622B1BACEC93006425C9 /* card_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_clubs.png; path = ../../Card13/Resources/card_clubs.png; sourceTree = "<group>"; };
+		459A622C1BACEC93006425C9 /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_back.png; path = ../../Card13/Resources/card_back.png; sourceTree = "<group>"; };
+		459A622D1BACEC93006425C9 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = ../../Card13/Resources/button.png; sourceTree = "<group>"; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
@@ -451,13 +451,13 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				459A62281BACEC93006425C9 /* card_spades.png */,
+				459A62291BACEC93006425C9 /* card_hearts.png */,
+				459A622A1BACEC93006425C9 /* card_diamonds.png */,
+				459A622B1BACEC93006425C9 /* card_clubs.png */,
+				459A622C1BACEC93006425C9 /* card_back.png */,
+				459A622D1BACEC93006425C9 /* button.png */,
 				4582945B1BA9762C00BE34AB /* video.mp4 */,
-				4588B4AD1B4C0266008631CF /* button.png */,
-				4588B4AE1B4C0266008631CF /* card_back.png */,
-				4588B4AF1B4C0266008631CF /* card_clubs.png */,
-				4588B4B01B4C0266008631CF /* card_diamonds.png */,
-				4588B4B11B4C0266008631CF /* card_hearts.png */,
-				4588B4B21B4C0266008631CF /* card_spades.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -658,8 +658,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
-				4588B4B61B4C0266008631CF /* card_diamonds.png in Resources */,
-				4588B4B31B4C0266008631CF /* button.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				458294441BA0817B00BE34AB /* IMG_3092.JPG in Resources */,
@@ -673,21 +671,23 @@
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				459A62301BACEC93006425C9 /* card_diamonds.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				458294431BA0817B00BE34AB /* IMG_2242.JPG in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				459A622E1BACEC93006425C9 /* card_spades.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				459A62311BACEC93006425C9 /* card_clubs.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
+				459A62321BACEC93006425C9 /* card_back.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
+				459A62331BACEC93006425C9 /* button.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
-				4588B4B41B4C0266008631CF /* card_back.png in Resources */,
-				4588B4B81B4C0266008631CF /* card_spades.png in Resources */,
-				4588B4B51B4C0266008631CF /* card_clubs.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
-				4588B4B71B4C0266008631CF /* card_hearts.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
+				459A622F1BACEC93006425C9 /* card_hearts.png in Resources */,
 				4582945C1BA9762C00BE34AB /* video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,7 +834,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/ios",
-					/Users/ariji.hiroki/git/cocos/Card13/cocos2d/external/curl/prebuilt/ios,
+					external/curl/prebuilt/ios,
+					"$(SRCROOT)/../cocos2d/external/curl/prebuilt/ios",
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -882,7 +883,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/ios",
-					/Users/ariji.hiroki/git/cocos/Card13/cocos2d/external/curl/prebuilt/ios,
+					external/curl/prebuilt/ios,
+					"$(SRCROOT)/../cocos2d/external/curl/prebuilt/ios",
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
