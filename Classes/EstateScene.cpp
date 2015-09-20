@@ -105,10 +105,58 @@ void EstateController::initGame()
     
 }
 
+void EstateController::showSPrite()
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    //            CCRotateBy::create((float)3.0f,(float)-60);
+    //            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
+    //        CCTurnOffTiles::create((float)2.0f,ccc3(0, 0, 0),(int)6);
+    CCSprite* pSprite = CCSprite::create("Default.png");
+    CCPoint pos = ccp(visibleSize.width/2, visibleSize.height/2);
+    pSprite->setPosition(pos);
+    this->addChild(pSprite);
+    CCPointArray* pAry = CCPointArray::create(3);
+    pAry->addControlPoint(ccp(0,0));
+    pAry->addControlPoint(ccp(-300,30));
+    pAry->addControlPoint(ccp(0,0));
+    // スプライン曲線
+//    pSprite->runAction(CCCardinalSplineBy::create(2.0f, pAry, 1.0f));
+    // Catmull-Romスプライン曲線
+//    pSprite->runAction(CCCatmullRomBy::create(2.0f, pAry));
+    // camera 180度回転
+    pSprite->runAction(CCOrbitCamera::create(1.0f, 1, 0, 0, 180, 90, 0));
+//    pSprite->runAction(CCOrbitCamera::create(1.0f, 1, 0, 0, 180, 0, 0));
+
+/*
+    pSprite->runAction(CCRipple3D::create ((float)3.0f,
+                                           　　　(CCSize)Director::getInstance()->getVisibleSize(),
+                                           　　　(CCPoint)pos,
+                                           　　　(float)50.0f,
+                                           　　　(int) 5,
+                                           　　　(float)3.0f));
+*/
+    //pSprite->runAction(CCShaky3D::create((int)5.0f,(CCSize)Director::getInstance()->getVisibleSize(),(int)5,(bool)true));
+
+    //    pSprite->runAction(CCPageTurn3D::create((float)5.0f,(CCSize)Director::getInstance()->getVisibleSize()));
+    
+}
+
+
+void EstateController::startWebView()
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto webView = cocos2d::experimental::ui::WebView::create();
+    
+    webView->setAnchorPoint(Point(0.5f, 0.5f));
+    webView->setContentSize(Size(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
+    webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
+    webView->loadURL("https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3");
+    this->addChild(webView, 1);
+}
 
 bool EstateController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    
+    showSPrite();
     
     return false;
 }
@@ -122,11 +170,10 @@ void EstateController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    bool success = false;
     
     //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
     
-    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, InfoController::scene(), ccc3(0, 0, 0)));
+    //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, InfoController::scene(), ccc3(0, 0, 0)));
     //    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
     
     //下からシーンが移動。

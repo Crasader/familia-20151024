@@ -29,6 +29,8 @@
 #define TAG_TRUSH_CARD 11 //捨てられたカードのタグ
 #define TAG_BACK_CARD 12 //カードの山のタグ
 #define TAG_TIMER_LABEL 13 //時間ラベルのタグ
+#define TAG_TIMER_ACTION1 14 //Action1
+#define TAG_TIMER_ACTION2 15 //Action2
 
 #define MOVING_TIME 0.8 //カードのアニメーションの時間
 
@@ -103,8 +105,11 @@ protected:
     float _timer; //経過時間
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
+    int sts_sprite1;
+    int sts_sprite2;
     
     int _target_status[2];
+    std::string emotion_status[10];
 
     
     void initCards(); //カードを初期化する
@@ -118,6 +123,13 @@ protected:
     void onTapButton(cocos2d::Ref* sender, cocos2d::extension::Control::EventType controlEvent); //ボタンがタップされたときに呼ばれる
     void showBackCards(); //カードの山を表示する
     void showTimerLabel(); //経過時間を表示
+    
+    void Action01(float frame);
+    void Action02(float frame);
+    void Sequence1();
+    void Sequence2();
+    void Sequence3();
+    void Sequence4();
 
 public:
     //HelloWorldクラスのシーンを作成する

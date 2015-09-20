@@ -103,16 +103,16 @@ void InfoController::startWebView()
     auto webView = cocos2d::experimental::ui::WebView::create();
 
     webView->setAnchorPoint(Point(0.5f, 0.5f));
-    webView->setContentSize(Size(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
+    webView->setContentSize(Size(visibleSize.width * 0.85f, visibleSize.height * 0.85f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
-    webView->loadURL("http://www.yahoo.co.jp/");
+    webView->loadURL("http://www.daiwahouse.co.jp/jutaku/visit/vol113/index.html");
     this->addChild(webView, 1);
 }
 
 
 bool InfoController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    
+    startWebView();
     
     return true;
 }
@@ -128,7 +128,7 @@ void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
 {
     //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
     
-    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, HelloWorld::scene(), ccc3(0, 0, 0)));
+    //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, HelloWorld::scene(), ccc3(0, 0, 0)));
     //    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
     
     //下からシーンが移動。

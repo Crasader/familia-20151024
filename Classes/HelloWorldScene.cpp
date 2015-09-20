@@ -5,6 +5,9 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+
+
+
 bool CardSprite::init()
 {
     if (!Sprite::init())
@@ -177,6 +180,19 @@ bool HelloWorld::init()
     {
         return false;
     }
+/*
+    emotion_status = ["akuma.png",
+                      "ase.png",
+                      "kiran.png",
+                      "komaru.png",
+                      "naki.png",
+                      "sumairu.png",
+                      "tehehe.png",
+                      "tenshi.png",
+                      "tere.png",
+                      "yattane.png"
+                      ];
+*/
     
     //シングルタップイベント取得
     auto listener = EventListenerTouchOneByOne::create();
@@ -282,35 +298,36 @@ void HelloWorld::initGame()
     
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-//    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-//    this->addChild(_Gbg);
-//    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-//    _Gbg->setVector(Point(1,0));
-//    this->addChild(_Gbg);
-    
     
     //CCSpriteクラスで画像を設定します。
-    _sprite1 = Sprite::create("IMG_2242.JPG");
-    _sprite1->setAnchorPoint(ccp(0,0));
-    _sprite1->setTextureRect(CCRectMake(50, 50, 150, 100));
-    _sprite1->setScale(0.5f);
-    _sprite1->setPosition(Vec2(0, winSize.height/5));
+    _sprite1 = Sprite::create("boy.png");
+    _sprite1->setScale(2.0f);
+    _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/5));
     addChild(_sprite1);
-    _sprite2 = Sprite::create("IMG_3092.JPG");
-    _sprite2->setAnchorPoint(ccp(0,0));
-    _sprite2->setTextureRect(CCRectMake(100, 50, 150, 150));
-    _sprite2->setScale(0.5f);
-    _sprite2->setPosition(Vec2(winSize.width/2, winSize.height/5));
+    _sprite2 = Sprite::create("grandmother.png");
+    _sprite2->setScale(2.0f);
+    _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/5));
     addChild(_sprite2, 0);
+    sts_sprite1 = 0;
+    sts_sprite2 = 0;
     
-    
+    // １番目１回実行画像Runアクションスケジュール 2秒後
+    this->schedule(schedule_selector(HelloWorld::Action01), 2.0f);
+    // ２番目１回実行画像Runアクションスケジュール 4秒後
+    this->schedule(schedule_selector(HelloWorld::Action02), 4.0f);
+
+/*
     //アニメーションを作成　MoveTo::create(時間, (X座標, Y座標));
-    auto action1 = MoveTo::create(45, Vec2(winSize.width-_sprite1->getContentSize().width/2, winSize.height/4));
-    auto action2 = MoveTo::create(30, Vec2(winSize.width-_sprite2->getContentSize().width/2, winSize.height/10));
-    
+    auto action1 = MoveTo::create(45,
+                                  Vec2(winSize.width-_sprite1->getContentSize().width/2,
+                                       winSize.height/4));
+    auto action2 = MoveTo::create(30,
+                                  Vec2(winSize.width-_sprite2->getContentSize().width/2,
+                                       winSize.height/10));
     //アニメーション開始
     _sprite1->runAction(action1);
     _sprite2->runAction(action2);
+ */
 
 
     
@@ -344,6 +361,102 @@ void HelloWorld::initGame()
     //update関数の呼び出しを開始
     scheduleUpdate();
 
+}
+
+void HelloWorld::Sequence1()
+{
+    // 大きさ（縮小）アクションを適用 1.0秒 0倍
+    auto scaleTo1 = ScaleTo::create(1.8f, 0.3f);
+    //callbackでの消去処理
+    auto removeSprite1 = CallFunc::create([this](){
+//        this->removeChild(_sprite1);
+    });
+    // 縮小、消去アクションを適用
+    auto sequence1 = Sequence::create(scaleTo1, removeSprite1, NULL);
+    // 縮小、消去runアクションを適用
+    _sprite1->runAction(sequence1);
+}
+
+void HelloWorld::Sequence2()
+{
+    // 大きさ（縮小）アクションを適用 2.5秒 0倍
+    auto scaleTo2 = ScaleTo::create(1.8f, 0.2f);
+    //callbackでの画像消去処理
+    auto removeSprite2 = CallFunc::create([this](){
+//        this->removeChild(_sprite2);
+    });
+    // 縮小、消去アクションを適用
+    auto sequence2 = Sequence::create(scaleTo2, removeSprite2, NULL);
+    // 縮小、消去runアクションを適用
+    _sprite2->runAction(sequence2);
+}
+
+void HelloWorld::Sequence3()
+{
+//    _sprite1->setScale(2.0f);
+
+    // 大きさ（縮小）アクションを適用 1.0秒 0倍
+    auto scaleTo1 = ScaleTo::create(1.8f, 3.0f);
+    //callbackでの消去処理
+    auto removeSprite1 = CallFunc::create([this](){
+//        this->removeChild(_sprite1);
+    });
+    // 縮小、消去アクションを適用
+    auto sequence1 = Sequence::create(scaleTo1, removeSprite1, NULL);
+    // 縮小、消去runアクションを適用
+    _sprite1->runAction(sequence1);
+}
+
+void HelloWorld::Sequence4()
+{
+    // 大きさ（縮小）アクションを適用 2.5秒 0倍
+    auto scaleTo2 = ScaleTo::create(1.8f, 4.2f);
+    //callbackでの画像消去処理
+    auto removeSprite2 = CallFunc::create([this](){
+//        this->removeChild(_sprite2);
+    });
+    // 縮小、消去アクションを適用
+    auto sequence2 = Sequence::create(scaleTo2, removeSprite2, NULL);
+    // 縮小、消去runアクションを適用
+    _sprite2->runAction(sequence2);
+}
+
+// １番目画像Runアクションメソッド
+void HelloWorld::Action01(float frame)
+{
+    switch (sts_sprite1) {
+        case 0:
+            Sequence1();
+            sts_sprite1 = 1;
+            break;
+
+        case 1:
+            Sequence3();
+            sts_sprite1 = 0;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// ２番目画像Runアクションメソッド
+void HelloWorld::Action02(float frame)
+{
+    switch (sts_sprite2) {
+        case 0:
+            Sequence2();
+            sts_sprite2 = 1;
+            break;
+            
+        case 1:
+            Sequence4();
+            sts_sprite2 = 0;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 CardSprite* HelloWorld::getTouchCard(Touch *touch)
@@ -449,10 +562,10 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     case 3:
     case 4:
     case 5:
-//            CCRotateBy::create((float)3.0f,(float)-60);
-//            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
-//        CCTurnOffTiles::create((float)2.0f,ccc3(0, 0, 0),(int)6);
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, InfoController::scene(), ccc3(0, 0, 0)));
+        CCDirector::sharedDirector()->replaceScene(
+                                                   CCTransitionFade::create(2.0f,
+                                                                            EstateController::scene(),
+                                                                            ccc3(0, 0, 0)));
         break;
     case 6:
     case 7:
@@ -468,7 +581,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     case 11:
     case 12:
 //            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, InfoController::scene(), ccc3(0, 0, 0)));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, EstateController::scene(), ccc3(0, 0, 0)));
         break;
     }
 
@@ -605,6 +718,7 @@ void HelloWorld::showTimerLabel()
 
 void HelloWorld::update(float dt)
 {
+/*
     // 見守り対象のケア
     Size winSize = Director::getInstance()->getVisibleSize();
 //    _sprite1->setPosition(Vec2(0, winSize.height/5));
@@ -625,7 +739,7 @@ void HelloWorld::update(float dt)
     if(_target_status[1]==ONE){
         _sprite2->setPosition(Vec2(winSize.width/2, winSize.height/5));
     }
-    
+*/
     
     //時間の積算
     _timer += dt;

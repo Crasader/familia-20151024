@@ -32,6 +32,8 @@ public:
     virtual bool init();
     void initGame();
     void getMessage(char* result);
+    void startWebView();
+    void showSPrite();
     
     //create関数作成マクロ
     CREATE_FUNC(EstateController);
