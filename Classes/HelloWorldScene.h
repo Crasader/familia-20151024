@@ -36,23 +36,25 @@
 #define MOVING_TIME 0.8 //カードのアニメーションの時間
 
 // InfoScene
-#define MESSAGE_MOTHER  "母親からの\nお知らせ" // 1
-#define MESSAGE_FATHER  "父親からの\nお知らせ" // 2
-#define MESSAGE_GRANMOTHER  "祖母からの\nお知らせ" // 3
-#define MESSAGE_BOY "息子からの\nお知らせ"  // 4
-#define MESSAGE_News "ニュース"  // 5
-#define MESSAGE_BOOKS "書籍情報"    // 6
+#define MESSAGE_MOTHER  "自治体"
+#define MESSAGE_FATHER  "料理、外食サイト"
+#define MESSAGE_BOY "家族からのお知らせ"
+#define MESSAGE_News "ニュース"
+#define MESSAGE_BOOKS "書籍情報"
 // MediaScene
-#define MESSAGE_VIDEO_MESSAGE "ビデオ\nメッセージ"   // 10
-#define MESSAGE_MESSAGE "メッセージ"  // 11
-#define MESSAGE_TELEPHONE "電話"    // 12
+#define MESSAGE_VIDEO_MESSAGE "ビデオ\nメッセージ"
+#define MESSAGE_MESSAGE "メッセージ"
 // EstateScene
-#define MESSAGE_REAL_ESTATE "住宅情報" // 20
+#define MESSAGE_REAL_ESTATE "住宅情報"
 // InfoScene
-#define MESSAGE_COMSUMPTION "消費電力"  // 30
-#define MESSAGE_CHARGE "蓄電"   // 31
-#define MESSAGE_SCHEDULE "スケジュール"  // 13
-#define MESSAGE_DOOR "スケジュール"  // 13
+#define MESSAGE_COMSUMPTION "消費電力"
+#define MESSAGE_CHARGE "蓄電情報"
+// SecurityScene
+#define MESSAGE_AIRCONDITION "エアコンの状態"
+#define MESSAGE_WINDOW "窓の開閉"
+#define MESSAGE_SHUTTER "シャッターの開閉"
+#define MESSAGE_LED "照明の状態"
+#define MESSAGE_DOOR "玄関ドアの開閉"
 
 
 
@@ -85,6 +87,7 @@ class CardSprite : public cocos2d::Sprite
 protected:
     std::string getFileName(CardType cardType); //表画像ファイル名取得
     void showNumber(); //カードのマークと数字を表示
+    std::vector<std::string> card_type_name;
 
 public:
     virtual bool init(); //初期化処理
@@ -117,6 +120,8 @@ protected:
     int _target_status[2];
     std::vector<std::string> emotion_status;
     std::vector<std::string> family_menber;
+    std::vector<int> card_sequence;
+    int countCard;
 
     
     void initCards(); //カードを初期化する
@@ -138,7 +143,6 @@ protected:
 
 public:
     //HelloWorldクラスのシーンを作成する
-    static cocos2d::Scene* createScene();
     static cocos2d::Scene* scene();
 
     //初期化処理を行う

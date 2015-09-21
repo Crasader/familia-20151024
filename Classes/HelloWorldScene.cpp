@@ -14,6 +14,25 @@ bool CardSprite::init()
     {
         return false;
     }
+
+    card_type_name =
+    {
+        "自治体",
+        "料理\n外食サイト",
+        "家族からの\nお知らせ",
+        "ニュース",
+        "書籍情報",
+        "ビデオ\nメッセージ",
+        "メッセージ",
+        "住宅情報",
+        "消費電力",
+        "蓄電情報",
+        "エアコンの状態",
+        "窓の開閉",
+        "シャッターの\n開閉",
+        "照明の状態",
+        "玄関ドアの開閉"
+    };
     
     return true;
 }
@@ -48,42 +67,122 @@ void CardSprite::showNumber()
 {
     //表示する数字の取得
     std::string numberString;
+    int temp_num = 0;
+    
     switch (_card.number)
     {
-        case 1: numberString = MESSAGE_MOTHER; break;
-        case 2: numberString = MESSAGE_FATHER; break;
-        case 3: numberString = MESSAGE_GRANMOTHER; break;
-        case 4: numberString = MESSAGE_BOY; break;
-        case 5: numberString = MESSAGE_News; break;
-        case 6: numberString = MESSAGE_BOOKS; break;
-        case 7: numberString = MESSAGE_VIDEO_MESSAGE; break;
-        case 8: numberString = MESSAGE_MESSAGE; break;
-        case 9: numberString = MESSAGE_TELEPHONE; break;
-        case 10: numberString = MESSAGE_REAL_ESTATE; break;
-        case 11: numberString = MESSAGE_COMSUMPTION; break;
-        case 12: numberString = MESSAGE_CHARGE; break;
-        case 13: numberString = MESSAGE_DOOR; break;
-        default: numberString = StringUtils::format("%d", _card.number); break;
-    }
-    
-    //表示する文字色の取得
-    Color4B textColor;
-    switch (_card.type)
-    {
-        case Clubs:
-        case Spades:
-            textColor = Color4B::BLACK;
+        case 1:
+        switch (_card.type) {
+            case 0: temp_num = 0; break;
+            case 1: temp_num = 13; break;
+            case 2: temp_num = 26; break;
+            case 3: temp_num = 39; break;
+            }
             break;
-            
-        default:
-            textColor = Color4B::RED;
+        case 2:
+            switch (_card.type) {
+                case 0: temp_num = 1; break;
+                case 1: temp_num = 14; break;
+                case 2: temp_num = 27; break;
+                case 3: temp_num = 40; break;
+            }
+            break;
+        case 3:
+            switch (_card.type) {
+                case 0: temp_num = 2; break;
+                case 1: temp_num = 15; break;
+                case 2: temp_num = 28; break;
+                case 3: temp_num = 41; break;
+            }
+            break;
+        case 4:
+            switch (_card.type) {
+                case 0: temp_num = 3; break;
+                case 1: temp_num = 16; break;
+                case 2: temp_num = 29; break;
+                case 3: temp_num = 42; break;
+            }
+            break;
+        case 5:
+            switch (_card.type) {
+                case 0: temp_num = 4; break;
+                case 1: temp_num = 17; break;
+                case 2: temp_num = 30; break;
+                case 3: temp_num = 43; break;
+            }
+            break;
+        case 6:
+            switch (_card.type) {
+                case 0: temp_num = 5; break;
+                case 1: temp_num = 18; break;
+                case 2: temp_num = 31; break;
+                case 3: temp_num = 44; break;
+            }
+            break;
+        case 7:
+            switch (_card.type) {
+                case 0: temp_num = 6; break;
+                case 1: temp_num = 19; break;
+                case 2: temp_num = 32; break;
+                case 3: temp_num = 45; break;
+            }
+            break;
+        case 8:
+            switch (_card.type) {
+                case 0: temp_num = 7; break;
+                case 1: temp_num = 20; break;
+                case 2: temp_num = 33; break;
+                case 3: temp_num = 46; break;
+            }
+            break;
+        case 9:
+            switch (_card.type) {
+                case 0: temp_num = 8; break;
+                case 1: temp_num = 21; break;
+                case 2: temp_num = 34; break;
+                case 3: temp_num = 47; break;
+            }
+            break;
+        case 10:
+            switch (_card.type) {
+                case 0: temp_num = 9; break;
+                case 1: temp_num = 22; break;
+                case 2: temp_num = 35; break;
+                case 3: temp_num = 48; break;
+            }
+            break;
+        case 11:
+            switch (_card.type) {
+                case 0: temp_num = 10; break;
+                case 1: temp_num = 23; break;
+                case 2: temp_num = 36; break;
+                case 3: temp_num = 49; break;
+            }
+            break;
+        case 12:
+            switch (_card.type) {
+                case 0: temp_num = 11; break;
+                case 1: temp_num = 24; break;
+                case 2: temp_num = 37; break;
+                case 3: temp_num = 50; break;
+            }
+            break;
+        case 13:
+            switch (_card.type) {
+                case 0: temp_num = 12; break;
+                case 1: temp_num = 25; break;
+                case 2: temp_num = 38; break;
+                case 3: temp_num = 51; break;
+            }
             break;
     }
+
+    numberString = card_type_name[temp_num];
     
     //ラベルの生成
     auto number = Label::createWithSystemFont(numberString, "Arial", 16);
     number->setPosition(Point(getContentSize() / 2));
-    number->setTextColor(textColor);
+    number->setTextColor((Color4B)Color4B::BLACK);
     addChild(number);
 }
 
@@ -143,21 +242,6 @@ void CardSprite::moveToInitPos()
     runAction(spawn);
 }
 
-Scene* HelloWorld::createScene()
-{
-    //シーンを生成する
-    auto scene = Scene::create();
-    
-    //HelloWorldクラスのレイヤーを生成する
-    auto layer = HelloWorld::create();
-
-    //シーンに対してレイヤーを追加する
-    scene->addChild(layer);
-
-    //シーンを返す
-    return scene;
-}
-
 Scene* HelloWorld::scene()
 {
     //シーンを生成する
@@ -202,6 +286,7 @@ bool HelloWorld::init()
         "brother.png",
         "randfather.png"
     };
+    countCard = 0;
 
     
     //シングルタップイベント取得
@@ -227,6 +312,7 @@ void HelloWorld::initCards()
 {
     //ゲームカードのクリア
     _cards.clear();
+    countCard=0;
     
     //4種類 x 13枚分のループ
     for (int type = 0; type < CARD_TYPE_NUM; type++)
@@ -246,17 +332,12 @@ void HelloWorld::initCards()
 
 Card HelloWorld::getCard()
 {
-    std::random_device rd;
-    std::mt19937 rand = std::mt19937(rd());
-    
-    //インデックスをランダムに取得する
-    int index = std::uniform_int_distribution<int>(0, (int)_cards.size() - 1)(rand);
-    
     //カードの数値を取得する
-    auto card = _cards[index];
-    
-    //一時カードから削除する
-    _cards.erase(_cards.begin() + index);
+    if(countCard>14){
+        countCard = 0;
+    }
+    auto card = _cards[countCard];
+    countCard++;
     
     return card;
 }
@@ -484,6 +565,7 @@ void HelloWorld::Action01(float frame)
         default:
             break;
     }
+    _label1->setString("外出中");
 }
 
 // ２番目画像Runアクションメソッド
@@ -519,7 +601,6 @@ void HelloWorld::Action02(float frame)
     }
 
 
-    _label1->setString("外出中");
     _label2->setString("外出中");
 
 
@@ -608,48 +689,89 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     
     //タップしているカードの指定を外す
     _firstCard = nullptr;
-/*
+
     switch(indetifier){
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            EstateController::scene(),
-                                                                            ccc3(0, 0, 0)));
-        break;
-    case 6:
-    case 7:
-    case 8:
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            MediaController::scene(),
-                                                                            ccc3(0, 0, 0)));
-        break;
-    case 9:
+    case 1: // 自治体
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 10:
-    case 11:
-    case 12:
+    case 2: // 料理、外食サイト
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 3: // 家族からのお知らせ
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 4: // ニュース
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 5: // 書籍情報
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 6: // ビデオ\nメッセージ
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            MediaController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 7: // メッセージ
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 8: // 住宅情報
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             EstateController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 13:
+    case 9: // 消費電力
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 10: // 蓄電情報
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 11: // エアコンの状態
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 12: // 窓の開閉
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 13: // シャッターの開閉
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 14: // 照明の状態
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 15: // 玄関ドアの開閉
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
     default:
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             SecurityController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     }
-*/
-    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                        SecurityController::scene(),
-                                                                        ccc3(0, 0, 0)));
 
 }
 

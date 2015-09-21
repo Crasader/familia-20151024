@@ -144,26 +144,13 @@ static AppDelegate s_sharedApplication;
 
     // Twilio 初期化
     [self init_twilio];
-
 /*
-    // Charasteristicのインスタンスを生成
-    // Read
-    CBCharacteristicProperties propSample = CBCharacteristicPropertyRead;
-    CBAttributePermissions permSample = CBAttributePermissionsReadable;
-    
-    
-    myCharacteristicsSample = [[CBMutableCharacteristic alloc] initWithType:
-                               [CBUUID UUIDWithString:kUUIDCharacteristicsSample]
-                                                                 properties:propSample
-                                                                      value:nil
-                                                                permissions:permSample];
-*/
     self.btlCentralManager = [[BTLECentralViewController alloc] init];
     [self.btlCentralManager initBtlCentralManager];
 
     self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
     [self.btlPeripheraManager initBtlPeripheraManager];
-    
+*/
     
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);

@@ -30,7 +30,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 //    glview->setDesignResolutionSize(640, 960, ResolutionPolicy::SHOW_ALL);
     glview->setDesignResolutionSize(640, 1136, ResolutionPolicy::FIXED_WIDTH);
 
-    auto scene = HelloWorld::createScene();
+    auto scene = HelloWorld::scene();
     director->runWithScene(scene);
     
 //    auto scene = GameLayer::createScene();

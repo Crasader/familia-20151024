@@ -15,8 +15,8 @@
 #import "ProximityViewController.h"
 #import "ShakeViewController.h"
 #import "SpeedViewController.h"
-#import "BTLECentralViewController.h"
-#import "BTLEPeripheralViewController.h"
+//#import "BTLECentralViewController.h"
+//#import "BTLEPeripheralViewController.h"
 
 @class RootViewController;
 
@@ -50,8 +50,6 @@
 @property (unsafe_unretained, nonatomic) ProximityViewController *proximityManager;
 @property (unsafe_unretained, nonatomic) ShakeViewController *shakeManager;
 @property (unsafe_unretained, nonatomic) SpeedViewController *speedManager;
-@property (unsafe_unretained, nonatomic) BTLEPeripheralViewController *btlPeripheraManager;
-@property (unsafe_unretained, nonatomic) BTLECentralViewController *btlCentralManager;
 
 @end
 

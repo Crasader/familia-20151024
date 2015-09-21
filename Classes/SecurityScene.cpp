@@ -122,6 +122,8 @@ void SecurityController::initGame()
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
     this->addChild(label);
     
+//    platform::NativeBridge::executeNative();
+    
     //update関数の呼び出しを開始
     scheduleUpdate();
     

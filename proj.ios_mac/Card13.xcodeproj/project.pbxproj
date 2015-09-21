@@ -64,7 +64,6 @@
 		45663D221B99D79A00548355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D211B99D79A00548355 /* CoreLocation.framework */; };
 		458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294451BA5BF0F00BE34AB /* MediaScene.cpp */; };
 		4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294481BA5BF2D00BE34AB /* EstateScene.cpp */; };
-		4582944D1BA5C09600BE34AB /* NativeBridgeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4582944B1BA5C09600BE34AB /* NativeBridgeScene.cpp */; };
 		458294541BA8699800BE34AB /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294521BA8699800BE34AB /* GameLayer.cpp */; };
 		4582945A1BA9753F00BE34AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458294591BA9753F00BE34AB /* MediaPlayer.framework */; };
 		4582945C1BA9762C00BE34AB /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4582945B1BA9762C00BE34AB /* video.mp4 */; };
@@ -249,8 +248,6 @@
 		458294461BA5BF0F00BE34AB /* MediaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaScene.h; sourceTree = "<group>"; };
 		458294481BA5BF2D00BE34AB /* EstateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EstateScene.cpp; sourceTree = "<group>"; };
 		458294491BA5BF2D00BE34AB /* EstateScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EstateScene.h; sourceTree = "<group>"; };
-		4582944B1BA5C09600BE34AB /* NativeBridgeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeBridgeScene.cpp; sourceTree = "<group>"; };
-		4582944C1BA5C09600BE34AB /* NativeBridgeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeBridgeScene.h; sourceTree = "<group>"; };
 		458294521BA8699800BE34AB /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLayer.cpp; sourceTree = "<group>"; };
 		458294531BA8699800BE34AB /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		458294591BA9753F00BE34AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
@@ -569,8 +566,6 @@
 				458294461BA5BF0F00BE34AB /* MediaScene.h */,
 				458294481BA5BF2D00BE34AB /* EstateScene.cpp */,
 				458294491BA5BF2D00BE34AB /* EstateScene.h */,
-				4582944B1BA5C09600BE34AB /* NativeBridgeScene.cpp */,
-				4582944C1BA5C09600BE34AB /* NativeBridgeScene.h */,
 				4582945D1BA9A5A600BE34AB /* InfoScene.cpp */,
 				4582945E1BA9A5A600BE34AB /* InfoScene.h */,
 				45434D031BAFAECD00279083 /* SecurityScene.cpp */,
@@ -854,7 +849,6 @@
 				45663D141B99CF4300548355 /* AltitudeViewController.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				45663D131B99CF4300548355 /* AccelerometerViewController.mm in Sources */,
-				4582944D1BA5C09600BE34AB /* NativeBridgeScene.cpp in Sources */,
 				45663D1A1B99CF4300548355 /* LocationViewController.mm in Sources */,
 				45894CE21BACF7310041D185 /* FamiliaPhone.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,

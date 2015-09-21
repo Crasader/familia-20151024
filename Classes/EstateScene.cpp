@@ -145,13 +145,14 @@ void EstateController::showSPrite()
 void EstateController::startWebView()
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
+
     auto webView = cocos2d::experimental::ui::WebView::create();
-    
     webView->setAnchorPoint(Point(0.5f, 0.5f));
-    webView->setContentSize(Size(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
+    webView->setContentSize(Size(visibleSize.width * 0.9f, visibleSize.height * 0.8f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
     webView->loadURL("https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3");
     this->addChild(webView, 1);
+    
 }
 
 bool EstateController::onTouchBegan(Touch *touch, Event *unused_event)
@@ -167,7 +168,7 @@ void EstateController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    showSPrite();
+    startWebView();
 
     return;
 }
