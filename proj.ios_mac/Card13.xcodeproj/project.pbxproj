@@ -38,6 +38,11 @@
 		45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45434CF91BAEBA1000279083 /* SecurityController.m */; settings = {ASSET_TAGS = (); }; };
 		45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45434D031BAFAECD00279083 /* SecurityScene.cpp */; settings = {ASSET_TAGS = (); }; };
+		45434D091BAFC95400279083 /* normal_door.png in Resources */ = {isa = PBXBuildFile; fileRef = 45434D061BAFC95400279083 /* normal_door.png */; settings = {ASSET_TAGS = (); }; };
+		45434D0A1BAFC95400279083 /* house-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 45434D071BAFC95400279083 /* house-key.png */; settings = {ASSET_TAGS = (); }; };
+		45434D0B1BAFC95400279083 /* dekodemo.png in Resources */ = {isa = PBXBuildFile; fileRef = 45434D081BAFC95400279083 /* dekodemo.png */; settings = {ASSET_TAGS = (); }; };
+		45434D0D1BAFD30D00279083 /* normal_door_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 45434D0C1BAFD30D00279083 /* normal_door_close.png */; settings = {ASSET_TAGS = (); }; };
 		454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */; };
 		454F889F1B5FCF8B00C3E969 /* libHousingApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454F889E1B5FCF8B00C3E969 /* libHousingApi.a */; };
 		45663CED1B95D77200548355 /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CEC1B95D77200548355 /* libTwilioClient.a */; };
@@ -201,6 +206,12 @@
 		45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
 		45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BTLECentralViewController.mm; sourceTree = "<group>"; };
 		45434D001BAF13F400279083 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
+		45434D031BAFAECD00279083 /* SecurityScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityScene.cpp; sourceTree = "<group>"; };
+		45434D041BAFAECD00279083 /* SecurityScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityScene.h; sourceTree = "<group>"; };
+		45434D061BAFC95400279083 /* normal_door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_door.png; sourceTree = "<group>"; };
+		45434D071BAFC95400279083 /* house-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house-key.png"; sourceTree = "<group>"; };
+		45434D081BAFC95400279083 /* dekodemo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dekodemo.png; sourceTree = "<group>"; };
+		45434D0C1BAFD30D00279083 /* normal_door_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_door_close.png; sourceTree = "<group>"; };
 		454F889A1B5FCF7A00C3E969 /* HousingApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApi.h; path = ios/HousingApi.h; sourceTree = SOURCE_ROOT; };
 		454F889B1B5FCF7A00C3E969 /* HousingApiConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApiConstant.h; path = ios/HousingApiConstant.h; sourceTree = SOURCE_ROOT; };
 		454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HousingApiConstant.m; path = ios/HousingApiConstant.m; sourceTree = SOURCE_ROOT; };
@@ -507,6 +518,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45434D0C1BAFD30D00279083 /* normal_door_close.png */,
+				45434D061BAFC95400279083 /* normal_door.png */,
+				45434D071BAFC95400279083 /* house-key.png */,
+				45434D081BAFC95400279083 /* dekodemo.png */,
 				45BD5E171BADA002001EFE49 /* card_spades.png */,
 				452414C71BAD9D41007BF272 /* yattane.png */,
 				452414BF1BAD9D3C007BF272 /* sumairu.png */,
@@ -558,6 +573,8 @@
 				4582944C1BA5C09600BE34AB /* NativeBridgeScene.h */,
 				4582945D1BA9A5A600BE34AB /* InfoScene.cpp */,
 				4582945E1BA9A5A600BE34AB /* InfoScene.h */,
+				45434D031BAFAECD00279083 /* SecurityScene.cpp */,
+				45434D041BAFAECD00279083 /* SecurityScene.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -733,7 +750,9 @@
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				452414BD1BAD9D33007BF272 /* naki.png in Resources */,
+				45434D0B1BAFC95400279083 /* dekodemo.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				45434D0D1BAFD30D00279083 /* normal_door_close.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
@@ -762,10 +781,12 @@
 				459A62331BACEC93006425C9 /* button.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				452414B41BAD9D2B007BF272 /* grandmother.png in Resources */,
+				45434D091BAFC95400279083 /* normal_door.png in Resources */,
 				452414C31BAD9D3C007BF272 /* sumairu.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				452414B11BAD9D19007BF272 /* boy.png in Resources */,
+				45434D0A1BAFC95400279083 /* house-key.png in Resources */,
 				452414C41BAD9D3C007BF272 /* tehehe.png in Resources */,
 				452414BA1BAD9D33007BF272 /* kiran.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
@@ -845,6 +866,7 @@
 				458294541BA8699800BE34AB /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */,
+				45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */,
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
 				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,

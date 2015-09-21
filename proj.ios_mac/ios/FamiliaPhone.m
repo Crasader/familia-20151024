@@ -16,7 +16,7 @@
     if ( self = [super init] )
     {
         // Replace the URL with your Capabilities Token URL
-        NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=2"];
+        NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=100"];
         NSURLResponse*  response = nil;
         NSError*    error = nil;
         NSData* data = [NSURLConnection sendSynchronousRequest:

@@ -126,6 +126,7 @@
     }
     
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+    cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
     
     // Ok, it's in range - have we already seen it?
     if (self.discoveredPeripheral != peripheral) {

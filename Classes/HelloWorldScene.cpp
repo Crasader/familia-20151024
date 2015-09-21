@@ -62,7 +62,7 @@ void CardSprite::showNumber()
         case 10: numberString = MESSAGE_REAL_ESTATE; break;
         case 11: numberString = MESSAGE_COMSUMPTION; break;
         case 12: numberString = MESSAGE_CHARGE; break;
-        case 13: numberString = MESSAGE_SCHEDULE; break;
+        case 13: numberString = MESSAGE_DOOR; break;
         default: numberString = StringUtils::format("%d", _card.number); break;
     }
     
@@ -365,7 +365,7 @@ void HelloWorld::initGame()
     showBackCards();
     
     //時間を表示する
-    showTimerLabel();
+    //showTimerLabel();
     
     //ボタンを表示する
     // showButton();
@@ -386,7 +386,7 @@ void HelloWorld::initGame()
     initTrash();
     
     //時間を表示する
-    showTimerLabel();
+    //showTimerLabel();
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -608,7 +608,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     
     //タップしているカードの指定を外す
     _firstCard = nullptr;
-
+/*
     switch(indetifier){
     case 0:
     case 1:
@@ -616,34 +616,40 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     case 3:
     case 4:
     case 5:
-        CCDirector::sharedDirector()->replaceScene(
-                                                   CCTransitionFade::create(2.0f,
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             EstateController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 6:
     case 7:
     case 8:
-//            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, MediaController::scene(), ccc3(0, 0, 0)));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            MediaController::scene(),
+                                                                            ccc3(0, 0, 0)));
         break;
     case 9:
-//            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, EstateController::scene(), ccc3(0, 0, 0)));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            InfoController::scene(),
+                                                                            ccc3(0, 0, 0)));
         break;
     case 10:
     case 11:
     case 12:
-//            CCTintTo::create((float)2.0f,ccc3(0, 0, 0));
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, EstateController::scene(), ccc3(0, 0, 0)));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            EstateController::scene(),
+                                                                            ccc3(0, 0, 0)));
+        break;
+    case 13:
+    default:
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                            SecurityController::scene(),
+                                                                            ccc3(0, 0, 0)));
         break;
     }
-
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
-    
-    
-    
-
+*/
+    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                        SecurityController::scene(),
+                                                                        ccc3(0, 0, 0)));
 
 }
 
@@ -761,17 +767,18 @@ void HelloWorld::showTimerLabel()
 
 void HelloWorld::update(float dt)
 {
-    
+
     //時間の積算
     _timer += dt;
-    
+/*
     auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
     if (timerLabel)
     {
         //時間の表示
         timerLabel->setString(StringUtils::format("%0.2fs", _timer));
     }
-
+*/
+/*
     //ゲーム終了判定
     bool finish = true;
     for (int tag = 1; tag <= 10; tag++)
@@ -790,4 +797,5 @@ void HelloWorld::update(float dt)
         //ゲーム終了
         unscheduleUpdate();
     }
+*/
 }

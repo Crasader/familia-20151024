@@ -28,6 +28,7 @@
     if (self) {
         // Custom initialization
     }
+
     return self;
 }
 
@@ -45,28 +46,6 @@
     // Don't keep it going while we're not showing.
     [self.peripheralManager stopAdvertising];    
 }
-
-#pragma mark - View Lifecycle
-
-
-/*
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Start up the CBPeripheralManager
-    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    // Don't keep it going while we're not showing.
-    [self.peripheralManager stopAdvertising];
-
-    [super viewWillDisappear:animated];
-}
-*/
 
 
 #pragma mark - Peripheral Methods
@@ -103,6 +82,7 @@
     
     // And add it to the peripheral manager
     [self.peripheralManager addService:transferService];
+        
 }
 
 
@@ -230,60 +210,6 @@
     [self sendData];
 }
 
-
-
-#pragma mark - TextView Methods
-
-
-
-/** This is called when a change happens, so we know to stop advertising
-- (void)textViewDidChange:(UITextView *)textView
-{
-    // If we're already advertising, stop
-    if (self.advertisingSwitch.on) {
-        [self.advertisingSwitch setOn:NO];
-        [self.peripheralManager stopAdvertising];
-    }
-}
- */
-
-
-/** Adds the 'Done' button to the title bar
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    // We need to add this manually so we have a way to dismiss the keyboard
-//    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonSystemItemDone target:self action:@selector(dismissKeyboard)];
-//    self.navigationItem.rightBarButtonItem = rightButton;
-}
- */
-
-
-/** Finishes the editing
-- (void)dismissKeyboard
-{
-    [self.textView resignFirstResponder];
-    self.navigationItem.rightBarButtonItem = nil;
-}
-*/
-
-
-#pragma mark - Switch Methods
-
-
-
-/** Start advertising
-- (IBAction)switchChanged:(id)sender
-{
-    if (self.advertisingSwitch.on) {
-        // All we advertise is our service's UUID
-        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
-    }
-    
-    else {
-        [self.peripheralManager stopAdvertising];
-    }
-}
- */
 
 
 @end

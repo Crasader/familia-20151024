@@ -7,6 +7,7 @@
 #include "MediaScene.h"
 #include "EstateScene.h"
 #include "InfoScene.h"
+#include "SecurityScene.h"
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
@@ -51,6 +52,7 @@
 #define MESSAGE_COMSUMPTION "消費電力"  // 30
 #define MESSAGE_CHARGE "蓄電"   // 31
 #define MESSAGE_SCHEDULE "スケジュール"  // 13
+#define MESSAGE_DOOR "スケジュール"  // 13
 
 
 

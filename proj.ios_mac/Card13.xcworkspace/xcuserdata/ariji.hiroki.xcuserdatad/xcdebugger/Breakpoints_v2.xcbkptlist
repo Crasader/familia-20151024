@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464287349.575539"
+            timestampString = "464506035.842331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "InfoController::onTouchEnded(Touch *touch, Event *unused_event)"
             landmarkType = "5">
          </BreakpointContent>
@@ -80,22 +80,6 @@
             startingLineNumber = "151"
             endingLineNumber = "151"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios/device_controller/BTLEPeripheralViewController.mm"
-            timestampString = "464483811.018957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-sendData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

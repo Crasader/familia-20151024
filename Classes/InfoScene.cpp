@@ -119,24 +119,12 @@ bool InfoController::onTouchBegan(Touch *touch, Event *unused_event)
 
 void InfoController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    //スワイプしているカードの位置を変更
-    
+    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
 }
 
 
 void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
-    
-    //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, HelloWorld::scene(), ccc3(0, 0, 0)));
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
-    
-    //下からシーンが移動。
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionMoveInB::create(2.0f,HelloWorld::scene()));
-    
-    //上からシーンが移動。
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionMoveInT::create(2.0f,HelloWorld::scene()));
-    
 }
 
 void InfoController::onTouchCancelled(Touch *touch, Event *unused_event)
