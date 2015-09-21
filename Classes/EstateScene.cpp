@@ -75,23 +75,23 @@ void EstateController::initGame()
 {
     char message[100];
     getMessage(message);
-    //    Size winSize = Director::getInstance()->getVisibleSize();
+    Size winSize = Director::getInstance()->getVisibleSize();
     
-    //auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
-    //this->addChild(_bg2);
-    //    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-    //    this->addChild(_Gbg);
-    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-    _Gbg->setVector(Point(1,0));
-    this->addChild(_Gbg);
-    
+    auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
+    this->addChild(_bg2);
+
     //画面サイズを取得
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    //テキストの設定　Label::createWithSystemFont("文字列", "フォントの種類", 文字サイズ);
+    //CCSpriteクラスで画像を設定します。
+    _sprite1 = Sprite::create("button.png");
+    _sprite1->setScale(2.0f);
+    _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    addChild(_sprite1);
+    
     Label *label = Label::createWithSystemFont("TEST", "Marker Felt.ttf", 30);
     
-    //画面の中央に表示
+    label->setScale(2.0f);
     label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->addChild(label);
     
@@ -156,32 +156,20 @@ void EstateController::startWebView()
 
 bool EstateController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    showSPrite();
-    
-    return false;
+    return true;
 }
 
 void EstateController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    //スワイプしているカードの位置を変更
-    
+    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
 }
 
 
 void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionFadeTR::create(2.0f, HelloWorld::scene()));
-    
-    //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f, InfoController::scene(), ccc3(0, 0, 0)));
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
-    
-    //下からシーンが移動。
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionMoveInB::create(2.0f,HelloWorld::scene()));
-    
-    //上からシーンが移動。
-    //    CCDirector::sharedDirector()->replaceScene(CCTransitionMoveInT::create(2.0f,HelloWorld::scene()));
-    
+    showSPrite();
+
+    return;
 }
 
 void EstateController::onTouchCancelled(Touch *touch, Event *unused_event)

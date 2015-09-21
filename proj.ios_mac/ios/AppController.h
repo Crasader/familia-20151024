@@ -15,14 +15,16 @@
 #import "ProximityViewController.h"
 #import "ShakeViewController.h"
 #import "SpeedViewController.h"
+#import "BTLECentralViewController.h"
+#import "BTLEPeripheralViewController.h"
 
 @class RootViewController;
 
-#import <CoreBluetooth/CoreBluetooth.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreBluetooth/CoreBluetooth.h>
+//#import <CoreLocation/CoreLocation.h>
 
 
-@interface AppController : NSObject <UIApplicationDelegate, UIAccelerometerDelegate, TCDeviceDelegate,CBPeripheralManagerDelegate, CLLocationManagerDelegate>
+@interface AppController : NSObject <UIApplicationDelegate, UIAccelerometerDelegate, TCDeviceDelegate>
 {
     UIWindow *window;
     TCDevice* _phone;
@@ -48,9 +50,8 @@
 @property (unsafe_unretained, nonatomic) ProximityViewController *proximityManager;
 @property (unsafe_unretained, nonatomic) ShakeViewController *shakeManager;
 @property (unsafe_unretained, nonatomic) SpeedViewController *speedManager;
-
-//@property (unsafe_unretained, nonatomic) CBPeripheralManager *myPeripheralManager;
-//@property (unsafe_unretained, nonatomic) CBMutableCharacteristic *myCharacteristicsSample;
+@property (unsafe_unretained, nonatomic) BTLEPeripheralViewController *btlPeripheraManager;
+@property (unsafe_unretained, nonatomic) BTLECentralViewController *btlCentralManager;
 
 @end
 

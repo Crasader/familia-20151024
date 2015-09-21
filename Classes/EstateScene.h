@@ -23,7 +23,8 @@ protected:
     
     
 public:
-    //HelloWorldクラスのシーンを作成する
+    cocos2d::Sprite* _sprite1;
+
     static cocos2d::Scene* createScene();
     static cocos2d::Scene* scene();
     

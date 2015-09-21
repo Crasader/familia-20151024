@@ -30,9 +30,6 @@
 
 @interface AppController (){
     
-    CBPeripheralManager *myPeripheralManager;
-    CBMutableCharacteristic *myCharacteristicsSample;
-    CBMutableCharacteristic *myCharacteristicsNotify;
     
 }
 @end
@@ -45,119 +42,6 @@
 
 // cocos2d application instance
 static AppDelegate s_sharedApplication;
-
-static NSString * const kUUIDServiceSample =   @"D7792ECA-23E2-4253-8C29-78EF42DB4D1C";
-static NSString * const kUUIDCharacteristicsSample = @"67DDB201-9C83-489B-943E-A1E1B68A4E05";
-static NSString * const kUUIDCharacteristicsNotify = @"67DDB202-9C83-489B-943E-A1E1B68A4E05";
-
-/**
- * [STEP2] Peripheralの状態確認
- */
-
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
-{
-    // Opt out from any other state
-    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-        return;
-    }
-    
-    NSLog(@"self.peripheralManager powered on.");
-    
-    // Serviceのインスタンスを作成
-    CBMutableService *myServiceSample = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:kUUIDServiceSample] primary:YES];
-    
-    // Read/Write
-    CBCharacteristicProperties propSample = CBCharacteristicPropertyRead|CBCharacteristicPropertyWrite;
-    CBAttributePermissions permSample = CBAttributePermissionsReadable|CBAttributePermissionsWriteable;
-    myCharacteristicsSample = [[CBMutableCharacteristic alloc] initWithType:
-                               [CBUUID UUIDWithString:kUUIDCharacteristicsSample]
-                                                                 properties:propSample
-                                                                      value:nil
-                                                                permissions:permSample];
-    
-    CBCharacteristicProperties propNotify = CBCharacteristicPropertyNotify;
-    CBAttributePermissions permNotify = CBAttributePermissionsReadable;
-    myCharacteristicsNotify = [[CBMutableCharacteristic alloc] initWithType:
-                               [CBUUID UUIDWithString:kUUIDCharacteristicsSample]
-                                                                 properties:propNotify
-                                                                      value:nil
-                                                                permissions:permNotify];
-    
-    // CharasteristicをServiceにAdd
-    myServiceSample.characteristics = @[myCharacteristicsSample,myCharacteristicsNotify];
-/*
-    // Charasteristicのインスタンスを生成
-    // Read/Write
-    CBCharacteristicProperties propSample = CBCharacteristicPropertyRead;
-    CBAttributePermissions permSample = CBAttributePermissionsReadable;
-    myCharacteristicsSample =   [[CBMutableCharacteristic alloc] initWithType:
-                                 [CBUUID UUIDWithString:kUUIDCharacteristicsSample]
-                                                                   properties:propSample
-                                                                        value:nil
-                                                                  permissions:permSample];
-    
-    
-    // CharasteristicをServiceにAdd
-    myServiceSample.characteristics = @[myCharacteristicsSample];
-*/
-    // ServiceをPeripheralにAdd
-    [myPeripheralManager addService:myServiceSample];
-    
-    // [Step3] Advertisingの開始
-    NSDictionary *advertisingData = @{CBAdvertisementDataLocalNameKey:@"Sample"};
-    [myPeripheralManager startAdvertising:advertisingData];
-}
-
-// [EVENT]
-// read from Central
-- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request
-{
-    NSLog(@"- peripheralManager:didReceiveReadRequest:");
-    NSLog(@"- UUID: %@",request.characteristic.UUID);
-    if([request.characteristic.UUID isEqual:kUUIDCharacteristicsSample]){
-        char value[20] = {0x01,0x02,0x03,0x04,0x05,
-            0x06,0x07,0x08,0x09,0x0a,
-            0x0b,0x0c,0x0d,0x0e,0x0f,
-            0x10,0x11,0x12,0x13,0x14};
-        NSData *valueSample = [[NSData alloc] initWithBytes:value length:20];
-        request.value = valueSample;
-        [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
-    }
-    
-}
-
-// [EVENT]
-// write from Central
-- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests
-{
-    
-    NSLog(@"* peripheralManager:didReceiveWriteRequests:");
-    
-    for(CBATTRequest *request in requests){
-        NSLog(@"* UUID: %@",request.characteristic.UUID);
-        NSLog(@"* value: %@",request.value);
-        
-        if([request.characteristic.UUID isEqual:kUUIDCharacteristicsSample]){
-            
-            // SuccessのReplyを通知
-            [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
-            
-            // Notifyで送る値の生成
-            char value[20] = {0x01,0x01,0x01,0x01,0x01,
-                0x01,0x01,0x01,0x01,0x01,
-                0x01,0x01,0x01,0x01,0x01,
-                0x01,0x01,0x01,0x01,0x01};
-            
-            NSData *notifyData = [[NSData alloc] initWithBytes:value length:20];
-            
-            request.value = notifyData;
-            [peripheral updateValue:request.value
-                  forCharacteristic:myCharacteristicsNotify
-               onSubscribedCentrals:nil];
-        }
-    }
-    
-}
 
 
 - (void)init_twilio
@@ -203,8 +87,6 @@ static NSString * const kUUIDCharacteristicsNotify = @"67DDB202-9C83-489B-943E-A
 //        _connection = [connection accept];
     }
 }
-
-
 
 - (void)deviceDidStartListeningForIncomingConnections:(TCDevice*)device
 {
@@ -263,7 +145,7 @@ static NSString * const kUUIDCharacteristicsNotify = @"67DDB202-9C83-489B-943E-A
     // Twilio 初期化
     [self init_twilio];
 
-
+/*
     // Charasteristicのインスタンスを生成
     // Read
     CBCharacteristicProperties propSample = CBCharacteristicPropertyRead;
@@ -275,8 +157,13 @@ static NSString * const kUUIDCharacteristicsNotify = @"67DDB202-9C83-489B-943E-A
                                                                  properties:propSample
                                                                       value:nil
                                                                 permissions:permSample];
-    
+*/
+    self.btlCentralManager = [[BTLECentralViewController alloc] init];
+    [self.btlCentralManager initBtlCentralManager];
 
+    self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
+    [self.btlPeripheraManager initBtlPeripheraManager];
+    
     
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);
@@ -285,26 +172,6 @@ static NSString * const kUUIDCharacteristicsNotify = @"67DDB202-9C83-489B-943E-A
     app->run();
 
     return YES;
-}
-
-- (void)receiveBleManager
-{
-    CBUUID *cbuuid1, *cbuuid2; // 受信対象となる UUID
-    [myPeripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[cbuuid1, cbuuid2]}];
-}
-
-- (void)sendBleManager
-{
-    CBUUID *cbuuid1, *cbuuid2; // 受信対象となる UUID
-    [myPeripheralManager scanForPeripheralsWithServices:@[cbuuid1, cbuuid2]
-                                                options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CBUUID *cbuuid1, *cbuuid2; // 受信対象となる UUID
-    [myPeripheralManager scanForPeripheralsWithServices:@[cbuuid1, cbuuid2]
-                                            options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
 }
 
 

@@ -105,11 +105,16 @@ protected:
     float _timer; //経過時間
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
+    cocos2d::Sprite* _sprite1_emotion;
+    cocos2d::Sprite* _sprite2_emotion;
+    cocos2d::Label* _label1;
+    cocos2d::Label* _label2;
     int sts_sprite1;
     int sts_sprite2;
     
     int _target_status[2];
-    std::string emotion_status[10];
+    std::vector<std::string> emotion_status;
+    std::vector<std::string> family_menber;
 
     
     void initCards(); //カードを初期化する
@@ -126,10 +131,8 @@ protected:
     
     void Action01(float frame);
     void Action02(float frame);
-    void Sequence1();
-    void Sequence2();
-    void Sequence3();
-    void Sequence4();
+    void Sequence1(int sts);
+    void Sequence2(int sts);
 
 public:
     //HelloWorldクラスのシーンを作成する
@@ -147,12 +150,6 @@ public:
     virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
-
-    //タップイベント
-    virtual bool onTouchBegan1(cocos2d::Touch *touch, cocos2d::Event *unused_event);
-    virtual void onTouchMoved1(cocos2d::Touch *touch, cocos2d::Event *unused_event);
-    virtual void onTouchEnded1(cocos2d::Touch *touch, cocos2d::Event *unused_event);
-    virtual void onTouchCancelled1(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     
     //毎フレーム呼ばれる関数
     void update(float dt) override;

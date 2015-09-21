@@ -35,6 +35,9 @@
 		453207EB1B8790DC0039C8E8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 453207E81B8790DC0039C8E8 /* libssl.a */; };
 		453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 453207F11B89FCB40039C8E8 /* NetworkLibCurl.cpp */; };
 		453207F51B8C40F40039C8E8 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453207F41B8C40F40039C8E8 /* CoreBluetooth.framework */; };
+		45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45434CF91BAEBA1000279083 /* SecurityController.m */; settings = {ASSET_TAGS = (); }; };
+		45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */; };
 		454F889F1B5FCF8B00C3E969 /* libHousingApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454F889E1B5FCF8B00C3E969 /* libHousingApi.a */; };
 		45663CED1B95D77200548355 /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CEC1B95D77200548355 /* libTwilioClient.a */; };
@@ -191,6 +194,13 @@
 		453F72651B94A43900011B2F /* TCDeviceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCDeviceDelegate.h; path = ios/TCDeviceDelegate.h; sourceTree = SOURCE_ROOT; };
 		453F72661B94A43900011B2F /* TCPresenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPresenceEvent.h; path = ios/TCPresenceEvent.h; sourceTree = SOURCE_ROOT; };
 		453F72671B94A43900011B2F /* TwilioClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwilioClient.h; path = ios/TwilioClient.h; sourceTree = SOURCE_ROOT; };
+		45434CF91BAEBA1000279083 /* SecurityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecurityController.m; path = ios/SecurityController.m; sourceTree = SOURCE_ROOT; };
+		45434CFB1BAEBA3300279083 /* SecurityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecurityController.h; path = ios/SecurityController.h; sourceTree = SOURCE_ROOT; };
+		45434CFC1BAF13F400279083 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BTLEPeripheralViewController.mm; sourceTree = "<group>"; };
+		45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
+		45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BTLECentralViewController.mm; sourceTree = "<group>"; };
+		45434D001BAF13F400279083 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
 		454F889A1B5FCF7A00C3E969 /* HousingApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApi.h; path = ios/HousingApi.h; sourceTree = SOURCE_ROOT; };
 		454F889B1B5FCF7A00C3E969 /* HousingApiConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApiConstant.h; path = ios/HousingApiConstant.h; sourceTree = SOURCE_ROOT; };
 		454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HousingApiConstant.m; path = ios/HousingApiConstant.m; sourceTree = SOURCE_ROOT; };
@@ -354,6 +364,7 @@
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				45434CF81BAEB9D600279083 /* New Group */,
 				45894CE01BACF7310041D185 /* FamiliaPhone.h */,
 				45894CE11BACF7310041D185 /* FamiliaPhone.m */,
 				45663CFA1B99CF4300548355 /* device_controller */,
@@ -375,6 +386,8 @@
 				503AE0FD17EB989F00D1A890 /* Prefix.pch */,
 				503AE0FE17EB989F00D1A890 /* RootViewController.h */,
 				503AE0FF17EB989F00D1A890 /* RootViewController.mm */,
+				45434CF91BAEBA1000279083 /* SecurityController.m */,
+				45434CFB1BAEBA3300279083 /* SecurityController.h */,
 			);
 			name = ios;
 			path = Classes;
@@ -447,9 +460,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		45434CF81BAEB9D600279083 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		45663CFA1B99CF4300548355 /* device_controller */ = {
 			isa = PBXGroup;
 			children = (
+				45434CFC1BAF13F400279083 /* TransferService.h */,
+				45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */,
+				45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */,
+				45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */,
+				45434D001BAF13F400279083 /* BTLECentralViewController.h */,
 				45663CFB1B99CF4300548355 /* AccelerometerViewController.h */,
 				45663CFC1B99CF4300548355 /* AccelerometerViewController.mm */,
 				45663CFD1B99CF4300548355 /* AltitudeViewController.h */,
@@ -803,6 +828,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4582945F1BA9A5A600BE34AB /* InfoScene.cpp in Sources */,
+				45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */,
 				454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */,
 				45663D141B99CF4300548355 /* AltitudeViewController.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
@@ -812,6 +838,7 @@
 				45894CE21BACF7310041D185 /* FamiliaPhone.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				45663D151B99CF4300548355 /* AudioViewController.mm in Sources */,
+				45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */,
 				45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */,
 				45663D181B99CF4300548355 /* FaceDetectionViewController.mm in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -819,6 +846,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */,
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
+				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,
 				458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */,
 				45663D171B99CF4300548355 /* BrightnessViewController.mm in Sources */,
