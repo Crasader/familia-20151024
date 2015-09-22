@@ -25,13 +25,13 @@ bool CardSprite::init()
         "ビデオ\nメッセージ",
         "メッセージ",
         "住宅情報",
-        "消費電力",
+        "",
         "蓄電情報",
-        "エアコンの状態",
-        "窓の開閉",
-        "シャッターの\n開閉",
-        "照明の状態",
-        "玄関ドアの開閉"
+        "消費電力\n情報",
+        "設備機器\n稼働情報",
+        "お出かけ\nまとめ処理",
+        "帰宅予約",
+        "玄関ドア\nの開閉"
     };
     
     return true;
@@ -180,7 +180,7 @@ void CardSprite::showNumber()
     numberString = card_type_name[temp_num];
     
     //ラベルの生成
-    auto number = Label::createWithSystemFont(numberString, "Arial", 16);
+    auto number = Label::createWithSystemFont(numberString, "Arial", 24);
     number->setPosition(Point(getContentSize() / 2));
     number->setTextColor((Color4B)Color4B::BLACK);
     addChild(number);
@@ -659,6 +659,12 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     {
         indetifier_sub = _secondSprite->getCard().number;
     }
+
+    
+    indetifier = _firstCard->getCard().type*13 + indetifier;
+    
+    
+    
     
     //新しいカードを配置する
     if ((int)_cards.size() > 0)
@@ -731,7 +737,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
                                                                             EstateController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 9: // 消費電力
+    case 9: //
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
@@ -741,24 +747,24 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
                                                                             InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 11: // エアコンの状態
+    case 11: // 消費電力の状態
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            SecurityController::scene(),
+                                                                            InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 12: // 窓の開閉
+    case 12: // 設備機器
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            SecurityController::scene(),
+                                                                            InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 13: // シャッターの開閉
+    case 13: // お出かけ\nまとめ処理
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            SecurityController::scene(),
+                                                                            OutgoingController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 14: // 照明の状態
+    case 14: // 帰宅予約
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            SecurityController::scene(),
+                                                                            ReserveRetunrHomeController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 15: // 玄関ドアの開閉

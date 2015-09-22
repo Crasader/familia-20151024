@@ -62,6 +62,8 @@
 		45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45663D121B99CF4300548355 /* SpeedViewController.mm */; };
 		45663D201B99D75200548355 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D1F1B99D75200548355 /* CoreImage.framework */; };
 		45663D221B99D79A00548355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D211B99D79A00548355 /* CoreLocation.framework */; };
+		457CA7301BB0E88E0016AF15 /* ReserveReturnHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */; settings = {ASSET_TAGS = (); }; };
+		457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */; settings = {ASSET_TAGS = (); }; };
 		458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294451BA5BF0F00BE34AB /* MediaScene.cpp */; };
 		4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294481BA5BF2D00BE34AB /* EstateScene.cpp */; };
 		458294541BA8699800BE34AB /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294521BA8699800BE34AB /* GameLayer.cpp */; };
@@ -244,6 +246,10 @@
 		45663D121B99CF4300548355 /* SpeedViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedViewController.mm; sourceTree = "<group>"; };
 		45663D1F1B99D75200548355 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
 		45663D211B99D79A00548355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReserveReturnHome.cpp; sourceTree = "<group>"; };
+		457CA72F1BB0E88E0016AF15 /* ReserveReturnHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveReturnHome.h; sourceTree = "<group>"; };
+		457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutgoingHome.cpp; sourceTree = "<group>"; };
+		457CA7321BB0E9170016AF15 /* OutgoingHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingHome.h; sourceTree = "<group>"; };
 		458294451BA5BF0F00BE34AB /* MediaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaScene.cpp; sourceTree = "<group>"; };
 		458294461BA5BF0F00BE34AB /* MediaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaScene.h; sourceTree = "<group>"; };
 		458294481BA5BF2D00BE34AB /* EstateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EstateScene.cpp; sourceTree = "<group>"; };
@@ -570,6 +576,10 @@
 				4582945E1BA9A5A600BE34AB /* InfoScene.h */,
 				45434D031BAFAECD00279083 /* SecurityScene.cpp */,
 				45434D041BAFAECD00279083 /* SecurityScene.h */,
+				457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */,
+				457CA72F1BB0E88E0016AF15 /* ReserveReturnHome.h */,
+				457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */,
+				457CA7321BB0E9170016AF15 /* OutgoingHome.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -860,10 +870,12 @@
 				458294541BA8699800BE34AB /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */,
+				457CA7301BB0E88E0016AF15 /* ReserveReturnHome.cpp in Sources */,
 				45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */,
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
 				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,
+				457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */,
 				458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */,
 				45663D171B99CF4300548355 /* BrightnessViewController.mm in Sources */,
 				45663D1D1B99CF4300548355 /* ShakeViewController.mm in Sources */,

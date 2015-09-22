@@ -33,6 +33,33 @@ bool InfoController::init()
         return false;
     }
     
+    news_type_name =
+    {
+        "ソフトバンク　ビジネス＋ITニュース" // http://www.sbbit.jp/
+        "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
+        "スポーツナビ",  // http://sports.yahoo.co.jp/
+        "ニュース",
+        "書籍情報",
+        "ビデオ\nメッセージ",
+        "メッセージ",
+        "住宅情報",
+        "",
+        "蓄電情報",
+        "消費電力\n情報",
+        "設備機器\n稼働情報",
+        "お出かけ\nまとめ処理",
+        "帰宅予約",
+        "玄関ドア\nの開閉"
+    };
+    
+    estate_site_type_name =
+    {
+        "テンポス", // http://www.temposmart.jp/
+        
+    };
+    
+    
+    
     //シングルタップイベント取得
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(_swallowsTouches);
@@ -58,7 +85,7 @@ void InfoController::getMessage(char* result)
     
     post_command = "http://127.0.0.1:3000/send_message?type=2";
     
-    Get(post_command);
+    Post(post_command);
     
     return;
 }
@@ -67,31 +94,21 @@ void InfoController::initGame()
 {
     char message[100];
     getMessage(message);
-//    Size winSize = Director::getInstance()->getVisibleSize();
-    
-    //auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
-    //this->addChild(_bg2);
-    //    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-    //    this->addChild(_Gbg);
-    auto _Gbg = LayerGradient::create(Color4B::GREEN, Color4B::BLUE);
-    _Gbg->setVector(Point(1,0));
-    this->addChild(_Gbg);
-    
-    //画面サイズを取得
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    auto _bg2 = LayerColor::create(Color4B(0,120,120,120), visibleSize.width, visibleSize.height);
+    this->addChild(_bg2);
+
+    Label *label[10];
+    
     //テキストの設定　Label::createWithSystemFont("文字列", "フォントの種類", 文字サイズ);
-    Label *label = Label::createWithSystemFont("TEST", "Marker Felt.ttf", 30);
+    label[0] = Label::createWithSystemFont("TEST", "Marker Felt.ttf", 30);
     
     //画面の中央に表示
-    label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    this->addChild(label);
-    
-    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/3, visibleSize.height/3));
-    
-    //アニメーションの実行
-    label->runAction(move);
-    
+    label[0]->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    this->addChild(label[0]);
+        
     //update関数の呼び出しを開始
     scheduleUpdate();
     
@@ -112,7 +129,6 @@ void InfoController::startWebView()
 
 bool InfoController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    startWebView();
     
     return true;
 }

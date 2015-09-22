@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 void Post(const char *command_type);
-void Get(const char *command_type);
+bool Get(const char *command_type);
 
 
 #endif /* defined(__Card13__NetworkLibCurl__) */

@@ -8,6 +8,8 @@
 #include "EstateScene.h"
 #include "InfoScene.h"
 #include "SecurityScene.h"
+#include "OutgoingHome.h"
+#include "ReserveReturnHome.h"
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数

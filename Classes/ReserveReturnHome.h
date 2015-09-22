@@ -1,13 +1,13 @@
 //
-//  SecurityScene.hpp
+//  ReserveReturnHome.hpp
 //  Card13
 //
-//  Created by Hiroki Ariji on 2015/09/21.
+//  Created by Hiroki Ariji on 2015/09/22.
 //
 //
 
-#ifndef SecurityScene_hpp
-#define SecurityScene_hpp
+#ifndef ReserveReturnHome_hpp
+#define ReserveReturnHome_hpp
 
 #include <stdio.h>
 #include "cocos2d.h"
@@ -17,7 +17,7 @@
 #include "HelloWorldScene.h"
 
 
-class SecurityController : public cocos2d::Layer
+class ReserveRetunrHomeController : public cocos2d::Layer
 {
 protected:
     
@@ -28,7 +28,6 @@ public:
     
     static cocos2d::Scene* scene();
     
-    int _doorStatus;
     std::mutex mtx;
     
     //初期化処理を行う
@@ -36,16 +35,13 @@ public:
     void initGame();
     void dispatchThreadCallbacks();
     
-    void getMessage(char* result);
-    void lockAutoDoor(char* result);
-    void unlockAutoDoor(char* result);
-    bool getAutoDoorStatus(char* result);
-
+    bool reserveEquipment(char* result);
+    
     void startWebView();
     void showSPrite();
     
     //create関数作成マクロ
-    CREATE_FUNC(SecurityController);
+    CREATE_FUNC(ReserveRetunrHomeController);
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -57,4 +53,5 @@ public:
     void update(float dt) override;
 };
 
-#endif /* SecurityScene_hpp */
+
+#endif /* ReserveReturnHome_hpp */

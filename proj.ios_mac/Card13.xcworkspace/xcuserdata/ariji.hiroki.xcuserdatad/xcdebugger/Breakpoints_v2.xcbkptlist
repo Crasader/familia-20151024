@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464192663.475573"
+            timestampString = "464588865.45796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "InfoController::onTouchBegan(Touch *touch, Event *unused_event)"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "InfoController::onTouchMoved(Touch *touch, Event *unused_event)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464506035.842331"
+            timestampString = "464588865.45796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "InfoController::onTouchEnded(Touch *touch, Event *unused_event)"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "InfoController::onTouchCancelled(Touch *touch, Event *unused_event)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/HelloWorldScene.cpp"
-            timestampString = "464521014.360095"
+            timestampString = "464525117.972103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)"
             landmarkType = "5">
          </BreakpointContent>
@@ -145,6 +145,38 @@
             endingLineNumber = "240"
             landmarkName = "-webView:didFailLoadWithError:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/NetworkLibCurl.cpp"
+            timestampString = "464574241.847765"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "Post(const char *post_command)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/NetworkLibCurl.cpp"
+            timestampString = "464526624.522328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "writer(char *data, size_t size, size_t nmemb, std::string *buffer)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

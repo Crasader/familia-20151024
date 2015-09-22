@@ -25,6 +25,8 @@ protected:
     
 public:
     static cocos2d::Scene* scene();
+    std::vector<std::string> news_type_name;
+    std::vector<std::string> estate_site_type_name;
     
     //初期化処理を行う
     virtual bool init();

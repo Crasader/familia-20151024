@@ -14,18 +14,8 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 
-Scene* SecurityController::createScene()
-{
-    auto scene = Scene::create();
-    auto layer = SecurityController::create();
-    
-    scene->addChild(layer);
-    
-    return scene;
-}
-
 Scene* SecurityController::scene()
-{
+{    
     auto scene = Scene::create();
     auto layer = SecurityController::create();
     
@@ -60,27 +50,20 @@ bool SecurityController::init()
     return true;
 }
 
-void SecurityController::getMessage(char* result)
+bool SecurityController::getAutoDoorStatus(char* result)
 {
+    bool door_status = true;
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
-    Get(post_command);
-    return;
-}
-
-void SecurityController::getAutoDoorStatus(char* result)
-{
-    const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=19";
-    Get(post_command);
-    return;
+    post_command = "http://127.0.0.1:3000/api/house?type=19";
+    door_status = Get(post_command)? true:false;
+    return door_status;
 }
 
 void SecurityController::lockAutoDoor(char* result)
 {
     const char *post_command;
     post_command = "http://127.0.0.1:3000/send_message?type=21";
-    Get(post_command);
+    Post(post_command);
     return;
 }
 
@@ -88,40 +71,40 @@ void SecurityController::unlockAutoDoor(char* result)
 {
     const char *post_command;
     post_command = "http://127.0.0.1:3000/send_message?type=22";
-    Get(post_command);
+    Post(post_command);
     return;
 }
 
 void SecurityController::initGame()
 {
     char message[100];
-    getAutoDoorStatus(message);
     Size winSize = Director::getInstance()->getVisibleSize();
-    
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-    
-    _doorStatus = 0;
-    if(_doorStatus == 0){
+
+    if(getAutoDoorStatus(message)){
+        _doorStatus = 1;
         _sprite1 = Sprite::create("normal_door.png");
         _sprite1->setScale(1.0f);
         _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     }else{
+        _doorStatus = 0;
         _sprite1 = Sprite::create("normal_door_close.png");
         _sprite1->setScale(1.0f);
         _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     }
+
     addChild(_sprite1);
     _sprite2 = Sprite::create("house-key.png");
     _sprite2->setScale(1.0f);
     _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
     addChild(_sprite2);
-    
+
     Label *label = Label::createWithSystemFont("ドア開閉", "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
     this->addChild(label);
-    
+
 //    platform::NativeBridge::executeNative();
     
     //update関数の呼び出しを開始
@@ -138,21 +121,46 @@ void SecurityController::showSPrite()
     }else{
         unlockAutoDoor(message);
     }
-    _doorStatus = 1;
+
     this->removeChild(_sprite1);
     if(_doorStatus == 0){
         _sprite1 = Sprite::create("normal_door.png");
         _sprite1->setScale(1.0f);
         _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-
+        _doorStatus = 1;
     }else{
         _sprite1 = Sprite::create("normal_door_close.png");
         _sprite1->setScale(1.0f);
         _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
+        _doorStatus = 0;
     }
     addChild(_sprite1);
+
+    
+    // 別スレッドを生成して引数を渡して実行する
+    auto t = std::thread([this] (int n) {
+        for (int i = 0; i < 100; i++) {
+            mtx.lock();
+            log("%d", n + i);
+            mtx.unlock();
+        }
+        
+        // 処理が一通り終わったのでメインスレッドに戻してメソッドを呼ぶ
+        auto scheduler = Director::getInstance()->getScheduler();
+        scheduler->performFunctionInCocosThread(CC_CALLBACK_0(SecurityController::dispatchThreadCallbacks, this));
+    }, 1000);
+    
+    // スレッドの管理を手放す
+    // スレッドの処理を待つ場合はt.join()かstd::asyncを使う
+    t.detach();
 }
 
+void SecurityController::dispatchThreadCallbacks()
+{
+    // std::lock_guardはunlockをスコープから抜ける時に自動的にやってくれる
+    std::lock_guard<std::mutex> lock(mtx);
+    CCDirector::sharedDirector()->replaceScene(TransitionFadeTR::create(6.0f,  HelloWorld::scene()));
+}
 
 void SecurityController::startWebView()
 {
