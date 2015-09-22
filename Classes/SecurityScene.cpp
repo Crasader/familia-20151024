@@ -112,6 +112,15 @@ void SecurityController::initGame()
     
 }
 
+void SecurityController::playEffect()
+{
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/blackout_harp1.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/blackout_harp1.mp3");
+    //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+}
+
 void SecurityController::showSPrite()
 {
     char message[100];
@@ -187,6 +196,8 @@ void SecurityController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void SecurityController::onTouchEnded(Touch *touch, Event *unused_event)
 {
+    playEffect();
+
     showSPrite();
     
     return;

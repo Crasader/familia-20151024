@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
+#include "SimpleAudioEngine.h"
+
 #include "NetworkLibCurl.h"
 #include "MediaScene.h"
 #include "EstateScene.h"
@@ -143,6 +145,10 @@ protected:
     void Sequence1(int sts);
     void Sequence2(int sts);
 
+    void playBGM();
+    void playEffect();
+    
+    
 public:
     //HelloWorldクラスのシーンを作成する
     static cocos2d::Scene* scene();

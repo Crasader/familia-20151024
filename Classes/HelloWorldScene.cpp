@@ -383,9 +383,41 @@ void HelloWorld::showInitCards()
     }
 }
 
+void HelloWorld::playBGM()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("music/bgm.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.1f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("music/bgm.mp3",true);
+}
+
+void HelloWorld::playEffect()
+{
+    std::vector<std::string> effect_sounds = {
+        "music/blackout_harp1.mp3",
+        "music/small_footsteps.mp3"
+    };
+    
+    std::random_device device;
+    
+    std::mt19937 mt(device());
+    std::default_random_engine _engine = std::default_random_engine(mt());
+    
+    //取り出す値を設定(int型)
+    std::discrete_distribution<int>  distForNumbers = std::discrete_distribution<int>{0,1};
+    //実際に利用
+    int index = distForNumbers(_engine);
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect(effect_sounds[index].c_str());
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(effect_sounds[index].c_str());
+//    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect(effect_sounds[index].c_str());
+}
+
+
 void HelloWorld::initGame()
 {
     Size winSize = Director::getInstance()->getVisibleSize();
+    playBGM();
     
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
     this->addChild(_bg2);
@@ -635,6 +667,7 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
         //Zオーダーを変更する
         _firstCard->setLocalZOrder(ZORDER_MOVING_CARD);
         
+        playEffect();
         return true;
     }
     

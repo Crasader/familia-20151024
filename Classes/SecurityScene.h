@@ -43,6 +43,7 @@ public:
 
     void startWebView();
     void showSPrite();
+    void playEffect();
     
     //create関数作成マクロ
     CREATE_FUNC(SecurityController);

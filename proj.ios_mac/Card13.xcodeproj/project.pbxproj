@@ -64,6 +64,7 @@
 		45663D221B99D79A00548355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D211B99D79A00548355 /* CoreLocation.framework */; };
 		457CA7301BB0E88E0016AF15 /* ReserveReturnHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */; settings = {ASSET_TAGS = (); }; };
 		457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */; settings = {ASSET_TAGS = (); }; };
+		457CA7351BB127250016AF15 /* music in Resources */ = {isa = PBXBuildFile; fileRef = 457CA7341BB127250016AF15 /* music */; settings = {ASSET_TAGS = (); }; };
 		458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294451BA5BF0F00BE34AB /* MediaScene.cpp */; };
 		4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294481BA5BF2D00BE34AB /* EstateScene.cpp */; };
 		458294541BA8699800BE34AB /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458294521BA8699800BE34AB /* GameLayer.cpp */; };
@@ -250,6 +251,7 @@
 		457CA72F1BB0E88E0016AF15 /* ReserveReturnHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveReturnHome.h; sourceTree = "<group>"; };
 		457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutgoingHome.cpp; sourceTree = "<group>"; };
 		457CA7321BB0E9170016AF15 /* OutgoingHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingHome.h; sourceTree = "<group>"; };
+		457CA7341BB127250016AF15 /* music */ = {isa = PBXFileReference; lastKnownFileType = folder; path = music; sourceTree = "<group>"; };
 		458294451BA5BF0F00BE34AB /* MediaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaScene.cpp; sourceTree = "<group>"; };
 		458294461BA5BF0F00BE34AB /* MediaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaScene.h; sourceTree = "<group>"; };
 		458294481BA5BF2D00BE34AB /* EstateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EstateScene.cpp; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				457CA7341BB127250016AF15 /* music */,
 				45434D0C1BAFD30D00279083 /* normal_door_close.png */,
 				45434D061BAFC95400279083 /* normal_door.png */,
 				45434D071BAFC95400279083 /* house-key.png */,
@@ -770,6 +773,7 @@
 				452414C51BAD9D3C007BF272 /* tenshi.png in Resources */,
 				452414BC1BAD9D33007BF272 /* mother.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				457CA7351BB127250016AF15 /* music in Resources */,
 				459A62301BACEC93006425C9 /* card_diamonds.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				45BD5E181BADA002001EFE49 /* card_spades.png in Resources */,
