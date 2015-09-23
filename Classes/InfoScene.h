@@ -18,28 +18,19 @@
 #include "ui/UIVideoPlayer.h"
 #include "ui/UIWebView.h"
 #include "HelloWorldScene.h"
+#include "UIScene.h"
+#include "ui/UIScrollView.h"
+
 
 #define NEWS_LIST_NUM 9 //ニュースリスト数
 
-#define CARD_1_POS_X 70 //1番のカード位置(x)
-#define CARD_1_POS_Y 480 //1番のカード位置(y)
-#define CARD_DISTANCE_X 125 //カード間の距離(x方向)
-#define CARD_DISTANCE_Y 185 //カード間の距離(y方向)
-
-#define BUTTON_POS_X 340 //ボタンの位置(x)
-#define BUTTON_POS_Y 120 //ボタンの位置(y)
-
-#define TIMER_LABEL_POS_X 550 //ラベルの位置(x)
-#define TIMER_LABEL_POS_Y 120 //ラベルの位置(y)
+#define NEWS_1_POS_X 70 //1番のカード位置(x)
+#define NEWS_1_POS_Y 200 //1番のカード位置(y)
+#define NEWS_DISTANCE_X 125 //カード間の距離(x方向)
+#define NEWS_DISTANCE_Y 75 //カード間の距離(y方向)
 
 #define ZORDER_SHOW_CARD 1 //表示しているカードのZオーダー
 #define ZORDER_MOVING_CARD 2 //移動しているカードのZオーダー
-
-#define TAG_TRUSH_CARD 11 //捨てられたカードのタグ
-#define TAG_BACK_CARD 12 //カードの山のタグ
-#define TAG_TIMER_LABEL 13 //時間ラベルのタグ
-#define TAG_TIMER_ACTION1 14 //Action1
-#define TAG_TIMER_ACTION2 15 //Action2
 
 #define MOVING_TIME 0.8 //カードのアニメーションの時間
 
@@ -61,9 +52,9 @@ struct BoxPosIndex
 class NewsSprite : public cocos2d::Sprite
 {
 protected:
-    std::string getFileName(int boxType); //表画像ファイル名取得
-    void showNumber(); //カードのマークと数字を表示
-
+    std::string getFileName(int boxType);
+    void showNumber(int index);
+    
     std::vector<std::string> news_type_name;
     std::vector<std::string> estate_site_type_name;
     
@@ -81,10 +72,35 @@ public:
 };
 
 
+
+
+class UIListViewTest_Vertical : public UIScene
+{
+public:
+    CREATE_FUNC(UIListViewTest_Vertical);
+    
+    UIListViewTest_Vertical();
+    ~UIListViewTest_Vertical();
+    
+    virtual bool init() override;
+    void selectedItemEvent(cocos2d::Ref* sender, cocos2d::ui::ListView::EventType type);
+    void selectedItemEventScrollView(cocos2d::Ref* sender, cocos2d::ui::ScrollView::EventType type);
+    
+protected:
+    
+    cocos2d::ui::Text* _displayValueLabel;
+    
+    std::vector<std::string> _array;
+};
+
+
+
+
 class InfoController : public cocos2d::Layer
 {
 protected:
     std::vector<NewsBox> _cards; //カード情報
+    NewsSprite* _firstCard; //最初にタップされたカード
     
     
 public:
@@ -93,17 +109,21 @@ public:
     //初期化処理を行う
     virtual bool init();
     void initGame();
+    void initGame_scroll();
     void getMessage(char* result);
-    void startWebView();
+    void startWebView(int type);
 
     //create関数作成マクロ
     CREATE_FUNC(InfoController);
     
     void initCards();
-    NewsBox getCard();
+    NewsBox getCard(int index);
     void createCard(BoxPosIndex posIndex);
     void showInitCards();
-
+    NewsSprite* getTouchCard(cocos2d::Touch *touch);
+    
+    void playEffect();
+    
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);

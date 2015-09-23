@@ -346,7 +346,7 @@ void HelloWorld::createCard(PosIndex posIndex)
 {
     float posX = CARD_1_POS_X;
     float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
-    
+
     //新しいカードを作成する
     auto card = CardSprite::create();
     card->setCard(getCard());
@@ -900,7 +900,7 @@ void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent)
     initTrash();
     
     //時間を表示する
-    showTimerLabel();
+    //showTimerLabel();
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -908,7 +908,7 @@ void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent)
 
 void HelloWorld::showTimerLabel()
 {
-    _timer = 0;
+//    _timer = 0;
     
     auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
     if (!timerLabel)
@@ -920,7 +920,7 @@ void HelloWorld::showTimerLabel()
         addChild(timerLabel);
     }
     
-    timerLabel->setString(StringUtils::format("%0.2fs", _timer));
+//    timerLabel->setString(StringUtils::format("%0.2fs", _timer));
 }
 
 #define ONE 1
@@ -930,7 +930,7 @@ void HelloWorld::update(float dt)
 {
 
     //時間の積算
-    _timer += dt;
+//    _timer += dt;
 /*
     auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
     if (timerLabel)

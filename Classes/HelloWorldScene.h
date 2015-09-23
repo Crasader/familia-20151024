@@ -111,7 +111,7 @@ class HelloWorld : public cocos2d::Layer
 protected:
     std::vector<Card> _cards; //カード情報
     CardSprite* _firstCard; //最初にタップされたカード
-    float _timer; //経過時間
+
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
     cocos2d::Sprite* _sprite1_emotion;
