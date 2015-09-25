@@ -33,7 +33,7 @@ public:
     virtual bool init();
     void initGame();
     void getMessage(char* result);
-    void startWebView();
+    void startWebView(const char* uri);
     void showSPrite();
     
     //create関数作成マクロ
