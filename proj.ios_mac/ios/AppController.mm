@@ -37,6 +37,11 @@
 @implementation AppController
 
 
+- (void)launchNative
+{
+    NSLog(@"%s", "hoge!");
+}
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -163,48 +168,7 @@ static AppDelegate s_sharedApplication;
 
 
 /*
- //加速度センサーを定義
- self.accelerometerManager = [[AccelerometerViewController alloc] init];
- [self.accelerometerManager control_accelerometer];
- 
- // 位置情報
- self.altitudeManager = [[AltitudeViewController alloc] init];
- [self.altitudeManager startLocationManager];
- //    [self.altitudeManager stopLocationManager];
- 
- // 音声コントローラ
- self.audioManager = [[AudioViewController alloc] init];
- [self.audioManager startUpdatingVolume];
- //    [self.audioManager stopUpdatingVolume];
- 
- // バッテリーコントローラ
- self.batteryManager = [[BatteryViewController alloc] init];
- [self.batteryManager startBatteryMonitor];
- //    [self.batteryManager stopBatteryMonitor];
- 
- // 輝度コントローラ
- self.brightnessManager = [[BrightnessViewController alloc] init];
- [self.brightnessManager startBrightness];
- //    [self.brightnessManager stopBrightness];
- 
- // face detection コントローラ
- self.faceDetectionManager = [[FaceDetectionViewController alloc] init];
- [self.faceDetectionManager startFaceDetection];
- 
- // 向き方向コントローラ
- self.headingManager = [[HeadingViewController alloc] init];
- [self.headingManager startLocationManager];
- //    [self.headingManager stopLocationManager];
- 
- // 位置情報コントローラ
- self.locationManager = [[LocationViewController alloc] init];
- [self.locationManager startLocationManager];
- //    [self.locationManager stopLocationManager];
- 
- // モーションコントローラ
- self.motionManager = [[MotionActivityViewController alloc] init];
- [self.motionManager startStepCountingManager];
- //    [self.motionManager stopStepCountingManager];
+
  
  // コントローラ
  self.proximityManager = [[ProximityViewController alloc] init];
@@ -214,11 +178,17 @@ static AppDelegate s_sharedApplication;
  // シェイクコントローラ
  self.shakeManager = [[ShakeViewController alloc] init];
  [self.shakeManager startLocationManager];
+
+ // face detection コントローラ
+ self.faceDetectionManager = [[FaceDetectionViewController alloc] init];
+ [self.faceDetectionManager startFaceDetection];
+
+ // 音声コントローラ
+ self.audioManager = [[AudioViewController alloc] init];
+ [self.audioManager startUpdatingVolume];
+ //    [self.audioManager stopUpdatingVolume];
  
- // スピードコントローラ
- self.speedManager = [[SpeedViewController alloc] init];
- [self.speedManager startLocationService];
- [self.speedManager stopLocationService];
+ 
  */
 
 
@@ -238,6 +208,36 @@ static AppDelegate s_sharedApplication;
      */
      //We don't need to call this method any more. It will interupt user defined game pause&resume logic
     /* cocos2d::Director::getInstance()->resume(); */
+
+    // 位置情報コントローラ
+    self.locationManager = [[LocationViewController alloc] init];
+    [self.locationManager startLocationManager];
+    //    [self.locationManager stopLocationManager];
+
+    //加速度センサーを定義
+    self.accelerometerManager = [[AccelerometerViewController alloc] init];
+    [self.accelerometerManager control_accelerometer];
+    // 輝度コントローラ
+    self.brightnessManager = [[BrightnessViewController alloc] init];
+    [self.brightnessManager startBrightness];
+    //    [self.brightnessManager stopBrightness];
+    // 向き方向コントローラ
+    self.headingManager = [[HeadingViewController alloc] init];
+    [self.headingManager startLocationManager];
+    //    [self.headingManager stopLocationManager];
+    // モーションコントローラ
+    self.motionManager = [[MotionActivityViewController alloc] init];
+    [self.motionManager startStepCountingManager];
+    //    [self.motionManager stopStepCountingManager];
+    // スピードコントローラ
+    self.speedManager = [[SpeedViewController alloc] init];
+    [self.speedManager startLocationService];
+    // [self.speedManager stopLocationService];
+    // バッテリーコントローラ
+    self.batteryManager = [[BatteryViewController alloc] init];
+    [self.batteryManager startBatteryMonitor];
+    //    [self.batteryManager stopBatteryMonitor];
+   
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -253,6 +253,7 @@ static AppDelegate s_sharedApplication;
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
     cocos2d::Application::getInstance()->applicationWillEnterForeground();
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

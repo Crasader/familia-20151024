@@ -42,7 +42,7 @@ bool UIListViewTest_Vertical::init()
         
         
         cocos2d::ui::Text* alert = cocos2d::ui::Text::create("ListView vertical", "fonts/Marker Felt.ttf", 30);
-        alert->setColor(Color3B(159, 168, 176));
+        alert->setColor(Color3B(51,255,153));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 3.075f));
         this->addChild(alert);
@@ -495,9 +495,8 @@ bool InfoController::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     initCards();
-    initGame();
-    
-    
+    initGame_scroll();
+        
     return true;
 }
 
@@ -512,51 +511,103 @@ void InfoController::getMessage(char* result)
     return;
 }
 
+void InfoController::initMenuItem()
+{
+/*
+    // 通常のメニュー作成時と同様にMenuItemのVectorを作成
+    Vector<MenuItem*> menuItems;
+    
+    auto button1 = MenuItemButton::create("button1.png", CC_CALLBACK_1(InfoController::onButton1Clicked, this));
+    button1->setAnchorPoint(Vec2(0.0f, 0.0f));
+    button1->setPosition(Vec2(0, 0));
+    menuItems.pushBack(button1);
+    
+    auto button2 = MenuItemButton::create("button2.png", CC_CALLBACK_1(InfoController::onButton2Clicked, this));
+    button2->setAnchorPoint(Vec2(0.0f, 0.0f));
+    button2->setPosition(Vec2(100, 0));
+    menuItems.pushBack(button2);
+    
+    // ScrollMenuを作成
+    auto menu = ScrollMenu::createWithArray(menuItems);
+    menu->setContentSize(Size(100, 500));
+    menu->setAnchorPoint(Vec2(0, 0));
+    menu->setPosition(Vec2(0, 0));
+    
+    // 作成したメニューをセットしたScrollMenuViewを作成
+    auto scrollMenuView = ScrollMenuView::create(menu);
+    scrollMenuView->setBounceEnabled(true);
+    scrollMenuView->setDirection(ScrollView::Direction::VERTICAL);
+    scrollMenuView->setContentSize(Size(100, 200));
+    scrollMenuView->setPosition(Vec2(160, 284));
+    
+    this->addChild(scrollMenuView);
+*/
+}
+
+
 void InfoController::initGame()
 {
-    auto card = UIListViewTest_Vertical::create();
-//    hoge->init();
+    auto hoge = UIListViewTest_Vertical::create();
+    hoge->init();
 }
 
 void InfoController::initGame_scroll()
 {
+    news_type_name =
+    {
+        "ソフトバンク　ビジネス＋ITニュース" // http://www.sbbit.jp/
+        "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
+        "スポーツナビ",  // http://sports.yahoo.co.jp/
+        "ニュース",
+        "書籍情報",
+        "ビデオメッセージ",
+        "メッセージ",
+        "住宅情報",
+        "yahooニュース",
+        "蓄電情報",
+        "消費電力\n情報",
+        "設備機器\n稼働情報",
+        "お出かけ\nまとめ処理",
+        "帰宅予約",
+        "玄関ドア\nの開閉"
+    };
+    
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    auto _bg2 = LayerColor::create(Color4B(0,120,120,120), visibleSize.width, visibleSize.height);
-    this->addChild(_bg2);
-
-    auto _scrollView = ScrollView::create();
-    _scrollView->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
+    auto _scrollView = ScrollView::create(visibleSize);
+    _scrollView->setContentSize(visibleSize);
+    _scrollView->setPosition(Vec2(0,0));
     _scrollView->setDirection(ScrollView::Direction::VERTICAL);
-    _scrollView->setBounceable(true);//  ->setBounceEnabled(true);
+    _scrollView->setBounceable(true);
+//    _scrollView->setColor(Color3B(120,120,120));
     this->addChild(_scrollView);
-    
-    auto sprite = Sprite::create("button.png");
-    sprite->setPosition(Vec2(visibleSize.width/2, (100)));
-    
-    sprite->setScaleX(5);
-    sprite->setScaleY(1.5f);
-    
-    //スクロールする中身を追加（LayerやSpriteなど）
-    _scrollView->addChild(sprite);
-    
-    auto number = Label::createWithSystemFont("testtest", "Arial", 24);
-    number->setPosition(Vec2(visibleSize.width/2, 100));//(100*posIndex.y)));
-    number->setTextColor((Color4B)Color4B::WHITE);
-    _scrollView->addChild(number);
-
     //中身のサイズを指定
-//    _scrollView-->setInnerContainerSize(Size(sprite->getContentSize().width,sprite->getContentSize().height));
-    
-    
-    //実際に表示される領域（これ以外は隠れる)
-    auto inveSize = Size(sprite->getContentSize().width,visibleSize.height/2);
-    _scrollView->setContentSize(inveSize);
-    
-    
-//    showInitCards();
+    //    _scrollView-->setInnerContainerSize(Size(sprite->getContentSize().width,sprite->getContentSize().height));
 
+    auto _bg2 = LayerColor::create(Color4B(0,0x33,0xFF,0x99), visibleSize.width, visibleSize.height);
+    _scrollView->addChild(_bg2);
     
+    for(int i = 0;i < news_type_name.size();i++)
+    {
+        auto sprite = Sprite::create("button.png");
+        sprite->setPosition(Vec2(visibleSize.width/2, (100*i)));
+        sprite->setScaleX(5);
+        sprite->setScaleY(1.5f);
+        _scrollView->addChild(sprite);
+        
+        auto number = Label::createWithSystemFont("testtest", "Arial", 24);
+        number->setPosition(Vec2(visibleSize.width/2, 100*i));
+        number->setTextColor((Color4B)Color4B::WHITE);
+        _scrollView->addChild(number);
+        
+        setTag(i);
+    }
+    
+
+    //実際に表示される領域（これ以外は隠れる)
+//    auto inveSize = Size(sprite->getContentSize().width,visibleSize.height/2);
+//    _scrollView->setContentSize(inveSize);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -588,12 +639,30 @@ void InfoController::startWebView(int type)
     this->addChild(webView, 1);
 }
 
-NewsSprite* InfoController::getTouchCard(Touch *touch)
+NewsSprite* InfoController::getTouchCard_old(Touch *touch)
 {
-    for (int tag = 1; tag <= NEWS_LIST_NUM; tag++)
+    for (int tag = 1; tag <= news_type_name.size(); tag++)
     {
         //表示されているカードを取得する
         auto card = (NewsSprite*)getChildByTag(tag);
+        if (card &&
+            card != _firstCard &&
+            card->getBoundingBox().containsPoint(touch->getLocation()))
+        {
+            //タップされたカードの場合は、そのカードを返す
+            return card;
+        }
+    }
+    
+    return nullptr;
+}
+
+Sprite* InfoController::getTouchCard(Touch *touch)
+{
+    for (int tag = 0; tag <= news_type_name.size(); tag++)
+    {
+        //表示されているカードを取得する
+        auto card = (Sprite*)getChildByTag(tag);
         if (card &&
             card != _firstCard &&
             card->getBoundingBox().containsPoint(touch->getLocation()))
@@ -617,13 +686,16 @@ void InfoController::playEffect()
 
 bool InfoController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    _firstCard = getTouchCard(touch);
-    if (_firstCard)
+    
+    NativeLauncher::launchNative();
+    
+    auto tempCard = getTouchCard(touch);
+    if (tempCard)
     {
         //場に出ているカードがタップされた場合
         
         //Zオーダーを変更する
-        _firstCard->setLocalZOrder(ZORDER_MOVING_CARD);
+        tempCard->setLocalZOrder(ZORDER_MOVING_CARD);
         
         playEffect();
         return true;

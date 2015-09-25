@@ -419,7 +419,7 @@ void HelloWorld::initGame()
     Size winSize = Director::getInstance()->getVisibleSize();
     playBGM();
     
-    auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
+    auto _bg2 = LayerColor::create(Color4B(0,0x33,0xFF,0x99), winSize.width, winSize.height);
     this->addChild(_bg2);
     
     //CCSpriteクラスで画像を設定します。
@@ -429,6 +429,7 @@ void HelloWorld::initGame()
     _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
     _sprite1->setScale(2.0f);
     _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/5));
+    _sprite1->setTag(TAG_BOY);
     addChild(_sprite1);
     _sprite1_emotion->setScale(2.0f);
     _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
@@ -437,6 +438,7 @@ void HelloWorld::initGame()
     _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
     _sprite2->setScale(2.0f);
     _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/5));
+    _sprite2->setTag(TAG_GRANDMOTHER);
     addChild(_sprite2, 0);
     _sprite2_emotion->setScale(2.0f);
     _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
@@ -575,22 +577,27 @@ void HelloWorld::Action01(float frame)
     switch (sts_sprite1) {
         case 0:
             sts_sprite1 = 1;
+            _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
+/*
             this->removeChild(_sprite1_emotion);
             _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
             _sprite1_emotion->setScale(2.0f);
             _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
             addChild(_sprite1_emotion);
-
+*/
             Sequence1(0);
             break;
 
         case 1:
             sts_sprite1 = 0;
+            _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
+/*
             this->removeChild(_sprite1_emotion);
             _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
             _sprite1_emotion->setScale(2.0f);
             _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
             addChild(_sprite1_emotion);
+ */
             Sequence1(1);
             break;
             
@@ -607,24 +614,28 @@ void HelloWorld::Action02(float frame)
     switch (sts_sprite2) {
         case 0:
             sts_sprite2 = 1;
+            _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
+/*
             this->removeChild(_sprite2_emotion);
             _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
             _sprite2_emotion->setScale(2.0f);
             _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
             addChild(_sprite2_emotion);
-
+*/
             Sequence2(0);
             
             break;
             
         case 1:
             sts_sprite2 = 0;
+            _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
+/*
             this->removeChild(_sprite2_emotion);
             _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
             _sprite2_emotion->setScale(2.0f);
             _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
             addChild(_sprite2_emotion);
-
+*/
             Sequence2(1);
             break;
             
@@ -671,6 +682,21 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
         return true;
     }
     
+    
+    auto sprite1 = this->getChildByTag(TAG_BOY);
+    if (sprite1 &&
+        sprite1->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        return true;
+    }
+    auto sprite2 = this->getChildByTag(TAG_GRANDMOTHER);
+    if (sprite2 &&
+        sprite2->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        return true;
+    }
+
+    
     return false;
 }
 
@@ -680,8 +706,29 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
     _firstCard->setPosition(_firstCard->getPosition() + touch->getDelta());
 }
 
+void HelloWorld::showModal()
+{
+    ModalWindow *modal = ModalWindow::create();
+    modal->init();
+    
+}
+
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 {
+    auto sprite1 = this->getChildByTag(TAG_BOY);
+    if (sprite1 &&
+        sprite1->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        return;
+    }
+    auto sprite2 = this->getChildByTag(TAG_GRANDMOTHER);
+    if (sprite2 &&
+        sprite2->getBoundingBox().containsPoint(touch->getLocation()))
+    {
+        return;
+    }
+    
+    
     int indetifier = 0;
     int indetifier_sub = 0;
     
@@ -764,6 +811,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
+
         break;
     case 8: // 住宅情報
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,

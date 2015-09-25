@@ -15,6 +15,7 @@
 		338F8957CB05C5B714D47140 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CECD04A8AFCCA754BC0894 /* libPods.a */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
+		45116D591BB3D087007545F9 /* NativeLauncher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45116D581BB3D087007545F9 /* NativeLauncher.mm */; settings = {ASSET_TAGS = (); }; };
 		452414AF1BAD9D19007BF272 /* akuma.png in Resources */ = {isa = PBXBuildFile; fileRef = 452414AB1BAD9D19007BF272 /* akuma.png */; settings = {ASSET_TAGS = (); }; };
 		452414B01BAD9D19007BF272 /* ase.png in Resources */ = {isa = PBXBuildFile; fileRef = 452414AC1BAD9D19007BF272 /* ase.png */; settings = {ASSET_TAGS = (); }; };
 		452414B11BAD9D19007BF272 /* boy.png in Resources */ = {isa = PBXBuildFile; fileRef = 452414AD1BAD9D19007BF272 /* boy.png */; settings = {ASSET_TAGS = (); }; };
@@ -46,9 +47,8 @@
 		454D7F061BB23E32006CCD2A /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F051BB23E32006CCD2A /* UIScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		454D7F091BB23EAA006CCD2A /* BaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F081BB23EAA006CCD2A /* BaseTest.cpp */; settings = {ASSET_TAGS = (); }; };
 		454D7F0C1BB23EE9006CCD2A /* VisibleRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F0B1BB23EE9006CCD2A /* VisibleRect.cpp */; settings = {ASSET_TAGS = (); }; };
-		454D7F101BB23FE8006CCD2A /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F0F1BB23FE8006CCD2A /* controller.cpp */; settings = {ASSET_TAGS = (); }; };
-		454D7F141BB24175006CCD2A /* UISceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F131BB24175006CCD2A /* UISceneManager.cpp */; settings = {ASSET_TAGS = (); }; };
 		454D7F191BB24AB0006CCD2A /* cocosui in Resources */ = {isa = PBXBuildFile; fileRef = 454D7F181BB24AB0006CCD2A /* cocosui */; settings = {ASSET_TAGS = (); }; };
+		454D7F1F1BB26B41006CCD2A /* ScrollMenuView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F1D1BB26B41006CCD2A /* ScrollMenuView.cpp */; settings = {ASSET_TAGS = (); }; };
 		454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */; };
 		454F889F1B5FCF8B00C3E969 /* libHousingApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454F889E1B5FCF8B00C3E969 /* libHousingApi.a */; };
 		45663CED1B95D77200548355 /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CEC1B95D77200548355 /* libTwilioClient.a */; };
@@ -68,6 +68,10 @@
 		45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45663D121B99CF4300548355 /* SpeedViewController.mm */; };
 		45663D201B99D75200548355 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D1F1B99D75200548355 /* CoreImage.framework */; };
 		45663D221B99D79A00548355 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663D211B99D79A00548355 /* CoreLocation.framework */; };
+		457699B31BB426A80010FCDE /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F0F1BB23FE8006CCD2A /* controller.cpp */; settings = {ASSET_TAGS = (); }; };
+		457699B41BB426AB0010FCDE /* UISceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F131BB24175006CCD2A /* UISceneManager.cpp */; settings = {ASSET_TAGS = (); }; };
+		457699B71BB426D90010FCDE /* ModalLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457699B51BB426D90010FCDE /* ModalLayer.cpp */; settings = {ASSET_TAGS = (); }; };
+		457699B81BB4487D0010FCDE /* ScrollMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F1A1BB26B04006CCD2A /* ScrollMenu.cpp */; settings = {ASSET_TAGS = (); }; };
 		457CA7301BB0E88E0016AF15 /* ReserveReturnHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */; settings = {ASSET_TAGS = (); }; };
 		457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */; settings = {ASSET_TAGS = (); }; };
 		457CA7351BB127250016AF15 /* music in Resources */ = {isa = PBXBuildFile; fileRef = 457CA7341BB127250016AF15 /* music */; settings = {ASSET_TAGS = (); }; };
@@ -180,6 +184,8 @@
 		27CECD04A8AFCCA754BC0894 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		45116D541BB3D019007545F9 /* Nativelauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nativelauncher.h; sourceTree = "<group>"; };
+		45116D581BB3D087007545F9 /* NativeLauncher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeLauncher.mm; sourceTree = "<group>"; };
 		452414AB1BAD9D19007BF272 /* akuma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = akuma.png; sourceTree = "<group>"; };
 		452414AC1BAD9D19007BF272 /* ase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ase.png; sourceTree = "<group>"; };
 		452414AD1BAD9D19007BF272 /* boy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boy.png; sourceTree = "<group>"; };
@@ -233,6 +239,10 @@
 		454D7F121BB24175006CCD2A /* UISceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISceneManager.h; sourceTree = "<group>"; };
 		454D7F131BB24175006CCD2A /* UISceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISceneManager.cpp; sourceTree = "<group>"; };
 		454D7F181BB24AB0006CCD2A /* cocosui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosui; sourceTree = "<group>"; };
+		454D7F1A1BB26B04006CCD2A /* ScrollMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollMenu.cpp; sourceTree = "<group>"; };
+		454D7F1B1BB26B04006CCD2A /* ScrollMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollMenu.h; sourceTree = "<group>"; };
+		454D7F1D1BB26B41006CCD2A /* ScrollMenuView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollMenuView.cpp; sourceTree = "<group>"; };
+		454D7F1E1BB26B41006CCD2A /* ScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollMenuView.h; sourceTree = "<group>"; };
 		454F889A1B5FCF7A00C3E969 /* HousingApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApi.h; path = ios/HousingApi.h; sourceTree = SOURCE_ROOT; };
 		454F889B1B5FCF7A00C3E969 /* HousingApiConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApiConstant.h; path = ios/HousingApiConstant.h; sourceTree = SOURCE_ROOT; };
 		454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HousingApiConstant.m; path = ios/HousingApiConstant.m; sourceTree = SOURCE_ROOT; };
@@ -266,6 +276,8 @@
 		45663D121B99CF4300548355 /* SpeedViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedViewController.mm; sourceTree = "<group>"; };
 		45663D1F1B99D75200548355 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
 		45663D211B99D79A00548355 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		457699B51BB426D90010FCDE /* ModalLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModalLayer.cpp; sourceTree = "<group>"; };
+		457699B61BB426D90010FCDE /* ModalLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalLayer.h; sourceTree = "<group>"; };
 		457CA72E1BB0E88E0016AF15 /* ReserveReturnHome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReserveReturnHome.cpp; sourceTree = "<group>"; };
 		457CA72F1BB0E88E0016AF15 /* ReserveReturnHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveReturnHome.h; sourceTree = "<group>"; };
 		457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutgoingHome.cpp; sourceTree = "<group>"; };
@@ -615,6 +627,14 @@
 				457CA72F1BB0E88E0016AF15 /* ReserveReturnHome.h */,
 				457CA7311BB0E9170016AF15 /* OutgoingHome.cpp */,
 				457CA7321BB0E9170016AF15 /* OutgoingHome.h */,
+				454D7F1A1BB26B04006CCD2A /* ScrollMenu.cpp */,
+				454D7F1B1BB26B04006CCD2A /* ScrollMenu.h */,
+				454D7F1D1BB26B41006CCD2A /* ScrollMenuView.cpp */,
+				454D7F1E1BB26B41006CCD2A /* ScrollMenuView.h */,
+				45116D541BB3D019007545F9 /* Nativelauncher.h */,
+				45116D581BB3D087007545F9 /* NativeLauncher.mm */,
+				457699B51BB426D90010FCDE /* ModalLayer.cpp */,
+				457699B61BB426D90010FCDE /* ModalLayer.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -890,18 +910,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				454D7F141BB24175006CCD2A /* UISceneManager.cpp in Sources */,
 				4582945F1BA9A5A600BE34AB /* InfoScene.cpp in Sources */,
 				45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */,
 				454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */,
 				45663D141B99CF4300548355 /* AltitudeViewController.mm in Sources */,
+				454D7F1F1BB26B41006CCD2A /* ScrollMenuView.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				45663D131B99CF4300548355 /* AccelerometerViewController.mm in Sources */,
+				457699B81BB4487D0010FCDE /* ScrollMenu.cpp in Sources */,
 				45663D1A1B99CF4300548355 /* LocationViewController.mm in Sources */,
 				45894CE21BACF7310041D185 /* FamiliaPhone.m in Sources */,
 				454D7F0C1BB23EE9006CCD2A /* VisibleRect.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				45663D151B99CF4300548355 /* AudioViewController.mm in Sources */,
+				457699B71BB426D90010FCDE /* ModalLayer.cpp in Sources */,
 				45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */,
 				45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */,
 				45663D181B99CF4300548355 /* FaceDetectionViewController.mm in Sources */,
@@ -914,13 +936,15 @@
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
 				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,
-				454D7F101BB23FE8006CCD2A /* controller.cpp in Sources */,
 				457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */,
 				458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */,
 				454D7F091BB23EAA006CCD2A /* BaseTest.cpp in Sources */,
 				45663D171B99CF4300548355 /* BrightnessViewController.mm in Sources */,
 				45663D1D1B99CF4300548355 /* ShakeViewController.mm in Sources */,
 				45663D191B99CF4300548355 /* HeadingViewController.mm in Sources */,
+				457699B41BB426AB0010FCDE /* UISceneManager.cpp in Sources */,
+				45116D591BB3D087007545F9 /* NativeLauncher.mm in Sources */,
+				457699B31BB426A80010FCDE /* controller.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				45663D161B99CF4300548355 /* BatteryViewController.mm in Sources */,
 				45663D1C1B99CF4300548355 /* ProximityViewController.mm in Sources */,

@@ -51,5 +51,8 @@
 @property (unsafe_unretained, nonatomic) ShakeViewController *shakeManager;
 @property (unsafe_unretained, nonatomic) SpeedViewController *speedManager;
 
+
+- (void)launchNative;
+
 @end
 

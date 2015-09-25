@@ -20,6 +20,9 @@
 #include "HelloWorldScene.h"
 #include "UIScene.h"
 #include "ui/UIScrollView.h"
+//#include "ScrollMenu.h"
+//#include "ScrollMenuView.h"
+#include "Nativelauncher.h"
 
 
 #define NEWS_LIST_NUM 9 //ニュースリスト数
@@ -101,6 +104,7 @@ class InfoController : public cocos2d::Layer
 protected:
     std::vector<NewsBox> _cards; //カード情報
     NewsSprite* _firstCard; //最初にタップされたカード
+    std::vector<std::string> news_type_name;
     
     
 public:
@@ -108,6 +112,7 @@ public:
     
     //初期化処理を行う
     virtual bool init();
+    void initMenuItem();
     void initGame();
     void initGame_scroll();
     void getMessage(char* result);
@@ -120,7 +125,8 @@ public:
     NewsBox getCard(int index);
     void createCard(BoxPosIndex posIndex);
     void showInitCards();
-    NewsSprite* getTouchCard(cocos2d::Touch *touch);
+    NewsSprite* getTouchCard_old(cocos2d::Touch *touch);
+    cocos2d::Sprite* getTouchCard(cocos2d::Touch *touch);
     
     void playEffect();
     

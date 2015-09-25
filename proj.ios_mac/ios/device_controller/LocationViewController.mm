@@ -73,13 +73,57 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
 // 位置情報が更新されるたびに呼ばれる
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    self.latTextField.text = [NSString stringWithFormat:@"%.2f", newLocation.coordinate.latitude];
-    self.lonTextField.text = [NSString stringWithFormat:@"%.2f", newLocation.coordinate.longitude];
+    
+    newLocation.coordinate.latitude;
+    newLocation.coordinate.longitude;
+    newLocation.course;
+    newLocation.speed;
+    newLocation.timestamp;
+    
+    oldLocation.coordinate.latitude;
+    oldLocation.coordinate.longitude;
+    oldLocation.course;
+    oldLocation.speed;
+    oldLocation.timestamp;
+    
+    // Replace the URL with your Capabilities Token URL
+    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=101"];
+    NSURLResponse*  response = nil;
+    NSError*    error = nil;
+    NSData* data = [NSURLConnection sendSynchronousRequest:
+                    [NSURLRequest requestWithURL:url]
+                                         returningResponse:&response
+                                                     error:&error];
+    if (data)
+    {
+        NSHTTPURLResponse*  httpResponse = (NSHTTPURLResponse*)response;
+        
+        if (httpResponse.statusCode == 200)
+        {
+
+        }
+        else
+        {
+            NSString*  errorString = [NSString stringWithFormat:
+                                      @"HTTP status code %d",
+                                      httpResponse.statusCode];
+            NSLog(@"Error logging in: %@", errorString);
+        }
+    }
+    else
+    {
+        NSLog(@"Error logging in: %@", [error localizedDescription]);
+    }
+    
+    
 }
 
 @end

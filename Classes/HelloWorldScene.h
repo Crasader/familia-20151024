@@ -12,6 +12,8 @@
 #include "SecurityScene.h"
 #include "OutgoingHome.h"
 #include "ReserveReturnHome.h"
+#include "ModalLayer.h"
+
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
@@ -37,6 +39,10 @@
 #define TAG_TIMER_ACTION1 14 //Action1
 #define TAG_TIMER_ACTION2 15 //Action2
 
+#define TAG_BOY 16 //Action2
+#define TAG_GRANDMOTHER 17 //Action2
+
+
 #define MOVING_TIME 0.8 //カードのアニメーションの時間
 
 // InfoScene
@@ -59,7 +65,6 @@
 #define MESSAGE_SHUTTER "シャッターの開閉"
 #define MESSAGE_LED "照明の状態"
 #define MESSAGE_DOOR "玄関ドアの開閉"
-
 
 
 
@@ -148,6 +153,7 @@ protected:
     void playBGM();
     void playEffect();
     
+    void showModal();
     
 public:
     //HelloWorldクラスのシーンを作成する
