@@ -2,6 +2,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 
+#include "MotionScene.h"
+
+
 @interface MotionActivityViewController : UIViewController
 {
     CMStepCounter           *_stepCounter;

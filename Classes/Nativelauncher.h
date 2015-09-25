@@ -16,6 +16,8 @@ class NativeLauncher
 {
 public:
     static void launchNative();
+    static void launchMotionController(int flag);
+
 };
 
 

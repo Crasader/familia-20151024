@@ -17,3 +17,16 @@ void NativeLauncher::launchNative()
     [appController launchNative];
 }
 
+void NativeLauncher::launchMotionController(int flag)
+{
+    // モーションコントローラ
+    MotionActivityViewController *motionManager = [[MotionActivityViewController alloc] init];
+    if (flag == 0){
+        [motionManager startStepCountingManager];
+    }else{
+        [motionManager stopStepCountingManager];
+    }
+}
+
+
+

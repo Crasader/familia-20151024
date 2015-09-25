@@ -12,8 +12,10 @@
 #include "SecurityScene.h"
 #include "OutgoingHome.h"
 #include "ReserveReturnHome.h"
-#include "ModalLayer.h"
-
+#include "ModalWindow.h"
+#include "ConfirmWindow.h"
+#include "MotionScene.h"
+#include "HomeInformation.h"
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数

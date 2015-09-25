@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464799782.37008"
+            filePath = "ios/device_controller/SpeedViewController.mm"
+            timestampString = "464878453.500944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "675"
-            endingLineNumber = "675"
-            landmarkName = "InfoController::getTouchCard(Touch *touch)"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464799782.37008"
+            filePath = "ios/device_controller/MotionActivityViewController.mm"
+            timestampString = "464880720.105616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
-            landmarkName = "InfoController::initGame()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-startUpdatingActivity"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,29 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ios/AppController.mm"
-            timestampString = "464868620.422814"
+            filePath = "ios/device_controller/MotionActivityViewController.mm"
+            timestampString = "464880720.105616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-launchNative"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/InfoScene.cpp"
-            timestampString = "464868662.78163"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "692"
-            endingLineNumber = "692"
-            landmarkName = "InfoController::onTouchBegan(Touch *touch, Event *unused_event)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-startStepCounting"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

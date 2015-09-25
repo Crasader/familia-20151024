@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef ModalLayer_hpp
-#define ModalLayer_hpp
+#ifndef ModalWindow_hpp
+#define ModalWindow_hpp
 
 #include <stdio.h>
 USING_NS_CC;
@@ -36,4 +36,4 @@ protected:
     void _setupEventListener();
 };
 
-#endif /* ModalLayer_hpp */
+#endif /* ModalWindow_hpp */

@@ -1,6 +1,7 @@
 
 #import "MotionActivityViewController.h"
 
+
 @interface MotionActivityViewController ()
 
 @end
@@ -69,17 +70,18 @@
         [alert show];
         return;
     }
-/*
-    // ブロックによる循環参照の回避
-    __weak typeof(self) weakSelf = self;
     
     _stepCounter = [[CMStepCounter alloc] init];
     [_stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue]
                                          updateOn:1
                                       withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) {
-                                          weakSelf.stepLabel.text = [NSString stringWithFormat:@"Step: %d", numberOfSteps];
+
+                                          MotionController::countUp(numberOfSteps);
+                                          
+                                          
+                                          
                                       }];
-*/
+
 }
 
 - (void)startUpdatingActivity
@@ -95,21 +97,19 @@
         return;
     }
 
-/*
-    // ブロックによる循環参照の回避
-    __weak typeof(self) weakSelf = self;
-
     _activityManager = [[CMMotionActivityManager alloc] init];
     [_activityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue]
                                       withHandler:^(CMMotionActivity *activity) {
-                                          weakSelf.confidenceLabel.text = [NSString stringWithFormat:@"confidence: %d", activity.confidence];
-                                          weakSelf.stationaryLabel.text = [NSString stringWithFormat:@"stationary: %d", activity.stationary];
-                                          weakSelf.walkingLabel.text = [NSString stringWithFormat:@"walking: %d", activity.walking];
-                                          weakSelf.runningLabel.text = [NSString stringWithFormat:@"running: %d", activity.running];
-                                          weakSelf.automotiveLabel.text = [NSString stringWithFormat:@"automotive: %d", activity.automotive];
-                                          weakSelf.unknowLabel.text = [NSString stringWithFormat:@"unknow: %d", activity.unknown];
-     }];
-*/
+
+                                          MotionController::motionStatus(activity.confidence,
+                                                                         activity.stationary,
+                                                                         activity.walking,
+                                                                         activity.running,
+                                                                         activity.automotive,
+                                                                         activity.unknown);
+                                          
+                                      }];
+
 }
 
 @end

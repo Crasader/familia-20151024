@@ -6,7 +6,7 @@
 //
 //
 
-#include "ModalLayer.h"
+#include "ModalWindow.h"
 
 
 USING_NS_CC;
@@ -34,7 +34,7 @@ bool ModalWindow::init()
     }
     
     //ダイアログ外透過カラーレイヤー生成
-    _colorSheet = LayerColor::create( Color4B( 255, 255, 255, 64 ) );
+    _colorSheet = LayerColor::create( Color4B( 255, 64, 64, 64 ) );
     addChild( _colorSheet, 0, 999 );
     
     //タッチイベント設定

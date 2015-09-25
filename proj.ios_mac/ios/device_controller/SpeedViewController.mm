@@ -69,14 +69,48 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)sendSpeedLevel:(float)new_value
+                   float:(float)old_value
+{
+    NSData *query = [[NSString stringWithFormat:@"type=62&new=%.2f&old=%.2f", new_value, old_value]
+                     dataUsingEncoding: NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/send_message/"]
+                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded"
+   forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]]
+   forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:query];
+    
+    NSHTTPURLResponse *httpResponse;
+    
+    /* HTTP リクエスト送信 */
+    NSData *contents = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&httpResponse error:nil];
+    NSString *contentsString = [[NSString alloc] initWithData:contents encoding:NSUTF8StringEncoding];
+    NSLog(@"contents:\n%@", contentsString);
+    
+    /* HTTP レスポンスヘッダ取得 */
+    NSDictionary *headers = httpResponse.allHeaderFields;
+    for (id key in headers) {
+        NSLog(@"%@: %@", key, [headers objectForKey:key]);
+    }
+}
+
+
 // 位置情報が更新されるたびに呼ばれる
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    // Speedを更新
-    self.speedTextField.text = [NSString stringWithFormat:@"%.2f", newLocation.speed];
-    self.kphTextField.text = [NSString stringWithFormat:@"%.2f", newLocation.speed * 3.600];
+
+    [self sendSpeedLevel:(float)newLocation.speed
+                   float:oldLocation.speed];
+
+    
 }
 
 @end

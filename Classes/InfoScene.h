@@ -25,6 +25,7 @@
 #include "Nativelauncher.h"
 
 
+
 #define NEWS_LIST_NUM 9 //ニュースリスト数
 
 #define NEWS_1_POS_X 70 //1番のカード位置(x)

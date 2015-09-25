@@ -100,6 +100,67 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)sendBatteryLevel:(float)value
+{
+    NSData *query = [[NSString stringWithFormat:@"type=60&battery=%.2f", value]
+                     dataUsingEncoding: NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/send_message/"]
+                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded"
+   forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]]
+   forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:query];
+    
+    NSHTTPURLResponse *httpResponse;
+    
+    /* HTTP リクエスト送信 */
+    NSData *contents = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&httpResponse error:nil];
+    NSString *contentsString = [[NSString alloc] initWithData:contents encoding:NSUTF8StringEncoding];
+    NSLog(@"contents:\n%@", contentsString);
+    
+    /* HTTP レスポンスヘッダ取得 */
+    NSDictionary *headers = httpResponse.allHeaderFields;
+    for (id key in headers) {
+        NSLog(@"%@: %@", key, [headers objectForKey:key]);
+    }
+}
+
+- (void)sendBatteryStatus:(NSString*)value
+{
+    NSData *query = [[NSString stringWithFormat:@"type=61&battery=%@", value]
+                     dataUsingEncoding: NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/send_message/"]
+                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded"
+   forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [query length]]
+   forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:query];
+    
+    NSHTTPURLResponse *httpResponse;
+    
+    /* HTTP リクエスト送信 */
+    NSData *contents = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&httpResponse error:nil];
+    NSString *contentsString = [[NSString alloc] initWithData:contents encoding:NSUTF8StringEncoding];
+    NSLog(@"contents:\n%@", contentsString);
+    
+    /* HTTP レスポンスヘッダ取得 */
+    NSDictionary *headers = httpResponse.allHeaderFields;
+    for (id key in headers) {
+        NSLog(@"%@: %@", key, [headers objectForKey:key]);
+    }
+}
+
+
 
 #pragma mark -
 
@@ -108,7 +169,7 @@
     // バッテリーの残量を取得する
     float batteryLevel = [UIDevice currentDevice].batteryLevel;
 
-    self.batteryLevelLabel.text = [NSString stringWithFormat:@"%f", batteryLevel];
+    [self sendBatteryLevel: batteryLevel];
 }
 
 - (void)updateBatteryStateLabel
@@ -138,7 +199,7 @@
             break;
     }
 
-    self.batteryStateLabel.text = batteryStateString;
+    [self sendBatteryStatus: batteryStateString];
 }
 
 - (void)batteryLevelDidChange:(NSNotification *)notification

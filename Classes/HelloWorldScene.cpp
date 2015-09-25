@@ -25,7 +25,7 @@ bool CardSprite::init()
         "ビデオ\nメッセージ",
         "メッセージ",
         "住宅情報",
-        "",
+        "万歩計",
         "蓄電情報",
         "消費電力\n情報",
         "設備機器\n稼働情報",
@@ -573,31 +573,16 @@ void HelloWorld::Sequence2(int status)
 // １番目画像Runアクションメソッド
 void HelloWorld::Action01(float frame)
 {
-    Size winSize = Director::getInstance()->getVisibleSize();
     switch (sts_sprite1) {
         case 0:
             sts_sprite1 = 1;
             _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-/*
-            this->removeChild(_sprite1_emotion);
-            _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
-            _sprite1_emotion->setScale(2.0f);
-            _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
-            addChild(_sprite1_emotion);
-*/
             Sequence1(0);
             break;
 
         case 1:
             sts_sprite1 = 0;
             _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-/*
-            this->removeChild(_sprite1_emotion);
-            _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
-            _sprite1_emotion->setScale(2.0f);
-            _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
-            addChild(_sprite1_emotion);
- */
             Sequence1(1);
             break;
             
@@ -610,18 +595,10 @@ void HelloWorld::Action01(float frame)
 // ２番目画像Runアクションメソッド
 void HelloWorld::Action02(float frame)
 {
-    Size winSize = Director::getInstance()->getVisibleSize();
     switch (sts_sprite2) {
         case 0:
             sts_sprite2 = 1;
             _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-/*
-            this->removeChild(_sprite2_emotion);
-            _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
-            _sprite2_emotion->setScale(2.0f);
-            _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
-            addChild(_sprite2_emotion);
-*/
             Sequence2(0);
             
             break;
@@ -629,13 +606,6 @@ void HelloWorld::Action02(float frame)
         case 1:
             sts_sprite2 = 0;
             _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-/*
-            this->removeChild(_sprite2_emotion);
-            _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
-            _sprite2_emotion->setScale(2.0f);
-            _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
-            addChild(_sprite2_emotion);
-*/
             Sequence2(1);
             break;
             
@@ -708,9 +678,8 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
 
 void HelloWorld::showModal()
 {
-    ModalWindow *modal = ModalWindow::create();
-    modal->init();
-    
+    auto* modal = ConfirmWindow::create();
+    addChild(modal);
 }
 
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
@@ -778,9 +747,12 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 
     switch(indetifier){
     case 1: // 自治体
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+            showModal();
+/*
+            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             InfoController::scene(),
                                                                             ccc3(0, 0, 0)));
+*/
         break;
     case 2: // 料理、外食サイト
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
@@ -809,7 +781,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 7: // メッセージ
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            HomeInfoController::scene(),
                                                                             ccc3(0, 0, 0)));
 
         break;
@@ -818,9 +790,9 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
                                                                             EstateController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 9: //
+    case 9: // 万歩計スタート & ストップ
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            MotionController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 10: // 蓄電情報

@@ -209,6 +209,7 @@ static AppDelegate s_sharedApplication;
      //We don't need to call this method any more. It will interupt user defined game pause&resume logic
     /* cocos2d::Director::getInstance()->resume(); */
 
+/*
     // 位置情報コントローラ
     self.locationManager = [[LocationViewController alloc] init];
     [self.locationManager startLocationManager];
@@ -225,10 +226,6 @@ static AppDelegate s_sharedApplication;
     self.headingManager = [[HeadingViewController alloc] init];
     [self.headingManager startLocationManager];
     //    [self.headingManager stopLocationManager];
-    // モーションコントローラ
-    self.motionManager = [[MotionActivityViewController alloc] init];
-    [self.motionManager startStepCountingManager];
-    //    [self.motionManager stopStepCountingManager];
     // スピードコントローラ
     self.speedManager = [[SpeedViewController alloc] init];
     [self.speedManager startLocationService];
@@ -237,7 +234,7 @@ static AppDelegate s_sharedApplication;
     self.batteryManager = [[BatteryViewController alloc] init];
     [self.batteryManager startBatteryMonitor];
     //    [self.batteryManager stopBatteryMonitor];
-   
+*/
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
