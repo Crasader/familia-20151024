@@ -547,8 +547,8 @@ void InfoController::initMenuItem()
 
 void InfoController::initGame()
 {
-    auto hoge = UIListViewTest_Vertical::create();
-    hoge->init();
+    auto ui_list = UIListViewTest_Vertical::create();
+    ui_list->init();
 }
 
 void InfoController::initGame_scroll()
@@ -596,7 +596,7 @@ void InfoController::initGame_scroll()
         sprite->setScaleY(1.5f);
         _scrollView->addChild(sprite);
         
-        auto number = Label::createWithSystemFont("testtest", "Arial", 24);
+        auto number = Label::createWithSystemFont(news_type_name[i], "Arial", 24);
         number->setPosition(Vec2(visibleSize.width/2, 100*i));
         number->setTextColor((Color4B)Color4B::WHITE);
         _scrollView->addChild(number);
