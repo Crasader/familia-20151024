@@ -44,6 +44,7 @@ public:
     void drawString();
 
     void getMessage(char* result);
+    void postNumOfStep(char* result, int numOf);
     void startWebView();
     void showSPrite();
     void startCallback();

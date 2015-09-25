@@ -52,27 +52,27 @@ void foo::setNumOfStep(foo *f, int numOfStep)
 }
 void foo::setMotionConfidence(foo *f, int confidence)
 {
-    f->callBack(confidence);
+    f->callBack1(confidence);
 }
 void foo::setMotionStationary(foo *f, int stationary)
 {
-    f->callBack(stationary);
+    f->callBack2(stationary);
 }
 void foo::setMotionWalking(foo *f, int walking)
 {
-    f->callBack(walking);
+    f->callBack3(walking);
 }
 void foo::setMotionRunning(foo *f, int running)
 {
-    f->callBack(running);
+    f->callBack4(running);
 }
 void foo::setMotionAutomotive(foo *f, int automotive)
 {
-    f->callBack(automotive);
+    f->callBack5(automotive);
 }
 void foo::setMotionUnknown(foo *f, int unknown)
 {
-    f->callBack(unknown);
+    f->callBack6(unknown);
 }
 void foo::callBack(int numOfStep)
 {
@@ -180,13 +180,14 @@ bool MotionController::init()
     return true;
 }
 
-void MotionController::getMessage(char* result)
+void MotionController::postNumOfStep(char* result, int numOf)
 {
-    const char *post_command;
+//    const char *post_command;
+    std::string post_command;
     
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
+    post_command = "http://127.0.0.1:3000/send_message?type=64&numStep=" + std::to_string(foo::getNumOfStep(&f));
     
-    Get(post_command);
+    Post(post_command.c_str());
     
     return;
 }
@@ -200,6 +201,9 @@ void MotionController::drawString()
     }
     result = result + std::to_string(foo::getNumOfStep(&f));
     _label1->setString(result.c_str());
+
+    char message[100];
+    postNumOfStep(message, step_count);
     
     std::string result1 = "";
     if (foo::getMotionConfidence(&f) != 0){
@@ -219,8 +223,13 @@ void MotionController::drawString()
     if (foo::getMotionUnknown(&f) != 0){
         
     }
+    
+    printf("%s",result1.c_str());
     _label2->setString(result1.c_str());
 
+
+    
+    
 }
 
 void MotionController::countUp(int numOfStep)
@@ -300,13 +309,13 @@ void MotionController::initGame()
 
     _label1 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
     _label1->setScale(2.0f);
-    _label1->setPosition(Vec2(winSize.width*1/4, winSize.height/9));
+    _label1->setPosition(Vec2(winSize.width*1/2, winSize.height/5));
     _label1->setTag(1);
     this->addChild(_label1);
     
     _label2 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
     _label2->setScale(2.0f);
-    _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/9));
+    _label2->setPosition(Vec2(winSize.width*1/2, winSize.height/9));
     _label2->setTag(2);
     this->addChild(_label2);
     
