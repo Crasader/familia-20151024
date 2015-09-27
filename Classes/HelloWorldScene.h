@@ -156,7 +156,7 @@ protected:
     void playBGM();
     void playEffect();
     
-    void showModal();
+    void showModal(int type);
     
 public:
     //HelloWorldクラスのシーンを作成する

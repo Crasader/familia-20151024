@@ -25,7 +25,7 @@ bool CardSprite::init()
         "ビデオ\nメッセージ",
         "メッセージ",
         "住宅情報",
-        "万歩計",
+        "活動行動",
         "蓄電情報",
         "消費電力\n情報",
         "設備機器\n稼働情報",
@@ -657,13 +657,15 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
     if (sprite1 &&
         sprite1->getBoundingBox().containsPoint(touch->getLocation()))
     {
-        return true;
+        showModal(1);
+        return false;
     }
     auto sprite2 = this->getChildByTag(TAG_GRANDMOTHER);
     if (sprite2 &&
         sprite2->getBoundingBox().containsPoint(touch->getLocation()))
     {
-        return true;
+        showModal(1);
+        return false;
     }
 
     
@@ -694,19 +696,32 @@ void HelloWorld::dialogClose()
     dialog->close();
 }
 
-void HelloWorld::showModal()
+void HelloWorld::showModal(int type)
 {
+    std::string title;
+    std::string content1;
+    std::string content2;
+    switch (type) {
+        case 0:
+            title = "他の機能を利用する";
+            content1 = "お知らせです";
+            content2 = "この機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            break;
+        case 1:
+            title = "メインへ戻る";
+            content1 = "工事中";
+            content2 = "遷移先の機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            break;
+            
+        default:
+            break;
+    }
     cocos2d::ccMenuCallback action = CC_CALLBACK_1(HelloWorld::menuStartCallback,this);
     std::vector<UIDialogButton*> buttons = {
-        new UIDialogButton("他の機能を利用する",action,1),
+        new UIDialogButton(title,action,1),
     };
-    auto* dialog = UIDialog::create("お知らせです","この機能は現在利用できません\n運用が開始されるまでお待ち下さい※", buttons);
+    auto* dialog = UIDialog::create(content1,content2, buttons);
     addChild(dialog,31,30);
-
-/*
-    auto* modal = ConfirmWindow::create();
-    addChild(modal);
- */
 }
 
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
@@ -774,7 +789,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 
     switch(indetifier){
     case 1: // 自治体
-            showModal();
+            showModal(0);
             // ToDo
         break;
     case 2: // 料理、外食サイト

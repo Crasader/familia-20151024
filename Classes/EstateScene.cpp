@@ -42,6 +42,9 @@ bool EstateController::init()
         return false;
     }
     
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    auto _bg2 = LayerColor::create(Color4B(0x11,0x11,0x11,0x11), winSize.width, winSize.height);
+    this->addChild(_bg2);
     //シングルタップイベント取得
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(_swallowsTouches);
@@ -55,9 +58,56 @@ bool EstateController::init()
     //イベントを追加する
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
-    initGame();
-    
+    showModal();
+
     return true;
+}
+
+void EstateController::menuStartCallback(Ref* Sender)
+{
+    MenuItem* menuItem = (MenuItem*)Sender;
+    log("%d",menuItem->getTag());
+    switch(menuItem->getTag()){
+        case 1:
+            initGame(1);
+            break;
+        case 2:
+            initGame(2);
+            break;
+        case 3:
+            initGame(3);
+            break;
+        case 4:
+            initGame(4);
+            break;
+        case 5:
+            initGame(5);
+            break;
+        case 6:
+            initGame(6);
+            break;
+    }
+    dialogClose();
+}
+void EstateController::dialogClose()
+{
+    UIDialog* dialog = static_cast<UIDialog*>(getChildByTag(30));
+    dialog->close();
+}
+
+void EstateController::showModal()
+{
+    cocos2d::ccMenuCallback action = CC_CALLBACK_1(EstateController::menuStartCallback,this);
+    std::vector<UIDialogButton*> buttons = {
+        new UIDialogButton("住宅相談",action,1),
+        new UIDialogButton("住宅基礎知識について",action,2),
+        new UIDialogButton("賃貸住宅D-Room",action,3),
+        new UIDialogButton("住宅相談（機能面）",action,4),
+        new UIDialogButton("住宅リフォーム（機能面）",action,5),
+        new UIDialogButton("住宅リフォーム（金額面）",action,6),
+    };
+    auto* dialog = UIDialog::create("住宅に関するお知らせです","興味のある案内を選択しましょう", buttons);
+    addChild(dialog,31,30);
 }
 
 void EstateController::getMessage(char* result)
@@ -71,7 +121,7 @@ void EstateController::getMessage(char* result)
     return;
 }
 
-void EstateController::initGame()
+void EstateController::initGame(int type)
 {
     char message[100];
     getMessage(message);
@@ -88,14 +138,38 @@ void EstateController::initGame()
     _sprite1->setScale(2.0f);
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
-    
-    Label *label = Label::createWithSystemFont("TEST", "Marker Felt.ttf", 30);
+
+    std::string wording;
+    switch (type) {
+        case 1:
+            wording = "住宅相談";
+            break;
+        case 2:
+            wording = "リフォームしたいけど何から手をつけたらいいかわからない・・・。リフォームに関するおすすめ情報です";
+            break;
+        case 3:
+            wording = "賃貸住宅D-Room";
+            break;
+        case 4:
+            wording = "住宅相談（機能面）";
+            break;
+        case 5:
+            wording = "住宅リフォーム（機能面）";
+            break;
+        case 6:
+            wording = "住宅リフォーム（金額面）";
+            break;
+            
+        default:
+            break;
+    }
+    Label *label = Label::createWithSystemFont(wording, "Marker Felt.ttf", 30);
     
     label->setScale(2.0f);
     label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->addChild(label);
     
-    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/3, visibleSize.height/3));
+    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/4, visibleSize.height/4));
     
     //アニメーションの実行
     label->runAction(move);
@@ -144,12 +218,10 @@ void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
     // リフォームの「？」がわかるQ&A
     uri = "http://www.daiwahouse-reform.co.jp/guide/qa/index.html";
 
-    
-    
     // 賃貸相談
     uri = "https://www.daiwahouse.co.jp/chintai/";
-    // 商品相談
-    uri = "";
+    // 建築物の商品相談
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/shohin/index.html";
     // 土地探し
     uri = "http://www.daiwahouse.co.jp/jutaku/soudan/tochi/index.asp";
     // 間取り相談
@@ -190,22 +262,20 @@ void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
     // 映画、音楽のある暮らし
     uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=13";
     //　女性のための空間提案
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=16";
     //　デザイナーズ住宅
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=24";
     //　キャトル、セゾンが似合う住宅
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/eventHP/regist.asp?event_id=102344";
     //　緑に囲まれた暮らし
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=15";
     //　相続税軽減に関する相談
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=2";
     //　住まいの各種ほぞ金などの相談
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=3";
     //　住まいずくりに対する全般的な相談
-    uri = "";
+    uri = "https://www.daiwahouse.co.jp/jutaku/soudan/qa/regist.asp?type=32";
 
-    
-    
     // リフォーム
     // 玄関
     uri = "http://www.daiwahouse-reform.co.jp/search/part/entrance_pricemap.html";
@@ -235,13 +305,7 @@ void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
     uri = "http://www.daiwahouse-reform.co.jp/search/price/100-200_pricemap.html";
     // 200万円から
     uri = "http://www.daiwahouse-reform.co.jp/search/price/200-300_pricemap.html";
-    
-    
 
-    
-    
-    
-    
     startWebView(uri);
     return;
 }
