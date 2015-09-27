@@ -91,6 +91,7 @@
 		459A62321BACEC93006425C9 /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622C1BACEC93006425C9 /* card_back.png */; settings = {ASSET_TAGS = (); }; };
 		459A62331BACEC93006425C9 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622D1BACEC93006425C9 /* button.png */; settings = {ASSET_TAGS = (); }; };
 		45BD5E181BADA002001EFE49 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BD5E171BADA002001EFE49 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
+		45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C9626B1BB7CFB00064519E /* btn057_04.png */; settings = {ASSET_TAGS = (); }; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
@@ -312,6 +313,8 @@
 		459A622C1BACEC93006425C9 /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_back.png; path = ../../Card13/Resources/card_back.png; sourceTree = "<group>"; };
 		459A622D1BACEC93006425C9 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = ../../Card13/Resources/button.png; sourceTree = "<group>"; };
 		45BD5E171BADA002001EFE49 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_spades.png; sourceTree = "<group>"; };
+		45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FamiliaScene.cpp; sourceTree = "<group>"; };
+		45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FamiliaScene.hpp; sourceTree = "<group>"; };
 		45C962681BB70F020064519E /* UIDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDialog.cpp; sourceTree = "<group>"; };
 		45C962691BB70F020064519E /* UIDialog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIDialog.hpp; sourceTree = "<group>"; };
 		45C9626B1BB7CFB00064519E /* btn057_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn057_04.png; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				4518371C1BB5B22A00D2C899 /* HomeInformation.h */,
 				45C962681BB70F020064519E /* UIDialog.cpp */,
 				45C962691BB70F020064519E /* UIDialog.hpp */,
+				45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */,
+				45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -964,6 +969,7 @@
 				45663D171B99CF4300548355 /* BrightnessViewController.mm in Sources */,
 				45663D1D1B99CF4300548355 /* ShakeViewController.mm in Sources */,
 				45663D191B99CF4300548355 /* HeadingViewController.mm in Sources */,
+				45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */,
 				451837121BB55F2300D2C899 /* controller.cpp in Sources */,
 				45116D591BB3D087007545F9 /* NativeLauncher.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

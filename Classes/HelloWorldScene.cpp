@@ -775,11 +775,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     switch(indetifier){
     case 1: // 自治体
             showModal();
-/*
-            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
-                                                                            ccc3(0, 0, 0)));
-*/
+            // ToDo
         break;
     case 2: // 料理、外食サイト
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
@@ -788,7 +784,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 3: // 家族からのお知らせ
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            FamiliaController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 4: // ニュース
