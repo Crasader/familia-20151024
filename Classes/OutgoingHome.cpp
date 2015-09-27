@@ -62,7 +62,7 @@ void OutgoingController::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    _sprite1 = Sprite::create("normal_door_close.png");
+    _sprite1 = Sprite::create("seaside-955948_640.png");
     _sprite1->setScale(1.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     addChild(_sprite1);
@@ -120,6 +120,14 @@ void OutgoingController::startWebView()
     this->addChild(webView, 1);
 }
 
+void OutgoingController::playEffect()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/machine_call.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/machine_call.mp3");
+    //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+}
+
 bool OutgoingController::onTouchBegan(Touch *touch, Event *unused_event)
 {
     return true;
@@ -134,7 +142,7 @@ void OutgoingController::onTouchMoved(Touch *touch, Event *unused_event)
 void OutgoingController::onTouchEnded(Touch *touch, Event *unused_event)
 {
     showSPrite();
-    
+    playEffect();
     return;
 }
 

@@ -44,6 +44,10 @@
 		453207EB1B8790DC0039C8E8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 453207E81B8790DC0039C8E8 /* libssl.a */; };
 		453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 453207F11B89FCB40039C8E8 /* NetworkLibCurl.cpp */; };
 		453207F51B8C40F40039C8E8 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453207F41B8C40F40039C8E8 /* CoreBluetooth.framework */; };
+		4537C27F1BB83EAA00CDF423 /* city-918523_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C27D1BB83EAA00CDF423 /* city-918523_640.png */; settings = {ASSET_TAGS = (); }; };
+		4537C2801BB83EAA00CDF423 /* avenue-957201_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C27E1BB83EAA00CDF423 /* avenue-957201_640.png */; settings = {ASSET_TAGS = (); }; };
+		4537C2831BB83EB700CDF423 /* seaside-955948_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C2811BB83EB700CDF423 /* seaside-955948_640.png */; settings = {ASSET_TAGS = (); }; };
+		4537C2841BB83EB700CDF423 /* river-932131_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C2821BB83EB700CDF423 /* river-932131_640.png */; settings = {ASSET_TAGS = (); }; };
 		45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45434CF91BAEBA1000279083 /* SecurityController.m */; settings = {ASSET_TAGS = (); }; };
 		45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */; settings = {ASSET_TAGS = (); }; };
@@ -219,6 +223,10 @@
 		453207F11B89FCB40039C8E8 /* NetworkLibCurl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkLibCurl.cpp; sourceTree = "<group>"; };
 		453207F21B89FCB40039C8E8 /* NetworkLibCurl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkLibCurl.h; sourceTree = "<group>"; };
 		453207F41B8C40F40039C8E8 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		4537C27D1BB83EAA00CDF423 /* city-918523_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "city-918523_640.png"; sourceTree = "<group>"; };
+		4537C27E1BB83EAA00CDF423 /* avenue-957201_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avenue-957201_640.png"; sourceTree = "<group>"; };
+		4537C2811BB83EB700CDF423 /* seaside-955948_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seaside-955948_640.png"; sourceTree = "<group>"; };
+		4537C2821BB83EB700CDF423 /* river-932131_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "river-932131_640.png"; sourceTree = "<group>"; };
 		453F72621B94A43900011B2F /* TCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCConnection.h; path = ios/TCConnection.h; sourceTree = SOURCE_ROOT; };
 		453F72631B94A43900011B2F /* TCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCConnectionDelegate.h; path = ios/TCConnectionDelegate.h; sourceTree = SOURCE_ROOT; };
 		453F72641B94A43900011B2F /* TCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCDevice.h; path = ios/TCDevice.h; sourceTree = SOURCE_ROOT; };
@@ -563,6 +571,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4537C2811BB83EB700CDF423 /* seaside-955948_640.png */,
+				4537C2821BB83EB700CDF423 /* river-932131_640.png */,
+				4537C27D1BB83EAA00CDF423 /* city-918523_640.png */,
+				4537C27E1BB83EAA00CDF423 /* avenue-957201_640.png */,
 				45C9626B1BB7CFB00064519E /* btn057_04.png */,
 				454D7F181BB24AB0006CCD2A /* cocosui */,
 				457CA7341BB127250016AF15 /* music */,
@@ -823,8 +835,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4537C2841BB83EB700CDF423 /* river-932131_640.png in Resources */,
 				452414BB1BAD9D33007BF272 /* komaru.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				4537C2801BB83EAA00CDF423 /* avenue-957201_640.png in Resources */,
 				452414C81BAD9D41007BF272 /* yattane.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -869,9 +883,11 @@
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				452414B11BAD9D19007BF272 /* boy.png in Resources */,
+				4537C2831BB83EB700CDF423 /* seaside-955948_640.png in Resources */,
 				45434D0A1BAFC95400279083 /* house-key.png in Resources */,
 				452414C41BAD9D3C007BF272 /* tehehe.png in Resources */,
 				452414BA1BAD9D33007BF272 /* kiran.png in Resources */,
+				4537C27F1BB83EAA00CDF423 /* city-918523_640.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 				459A622F1BACEC93006425C9 /* card_hearts.png in Resources */,
 				4582945C1BA9762C00BE34AB /* video.mp4 in Resources */,

@@ -63,7 +63,22 @@ void ReserveRetunrHomeController::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    _sprite1 = Sprite::create("normal_door_close.png");
+    std::vector<std::string>filename = {
+        "river-932131_640.png",
+        "city-918523_640.png",
+        "avenue-957201_640.png"
+    };
+    std::random_device device;
+    
+    std::mt19937 mt(device());
+    std::default_random_engine _engine = std::default_random_engine(mt());
+    
+    //取り出す値を設定(int型)
+    std::discrete_distribution<int>  distForNumbers = std::discrete_distribution<int>{0,1,2};
+    //実際に利用
+    int index = distForNumbers(_engine);
+    
+    _sprite1 = Sprite::create(filename[index]);
     _sprite1->setScale(1.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     addChild(_sprite1);
@@ -123,6 +138,14 @@ void ReserveRetunrHomeController::startWebView()
     this->addChild(webView, 1);
 }
 
+void ReserveRetunrHomeController::playEffect()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/pager.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/pager.mp3");
+    //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+}
+
 bool ReserveRetunrHomeController::onTouchBegan(Touch *touch, Event *unused_event)
 {
     return true;
@@ -137,7 +160,7 @@ void ReserveRetunrHomeController::onTouchMoved(Touch *touch, Event *unused_event
 void ReserveRetunrHomeController::onTouchEnded(Touch *touch, Event *unused_event)
 {
     showSPrite();
-    
+    playEffect();
     return;
 }
 

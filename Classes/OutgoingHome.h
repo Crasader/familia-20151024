@@ -34,7 +34,7 @@ public:
     virtual bool init();
     void initGame();
     void dispatchThreadCallbacks();
-    
+    void playEffect();
     void lockAllEquipment(char* result);
     
     void startWebView();

@@ -10,6 +10,7 @@
 #define ReserveReturnHome_hpp
 
 #include <stdio.h>
+#include <random>
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "NetworkLibCurl.h"
@@ -39,6 +40,7 @@ public:
     
     void startWebView();
     void showSPrite();
+    void playEffect();
     
     //create関数作成マクロ
     CREATE_FUNC(ReserveRetunrHomeController);
