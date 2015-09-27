@@ -13,6 +13,14 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+// レイヤーの大きさ
+#define LAYER_WIDTH 480
+#define LAYER_HEIGHT 900
+
+// ビューの大きさ
+#define VIEW_WIDTH 480
+#define VIEW_HEIGHT 320
+
 
 // UIListViewTest_Vertical
 
@@ -264,28 +272,13 @@ void NewsSprite::onEnter()
 std::string NewsSprite::getFileName(int cardType)
 {
     //ファイル名の取得
-    std::string filename = "button.png";
+    std::string filename = "btn057_04.png";
     switch (cardType)
     {
-        default: filename = "button.png"; break;
+        default: filename = "btn057_04.png"; break;
     }
     
     return filename;
-}
-
-void NewsSprite::showNumber(int index)
-{
-    //表示する数字の取得
-    std::string numberString;
-    
-    numberString = news_type_name[index];
-    
-    //ラベルの生成
-    auto number = Label::createWithSystemFont(numberString, "Arial", 24);
-    number->setPosition(Point(getContentSize()));
-    number->setTextColor((Color4B)Color4B::WHITE);
-//    number->setScaleX(10);
-    addChild(number);
 }
 
 void NewsSprite::moveBackToInitPos()
@@ -321,25 +314,30 @@ void NewsSprite::moveToTrash()
 void NewsSprite::moveToInitPos()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
+
+    
     //移動アニメーションの作成
     float posX = NEWS_1_POS_X + NEWS_DISTANCE_X * _posIndex.x;
     float posY = NEWS_1_POS_Y + NEWS_DISTANCE_Y * _posIndex.y;
     auto move = MoveTo::create(MOVING_TIME, Point(posX, posY));
     
     //カード回転アニメーションの作成
-    auto scale1 = ScaleTo::create(MOVING_TIME / 2, 0, 1);
+    auto scale1 = ScaleTo::create(MOVING_TIME / 2, 1, 1);
     auto func1 = CallFunc::create([&](){
         //画像の表示
-//        setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+        setPosition(Vec2(visibleSize.width+250, visibleSize.height/2));
         setTexture(getFileName(_card.type));
-        setScale(20, 1.5);
-
         setTag(_card.number);
         
-        //数字の表示
-        showNumber(_card.number);
+        //テキストの表示
+        Size at = getContentSize();
+        at.height = at.height/2;
+        auto number = Label::createWithSystemFont(news_type_name[_card.number], "Arial", 24);
+        number->setPosition(Point(at));
+        number->setTextColor((Color4B)Color4B::WHITE);
+        addChild(number);
     });
-    auto scale2 = ScaleTo::create(MOVING_TIME / 2, 1, 1);
+    auto scale2 = ScaleTo::create(MOVING_TIME / 4, 2, 2);
     auto seq1 = Sequence::create(scale1, func1, scale2, nullptr);
     
     //アクションの並列結合
@@ -365,7 +363,7 @@ void InfoController::initCards()
     //ゲームカードのクリア
     _cards.clear();
     
-        for (int number = 0; number <= NEWS_LIST_NUM; number++)
+        for (int number = 0; number <= news_type_name.size(); number++)
         {
             //カード情報の作成
             NewsBox card;
@@ -386,8 +384,172 @@ NewsBox InfoController::getCard(int index)
 
 void InfoController::createCard(BoxPosIndex posIndex)
 {
-/*
-    std::vector<std::string> news_type_name;
+    float posX = NEWS_1_POS_X;
+    float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
+    
+    //新しいカードを作成する
+    auto card = NewsSprite::create();
+    card->setNewsBox(getCard(posIndex.y));
+    card->setPosition(posX, posY);
+    card->setBoxPosIndex(posIndex);
+    card->moveToInitPos();
+//    card->setScale(20, 5);
+    addChild(card, ZORDER_SHOW_CARD);
+
+}
+
+void InfoController::showInitCards()
+{
+    for (int tag = 1; tag <= news_type_name.size(); tag++)
+    {
+        auto card = getChildByTag(tag);
+        if (card)
+        {
+            //カードが残っている場合は、削除する
+            card->removeFromParent();
+        }
+    }
+    
+    for (int x = 0; x < 1; x++)
+    {
+        for (int y = 0; y < news_type_name.size(); y++)
+        {
+            BoxPosIndex posIndex;
+            posIndex.x = x;
+            posIndex.y = y;
+            
+            //カードの生成
+            createCard(posIndex);
+        }
+    }
+}
+
+void InfoController::selectTouchMode(Control::EventType controlEvent)
+{
+    switch (controlEvent) {
+        case Control::EventType::TOUCH_DOWN:
+            printf("TOUCH_DOWN");
+            break;
+        case Control::EventType::DRAG_INSIDE:
+            printf("DRAG_INSIDE");
+            _button1->setPosition(_button1->getPosition());
+            break;
+        case Control::EventType::DRAG_OUTSIDE:
+            printf("DRAG_OUTSIDE");
+            break;
+        case Control::EventType::DRAG_ENTER:
+            printf("DRAG_ENTER");
+            break;
+        case Control::EventType::DRAG_EXIT:
+            printf("DRAG_EXIT");
+            break;
+        case Control::EventType::TOUCH_UP_INSIDE:
+            printf("TOUCH_UP_INSIDE");
+            break;
+        case Control::EventType::TOUCH_UP_OUTSIDE:
+            printf("TOUCH_UP_OUTSIDE");
+            break;
+        case Control::EventType::TOUCH_CANCEL:
+            printf("TOUCH_CANCEL");
+            break;
+        default:
+            break;
+    }
+}
+
+void InfoController::buttonCallback(Ref *sender, Control::EventType controlEvent)
+{
+    Touch *touch = (Touch*)sender;
+
+    Vec2 a = touch->getLocationInView();
+    Vec2 b = _button1->getPosition();
+    
+    printf("%f::%f::",a.x,a.y);
+    printf("%f::%f::",b.x,b.y);
+    for(int i = 0;i < news_type_name.size();i++)
+    {
+        if(touch->getLocationInView() == _button1->getPosition())
+        {
+            printf("find it ! : %d ::", i);
+        }
+    }
+    
+    
+    touch->getDelta();
+    selectTouchMode(controlEvent);
+
+    switch (controlEvent) {
+        case Control::EventType::TOUCH_DOWN:
+            printf("TOUCH_DOWN");
+            break;
+        case Control::EventType::DRAG_INSIDE:
+            printf("DRAG_INSIDE");
+            _button1->setPosition(_button1->getPosition()+touch->getDelta());
+            break;
+        case Control::EventType::DRAG_OUTSIDE:
+            printf("DRAG_OUTSIDE");
+            break;
+        case Control::EventType::DRAG_EXIT:
+            printf("DRAG_EXIT");
+            break;
+        case Control::EventType::TOUCH_UP_INSIDE:
+            printf("TOUCH_UP_INSIDE");
+            break;
+        case Control::EventType::TOUCH_UP_OUTSIDE:
+            printf("TOUCH_UP_OUTSIDE");
+            break;
+        case Control::EventType::TOUCH_CANCEL:
+            printf("TOUCH_CANCEL");
+            break;
+        default:
+            break;
+    }
+    
+}
+
+bool InfoController::init()
+{
+    if (!Layer::init())
+    {
+        return false;
+    }
+    //シングルタップイベント取得
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(_swallowsTouches);
+    
+    //イベント関数の割り当て
+    listener->onTouchBegan = CC_CALLBACK_2(InfoController::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(InfoController::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(InfoController::onTouchEnded, this);
+    listener->onTouchCancelled = CC_CALLBACK_2(InfoController::onTouchCancelled, this);
+    
+    //イベントを追加する
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    auto _bg2 = LayerColor::create(Color4B(0x11,0x11,0x11,0x11), winSize.width, winSize.height);
+    this->addChild(_bg2);
+    
+    
+    initGame();
+    
+    return true;
+}
+
+void InfoController::getMessage(char* result)
+{
+    const char *post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=2";
+    
+    Post(post_command);
+    
+    return;
+}
+
+
+void InfoController::initGame()
+{
     news_type_name =
     {
         "ソフトバンク　ビジネス＋ITニュース", // http://www.sbbit.jp/
@@ -407,211 +569,10 @@ void InfoController::createCard(BoxPosIndex posIndex)
         "玄関ドア\nの開閉"
     };
     
-    Point origin = Director::getInstance()->getVisibleOrigin();
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-
-    auto sprite = Sprite::create("button.png");
-    sprite->setPosition(Vec2(visibleSize.width/2, (100*posIndex.y)));
-    
-    sprite->setScaleX(5);
-    sprite->setScaleY(1.5f);
-    
-    this->addChild(sprite);
-
-    std::string numberString;
-    numberString = news_type_name[posIndex.y];
-    
-    auto number = Label::createWithSystemFont(numberString, "Arial", 24);
-//    number->setPosition(Point(getContentSize()));
-    number->setPosition(Vec2(visibleSize.width/2, 0));//(100*posIndex.y)));
-    number->setTextColor((Color4B)Color4B::WHITE);
-    addChild(number);
-    
-*/
-    
-/*
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-
-    float posX = NEWS_1_POS_X;
-    float posY = CARD_1_POS_Y - CARD_DISTANCE_Y;
-    
-    //新しいカードを作成する
-    auto card = NewsSprite::create();
-    card->setNewsBox(getCard(posIndex.y));
-    card->setPosition(posX, posY);
-    card->setBoxPosIndex(posIndex);
-    card->moveToInitPos();
-    card->setScale(20, 1.5);
-    addChild(card, ZORDER_SHOW_CARD);
-*/
-}
-
-void InfoController::showInitCards()
-{
-    for (int tag = 1; tag <= NEWS_LIST_NUM; tag++)
-    {
-        auto card = getChildByTag(tag);
-        if (card)
-        {
-            //カードが残っている場合は、削除する
-            card->removeFromParent();
-        }
-    }
-    
-    for (int x = 0; x < 1; x++)
-    {
-        for (int y = 0; y < NEWS_LIST_NUM; y++)
-        {
-            BoxPosIndex posIndex;
-            posIndex.x = x;
-            posIndex.y = y;
-            
-            //カードの生成
-            createCard(posIndex);
-        }
-    }
-}
-
-//HelloWorldクラスのレイヤーの初期化処理を行う
-bool InfoController::init()
-{
-    if (!Layer::init())
-    {
-        return false;
-    }
-
-    
-    //シングルタップイベント取得
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(_swallowsTouches);
-    
-    //イベント関数の割り当て
-    listener->onTouchBegan = CC_CALLBACK_2(InfoController::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(InfoController::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(InfoController::onTouchEnded, this);
-    listener->onTouchCancelled = CC_CALLBACK_2(InfoController::onTouchCancelled, this);
-    
-    //イベントを追加する
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
     initCards();
-    initGame_scroll();
-        
-    return true;
+    showInitCards();
 }
 
-void InfoController::getMessage(char* result)
-{
-    const char *post_command;
-    
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
-    
-    Post(post_command);
-    
-    return;
-}
-
-void InfoController::initMenuItem()
-{
-/*
-    // 通常のメニュー作成時と同様にMenuItemのVectorを作成
-    Vector<MenuItem*> menuItems;
-    
-    auto button1 = MenuItemButton::create("button1.png", CC_CALLBACK_1(InfoController::onButton1Clicked, this));
-    button1->setAnchorPoint(Vec2(0.0f, 0.0f));
-    button1->setPosition(Vec2(0, 0));
-    menuItems.pushBack(button1);
-    
-    auto button2 = MenuItemButton::create("button2.png", CC_CALLBACK_1(InfoController::onButton2Clicked, this));
-    button2->setAnchorPoint(Vec2(0.0f, 0.0f));
-    button2->setPosition(Vec2(100, 0));
-    menuItems.pushBack(button2);
-    
-    // ScrollMenuを作成
-    auto menu = ScrollMenu::createWithArray(menuItems);
-    menu->setContentSize(Size(100, 500));
-    menu->setAnchorPoint(Vec2(0, 0));
-    menu->setPosition(Vec2(0, 0));
-    
-    // 作成したメニューをセットしたScrollMenuViewを作成
-    auto scrollMenuView = ScrollMenuView::create(menu);
-    scrollMenuView->setBounceEnabled(true);
-    scrollMenuView->setDirection(ScrollView::Direction::VERTICAL);
-    scrollMenuView->setContentSize(Size(100, 200));
-    scrollMenuView->setPosition(Vec2(160, 284));
-    
-    this->addChild(scrollMenuView);
-*/
-}
-
-
-void InfoController::initGame()
-{
-    auto ui_list = UIListViewTest_Vertical::create();
-    ui_list->init();
-}
-
-void InfoController::initGame_scroll()
-{
-    news_type_name =
-    {
-        "ソフトバンク　ビジネス＋ITニュース" // http://www.sbbit.jp/
-        "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
-        "スポーツナビ",  // http://sports.yahoo.co.jp/
-        "ニュース",
-        "書籍情報",
-        "ビデオメッセージ",
-        "メッセージ",
-        "住宅情報",
-        "yahooニュース",
-        "蓄電情報",
-        "消費電力\n情報",
-        "設備機器\n稼働情報",
-        "お出かけ\nまとめ処理",
-        "帰宅予約",
-        "玄関ドア\nの開閉"
-    };
-    
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-
-    auto _scrollView = ScrollView::create(visibleSize);
-    _scrollView->setContentSize(visibleSize);
-    _scrollView->setPosition(Vec2(0,0));
-    _scrollView->setDirection(ScrollView::Direction::VERTICAL);
-    _scrollView->setBounceable(true);
-//    _scrollView->setColor(Color3B(120,120,120));
-    this->addChild(_scrollView);
-    //中身のサイズを指定
-    //    _scrollView-->setInnerContainerSize(Size(sprite->getContentSize().width,sprite->getContentSize().height));
-
-    auto _bg2 = LayerColor::create(Color4B(0,0x33,0xFF,0x99), visibleSize.width, visibleSize.height);
-    _scrollView->addChild(_bg2);
-    
-    for(int i = 0;i < news_type_name.size();i++)
-    {
-        auto sprite = Sprite::create("button.png");
-        sprite->setPosition(Vec2(visibleSize.width/2, (100*i)));
-        sprite->setScaleX(5);
-        sprite->setScaleY(1.5f);
-        _scrollView->addChild(sprite);
-        
-        auto number = Label::createWithSystemFont(news_type_name[i], "Arial", 24);
-        number->setPosition(Vec2(visibleSize.width/2, 100*i));
-        number->setTextColor((Color4B)Color4B::WHITE);
-        _scrollView->addChild(number);
-        
-        setTag(i);
-    }
-    
-
-    //実際に表示される領域（これ以外は隠れる)
-//    auto inveSize = Size(sprite->getContentSize().width,visibleSize.height/2);
-//    _scrollView->setContentSize(inveSize);
-    
-    //update関数の呼び出しを開始
-    scheduleUpdate();
-}
 
 void InfoController::startWebView(int type)
 {
@@ -639,30 +600,12 @@ void InfoController::startWebView(int type)
     this->addChild(webView, 1);
 }
 
-NewsSprite* InfoController::getTouchCard_old(Touch *touch)
+NewsSprite* InfoController::getTouchCard(Touch *touch)
 {
     for (int tag = 1; tag <= news_type_name.size(); tag++)
     {
         //表示されているカードを取得する
         auto card = (NewsSprite*)getChildByTag(tag);
-        if (card &&
-            card != _firstCard &&
-            card->getBoundingBox().containsPoint(touch->getLocation()))
-        {
-            //タップされたカードの場合は、そのカードを返す
-            return card;
-        }
-    }
-    
-    return nullptr;
-}
-
-Sprite* InfoController::getTouchCard(Touch *touch)
-{
-    for (int tag = 0; tag <= news_type_name.size(); tag++)
-    {
-        //表示されているカードを取得する
-        auto card = (Sprite*)getChildByTag(tag);
         if (card &&
             card != _firstCard &&
             card->getBoundingBox().containsPoint(touch->getLocation()))
@@ -686,27 +629,24 @@ void InfoController::playEffect()
 
 bool InfoController::onTouchBegan(Touch *touch, Event *unused_event)
 {
-    
-    NativeLauncher::launchNative();
-    
-    auto tempCard = getTouchCard(touch);
-    if (tempCard)
+    _firstCard = getTouchCard(touch);
+    if (_firstCard)
     {
         //場に出ているカードがタップされた場合
         
         //Zオーダーを変更する
-        tempCard->setLocalZOrder(ZORDER_MOVING_CARD);
-        
-        playEffect();
+        _firstCard->setLocalZOrder(ZORDER_MOVING_CARD);
         return true;
     }
-    
-//    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
+    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                        HelloWorld::scene(),
+                                                                        ccc3(0, 0, 0)));
     return false;
 }
 
 void InfoController::onTouchMoved(Touch *touch, Event *unused_event)
 {
+    printf("onTouchMoved!!");
     //スワイプしているカードの位置を変更
     _firstCard->setPosition(_firstCard->getPosition() + touch->getDelta());
 }
@@ -714,10 +654,13 @@ void InfoController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
 {
+    printf("onTouchEnded!!");
+
     int indetifier = 0;
 
     //タップしたカードの取得
     indetifier = _firstCard->getNewsBox().number;
+    
     
     //新しいカードを配置する
     if ((int)_cards.size() > 0)
@@ -725,7 +668,6 @@ void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
         createCard(_firstCard->getBoxPosIndex());
     }
 
-/*
     //カードを捨てる
     _firstCard->moveToTrash();
     
@@ -734,11 +676,11 @@ void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
         //カードの山を削除する
         removeChildByTag(TAG_BACK_CARD);
     }
-*/
+
     //タップしているカードの指定を外す
     _firstCard = nullptr;
-    
-//    startWebView(indetifier);
+
+    startWebView(indetifier);
 
 }
 

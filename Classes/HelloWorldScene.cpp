@@ -676,10 +676,37 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
     _firstCard->setPosition(_firstCard->getPosition() + touch->getDelta());
 }
 
+void HelloWorld::menuStartCallback(Ref* Sender)
+{
+    MenuItem* menuItem = (MenuItem*)Sender;
+    log("%d",menuItem->getTag());
+    switch(menuItem->getTag()){
+        case 1:
+            break;
+        case 2:
+            break;
+    }
+    dialogClose();
+}
+void HelloWorld::dialogClose()
+{
+    UIDialog* dialog = static_cast<UIDialog*>(getChildByTag(30));
+    dialog->close();
+}
+
 void HelloWorld::showModal()
 {
+    cocos2d::ccMenuCallback action = CC_CALLBACK_1(HelloWorld::menuStartCallback,this);
+    std::vector<UIDialogButton*> buttons = {
+        new UIDialogButton("他の機能を利用する",action,1),
+    };
+    auto* dialog = UIDialog::create("お知らせです","この機能は現在利用できません\n運用が開始されるまでお待ち下さい※", buttons);
+    addChild(dialog,31,30);
+
+/*
     auto* modal = ConfirmWindow::create();
     addChild(modal);
+ */
 }
 
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)

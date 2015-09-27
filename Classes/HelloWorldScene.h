@@ -16,7 +16,7 @@
 #include "ConfirmWindow.h"
 #include "MotionScene.h"
 #include "HomeInformation.h"
-
+#include "UIDialog.hpp"
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
 #define CARD_TYPE_NUM 4 //カードの種類
@@ -163,6 +163,8 @@ public:
 
     //初期化処理を行う
     virtual bool init();  
+    void menuStartCallback(Ref* Sender);
+    void dialogClose();
     
     //create関数作成マクロ
     CREATE_FUNC(HelloWorld);

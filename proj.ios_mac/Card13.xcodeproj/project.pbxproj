@@ -91,6 +91,8 @@
 		459A62321BACEC93006425C9 /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622C1BACEC93006425C9 /* card_back.png */; settings = {ASSET_TAGS = (); }; };
 		459A62331BACEC93006425C9 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622D1BACEC93006425C9 /* button.png */; settings = {ASSET_TAGS = (); }; };
 		45BD5E181BADA002001EFE49 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BD5E171BADA002001EFE49 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
+		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
+		45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C9626B1BB7CFB00064519E /* btn057_04.png */; settings = {ASSET_TAGS = (); }; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
@@ -310,6 +312,9 @@
 		459A622C1BACEC93006425C9 /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_back.png; path = ../../Card13/Resources/card_back.png; sourceTree = "<group>"; };
 		459A622D1BACEC93006425C9 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = ../../Card13/Resources/button.png; sourceTree = "<group>"; };
 		45BD5E171BADA002001EFE49 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_spades.png; sourceTree = "<group>"; };
+		45C962681BB70F020064519E /* UIDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDialog.cpp; sourceTree = "<group>"; };
+		45C962691BB70F020064519E /* UIDialog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIDialog.hpp; sourceTree = "<group>"; };
+		45C9626B1BB7CFB00064519E /* btn057_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn057_04.png; sourceTree = "<group>"; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
@@ -555,6 +560,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45C9626B1BB7CFB00064519E /* btn057_04.png */,
 				454D7F181BB24AB0006CCD2A /* cocosui */,
 				457CA7341BB127250016AF15 /* music */,
 				45434D0C1BAFD30D00279083 /* normal_door_close.png */,
@@ -642,6 +648,8 @@
 				451837191BB57F9F00D2C899 /* MotionScene.h */,
 				4518371B1BB5B22A00D2C899 /* HomeInformation.cpp */,
 				4518371C1BB5B22A00D2C899 /* HomeInformation.h */,
+				45C962681BB70F020064519E /* UIDialog.cpp */,
+				45C962691BB70F020064519E /* UIDialog.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -845,6 +853,7 @@
 				459A62311BACEC93006425C9 /* card_clubs.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				452414BE1BAD9D33007BF272 /* randfather.png in Resources */,
+				45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */,
 				459A62321BACEC93006425C9 /* card_back.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				459A62331BACEC93006425C9 /* button.png in Resources */,
@@ -946,6 +955,7 @@
 				457CA7301BB0E88E0016AF15 /* ReserveReturnHome.cpp in Sources */,
 				45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */,
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
+				45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */,
 				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,
 				457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */,
