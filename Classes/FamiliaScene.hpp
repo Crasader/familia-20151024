@@ -39,8 +39,6 @@ public:
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     
-    virtual void Action01(float frame);
-    
     //毎フレーム呼ばれる関数
     void update(float dt) override;
 };

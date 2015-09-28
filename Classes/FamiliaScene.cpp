@@ -47,47 +47,10 @@ bool FamiliaController::init()
     return true;
 }
 
-// １番目画像Runアクションメソッド
-void FamiliaController::Action01(float frame)
-{
-    
-    /*
-     // 大きさ（縮小）アクションを適用 1.0秒 0倍
-     auto scaleTo1 = ScaleTo::create(1.0f, 0.0f);
-     
-     //callbackでの消去処理
-     auto removeSprite1 = CallFunc::create([this](){
-     this->removeChild(Sprite01);
-     });
-     
-     // 縮小、消去アクションを適用
-     auto sequence1 = Sequence::create(scaleTo1, removeSprite1, NULL);
-     
-     // 縮小、消去runアクションを適用
-     Sprite01->runAction(sequence1);
-     */
-    
-}
-
-
-
 void FamiliaController::initGame()
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto videoPlayer = cocos2d::experimental::ui::VideoPlayer::create();
-    
-    videoPlayer->setContentSize(visibleSize);
-    videoPlayer->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
-    videoPlayer->setScale(1.0);
-    
-    videoPlayer->setKeepAspectRatioEnabled(true);
-    this->addChild(videoPlayer);
-    
-    videoPlayer->setFullScreenEnabled(true);
-    videoPlayer->setFileName("video.mp4");
-    
-    videoPlayer->play();
-    
+
     //update関数の呼び出しを開始
     scheduleUpdate();
     
@@ -98,12 +61,13 @@ bool FamiliaController::onTouchBegan(Touch *touch, Event *unused_event)
 {
     
     
-    return false;
+    return true;
 }
 
 void FamiliaController::onTouchMoved(Touch *touch, Event *unused_event)
 {
     //スワイプしているカードの位置を変更
+    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
     
 }
 

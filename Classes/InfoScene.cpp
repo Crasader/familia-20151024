@@ -334,7 +334,7 @@ void NewsSprite::moveToInitPos()
             auto number = Label::createWithSystemFont(temp, "Arial", 24);
             //        auto number = Label::createWithSystemFont("testtest", "Arial", 24);
             number->setPosition(Point(at));
-            number->setTextColor((Color4B)Color4B::WHITE);
+            number->setTextColor((Color4B)Color4B::BLACK);
             addChild(number);
         }
     });
@@ -551,6 +551,10 @@ void InfoController::getMessage(char* result)
 
 void InfoController::initGame()
 {
+    Size winSize = Director::getInstance()->getVisibleSize();
+    auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
+    this->addChild(_bg2);
+
     news_type_name =
     {
         "ビジネス＋ITニュース", // http://www.sbbit.jp/

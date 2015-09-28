@@ -90,7 +90,7 @@
 		4582945A1BA9753F00BE34AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458294591BA9753F00BE34AB /* MediaPlayer.framework */; };
 		4582945C1BA9762C00BE34AB /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4582945B1BA9762C00BE34AB /* video.mp4 */; };
 		4582945F1BA9A5A600BE34AB /* InfoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4582945D1BA9A5A600BE34AB /* InfoScene.cpp */; };
-		45894CE21BACF7310041D185 /* FamiliaPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 45894CE11BACF7310041D185 /* FamiliaPhone.m */; settings = {ASSET_TAGS = (); }; };
+		45894CE21BACF7310041D185 /* FamiliaPhone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45894CE11BACF7310041D185 /* FamiliaPhone.mm */; settings = {ASSET_TAGS = (); }; };
 		459A622F1BACEC93006425C9 /* card_hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A62291BACEC93006425C9 /* card_hearts.png */; settings = {ASSET_TAGS = (); }; };
 		459A62301BACEC93006425C9 /* card_diamonds.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622A1BACEC93006425C9 /* card_diamonds.png */; settings = {ASSET_TAGS = (); }; };
 		459A62311BACEC93006425C9 /* card_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622B1BACEC93006425C9 /* card_clubs.png */; settings = {ASSET_TAGS = (); }; };
@@ -320,7 +320,7 @@
 		4582945D1BA9A5A600BE34AB /* InfoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoScene.cpp; sourceTree = "<group>"; };
 		4582945E1BA9A5A600BE34AB /* InfoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoScene.h; sourceTree = "<group>"; };
 		45894CE01BACF7310041D185 /* FamiliaPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamiliaPhone.h; path = ios/FamiliaPhone.h; sourceTree = SOURCE_ROOT; };
-		45894CE11BACF7310041D185 /* FamiliaPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamiliaPhone.m; path = ios/FamiliaPhone.m; sourceTree = SOURCE_ROOT; };
+		45894CE11BACF7310041D185 /* FamiliaPhone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FamiliaPhone.mm; path = ios/FamiliaPhone.mm; sourceTree = SOURCE_ROOT; };
 		459A62291BACEC93006425C9 /* card_hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_hearts.png; path = ../../Card13/Resources/card_hearts.png; sourceTree = "<group>"; };
 		459A622A1BACEC93006425C9 /* card_diamonds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_diamonds.png; path = ../../Card13/Resources/card_diamonds.png; sourceTree = "<group>"; };
 		459A622B1BACEC93006425C9 /* card_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_clubs.png; path = ../../Card13/Resources/card_clubs.png; sourceTree = "<group>"; };
@@ -443,7 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				45894CE01BACF7310041D185 /* FamiliaPhone.h */,
-				45894CE11BACF7310041D185 /* FamiliaPhone.m */,
+				45894CE11BACF7310041D185 /* FamiliaPhone.mm */,
 				45663CFA1B99CF4300548355 /* device_controller */,
 				45663CEC1B95D77200548355 /* libTwilioClient.a */,
 				453F72621B94A43900011B2F /* TCConnection.h */,
@@ -968,7 +968,7 @@
 				45663D131B99CF4300548355 /* AccelerometerViewController.mm in Sources */,
 				457699B81BB4487D0010FCDE /* ScrollMenu.cpp in Sources */,
 				45663D1A1B99CF4300548355 /* LocationViewController.mm in Sources */,
-				45894CE21BACF7310041D185 /* FamiliaPhone.m in Sources */,
+				45894CE21BACF7310041D185 /* FamiliaPhone.mm in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				45663D151B99CF4300548355 /* AudioViewController.mm in Sources */,
 				457699B71BB426D90010FCDE /* ModalWindow.cpp in Sources */,
