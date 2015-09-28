@@ -10,7 +10,6 @@
 #define FamiliaScene_hpp
 
 #include <stdio.h>
-#include <stdio.h>
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "NetworkLibCurl.h"

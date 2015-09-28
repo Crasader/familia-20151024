@@ -20,8 +20,6 @@
 #include "HelloWorldScene.h"
 #include "UIScene.h"
 #include "ui/UIScrollView.h"
-//#include "ScrollMenu.h"
-//#include "ScrollMenuView.h"
 #include "Nativelauncher.h"
 
 
@@ -29,9 +27,9 @@
 #define NEWS_LIST_NUM 9 //ニュースリスト数
 
 #define NEWS_1_POS_X 70 //1番のカード位置(x)
-#define NEWS_1_POS_Y 1200 //1番のカード位置(y)
+#define NEWS_1_POS_Y 900 //1番のカード位置(y)
 #define NEWS_DISTANCE_X 125 //カード間の距離(x方向)
-#define NEWS_DISTANCE_Y 120 //カード間の距離(y方向)
+#define NEWS_DISTANCE_Y 140 //カード間の距離(y方向)
 
 #define ZORDER_SHOW_CARD 1 //表示しているカードのZオーダー
 #define ZORDER_MOVING_CARD 2 //移動しているカードのZオーダー
@@ -74,8 +72,6 @@ public:
     void moveBackToInitPos(); //元の位置に移動する
     void moveToTrash(); //カードを捨てる
     void moveToInitPos (); //最初の位置に移動する
-    
-
 
 };
 
@@ -104,26 +100,16 @@ protected:
 
 
 
-class InfoController : public cocos2d::Layer, public TestList::ScrollViewDelegate
+class InfoController : public cocos2d::Layer
 {
 protected:
     std::vector<NewsBox> _cards; //カード情報
     NewsSprite* _firstCard; //最初にタップされたカード
     std::vector<std::string> news_type_name;
-    
-    
+
 public:
     static cocos2d::Scene* scene();
     cocos2d::ui::ScrollView* _scrollView;
-    cocos2d::extension::ControlButton *_button1;
-    cocos2d::extension::ControlButton *_button2;
-    cocos2d::extension::ControlButton *_button3;
-    cocos2d::extension::ControlButton *_button4;
-    cocos2d::extension::ControlButton *_button5;
-    cocos2d::extension::ControlButton *_button6;
-    cocos2d::extension::ControlButton *_button7;
-    cocos2d::extension::ControlButton *_button8;
-    cocos2d::extension::ControlButton *_button9;
     
     //初期化処理を行う
     virtual bool init();
@@ -132,9 +118,6 @@ public:
     void initGame_scroll();
     void getMessage(char* result);
     void startWebView(int type);
-    void buttonCallback(Ref *sender, cocos2d::extension::Control::EventType controlEvent);
-    void selectTouchMode(cocos2d::extension::Control::EventType controlEvent);
-
 
     //create関数作成マクロ
     CREATE_FUNC(InfoController);

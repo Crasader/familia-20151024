@@ -390,6 +390,11 @@ void HelloWorld::playBGM()
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("music/bgm.mp3",true);
 }
 
+void HelloWorld::stopBGM()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+}
+
 void HelloWorld::playEffect()
 {
     std::vector<std::string> effect_sounds = {
@@ -794,7 +799,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 2: // 料理、外食サイト
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            CookingController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 3: // 家族からのお知らせ
@@ -809,10 +814,11 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 5: // 書籍情報
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            ServiceController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 6: // ビデオ\nメッセージ
+        stopBGM();
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             MediaController::scene(),
                                                                             ccc3(0, 0, 0)));

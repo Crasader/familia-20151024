@@ -62,8 +62,9 @@ static AppDelegate s_sharedApplication;
     NSString *name = @"jenny";
 #endif
     //check out https://github.com/twilio/mobile-quickstart to get a server up quickly
-    NSString *urlString = [NSString stringWithFormat:@"http://companyfoo.com/token?client=%@", name];
-    NSURL *url = [NSURL URLWithString:urlString];
+//    NSString *urlString = [NSString stringWithFormat:@"http://companyfoo.com/token?client=%@", name];
+//    NSURL *url = [NSURL URLWithString:urlString];
+    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
     
 //    NSURL *url = [NSURL URLWithString:@"http://companyfoo.com/1b8b9fcacfbb0d596c5289457d2cc9e8"];
     NSError *error = nil;
@@ -74,6 +75,48 @@ static AppDelegate s_sharedApplication;
         _phone = [[TCDevice alloc] initWithCapabilityToken:token delegate:nil];
     }
 }
+
+-(id)init_twilio_sub
+{
+    if ( self = [super init] )
+    {
+        // Replace the URL with your Capabilities Token URL
+        NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
+        NSURLResponse*  response = nil;
+        NSError*    error = nil;
+        NSData* data = [NSURLConnection sendSynchronousRequest:
+                        [NSURLRequest requestWithURL:url]
+                                             returningResponse:&response
+                                                         error:&error];
+        if (data)
+        {
+            NSHTTPURLResponse*  httpResponse = (NSHTTPURLResponse*)response;
+            
+            if (httpResponse.statusCode == 200)
+            {
+                NSString* capabilityToken = [[[NSString alloc] initWithData:data
+                                                                   encoding:NSUTF8StringEncoding]
+                                             autorelease];
+                
+                _phone = [[TCDevice alloc] initWithCapabilityToken:capabilityToken
+                                                           delegate:nil];
+            }
+            else
+            {
+                NSString*  errorString = [NSString stringWithFormat:
+                                          @"HTTP status code %d",
+                                          httpResponse.statusCode];
+                NSLog(@"Error logging in: %@", errorString);
+            }
+        }
+        else
+        {
+            NSLog(@"Error logging in: %@", [error localizedDescription]);
+        }
+    }
+    return self;
+}
+
 
 - (void)dialButtonPressed
 {

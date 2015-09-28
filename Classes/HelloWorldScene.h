@@ -19,6 +19,7 @@
 #include "UIDialog.hpp"
 #include "FamiliaScene.hpp"
 #include "ServiceController.hpp"
+#include "CookingController.hpp"
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
@@ -156,6 +157,7 @@ protected:
     void Sequence2(int sts);
 
     void playBGM();
+    void stopBGM();
     void playEffect();
     
     void showModal(int type);
