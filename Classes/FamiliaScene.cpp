@@ -49,7 +49,9 @@ bool FamiliaController::init()
 
 void FamiliaController::initGame()
 {
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    Size winSize = Director::getInstance()->getVisibleSize();
+    auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
+    this->addChild(_bg2);
 
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -60,12 +62,14 @@ void FamiliaController::initGame()
 bool FamiliaController::onTouchBegan(Touch *touch, Event *unused_event)
 {
     
-    
+    NativeLauncher::connectPhamiliaPhone();
+
     return true;
 }
 
 void FamiliaController::onTouchMoved(Touch *touch, Event *unused_event)
 {
+    NativeLauncher::disconnectPhamiliaPhone();
     //スワイプしているカードの位置を変更
     CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
     

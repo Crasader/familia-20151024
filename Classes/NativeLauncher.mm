@@ -29,4 +29,17 @@ void NativeLauncher::launchMotionController(int flag)
 }
 
 
+void NativeLauncher::connectPhamiliaPhone()
+{
+    AppController *appController = (AppController *)[UIApplication sharedApplication].delegate;
+    [appController dialButtonPressed];
+}
+
+void NativeLauncher::disconnectPhamiliaPhone()
+{
+    AppController *appController = (AppController *)[UIApplication sharedApplication].delegate;
+    [appController hangupButtonPressed];
+}
+
+
 

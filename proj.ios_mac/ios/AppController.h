@@ -29,6 +29,7 @@
     UIWindow *window;
     TCDevice* _phone;
     TCConnection* _connection;
+
     
 //    CBPeripheralManager *myPeripheralManager;
 //    CBMutableCharacteristic *myCharacteristicsSample;
@@ -53,6 +54,10 @@
 
 
 - (void)launchNative;
+
+- (void)dialButtonPressed;
+- (void)hangupButtonPressed;
+
 
 @end
 

@@ -42,6 +42,7 @@
     NSLog(@"%s", "hoge!");
 }
 
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -147,10 +148,8 @@ static AppDelegate s_sharedApplication;
 
     [[UIApplication sharedApplication] setStatusBarHidden:true];
 
-    /*
     // Twilio 初期化
     [self init_twilio];
-     */
 /*
     self.btlCentralManager = [[BTLECentralViewController alloc] init];
     [self.btlCentralManager initBtlCentralManager];
