@@ -48,6 +48,8 @@
 		4537C2801BB83EAA00CDF423 /* avenue-957201_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C27E1BB83EAA00CDF423 /* avenue-957201_640.png */; settings = {ASSET_TAGS = (); }; };
 		4537C2831BB83EB700CDF423 /* seaside-955948_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C2811BB83EB700CDF423 /* seaside-955948_640.png */; settings = {ASSET_TAGS = (); }; };
 		4537C2841BB83EB700CDF423 /* river-932131_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C2821BB83EB700CDF423 /* river-932131_640.png */; settings = {ASSET_TAGS = (); }; };
+		4537C2871BB8C40200CDF423 /* ServiceController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4537C2851BB8C40200CDF423 /* ServiceController.cpp */; settings = {ASSET_TAGS = (); }; };
+		4537C28A1BB8C42F00CDF423 /* CookingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4537C2881BB8C42F00CDF423 /* CookingController.cpp */; settings = {ASSET_TAGS = (); }; };
 		45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45434CF91BAEBA1000279083 /* SecurityController.m */; settings = {ASSET_TAGS = (); }; };
 		45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */; settings = {ASSET_TAGS = (); }; };
@@ -227,6 +229,10 @@
 		4537C27E1BB83EAA00CDF423 /* avenue-957201_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avenue-957201_640.png"; sourceTree = "<group>"; };
 		4537C2811BB83EB700CDF423 /* seaside-955948_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seaside-955948_640.png"; sourceTree = "<group>"; };
 		4537C2821BB83EB700CDF423 /* river-932131_640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "river-932131_640.png"; sourceTree = "<group>"; };
+		4537C2851BB8C40200CDF423 /* ServiceController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServiceController.cpp; sourceTree = "<group>"; };
+		4537C2861BB8C40200CDF423 /* ServiceController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ServiceController.hpp; sourceTree = "<group>"; };
+		4537C2881BB8C42F00CDF423 /* CookingController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CookingController.cpp; sourceTree = "<group>"; };
+		4537C2891BB8C42F00CDF423 /* CookingController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CookingController.hpp; sourceTree = "<group>"; };
 		453F72621B94A43900011B2F /* TCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCConnection.h; path = ios/TCConnection.h; sourceTree = SOURCE_ROOT; };
 		453F72631B94A43900011B2F /* TCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCConnectionDelegate.h; path = ios/TCConnectionDelegate.h; sourceTree = SOURCE_ROOT; };
 		453F72641B94A43900011B2F /* TCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCDevice.h; path = ios/TCDevice.h; sourceTree = SOURCE_ROOT; };
@@ -667,6 +673,10 @@
 				45C962691BB70F020064519E /* UIDialog.hpp */,
 				45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */,
 				45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */,
+				4537C2851BB8C40200CDF423 /* ServiceController.cpp */,
+				4537C2861BB8C40200CDF423 /* ServiceController.hpp */,
+				4537C2881BB8C42F00CDF423 /* CookingController.cpp */,
+				4537C2891BB8C42F00CDF423 /* CookingController.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -951,6 +961,7 @@
 				4518371D1BB5B22A00D2C899 /* HomeInformation.cpp in Sources */,
 				45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */,
 				454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */,
+				4537C28A1BB8C42F00CDF423 /* CookingController.cpp in Sources */,
 				45663D141B99CF4300548355 /* AltitudeViewController.mm in Sources */,
 				454D7F1F1BB26B41006CCD2A /* ScrollMenuView.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
@@ -964,6 +975,7 @@
 				4518371A1BB57F9F00D2C899 /* MotionScene.cpp in Sources */,
 				45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */,
 				451837131BB55F2600D2C899 /* VisibleRect.cpp in Sources */,
+				4537C2871BB8C40200CDF423 /* ServiceController.cpp in Sources */,
 				45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */,
 				451837171BB56A5100D2C899 /* ConfirmWindow.cpp in Sources */,
 				45663D181B99CF4300548355 /* FaceDetectionViewController.mm in Sources */,

@@ -231,7 +231,7 @@ bool NewsSprite::init()
     
     news_type_name =
     {
-        "ソフトバンク　ビジネス＋ITニュース" // http://www.sbbit.jp/
+        "ビジネス＋ITニュース", // http://www.sbbit.jp/
         "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
         "スポーツナビ",  // http://sports.yahoo.co.jp/
         "ニュース",
@@ -239,13 +239,7 @@ bool NewsSprite::init()
         "ビデオメッセージ",
         "メッセージ",
         "住宅情報",
-        "yahooニュース",
-        "蓄電情報",
-        "消費電力\n情報",
-        "設備機器\n稼働情報",
-        "お出かけ\nまとめ処理",
-        "帰宅予約",
-        "玄関ドア\nの開閉"
+        "yahooニュース"
     };
     
     estate_site_type_name =
@@ -329,13 +323,20 @@ void NewsSprite::moveToInitPos()
         setTexture(getFileName(_card.type));
         setTag(_card.number);
         
+        
+        printf("hog::%d",_card.number);
+        
         //テキストの表示
         Size at = getContentSize();
         at.height = at.height/2;
-        auto number = Label::createWithSystemFont(news_type_name[_card.number], "Arial", 24);
-        number->setPosition(Point(at));
-        number->setTextColor((Color4B)Color4B::WHITE);
-        addChild(number);
+        std::string temp = news_type_name[_card.number];
+        if (temp.size() > 0){
+            auto number = Label::createWithSystemFont(temp, "Arial", 24);
+            //        auto number = Label::createWithSystemFont("testtest", "Arial", 24);
+            number->setPosition(Point(at));
+            number->setTextColor((Color4B)Color4B::WHITE);
+            addChild(number);
+        }
     });
     auto scale2 = ScaleTo::create(MOVING_TIME / 4, 2, 2);
     auto seq1 = Sequence::create(scale1, func1, scale2, nullptr);
@@ -552,7 +553,7 @@ void InfoController::initGame()
 {
     news_type_name =
     {
-        "ソフトバンク　ビジネス＋ITニュース", // http://www.sbbit.jp/
+        "ビジネス＋ITニュース", // http://www.sbbit.jp/
         "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
         "スポーツナビ",  // http://sports.yahoo.co.jp/
         "ニュース",
@@ -560,13 +561,7 @@ void InfoController::initGame()
         "ビデオメッセージ",
         "メッセージ",
         "住宅情報",
-        "yahooニュース",
-        "蓄電情報",
-        "消費電力\n情報",
-        "設備機器\n稼働情報",
-        "お出かけ\nまとめ処理",
-        "帰宅予約",
-        "玄関ドア\nの開閉"
+        "yahooニュース"
     };
     
     initCards();

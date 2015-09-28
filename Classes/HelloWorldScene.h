@@ -18,6 +18,8 @@
 #include "HomeInformation.h"
 #include "UIDialog.hpp"
 #include "FamiliaScene.hpp"
+#include "ServiceController.hpp"
+
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
 #define CARD_TYPE_NUM 4 //カードの種類
