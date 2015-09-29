@@ -27,8 +27,8 @@ bool CardSprite::init()
         "住宅情報",
         "活動行動",
         "蓄電情報",
-        "消費電力\n情報",
-        "設備機器\n稼働情報",
+        "消費電力\nモード",
+        "設備機器\n情報",
         "お出かけ\nまとめ処理",
         "帰宅予約",
         "玄関ドア\nの開閉"
@@ -267,16 +267,16 @@ bool HelloWorld::init()
 
     emotion_status =
     {
-        "sumairu.png",
-        "akuma.png",
-        "ase.png",
-        "kiran.png",
-        "komaru.png",
-        "naki.png",
-        "tehehe.png",
-        "tenshi.png",
-        "tere.png",
-        "yattane.png"
+        "sumairu.png", // スマイル（通常）
+        "akuma.png", // 怒り
+        "ase.png",  // 汗（緊張）
+        "kiran.png", // キラーん（やる気）
+        "komaru.png", // 困り（トラブル）
+        "naki.png", // 泣き
+        "tehehe.png", // てへへ（いたずらしちゃった）
+        "tenshi.png", // 天使　（絶好調）
+        "tere.png", // てれる
+        "yattane.png" // やったね！
     };
     family_menber =
     {
@@ -432,7 +432,7 @@ void HelloWorld::initGame()
     sts_sprite2 = 0;
     _sprite1 = Sprite::create("boy.png");
     _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
-    _sprite1->setScale(2.0f);
+    _sprite1->setScale(2.5f);
     _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/5));
     _sprite1->setTag(TAG_BOY);
     addChild(_sprite1);
@@ -441,7 +441,7 @@ void HelloWorld::initGame()
     addChild(_sprite1_emotion);
     _sprite2 = Sprite::create("grandmother.png");
     _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
-    _sprite2->setScale(2.0f);
+    _sprite2->setScale(3.0f);
     _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/5));
     _sprite2->setTag(TAG_GRANDMOTHER);
     addChild(_sprite2, 0);
@@ -462,9 +462,9 @@ void HelloWorld::initGame()
     
     
     // １番目１回実行画像Runアクションスケジュール 2秒後
-    this->schedule(schedule_selector(HelloWorld::Action01), 2.0f);
+    this->schedule(schedule_selector(HelloWorld::Action01), 30.0f);
     // ２番目１回実行画像Runアクションスケジュール 4秒後
-    this->schedule(schedule_selector(HelloWorld::Action02), 4.0f);
+    this->schedule(schedule_selector(HelloWorld::Action02), 30.0f);
 
 /*
     //アニメーションを作成　MoveTo::create(時間, (X座標, Y座標));
@@ -582,13 +582,13 @@ void HelloWorld::Action01(float frame)
         case 0:
             sts_sprite1 = 1;
             _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-            Sequence1(0);
+//            Sequence1(0);
             break;
 
         case 1:
             sts_sprite1 = 0;
             _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-            Sequence1(1);
+//            Sequence1(1);
             break;
             
         default:
@@ -604,14 +604,14 @@ void HelloWorld::Action02(float frame)
         case 0:
             sts_sprite2 = 1;
             _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-            Sequence2(0);
+//            Sequence2(0);
             
             break;
             
         case 1:
             sts_sprite2 = 0;
             _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-            Sequence2(1);
+//            Sequence2(1);
             break;
             
         default:

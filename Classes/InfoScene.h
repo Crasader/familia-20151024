@@ -106,6 +106,8 @@ protected:
     std::vector<NewsBox> _cards; //カード情報
     NewsSprite* _firstCard; //最初にタップされたカード
     std::vector<std::string> news_type_name;
+    std::vector<std::string> news_type_uri;
+    
 
 public:
     static cocos2d::Scene* scene();
@@ -135,6 +137,18 @@ public:
     virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+    
+    
+    void showButton1(std::string wirding, int i);
+    void onTapButton1(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton3(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton4(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton5(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton6(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton7(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton8(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton9(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     
     //毎フレーム呼ばれる関数
     void update(float dt) override;

@@ -230,6 +230,12 @@ bool InfoController::init()
     {
         return false;
     }
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    auto _bg2 = LayerColor::create(Color4B(0x11,0x11,0x11,0x11), winSize.width, winSize.height);
+    this->addChild(_bg2);
+
+    initGame();
+
     //シングルタップイベント取得
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(_swallowsTouches);
@@ -242,13 +248,6 @@ bool InfoController::init()
     
     //イベントを追加する
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    auto _bg2 = LayerColor::create(Color4B(0x11,0x11,0x11,0x11), winSize.width, winSize.height);
-    this->addChild(_bg2);
-    
-    
-    initGame();
     
     return true;
 }
@@ -283,9 +282,25 @@ void InfoController::initGame()
         "住宅情報",
         "yahooニュース"
     };
+    news_type_uri =
+    {
+        "http://www.sbbit.jp/",
+        "http://business.nikkeibp.co.jp/?rt=nocnt",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/",
+        "http://sports.yahoo.co.jp/"
+    };
+
+    for (int i = 0; i < news_type_name.size(); i++) {
+        showButton1(news_type_name[i], i);
+    }
     
-    initCards();
-    showInitCards();
+//    initCards();
+//    showInitCards();
 }
 
 
@@ -298,19 +313,7 @@ void InfoController::startWebView(int type)
     webView->setContentSize(Size(visibleSize.width * 0.85f, visibleSize.height * 0.85f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
     
-    switch (type) {
-        case 0:
-            webView->loadURL("http://www.sbbit.jp/");
-            break;
-        case 1:
-            webView->loadURL("http://business.nikkeibp.co.jp/?rt=nocnt");
-            break;
-            
-        default:
-            webView->loadURL("http://sports.yahoo.co.jp/");
-            break;
-            break;
-    }
+    webView->loadURL("http://sports.yahoo.co.jp/");
 
     this->addChild(webView, 1);
 }
@@ -332,6 +335,174 @@ NewsSprite* InfoController::getTouchCard(Touch *touch)
     
     return nullptr;
 }
+
+void InfoController::onTapButton1(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(0);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton2(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(1);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton3(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(2);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton4(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(3);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton5(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(4);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton6(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(5);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton7(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(6);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton8(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(7);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+void InfoController::onTapButton9(Ref* sender, Control::EventType controlEvent)
+{
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("My Event");
+    
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    startWebView(8);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void InfoController::showButton1(std::string wording, int i)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    //ボタンを作成する
+    auto button = ControlButton::create(Scale9Sprite::create("btn057_04.png"));
+    
+    //画像を引き延ばさない設定
+    button->setAdjustBackgroundImage(false);
+    
+    Size a = button->getContentSize();
+    
+    //ボタンの位置設定
+    button->setPosition(winSize.width/2, winSize.height/3 + a.height * 2 * i);
+    button->setScaleX(winSize.width / a.width);
+    button->setScaleY(2);
+    button->setScaleZ(2);
+    
+    auto _callback = cccontrol_selector(InfoController::onTapButton1);
+    switch (i) {
+        case 0:
+            _callback = cccontrol_selector(InfoController::onTapButton1);
+            break;
+        case 1:
+            _callback = cccontrol_selector(InfoController::onTapButton2);
+            break;
+        case 2:
+            _callback = cccontrol_selector(InfoController::onTapButton3);
+            break;
+        case 3:
+            _callback = cccontrol_selector(InfoController::onTapButton4);
+            break;
+        case 4:
+            _callback = cccontrol_selector(InfoController::onTapButton5);
+            break;
+        case 5:
+            _callback = cccontrol_selector(InfoController::onTapButton6);
+            break;
+        case 6:
+            _callback = cccontrol_selector(InfoController::onTapButton7);
+            break;
+        case 7:
+            _callback = cccontrol_selector(InfoController::onTapButton8);
+            break;
+        case 8:
+            _callback = cccontrol_selector(InfoController::onTapButton9);
+            break;
+            
+    }
+    
+    //ボタンをタップしたときに呼び出す関数の設定
+    button->addTargetWithActionForControlEvents(this,
+                                                _callback,
+                                                Control::EventType::TOUCH_UP_INSIDE);
+    this->addChild(button);
+
+    auto text = Label::createWithSystemFont(wording, "HiraKakuProN-W6", 24);
+    text->setPosition(winSize.width/2, winSize.height/3 + a.height * 2 * i);
+    text->setColor(ccc3(255, 0, 127));
+    this->addChild(text);
+
+    Director::getInstance()->getEventDispatcher()->addCustomEventListener("My Event",[=](cocos2d::EventCustom *event) {
+        CCLOG("イベント受け取ったよ > %s",event->getEventName().c_str());
+    });
+    
+}
+
 
 void InfoController::playEffect()
 {
@@ -400,8 +571,6 @@ void InfoController::onTouchEnded(Touch *touch, Event *unused_event)
 
     //タップしているカードの指定を外す
     _firstCard = nullptr;
-
-    startWebView(indetifier);
 
 }
 

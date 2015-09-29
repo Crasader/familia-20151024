@@ -82,23 +82,53 @@ void OutgoingController::showSPrite()
     char message[100];
     
     lockAllEquipment(message);
+
+    auto s = Director::getInstance()->getWinSize();
+    auto action = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
+    /**
+     *  Our image on the left should be a radial progress indicator, clockwise
+     */
+    auto left = ProgressTimer::create(Sprite::create("seaside-955948_640.png"));
+    left->setType(ProgressTimer::Type::RADIAL);
+    addChild(left);
+    left->setMidpoint(Vec2(0.25f, 0.75f));
+    left->setPosition(100, s.height/2);
+    left->runAction(RepeatForever::create(action->clone()));
     
+    /**
+     *  Our image on the left should be a radial progress indicator, counter clockwise
+     */
+    auto right = ProgressTimer::create(Sprite::create("seaside-955948_640.png"));
+    right->setType(ProgressTimer::Type::RADIAL);
+    right->setMidpoint(Vec2(0.75f, 0.25f));
+    
+    /**
+     *  Note the reverse property (default=NO) is only added to the right image. That's how
+     *  we get a counter clockwise progress.
+     */
+    addChild(right);
+    right->setPosition(s.width-100, s.height/2);
+    right->runAction(RepeatForever::create(action->clone()));
+
+
     // 別スレッドを生成して引数を渡して実行する
-    auto t = std::thread([this] (int n) {
-        for (int i = 0; i < 100; i++) {
-            mtx.lock();
-            log("%d", n + i);
-            mtx.unlock();
-        }
-        
-        // 処理が一通り終わったのでメインスレッドに戻してメソッドを呼ぶ
-        auto scheduler = Director::getInstance()->getScheduler();
-        scheduler->performFunctionInCocosThread(CC_CALLBACK_0(OutgoingController::dispatchThreadCallbacks, this));
-    }, 1000);
-    
-    // スレッドの管理を手放す
-    // スレッドの処理を待つ場合はt.join()かstd::asyncを使う
-    t.detach();
+     auto t = std::thread([this] (int n) {
+     for (int i = 0; i < 100; i++) {
+     mtx.lock();
+     log("%d", n + i);
+     mtx.unlock();
+     }
+     
+     // 処理が一通り終わったのでメインスレッドに戻してメソッドを呼ぶ
+     auto scheduler = Director::getInstance()->getScheduler();
+     scheduler->performFunctionInCocosThread(CC_CALLBACK_0(OutgoingController::dispatchThreadCallbacks, this));
+     }, 10000);
+     
+     // スレッドの管理を手放す
+     // スレッドの処理を待つ場合はt.join()かstd::asyncを使う
+     t.detach();
+
+     
 }
 
 void OutgoingController::dispatchThreadCallbacks()
