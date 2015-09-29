@@ -20,6 +20,7 @@
 #include "FamiliaScene.hpp"
 #include "ServiceController.hpp"
 #include "CookingController.hpp"
+#include "PowerSave.hpp"
 
 
 #define CARD_NUM 13 //1種類あたりのカード枚数

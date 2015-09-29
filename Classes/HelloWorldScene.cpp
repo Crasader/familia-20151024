@@ -846,7 +846,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 11: // 消費電力の状態
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            PowersaveController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 12: // 設備機器

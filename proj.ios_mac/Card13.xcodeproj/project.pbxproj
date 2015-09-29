@@ -62,6 +62,7 @@
 		454D7F1F1BB26B41006CCD2A /* ScrollMenuView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F1D1BB26B41006CCD2A /* ScrollMenuView.cpp */; settings = {ASSET_TAGS = (); }; };
 		454F889D1B5FCF7A00C3E969 /* HousingApiConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */; };
 		454F889F1B5FCF8B00C3E969 /* libHousingApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 454F889E1B5FCF8B00C3E969 /* libHousingApi.a */; };
+		45527FBF1BBAE6FF002810E2 /* PowerSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45527FBD1BBAE6FF002810E2 /* PowerSave.cpp */; settings = {ASSET_TAGS = (); }; };
 		45663CED1B95D77200548355 /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CEC1B95D77200548355 /* libTwilioClient.a */; };
 		45663CEF1B95D84100548355 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CEE1B95D84100548355 /* CFNetwork.framework */; };
 		45663CF11B95D88700548355 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45663CF01B95D88700548355 /* SystemConfiguration.framework */; };
@@ -273,6 +274,8 @@
 		454F889B1B5FCF7A00C3E969 /* HousingApiConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingApiConstant.h; path = ios/HousingApiConstant.h; sourceTree = SOURCE_ROOT; };
 		454F889C1B5FCF7A00C3E969 /* HousingApiConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HousingApiConstant.m; path = ios/HousingApiConstant.m; sourceTree = SOURCE_ROOT; };
 		454F889E1B5FCF8B00C3E969 /* libHousingApi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHousingApi.a; path = ios/libHousingApi.a; sourceTree = SOURCE_ROOT; };
+		45527FBD1BBAE6FF002810E2 /* PowerSave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PowerSave.cpp; sourceTree = "<group>"; };
+		45527FBE1BBAE6FF002810E2 /* PowerSave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PowerSave.hpp; sourceTree = "<group>"; };
 		45663CEC1B95D77200548355 /* libTwilioClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTwilioClient.a; path = ios/libTwilioClient.a; sourceTree = SOURCE_ROOT; };
 		45663CEE1B95D84100548355 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		45663CF01B95D88700548355 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
@@ -675,6 +678,8 @@
 				4537C2861BB8C40200CDF423 /* ServiceController.hpp */,
 				4537C2881BB8C42F00CDF423 /* CookingController.cpp */,
 				4537C2891BB8C42F00CDF423 /* CookingController.hpp */,
+				45527FBD1BBAE6FF002810E2 /* PowerSave.cpp */,
+				45527FBE1BBAE6FF002810E2 /* PowerSave.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -996,6 +1001,7 @@
 				45663D1D1B99CF4300548355 /* ShakeViewController.mm in Sources */,
 				45663D191B99CF4300548355 /* HeadingViewController.mm in Sources */,
 				45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */,
+				45527FBF1BBAE6FF002810E2 /* PowerSave.cpp in Sources */,
 				451837121BB55F2300D2C899 /* controller.cpp in Sources */,
 				45116D591BB3D087007545F9 /* NativeLauncher.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
