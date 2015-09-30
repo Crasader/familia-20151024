@@ -17,6 +17,8 @@
 #import "SpeedViewController.h"
 #import "BTLECentralViewController.h"
 #import "BTLEPeripheralViewController.h"
+#import "TransferService.h"
+
 
 @class RootViewController;
 

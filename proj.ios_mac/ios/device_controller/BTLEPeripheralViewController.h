@@ -7,6 +7,6 @@
 
 - (void)initBtlPeripheraManager;
 - (void)destroyBtlPeripheraManager;
-
+- (void)startAdvertisingBtlPeripheraManager;
 
 @end

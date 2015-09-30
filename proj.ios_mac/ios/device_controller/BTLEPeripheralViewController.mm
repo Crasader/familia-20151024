@@ -41,6 +41,20 @@
 }
 
 
+- (void)startAdvertisingBtlPeripheraManager
+{
+//    peripheral.name
+
+    NSString *kLocalName = @"Familia_test";
+    NSDictionary *advertising = @{
+                              CBAdvertisementDataLocalNameKey: kLocalName,
+                              CBAdvertisementDataServiceUUIDsKey: TRANSFER_SERVICE_UUID,
+                              };
+    [self.peripheralManager startAdvertising:advertising];
+}
+
+
+
 - (void)destroyBtlPeripheraManager
 {
     // Don't keep it going while we're not showing.
@@ -50,6 +64,38 @@
 
 #pragma mark - Peripheral Methods
 
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+            didAddService:(CBService *)service
+                    error:(NSError *)error
+{
+    if (error) {
+        // エラー処理
+        NSLog(@"Error advertising: %@", [error localizedDescription]);
+    }else {
+        [self startAdvertisingBtlPeripheraManager];
+    }
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+    didReceiveReadRequest:(CBATTRequest *)request
+{
+    Byte value = arc4random()&0xff;
+    NSData *data = [NSData dataWithBytes:&value length:1];
+    request.value = data;
+    [self.peripheralManager respondToRequest:request
+                                  withResult:CBATTErrorSuccess];
+}
+
+
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
+                                       error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error advertising: %@", [error localizedDescription]);
+    }else{
+        NSLog(@"SUCCESS!");
+    }
+}
 
 
 /** Required protocol method.  A full app should take care of all the possible states,
@@ -82,7 +128,7 @@
     
     // And add it to the peripheral manager
     [self.peripheralManager addService:transferService];
-        
+    
 }
 
 

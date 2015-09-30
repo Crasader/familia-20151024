@@ -200,6 +200,8 @@ static AppDelegate s_sharedApplication;
     self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
     [self.btlPeripheraManager initBtlPeripheraManager];
     
+
+    
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
