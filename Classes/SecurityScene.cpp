@@ -31,7 +31,8 @@ bool SecurityController::init()
     {
         return false;
     }
-    
+
+//    setDeamonCallback();
     //シングルタップイベント取得
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(_swallowsTouches);
@@ -46,7 +47,7 @@ bool SecurityController::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     initGame();
-    
+
     return true;
 }
 
@@ -105,8 +106,8 @@ void SecurityController::initGame()
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
     this->addChild(label);
 
-//    platform::NativeBridge::executeNative();
-    
+    _bluetooth_start = false;
+
     //update関数の呼び出しを開始
     scheduleUpdate();
     
@@ -196,10 +197,18 @@ void SecurityController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void SecurityController::onTouchEnded(Touch *touch, Event *unused_event)
 {
+    // start! BTLE!!
+    NativeLauncher::sendBtlPeripheraManager();
+
     playEffect();
 
     showSPrite();
     
+  
+//    menuStartCallback();
+/*
+    NativeLauncher::initSendBtlPeripheraManager();
+*/
     return;
 }
 
@@ -213,3 +222,76 @@ void SecurityController::update(float dt)
 {
     
 }
+
+
+void SecurityController::menuStartCallback()
+{
+    if (!_bluetooth_start) {
+        _bluetooth_start = true;
+        
+        bluetooth = new bluetooth_plugin::CCBluetooth(this);
+        
+        std::stringstream ss;
+        ss << time(NULL);
+        std::string str = ss.str();
+        
+        std::string peerID = "peer-" + str;
+        std::string message = "Hello form " + peerID;
+        
+        CCLOG("peerID: %s", peerID.c_str());
+        CCLOG("message: %s", message.c_str());
+        
+        bluetooth->start(peerID.c_str(), message.c_str());
+    }
+}
+
+void SecurityController::setDeamonCallback()
+{
+    if (!_bluetooth_start) {
+        _bluetooth_start = true;
+        
+        bluetooth = new bluetooth_plugin::CCBluetooth(this);
+
+        std::stringstream ss;
+        ss << time(NULL);
+        std::string str = ss.str();
+        
+        std::string peerID = "peer-" + str;
+        std::string message = "Hello form " + peerID;
+        
+        CCLOG("peerID: %s", peerID.c_str());
+        CCLOG("message: %s", message.c_str());
+        
+        bluetooth->start(peerID.c_str(), message.c_str());
+    }
+}
+
+void SecurityController::menuStopCallback()
+{
+    if (_bluetooth_start) {
+        _bluetooth_start = false;
+        
+        bluetooth->stop();
+    }
+}
+
+// CCBluetoothDelegate
+void SecurityController::onResult(int resultCode, int status, const char *error, const char *peerID, const char *message)
+{
+    CCLOG("onResult resultCode: %d", resultCode);
+    CCLOG("onResult status: %d", status);
+    CCLOG("onResult error: %s", error);
+    CCLOG("onResult peerID: %s", peerID);
+    CCLOG("onResult message: %s", message);
+    
+    if (resultCode != RESULT_RECEIVE_MESSAGE || status != STATUS_OK) {
+        if (_bluetooth_start) {
+            _bluetooth_start = false;
+            
+            bluetooth->stop();
+        }
+    }
+    
+}
+
+

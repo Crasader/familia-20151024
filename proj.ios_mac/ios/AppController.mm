@@ -27,6 +27,7 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "sys/sysctl.h"
 
 @interface AppController (){
     
@@ -128,6 +129,17 @@ static AppDelegate s_sharedApplication;
     [_connection disconnect];
 }
 
+- (void)initBTLEPheripher
+{
+    self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
+    [self.btlPeripheraManager initBtlPeripheraManager];
+}
+
+- (void)startAdvertising
+{
+    [self.btlPeripheraManager startAdvertisingBtlPeripheraManager];
+}
+
 - (void)device:(TCDevice *)device didReceiveIncomingConnection:(TCConnection *)connection
 {
     if (device.state == TCDeviceStateBusy) {
@@ -193,15 +205,25 @@ static AppDelegate s_sharedApplication;
 
     // Twilio 初期化
     [self init_twilio];
-
-    self.btlCentralManager = [[BTLECentralViewController alloc] init];
-    [self.btlCentralManager initBtlCentralManager];
-
-    self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
-    [self.btlPeripheraManager initBtlPeripheraManager];
     
-
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = (char *)malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *deviceName = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
+    free(machine);
     
+    NSLog(@"デバイス名:%@", deviceName);
+    NSRange range = [deviceName rangeOfString:@"iPhone"];
+    if (range.location != NSNotFound) {
+        // クライアント
+        self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
+        [self.btlPeripheraManager initBtlPeripheraManager];
+    } else {
+        // Server
+        self.btlCentralManager = [[BTLECentralViewController alloc] init];
+        [self.btlCentralManager initBtlCentralManager];
+    }
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);

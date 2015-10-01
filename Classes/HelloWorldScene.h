@@ -130,8 +130,6 @@ protected:
     cocos2d::Sprite* _sprite2_emotion;
     cocos2d::Label* _label1;
     cocos2d::Label* _label2;
-    int sts_sprite1;
-    int sts_sprite2;
     
     int _target_status[2];
     std::vector<std::string> emotion_status;
@@ -166,11 +164,15 @@ protected:
 public:
     //HelloWorldクラスのシーンを作成する
     static cocos2d::Scene* scene();
+    static int sts_sprite1;
+    static int sts_sprite2;
 
     //初期化処理を行う
     virtual bool init();  
     void menuStartCallback(Ref* Sender);
     void dialogClose();
+
+    static void BTLEAction();
     
     //create関数作成マクロ
     CREATE_FUNC(HelloWorld);

@@ -16,6 +16,8 @@
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		45116D591BB3D087007545F9 /* NativeLauncher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45116D581BB3D087007545F9 /* NativeLauncher.mm */; settings = {ASSET_TAGS = (); }; };
+		4511E11D1BBC33E50002EC6C /* CCBluetooth.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4511E11B1BBC33E50002EC6C /* CCBluetooth.mm */; settings = {ASSET_TAGS = (); }; };
+		4511E11F1BBC34DE0002EC6C /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4511E11E1BBC34DE0002EC6C /* MultipeerConnectivity.framework */; };
 		451837101BB55ED100D2C899 /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F051BB23E32006CCD2A /* UIScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		451837111BB55F2000D2C899 /* UISceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F131BB24175006CCD2A /* UISceneManager.cpp */; settings = {ASSET_TAGS = (); }; };
 		451837121BB55F2300D2C899 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 454D7F0F1BB23FE8006CCD2A /* controller.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -199,6 +201,9 @@
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		45116D541BB3D019007545F9 /* Nativelauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nativelauncher.h; sourceTree = "<group>"; };
 		45116D581BB3D087007545F9 /* NativeLauncher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeLauncher.mm; sourceTree = "<group>"; };
+		4511E11B1BBC33E50002EC6C /* CCBluetooth.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCBluetooth.mm; sourceTree = "<group>"; };
+		4511E11C1BBC33E50002EC6C /* CCBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBluetooth.h; sourceTree = "<group>"; };
+		4511E11E1BBC34DE0002EC6C /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		451837151BB56A5100D2C899 /* ConfirmWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfirmWindow.cpp; sourceTree = "<group>"; };
 		451837161BB56A5100D2C899 /* ConfirmWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmWindow.h; sourceTree = "<group>"; };
 		451837181BB57F9F00D2C899 /* MotionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MotionScene.cpp; sourceTree = "<group>"; };
@@ -243,8 +248,8 @@
 		45434CF91BAEBA1000279083 /* SecurityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecurityController.m; path = ios/SecurityController.m; sourceTree = SOURCE_ROOT; };
 		45434CFB1BAEBA3300279083 /* SecurityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecurityController.h; path = ios/SecurityController.h; sourceTree = SOURCE_ROOT; };
 		45434CFC1BAF13F400279083 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BTLEPeripheralViewController.mm; sourceTree = "<group>"; };
-		45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
+		45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BTLEPeripheralViewController.mm; path = ../proj.ios_mac/ios/device_controller/BTLEPeripheralViewController.mm; sourceTree = "<group>"; };
+		45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTLEPeripheralViewController.h; path = ../proj.ios_mac/ios/device_controller/BTLEPeripheralViewController.h; sourceTree = "<group>"; };
 		45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BTLECentralViewController.mm; sourceTree = "<group>"; };
 		45434D001BAF13F400279083 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
 		45434D031BAFAECD00279083 /* SecurityScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityScene.cpp; sourceTree = "<group>"; };
@@ -393,6 +398,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4511E11F1BBC34DE0002EC6C /* MultipeerConnectivity.framework in Frameworks */,
 				4582945A1BA9753F00BE34AB /* MediaPlayer.framework in Frameworks */,
 				45663D221B99D79A00548355 /* CoreLocation.framework in Frameworks */,
 				45663D201B99D75200548355 /* CoreImage.framework in Frameworks */,
@@ -506,6 +512,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4511E11E1BBC34DE0002EC6C /* MultipeerConnectivity.framework */,
 				458294591BA9753F00BE34AB /* MediaPlayer.framework */,
 				45663D211B99D79A00548355 /* CoreLocation.framework */,
 				45663D1F1B99D75200548355 /* CoreImage.framework */,
@@ -541,8 +548,6 @@
 			isa = PBXGroup;
 			children = (
 				45434CFC1BAF13F400279083 /* TransferService.h */,
-				45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */,
-				45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */,
 				45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */,
 				45434D001BAF13F400279083 /* BTLECentralViewController.h */,
 				45663CFB1B99CF4300548355 /* AccelerometerViewController.h */,
@@ -624,6 +629,10 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4511E11B1BBC33E50002EC6C /* CCBluetooth.mm */,
+				4511E11C1BBC33E50002EC6C /* CCBluetooth.h */,
+				45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */,
+				45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */,
 				454D7F121BB24175006CCD2A /* UISceneManager.h */,
 				454D7F131BB24175006CCD2A /* UISceneManager.cpp */,
 				454D7F111BB2402B006CCD2A /* tests.h */,
@@ -985,6 +994,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				451837141BB55F2900D2C899 /* BaseTest.cpp in Sources */,
 				458294541BA8699800BE34AB /* GameLayer.cpp in Sources */,
+				4511E11D1BBC33E50002EC6C /* CCBluetooth.mm in Sources */,
 				451837111BB55F2000D2C899 /* UISceneManager.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */,

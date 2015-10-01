@@ -6,6 +6,8 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 
+int _sts_sprite1;
+int _sts_sprite2;
 
 
 bool CardSprite::init()
@@ -428,10 +430,10 @@ void HelloWorld::initGame()
     this->addChild(_bg2);
     
     //CCSpriteクラスで画像を設定します。
-    sts_sprite1 = 0;
-    sts_sprite2 = 0;
+    _sts_sprite1 = 0;
+    _sts_sprite2 = 0;
     _sprite1 = Sprite::create("boy.png");
-    _sprite1_emotion = Sprite::create(emotion_status[sts_sprite1]);
+    _sprite1_emotion = Sprite::create(emotion_status[_sts_sprite1]);
     _sprite1->setScale(2.5f);
     _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/5));
     _sprite1->setTag(TAG_BOY);
@@ -440,7 +442,7 @@ void HelloWorld::initGame()
     _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
     addChild(_sprite1_emotion);
     _sprite2 = Sprite::create("grandmother.png");
-    _sprite2_emotion = Sprite::create(emotion_status[sts_sprite2]);
+    _sprite2_emotion = Sprite::create(emotion_status[_sts_sprite2]);
     _sprite2->setScale(3.0f);
     _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/5));
     _sprite2->setTag(TAG_GRANDMOTHER);
@@ -575,50 +577,32 @@ void HelloWorld::Sequence2(int status)
     _sprite2->runAction(sequence2);
 }
 
+void HelloWorld::BTLEAction()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+
+    _sts_sprite1 = 5;
+}
+//void HelloWorld::BTLEAction2()
+//{
+//    _sts_sprite2 = 5;
+//}
+
 // １番目画像Runアクションメソッド
 void HelloWorld::Action01(float frame)
 {
-    switch (sts_sprite1) {
-        case 0:
-            sts_sprite1 = 1;
-            _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-//            Sequence1(0);
-            break;
+    _sprite1_emotion->setTexture(emotion_status[_sts_sprite1]);
 
-        case 1:
-            sts_sprite1 = 0;
-            _sprite1_emotion->setTexture(emotion_status[sts_sprite1]);
-//            Sequence1(1);
-            break;
-            
-        default:
-            break;
-    }
     _label1->setString("外出中");
 }
 
 // ２番目画像Runアクションメソッド
 void HelloWorld::Action02(float frame)
 {
-    switch (sts_sprite2) {
-        case 0:
-            sts_sprite2 = 1;
-            _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-//            Sequence2(0);
-            
-            break;
-            
-        case 1:
-            sts_sprite2 = 0;
-            _sprite2_emotion->setTexture(emotion_status[sts_sprite2]);
-//            Sequence2(1);
-            break;
-            
-        default:
-            break;
-    }
-
-
+    _sprite2_emotion->setTexture(emotion_status[_sts_sprite2]);
     _label2->setString("外出中");
 
 

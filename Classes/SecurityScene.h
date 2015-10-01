@@ -15,14 +15,19 @@
 #include "NetworkLibCurl.h"
 #include "ui/UIVideoPlayer.h"
 #include "HelloWorldScene.h"
+#include "Nativelauncher.h"
+#include "CCBluetooth.h"
+//#include "BTLECentralViewController.h"
 
 
-class SecurityController : public cocos2d::Layer
+class SecurityController : public cocos2d::Layer, public bluetooth_plugin::CCBluetoothDelegate
 {
 protected:
     
     
 public:
+    bool _bluetooth_start;
+    bluetooth_plugin::CCBluetooth *bluetooth;
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
     
@@ -56,6 +61,17 @@ public:
     
     //毎フレーム呼ばれる関数
     void update(float dt) override;
+
+    void menuStartCallback();
+    void menuStopCallback();
+    void setDeamonCallback();
+    
+    void onResult(int resultCode, int status, const char *error, const char *peerID, const char *message);
+    
+private:
+//    btle_peripher_plugin::BTLEPeripheral *bluetooth;
+
+    
 };
 
 #endif /* SecurityScene_hpp */

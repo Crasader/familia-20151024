@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTLEPeripheralViewController.h"
 
 #include "NativeLauncher.h"
 #include "AppController.h"
@@ -42,4 +43,16 @@ void NativeLauncher::disconnectPhamiliaPhone()
 }
 
 
+void NativeLauncher::initSendBtlPeripheraManager()
+{
+    AppController *appController = (AppController *)[UIApplication sharedApplication].delegate;
+    [appController initBTLEPheripher];
+    [appController startAdvertising];
+}
+
+void NativeLauncher::sendBtlPeripheraManager()
+{
+    AppController *appController = (AppController *)[UIApplication sharedApplication].delegate;
+    [appController startAdvertising];
+}
 

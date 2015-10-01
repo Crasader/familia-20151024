@@ -1,13 +1,18 @@
 #import "BTLECentralViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-
+#import <CoreLocation/CoreLocation.h>
 #import "TransferService.h"
 
-@interface BTLECentralViewController () <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface BTLECentralViewController () <CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CBCentralManager      *centralManager;
 @property (strong, nonatomic) CBPeripheral          *discoveredPeripheral;
 @property (strong, nonatomic) NSMutableData         *data;
+
+@property (strong, nonatomic) IBOutlet CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet NSUUID *proximityUUID;
+@property (strong, nonatomic) IBOutlet CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) IBOutlet CLBeacon *nearestBeacon;
 
 @end
 
@@ -28,13 +33,80 @@
 
 - (void)initBtlCentralManager
 {
-    [super viewDidLoad];
-    
     // Start up the CBCentralManager
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
     // And somewhere to store the incoming data
     _data = [[NSMutableData alloc] init];
+}
+
+// 領域計測が開始した場合
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
+{
+    [self sendLocalNotificationForMessage:@"Start Monitoring Region"];
+}
+
+// 指定した領域に入った場合
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    [self sendLocalNotificationForMessage:@"Enter Region"];
+    
+    if ([region isMemberOfClass:[CLBeaconRegion class]] && [CLLocationManager isRangingAvailable]) {
+        [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    }
+}
+
+// 指定した領域から出た場合
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    [self sendLocalNotificationForMessage:@"Exit Region"];
+    
+    if ([region isMemberOfClass:[CLBeaconRegion class]] && [CLLocationManager isRangingAvailable]) {
+        [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    }
+}
+
+// Beacon信号を検出した場合
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
+{
+    if (beacons.count > 0) {
+        self.nearestBeacon = beacons.firstObject;
+        NSString *rangeMessage;
+        
+        switch (self.nearestBeacon.proximity) {
+            case CLProximityImmediate:
+                rangeMessage = @"Range Immediate";
+                break;
+            case CLProximityNear:
+                rangeMessage = @"Range Near";
+                break;
+            case CLProximityFar:
+                rangeMessage = @"Range Far";
+                break;
+            default:
+                rangeMessage = @"Range Unknown";
+                break;
+        }
+        
+        NSString *msg = [[NSString alloc] initWithFormat:@"%f [m]", self.nearestBeacon.accuracy];
+        [self sendLocalNotificationForMessage:msg];
+    }
+}
+
+// 領域観測に失敗した場合
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
+{
+    [self sendLocalNotificationForMessage:@"Exit Region"];
+}
+
+// ローカルプッシュの処理
+- (void)sendLocalNotificationForMessage:(NSString *)message
+{
+    UILocalNotification *localNotification = [UILocalNotification new];
+    localNotification.alertBody = message;
+    localNotification.fireDate = [NSDate date];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (void)destroyBtlCentralManager
@@ -115,15 +187,26 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    
     // Reject any where the value is above reasonable range
     if (RSSI.integerValue > -15) {
         return;
     }
         
     // Reject if the signal strength is too low to be close enough (Close is around -22dB)
-    if (RSSI.integerValue < -35) {
+    if (RSSI.integerValue < -55) {
         return;
     }
+
+    
+    
+    // Phamilia CHECKING!!
+    HelloWorld::BTLEAction();
+    
+    
+    printf("%d", RSSI.integerValue);
+    
+    
     
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     
@@ -185,6 +268,11 @@
     // Loop through the newly filled peripheral.services array, just in case there's more than one.
     for (CBService *service in peripheral.services) {
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
+        
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID],
+                                              [CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]
+                                 forService:service];
+        
     }
 }
 

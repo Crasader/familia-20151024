@@ -20,7 +20,10 @@ public:
 
     static void connectPhamiliaPhone();
     static void disconnectPhamiliaPhone();
-    
+    static void initSendBtlPeripheraManager();
+    static void sendBtlPeripheraManager();
+
+
 };
 
 

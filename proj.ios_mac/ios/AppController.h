@@ -62,6 +62,8 @@
 
 - (void)dialButtonPressed;
 - (void)hangupButtonPressed;
+- (void)initBTLEPheripher;
+- (void)startAdvertising;
 
 
 @end

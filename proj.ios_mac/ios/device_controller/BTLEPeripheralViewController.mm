@@ -1,17 +1,10 @@
 
+
+
+
 #import "BTLEPeripheralViewController.h"
-#import <CoreBluetooth/CoreBluetooth.h>
-#import "TransferService.h"
 
 
-@interface BTLEPeripheralViewController () <CBPeripheralManagerDelegate, UITextViewDelegate>
-//@property (strong, nonatomic) IBOutlet UITextView       *textView;
-//@property (strong, nonatomic) IBOutlet UISwitch         *advertisingSwitch;
-@property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
-@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
-@property (strong, nonatomic) NSData                    *dataToSend;
-@property (nonatomic, readwrite) NSInteger              sendDataIndex;
-@end
 
 
 
@@ -34,23 +27,38 @@
 
 - (void)initBtlPeripheraManager
 {
-    [super viewDidLoad];
-    
-    // Start up the CBPeripheralManager
-    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-}
+//    [super viewDidLoad];
 
+    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+
+/*
+    // Start up the CBPeripheralManager
+    self.title = @"Peipheral";
+    self.proximityUUID = [[NSUUID alloc] initWithUUIDString:@"8D4DB809-032F-4771-96F3-99BD5C25F924"];
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
+    if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+        [self startAdvertising];
+    }
+*/
+}
 
 - (void)startAdvertisingBtlPeripheraManager
 {
 //    peripheral.name
+    // All we advertise is our service's UUID
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
 
+    // Start sending again
+    [self sendData];
+
+/*
     NSString *kLocalName = @"Familia_test";
     NSDictionary *advertising = @{
                               CBAdvertisementDataLocalNameKey: kLocalName,
                               CBAdvertisementDataServiceUUIDsKey: TRANSFER_SERVICE_UUID,
                               };
     [self.peripheralManager startAdvertising:advertising];
+ */
 }
 
 
@@ -63,39 +71,6 @@
 
 
 #pragma mark - Peripheral Methods
-
-- (void)peripheralManager:(CBPeripheralManager *)peripheral
-            didAddService:(CBService *)service
-                    error:(NSError *)error
-{
-    if (error) {
-        // エラー処理
-        NSLog(@"Error advertising: %@", [error localizedDescription]);
-    }else {
-        [self startAdvertisingBtlPeripheraManager];
-    }
-}
-
-- (void)peripheralManager:(CBPeripheralManager *)peripheral
-    didReceiveReadRequest:(CBATTRequest *)request
-{
-    Byte value = arc4random()&0xff;
-    NSData *data = [NSData dataWithBytes:&value length:1];
-    request.value = data;
-    [self.peripheralManager respondToRequest:request
-                                  withResult:CBATTErrorSuccess];
-}
-
-
-- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
-                                       error:(NSError *)error
-{
-    if (error) {
-        NSLog(@"Error advertising: %@", [error localizedDescription]);
-    }else{
-        NSLog(@"SUCCESS!");
-    }
-}
 
 
 /** Required protocol method.  A full app should take care of all the possible states,
@@ -110,7 +85,7 @@
     
     // We're in CBPeripheralManagerStatePoweredOn state...
     NSLog(@"self.peripheralManager powered on.");
-    
+
     // ... so build our service.
     
     // Start with the CBMutableCharacteristic
@@ -139,7 +114,7 @@
     NSLog(@"Central subscribed to characteristic");
     
     // Get the data
-//    self.dataToSend = [self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
+    self.dataToSend = [@"test_phamilai" dataUsingEncoding:NSUTF8StringEncoding]; //[self.textView.text dataUsingEncoding:NSUTF8StringEncoding];
     
     // Reset the index
     self.sendDataIndex = 0;
@@ -206,20 +181,6 @@
         // Can't be longer than 20 bytes
         if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
         
-        // Copy out the data we want
-//        NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
-//
-//        // Send it
-//        didSend = [self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-//
-        // If it didn't work, drop out and wait for the callback
-////        if (!didSend) {
-//            return;
-//        }
-//
-//        NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-//        NSLog(@"Sent: %@", stringFromData);
-        
         // It did send, so update our index
         self.sendDataIndex += amountToSend;
         
@@ -259,3 +220,35 @@
 
 
 @end
+
+
+namespace btle_peripher_plugin
+{
+
+    BTLEPeripheralViewController *btlPeripheraManager = NULL;
+    
+    BTLEPeripheral::BTLEPeripheral()
+    {
+        btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
+        [btlPeripheraManager initBtlPeripheraManager];
+    }
+    
+    BTLEPeripheral::~BTLEPeripheral()
+    {
+
+    }
+    
+    void BTLEPeripheral::start(const char *peerID, const char *message)
+    {
+        NSLog(@"start");
+        
+
+    }
+    
+    void BTLEPeripheral::stop()
+    {
+        NSLog(@"stop");
+        
+
+    }
+}
