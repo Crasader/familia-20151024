@@ -148,7 +148,7 @@ void PowersaveController::dispatchThreadCallbacks()
 {
     // std::lock_guardはunlockをスコープから抜ける時に自動的にやってくれる
     std::lock_guard<std::mutex> lock(mtx);
-    CCDirector::sharedDirector()->replaceScene(TransitionFadeTR::create(6.0f,  HelloWorld::scene()));
+    CCDirector::sharedDirector()->replaceScene(TransitionFadeBL::create(3.0f,  HelloWorld::scene()));
 }
 
 void PowersaveController::startWebView()
@@ -170,7 +170,8 @@ bool PowersaveController::onTouchBegan(Touch *touch, Event *unused_event)
 
 void PowersaveController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
+    Director::getInstance()->replaceScene(TransitionCrossFade::create(3.0f,HelloWorld::scene()));
+//    CCDirector::sharedDirector()->replaceScene(TransitionFade::create(3.0f,  HelloWorld::scene(), ccc3(0, 0, 0)));
 }
 
 

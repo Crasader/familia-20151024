@@ -169,7 +169,7 @@ void SecurityController::dispatchThreadCallbacks()
 {
     // std::lock_guardはunlockをスコープから抜ける時に自動的にやってくれる
     std::lock_guard<std::mutex> lock(mtx);
-    CCDirector::sharedDirector()->replaceScene(TransitionFadeTR::create(6.0f,  HelloWorld::scene()));
+    CCDirector::sharedDirector()->replaceScene(TransitionFadeTR::create(3.0f,  HelloWorld::scene()));
 }
 
 void SecurityController::startWebView()
