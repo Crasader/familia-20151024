@@ -62,6 +62,7 @@ static AppDelegate s_sharedApplication;
 #else
     NSString *name = @"jenny";
 #endif
+/*
     //check out https://github.com/twilio/mobile-quickstart to get a server up quickly
 //    NSString *urlString = [NSString stringWithFormat:@"http://companyfoo.com/token?client=%@", name];
 //    NSURL *url = [NSURL URLWithString:urlString];
@@ -75,6 +76,58 @@ static AppDelegate s_sharedApplication;
     } else {
         _phone = [[TCDevice alloc] initWithCapabilityToken:token delegate:nil];
     }
+*/
+    
+    
+
+    
+    // 送信するリクエストを生成する。
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    
+    // リクエストを送信する。
+    // 第３引数のブロックに実行結果が渡される。
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            // エラー処理を行う。
+            if (error.code == -1003) {
+                NSLog(@"not found hostname. targetURL=%@", url);
+            } else if (-1019) {
+                NSLog(@"auth error. reason=%@", error);
+            } else {
+                NSLog(@"unknown error occurred. reason = %@", error);
+            }
+            
+        } else {
+            int httpStatusCode = ((NSHTTPURLResponse *)response).statusCode;
+            if (httpStatusCode == 404) {
+                NSLog(@"404 NOT FOUND ERROR. targetURL=%@", url);
+                // } else if (・・・) {
+                // 他にも処理したいHTTPステータスがあれば書く。
+                
+            } else {
+                NSLog(@"success request!!");
+                NSLog(@"statusCode = %d", ((NSHTTPURLResponse *)response).statusCode);
+                NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                
+                // ここはサブスレッドなので、メインスレッドで何かしたい場合には
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // ここに何か処理を書く。
+                    NSError *error = nil;
+                    NSString *token = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+                    if (token == nil) {
+                        NSLog(@"Error retrieving token: %@", [error localizedDescription]);
+                    } else {
+                        _phone = [[TCDevice alloc] initWithCapabilityToken:token delegate:nil];
+                    }
+                });
+            }
+        }
+    }];
+    
+    
+    
 }
 
 -(id)init_twilio_sub
@@ -267,6 +320,16 @@ static AppDelegate s_sharedApplication;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = (char *)malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *deviceName = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
+    free(machine);
+    NSRange range = [deviceName rangeOfString:@"x86_64"];
+    if (range.location != NSNotFound) {
+        return;
+    }
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */

@@ -53,7 +53,7 @@ bool CookingController::init()
     
     Size winSize = Director::getInstance()->getVisibleSize();
     auto img = Scale9Sprite::create("hotpepper-m.png");
-    img->setPosition(winSize.width*4/5, img->getContentSize().height);
+    img->setPosition(winSize.width*4/5-50, img->getContentSize().height+30);
     img->setScale(3);
     this->addChild(img);
     
@@ -70,11 +70,28 @@ void CookingController::initGame()
     text->setPosition(Point(300, winSize.height-50));
     this->addChild(text);
     
+    auto store = Label::createWithSystemFont("店名：塚田農場 立川北口店", "HiraKakuProN-W6", 36);
+    store->setPosition(Point(300, winSize.height-200));
+    this->addChild(store);
+    auto store1 = Label::createWithSystemFont("ジャンル：居酒屋 郷土料理", "HiraKakuProN-W6", 36);
+    store1->setPosition(Point(300, winSize.height-250));
+    this->addChild(store1);
+    auto store2 = Label::createWithSystemFont("メニュー：地頭鶏　地豚　冷汁　当地野菜", "HiraKakuProN-W6", 36);
+    store2->setPosition(Point(300, winSize.height-300));
+    this->addChild(store2);
+    auto store3 = Label::createWithSystemFont("平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）", "HiraKakuProN-W6", 36);
+    store3->setPosition(Point(300, winSize.height-350));
+    this->addChild(store3);
+    auto store4 = Label::createWithSystemFont("アクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分", "HiraKakuProN-W6", 36);
+    store4->setPosition(Point(300, winSize.height-400));
+    this->addChild(store4);
+
+
+    
+    
     showButton1();
     showButton2();
-    
-    
-    
+
     //update関数の呼び出しを開始
     scheduleUpdate();
     
@@ -92,10 +109,11 @@ void CookingController::showButton1()
     Size a = button->getContentSize();
     
     //ボタンの位置設定
-    button->setPosition(winSize.width/4, winSize.height/5);
+    button->setPosition(winSize.width/4, winSize.height/7);
     button->setScaleX(1.5);
     button->setScaleY(2);
     button->setScaleZ(2);
+    button->setColor(Color3B(0,0,0));
     
     //ボタンをタップしたときに呼び出す関数の設定
     button->addTargetWithActionForControlEvents(this,
@@ -113,7 +131,8 @@ void CookingController::onTapButton1(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-
+    std::string uri = "http://hpr.jp/strJ000711627/?uid=NULLGWDOCOMO&vos=hpp336";
+    startWebView(uri);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -131,14 +150,15 @@ void CookingController::showButton2()
     Size a = button->getContentSize();
     
     //ボタンの位置設定
-    button->setPosition(winSize.width*3/4, winSize.height/5);
+    button->setPosition(winSize.width*3/4, winSize.height/7);
     button->setScaleX(1.5);
     button->setScaleY(2);
     button->setScaleZ(2);
+    button->setColor(Color3B(0,0,0));
     
     //ボタンをタップしたときに呼び出す関数の設定
     button->addTargetWithActionForControlEvents(this,
-                                                cccontrol_selector(CookingController::onTapButton1),
+                                                cccontrol_selector(CookingController::onTapButton2),
                                                 Control::EventType::TOUCH_UP_INSIDE);
     //ボタンに表示する文字
     button->setTitleForState("次の候補へ", Control::State::NORMAL);
@@ -158,6 +178,30 @@ void CookingController::onTapButton2(Ref* sender, Control::EventType controlEven
     scheduleUpdate();
 }
 
+void CookingController::onTapWebButton(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    std::string uri = "http://hpr.jp/strJ000711627/?uid=NULLGWDOCOMO&vos=hpp336";
+    startWebView(uri);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void CookingController::startWebView(std::string uri)
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    
+    auto webView = cocos2d::experimental::ui::WebView::create();
+    webView->setAnchorPoint(Point(0.5f, 0.5f));
+    webView->setContentSize(Size(visibleSize.width * 0.9f, visibleSize.height * 0.8f));
+    webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
+    webView->loadURL(uri);
+    this->addChild(webView, 1);
+    
+}
 
 bool CookingController::onTouchBegan(Touch *touch, Event *unused_event)
 {

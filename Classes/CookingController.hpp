@@ -40,8 +40,10 @@ public:
     void onTapButton1(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     void showButton2();
     void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapWebButton(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     
-    
+    void startWebView(std::string uri);
+
     
     
     //タップイベント

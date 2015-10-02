@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios/AppController.mm"
-            timestampString = "465403176.580394"
+            timestampString = "465492095.920873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-initBTLEPheripher"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios/AppController.mm"
-            timestampString = "465403181.638428"
+            timestampString = "465492095.920873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-device:didReceiveIncomingConnection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,12 +202,12 @@
                   moduleName = "Card13 iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ariji.hiroki/git/house-con/familia-20151024/Classes/SecurityScene.cpp"
-                  timestampString = "465491214.136849"
+                  timestampString = "465500891.794651"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "287"
                   endingLineNumber = "287"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "0">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -217,12 +217,12 @@
                   moduleName = "Card13 iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ariji.hiroki/git/house-con/familia-20151024/Classes/SecurityScene.cpp"
-                  timestampString = "465491214.136989"
+                  timestampString = "465500891.7948"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "287"
                   endingLineNumber = "287"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "0">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -256,22 +256,6 @@
             startingLineNumber = "153"
             endingLineNumber = "153"
             landmarkName = "-sendData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios/AppController.mm"
-            timestampString = "465459804.716884"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-init_twilio"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -60,40 +60,37 @@ void EquipmentController::powerSavingMode(char* result)
 
 void EquipmentController::initGame()
 {
-    char message[100];
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-    /*
-     if(getAutoDoorStatus(message)){
-     _doorStatus = 1;
-     _sprite1 = Sprite::create("normal_door.png");
-     _sprite1->setScale(1.0f);
-     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-     }else{
-     */
+
+    
+//    extern NSString* const kLocalDeviceIdMainBoard;
+//    extern NSString* const kLocalDeviceIdSolarBoard;
+//    extern NSString* const kLocalDeviceIdEneBoard;
+//    extern NSString* const kLocalDeviceIdBattery;
+//    extern NSString* const kLocalDeviceIdSwitch;
+//    extern NSString* const kLocalDeviceIdAircon;
+//    extern NSString* const kLocalDeviceIdLed;
+//    extern NSString* const kLocalDeviceIdSmartMeter;
+//    extern NSString* const kLocalDeviceIdWaterHeater;
+//    extern NSString* const kLocalDeviceIdEV;
+    
+    
     _doorStatus = 0;
     _sprite1 = Sprite::create("normal_door_close.png");
     _sprite1->setScale(1.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-    //    }
-    
     addChild(_sprite1);
-    _sprite2 = Sprite::create("house-key.png");
-    _sprite2->setScale(1.0f);
-    _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
-    addChild(_sprite2);
-    
+
     Label *label = Label::createWithSystemFont("設備機器の状態制御", "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
     this->addChild(label);
     
-    //    platform::NativeBridge::executeNative();
     
     //update関数の呼び出しを開始
     scheduleUpdate();
-    
 }
 
 void EquipmentController::playEffect()

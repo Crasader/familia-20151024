@@ -81,6 +81,7 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    printf("start locationManager");
     
     newLocation.coordinate.latitude;
     newLocation.coordinate.longitude;
