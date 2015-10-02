@@ -299,8 +299,8 @@ static AppDelegate s_sharedApplication;
     //    [self.batteryManager stopBatteryMonitor];
     
     // シェイクコントローラ
-    self.shakeManager = [[ShakeViewController alloc] init];
-    [self.shakeManager startLocationManager];
+//    self.shakeManager = [[ShakeViewController alloc] init];
+//    [self.shakeManager startLocationManager];
 
 }
 

@@ -21,13 +21,14 @@
 #include "ServiceController.hpp"
 #include "CookingController.hpp"
 #include "PowerSave.hpp"
-
+#include "EquipmentScene.hpp"
+#include "ComsumeScene.hpp"
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
 #define CARD_TYPE_NUM 4 //カードの種類
 
 #define CARD_1_POS_X 70 //1番のカード位置(x)
-#define CARD_1_POS_Y 480 //1番のカード位置(y)
+#define CARD_1_POS_Y 360 //1番のカード位置(y)
 #define CARD_DISTANCE_X 125 //カード間の距離(x方向)
 #define CARD_DISTANCE_Y 185 //カード間の距離(y方向)
 

@@ -94,6 +94,8 @@
 		4582945C1BA9762C00BE34AB /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4582945B1BA9762C00BE34AB /* video.mp4 */; };
 		4582945F1BA9A5A600BE34AB /* InfoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4582945D1BA9A5A600BE34AB /* InfoScene.cpp */; };
 		45906BA91BB9A94E0070D17C /* hotpepper-m.png in Resources */ = {isa = PBXBuildFile; fileRef = 45906BA81BB9A94E0070D17C /* hotpepper-m.png */; settings = {ASSET_TAGS = (); }; };
+		4599CEF51BBEC7D800840E66 /* EquipmentScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4599CEF31BBEC7D800840E66 /* EquipmentScene.cpp */; settings = {ASSET_TAGS = (); }; };
+		4599CEF81BBEC7F000840E66 /* ComsumeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4599CEF61BBEC7F000840E66 /* ComsumeScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		459A622F1BACEC93006425C9 /* card_hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A62291BACEC93006425C9 /* card_hearts.png */; settings = {ASSET_TAGS = (); }; };
 		459A62301BACEC93006425C9 /* card_diamonds.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622A1BACEC93006425C9 /* card_diamonds.png */; settings = {ASSET_TAGS = (); }; };
 		459A62311BACEC93006425C9 /* card_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622B1BACEC93006425C9 /* card_clubs.png */; settings = {ASSET_TAGS = (); }; };
@@ -333,6 +335,10 @@
 		4582945D1BA9A5A600BE34AB /* InfoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoScene.cpp; sourceTree = "<group>"; };
 		4582945E1BA9A5A600BE34AB /* InfoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoScene.h; sourceTree = "<group>"; };
 		45906BA81BB9A94E0070D17C /* hotpepper-m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotpepper-m.png"; sourceTree = "<group>"; };
+		4599CEF31BBEC7D800840E66 /* EquipmentScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EquipmentScene.cpp; sourceTree = "<group>"; };
+		4599CEF41BBEC7D800840E66 /* EquipmentScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EquipmentScene.hpp; sourceTree = "<group>"; };
+		4599CEF61BBEC7F000840E66 /* ComsumeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComsumeScene.cpp; sourceTree = "<group>"; };
+		4599CEF71BBEC7F000840E66 /* ComsumeScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ComsumeScene.hpp; sourceTree = "<group>"; };
 		459A62291BACEC93006425C9 /* card_hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_hearts.png; path = ../../Card13/Resources/card_hearts.png; sourceTree = "<group>"; };
 		459A622A1BACEC93006425C9 /* card_diamonds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_diamonds.png; path = ../../Card13/Resources/card_diamonds.png; sourceTree = "<group>"; };
 		459A622B1BACEC93006425C9 /* card_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_clubs.png; path = ../../Card13/Resources/card_clubs.png; sourceTree = "<group>"; };
@@ -700,6 +706,10 @@
 				4537C2891BB8C42F00CDF423 /* CookingController.hpp */,
 				45527FBD1BBAE6FF002810E2 /* PowerSave.cpp */,
 				45527FBE1BBAE6FF002810E2 /* PowerSave.hpp */,
+				4599CEF31BBEC7D800840E66 /* EquipmentScene.cpp */,
+				4599CEF41BBEC7D800840E66 /* EquipmentScene.hpp */,
+				4599CEF61BBEC7F000840E66 /* ComsumeScene.cpp */,
+				4599CEF71BBEC7F000840E66 /* ComsumeScene.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -1015,6 +1025,7 @@
 				451837141BB55F2900D2C899 /* BaseTest.cpp in Sources */,
 				458294541BA8699800BE34AB /* GameLayer.cpp in Sources */,
 				4511E11D1BBC33E50002EC6C /* CCBluetooth.mm in Sources */,
+				4599CEF51BBEC7D800840E66 /* EquipmentScene.cpp in Sources */,
 				451837111BB55F2000D2C899 /* UISceneManager.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				453207F31B89FCB40039C8E8 /* NetworkLibCurl.cpp in Sources */,
@@ -1028,6 +1039,7 @@
 				458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */,
 				451837101BB55ED100D2C899 /* UIScene.cpp in Sources */,
 				45663D171B99CF4300548355 /* BrightnessViewController.mm in Sources */,
+				4599CEF81BBEC7F000840E66 /* ComsumeScene.cpp in Sources */,
 				45663D1D1B99CF4300548355 /* ShakeViewController.mm in Sources */,
 				45663D191B99CF4300548355 /* HeadingViewController.mm in Sources */,
 				45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */,

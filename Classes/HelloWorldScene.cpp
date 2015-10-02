@@ -429,36 +429,47 @@ void HelloWorld::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,0x33,0xFF,0x99), winSize.width, winSize.height);
     this->addChild(_bg2);
     
+    Sprite* sprite;
+    sprite = Sprite::create("mother.png");
+    sprite->setScale(2.5f);
+    sprite->setPosition(Vec2(winSize.width/2, winSize.height*4/5));
+    addChild(sprite);
+    cocos2d::Label* label = Label::createWithSystemFont("この端末のオーナー", "Marker Felt.ttf", 30);
+    label->setScale(2.0f);
+    label->setPosition(Vec2(winSize.width/2, winSize.height*8/9));
+    this->addChild(label);
+    
+    
     //CCSpriteクラスで画像を設定します。
     _sts_sprite1 = 0;
     _sts_sprite2 = 0;
     _sprite1 = Sprite::create("boy.png");
     _sprite1_emotion = Sprite::create(emotion_status[_sts_sprite1]);
     _sprite1->setScale(2.5f);
-    _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/5));
+    _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/8));
     _sprite1->setTag(TAG_BOY);
     addChild(_sprite1);
     _sprite1_emotion->setScale(2.0f);
-    _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/5+70));
+    _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/8+70));
     addChild(_sprite1_emotion);
     _sprite2 = Sprite::create("grandmother.png");
     _sprite2_emotion = Sprite::create(emotion_status[_sts_sprite2]);
     _sprite2->setScale(3.0f);
-    _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/5));
+    _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/8));
     _sprite2->setTag(TAG_GRANDMOTHER);
     addChild(_sprite2, 0);
     _sprite2_emotion->setScale(2.0f);
-    _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/5+70));
+    _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/8+70));
     addChild(_sprite2_emotion, 0);
     
     _label1 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
     _label1->setScale(2.0f);
-    _label1->setPosition(Vec2(winSize.width*1/4, winSize.height/9));
+    _label1->setPosition(Vec2(winSize.width*1/4, winSize.height/12));
     this->addChild(_label1);
 
     _label2 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
     _label2->setScale(2.0f);
-    _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/9));
+    _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/12));
     this->addChild(_label2);
 
     
@@ -816,8 +827,8 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 
     switch(indetifier){
     case 1: // 自治体
+            // ToDo 今回はしんどいので実装しない
             showModal(0);
-            // ToDo
         break;
     case 2: // 料理、外食サイト
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
@@ -839,41 +850,41 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
                                                                             ServiceController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 6: // ビデオ\nメッセージ
+    case 6: // ビデオメッセージ
         stopBGM();
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             MediaController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 7: // メッセージ
+    case 7: // メッセージ　運営事務からの
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             HomeInfoController::scene(),
                                                                             ccc3(0, 0, 0)));
 
         break;
-    case 8: // 住宅情報
+    case 8: // 住宅情報　プロジぎょしゃへの送客
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             EstateController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 9: // 万歩計スタート & ストップ
+    case 9: // 万歩計スタート & ストップ　行動履歴を取得するため
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             MotionController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 10: // 蓄電情報
+    case 10: // 蓄電情報　エネルギー情報を見る
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            ComsumeController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 11: // 消費電力の状態
+    case 11: // 消費電力を行う　微妙に設定値を節電方向にする
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             PowersaveController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
-    case 12: // 設備機器
+    case 12: // 設備機器　設備機器の状態と制御ができるようにする
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            InfoController::scene(),
+                                                                            EquipmentController::scene(),
                                                                             ccc3(0, 0, 0)));
         break;
     case 13: // お出かけ\nまとめ処理
