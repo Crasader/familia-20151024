@@ -53,7 +53,7 @@ bool EquipmentController::init()
 void EquipmentController::powerSavingMode(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=52";
+    post_command = "http://127.0.0.1:3000/api/send_message?type=53";
     Post(post_command);
     return;
 }
@@ -84,7 +84,7 @@ void EquipmentController::initGame()
     _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
     addChild(_sprite2);
     
-    Label *label = Label::createWithSystemFont("省電力モード切り替え", "Marker Felt.ttf", 30);
+    Label *label = Label::createWithSystemFont("設備機器の状態制御", "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
     this->addChild(label);

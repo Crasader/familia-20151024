@@ -52,7 +52,7 @@ bool ReserveRetunrHomeController::reserveEquipment(char* result)
 {
     bool door_status = true;
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/api/house?type=50";
+    post_command = "http://127.0.0.1:3000/api/send_message?type=50";
     door_status = Get(post_command)? true:false;
     return door_status;
 }
