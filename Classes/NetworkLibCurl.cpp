@@ -102,4 +102,30 @@ bool Get(const char *get_command){
     return result;
 }
 
+std::string Get_data(std::string get_command){
+    CURL *curl;
+    CURLcode res = CURLE_FAILED_INIT;
+    std::string result;
+    
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
+        curl_easy_setopt(curl, CURLOPT_URL, get_command.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+        
+        // 実行
+        res = curl_easy_perform(curl);
+        
+        curl_easy_cleanup(curl);
+        
+        if (res == CURLE_OK) {
+            printf("response data : %s",buffer.c_str());
+            //レスポンス表示
+            result = buffer;
+        }
+    }
+    return result;
+}
+
 

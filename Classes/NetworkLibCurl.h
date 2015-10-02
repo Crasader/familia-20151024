@@ -13,6 +13,6 @@
 
 void Post(const char *command_type);
 bool Get(const char *command_type);
-
+std::string Get_data(std::string get_command);
 
 #endif /* defined(__Card13__NetworkLibCurl__) */

@@ -8,7 +8,7 @@ USING_NS_CC_EXT;
 
 int _sts_sprite1;
 int _sts_sprite2;
-
+bool _sts_btle_equipment;
 
 bool CardSprite::init()
 {
@@ -487,7 +487,7 @@ void HelloWorld::initGame()
     showBackCards();
     
     //時間を表示する
-    //showTimerLabel();
+    showTimerLabel();
     
     //ボタンを表示する
     // showButton();
@@ -508,7 +508,7 @@ void HelloWorld::initGame()
     initTrash();
     
     //時間を表示する
-    //showTimerLabel();
+    showTimerLabel();
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -577,19 +577,57 @@ void HelloWorld::Sequence2(int status)
     _sprite2->runAction(sequence2);
 }
 
+void HelloWorld::getHouseEquipmentStatus(char* result)
+{
+    bool door_status = false;
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=2";
+    door_status = Get(post_command)? true:false;
+
+    if (door_status==false && _sts_btle_equipment==false) {
+        // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
+/*  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
+        CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
+        CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+ */
+    }
+
+    return;
+}
+
+void HelloWorld::getTargetStatus(char* result)
+{
+    const char *post_command;
+    int val1 = 0;
+    int val2 = 0;
+    post_command = "http://127.0.0.1:3000/get_message?type=3";
+    std::string recv = Get_data(post_command);
+    printf("response data : %s",recv.c_str());
+    //レスポンス表示
+    if(std::string::npos != recv.find("target1")){
+        val1 = 0;
+    }
+    if(std::string::npos != recv.find("target2")){
+        val2 = 0;
+    }
+
+    
+    setTargetStatus(val1, val2);
+    return;
+}
+
+void HelloWorld::setTargetStatus(int val1, int val2)
+{
+    _sts_sprite1 = val1;
+    _sts_sprite2 = val2;
+}
+
 void HelloWorld::BTLEAction()
 {
-    CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
-    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
-    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
-
-    _sts_sprite1 = 5;
+    _sts_btle_equipment = true;
 }
-//void HelloWorld::BTLEAction2()
-//{
-//    _sts_sprite2 = 5;
-//}
 
 // １番目画像Runアクションメソッド
 void HelloWorld::Action01(float frame)
@@ -948,7 +986,7 @@ void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent)
     initTrash();
     
     //時間を表示する
-    //showTimerLabel();
+    showTimerLabel();
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -956,8 +994,8 @@ void HelloWorld::onTapButton(Ref* sender, Control::EventType controlEvent)
 
 void HelloWorld::showTimerLabel()
 {
-//    _timer = 0;
-    
+    _timer = 0;
+/*
     auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
     if (!timerLabel)
     {
@@ -967,7 +1005,7 @@ void HelloWorld::showTimerLabel()
         timerLabel->setTag(TAG_TIMER_LABEL);
         addChild(timerLabel);
     }
-    
+*/
 //    timerLabel->setString(StringUtils::format("%0.2fs", _timer));
 }
 
@@ -976,35 +1014,14 @@ void HelloWorld::showTimerLabel()
 
 void HelloWorld::update(float dt)
 {
-
+    char commnad_name[100];
+    _timer += dt;
     //時間の積算
-//    _timer += dt;
-/*
-    auto timerLabel = (Label*)getChildByTag(TAG_TIMER_LABEL);
-    if (timerLabel)
-    {
-        //時間の表示
-        timerLabel->setString(StringUtils::format("%0.2fs", _timer));
+    if (_timer > 6){
+        _timer=0;
+        getHouseEquipmentStatus(commnad_name);
+        getTargetStatus(commnad_name);
     }
-*/
-/*
-    //ゲーム終了判定
-    bool finish = true;
-    for (int tag = 1; tag <= 10; tag++)
-    {
-        auto node = getChildByTag(tag);
-        if (node)
-        {
-            //場にカードがある
-            finish = false;
-            break;
-        }
-    }
+
     
-    if (finish)
-    {
-        //ゲーム終了
-        unscheduleUpdate();
-    }
-*/
 }

@@ -123,6 +123,7 @@ class HelloWorld : public cocos2d::Layer
 protected:
     std::vector<Card> _cards; //カード情報
     CardSprite* _firstCard; //最初にタップされたカード
+    float _timer; //経過時間
 
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
@@ -164,8 +165,6 @@ protected:
 public:
     //HelloWorldクラスのシーンを作成する
     static cocos2d::Scene* scene();
-    static int sts_sprite1;
-    static int sts_sprite2;
 
     //初期化処理を行う
     virtual bool init();  
@@ -173,6 +172,13 @@ public:
     void dialogClose();
 
     static void BTLEAction();
+
+    void setTargetStatus(int val1, int val2);
+    void getTargetStatus(char* result);
+    void getHouseEquipmentStatus(char* result);
+
+    
+    
     
     //create関数作成マクロ
     CREATE_FUNC(HelloWorld);
