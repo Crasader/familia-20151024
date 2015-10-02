@@ -13,7 +13,7 @@
     if (_motionManager.accelerometerAvailable)
     {
         // センサーの更新間隔の指定
-        _motionManager.accelerometerUpdateInterval = 1 / 10;  // 10Hz
+        _motionManager.accelerometerUpdateInterval = 10;  // 10Hz
         
         // ハンドラを指定
         CMAccelerometerHandler handler = ^(CMAccelerometerData *data, NSError *error)
@@ -51,7 +51,7 @@
     if (_motionManager.accelerometerAvailable)
     {
         // センサーの更新間隔の指定
-        _motionManager.accelerometerUpdateInterval = 1 / 10;  // 10Hz
+        _motionManager.accelerometerUpdateInterval = 1 / 30;  // 10Hz
 
         // ハンドラを指定
         CMAccelerometerHandler handler = ^(CMAccelerometerData *data, NSError *error)

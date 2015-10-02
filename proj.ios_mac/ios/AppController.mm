@@ -242,9 +242,6 @@ static AppDelegate s_sharedApplication;
  [self.proximityManager startProximityMonitor];
  [self.proximityManager stopProximityMonitor];
  
- // シェイクコントローラ
- self.shakeManager = [[ShakeViewController alloc] init];
- [self.shakeManager startLocationManager];
 
  // face detection コントローラ
  self.faceDetectionManager = [[FaceDetectionViewController alloc] init];
@@ -276,7 +273,6 @@ static AppDelegate s_sharedApplication;
      //We don't need to call this method any more. It will interupt user defined game pause&resume logic
     /* cocos2d::Director::getInstance()->resume(); */
 
-/*
     // 位置情報コントローラ
     self.locationManager = [[LocationViewController alloc] init];
     [self.locationManager startLocationManager];
@@ -301,7 +297,11 @@ static AppDelegate s_sharedApplication;
     self.batteryManager = [[BatteryViewController alloc] init];
     [self.batteryManager startBatteryMonitor];
     //    [self.batteryManager stopBatteryMonitor];
-*/
+    
+    // シェイクコントローラ
+    self.shakeManager = [[ShakeViewController alloc] init];
+    [self.shakeManager startLocationManager];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
