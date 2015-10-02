@@ -193,6 +193,38 @@
             endingLineNumber = "281"
             landmarkName = "SecurityController::onResult(int resultCode, int status, const char *error, const char *peerID, const char *message)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SecurityController::onResult(int, int, char const*, char const*, char const*)"
+                  moduleName = "Card13 iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ariji.hiroki/git/house-con/familia-20151024/Classes/SecurityScene.cpp"
+                  timestampString = "465415045.349265"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "287"
+                  endingLineNumber = "287"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "non-virtual thunk to SecurityController::onResult(int, int, char const*, char const*, char const*)"
+                  moduleName = "Card13 iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ariji.hiroki/git/house-con/familia-20151024/Classes/SecurityScene.cpp"
+                  timestampString = "465415045.349418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "287"
+                  endingLineNumber = "287"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

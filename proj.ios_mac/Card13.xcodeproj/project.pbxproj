@@ -99,6 +99,11 @@
 		459A62311BACEC93006425C9 /* card_clubs.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622B1BACEC93006425C9 /* card_clubs.png */; settings = {ASSET_TAGS = (); }; };
 		459A62321BACEC93006425C9 /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622C1BACEC93006425C9 /* card_back.png */; settings = {ASSET_TAGS = (); }; };
 		459A62331BACEC93006425C9 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 459A622D1BACEC93006425C9 /* button.png */; settings = {ASSET_TAGS = (); }; };
+		45B65CCB1BBDBE26002149B3 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CC91BBDBE26002149B3 /* Icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		45B65CCC1BBDBE26002149B3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CCA1BBDBE26002149B3 /* Icon.png */; settings = {ASSET_TAGS = (); }; };
+		45B65CCE1BBDC1A8002149B3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CCD1BBDC1A8002149B3 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		45B65CD01BBDCF8D002149B3 /* Icon-87.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CCF1BBDCF8D002149B3 /* Icon-87.png */; settings = {ASSET_TAGS = (); }; };
+		45B65CD21BBDCF98002149B3 /* Icon-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CD11BBDCF98002149B3 /* Icon-180.png */; settings = {ASSET_TAGS = (); }; };
 		45BD5E181BADA002001EFE49 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BD5E171BADA002001EFE49 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
 		45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -333,6 +338,11 @@
 		459A622B1BACEC93006425C9 /* card_clubs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_clubs.png; path = ../../Card13/Resources/card_clubs.png; sourceTree = "<group>"; };
 		459A622C1BACEC93006425C9 /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_back.png; path = ../../Card13/Resources/card_back.png; sourceTree = "<group>"; };
 		459A622D1BACEC93006425C9 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = ../../Card13/Resources/button.png; sourceTree = "<group>"; };
+		45B65CC91BBDBE26002149B3 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		45B65CCA1BBDBE26002149B3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		45B65CCD1BBDC1A8002149B3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Card13 iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		45B65CCF1BBDCF8D002149B3 /* Icon-87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-87.png"; sourceTree = "<group>"; };
+		45B65CD11BBDCF98002149B3 /* Icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-180.png"; sourceTree = "<group>"; };
 		45BD5E171BADA002001EFE49 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_spades.png; sourceTree = "<group>"; };
 		45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FamiliaScene.cpp; sourceTree = "<group>"; };
 		45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FamiliaScene.hpp; sourceTree = "<group>"; };
@@ -582,6 +592,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45B65CCD1BBDC1A8002149B3 /* Images.xcassets */,
 				45906BA81BB9A94E0070D17C /* hotpepper-m.png */,
 				4537C2811BB83EB700CDF423 /* seaside-955948_640.png */,
 				4537C2821BB83EB700CDF423 /* river-932131_640.png */,
@@ -717,6 +728,10 @@
 		5087E77117EB970100C73F5D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				45B65CD11BBDCF98002149B3 /* Icon-180.png */,
+				45B65CCF1BBDCF8D002149B3 /* Icon-87.png */,
+				45B65CC91BBDBE26002149B3 /* Icon@2x.png */,
+				45B65CCA1BBDBE26002149B3 /* Icon.png */,
 				521A8E6219F0C34300D177D7 /* Default-667h@2x.png */,
 				521A8E6319F0C34300D177D7 /* Default-736h@3x.png */,
 				5087E77217EB970100C73F5D /* Default-568h@2x.png */,
@@ -858,6 +873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4537C2841BB83EB700CDF423 /* river-932131_640.png in Resources */,
+				45B65CCB1BBDBE26002149B3 /* Icon@2x.png in Resources */,
 				452414BB1BAD9D33007BF272 /* komaru.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				4537C2801BB83EAA00CDF423 /* avenue-957201_640.png in Resources */,
@@ -877,6 +893,7 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				45906BA91BB9A94E0070D17C /* hotpepper-m.png in Resources */,
+				45B65CCE1BBDC1A8002149B3 /* Images.xcassets in Resources */,
 				452414AF1BAD9D19007BF272 /* akuma.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
@@ -892,6 +909,8 @@
 				452414B01BAD9D19007BF272 /* ase.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				45B65CCC1BBDBE26002149B3 /* Icon.png in Resources */,
+				45B65CD21BBDCF98002149B3 /* Icon-180.png in Resources */,
 				459A62311BACEC93006425C9 /* card_clubs.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				452414BE1BAD9D33007BF272 /* randfather.png in Resources */,
@@ -912,6 +931,7 @@
 				452414BA1BAD9D33007BF272 /* kiran.png in Resources */,
 				4537C27F1BB83EAA00CDF423 /* city-918523_640.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
+				45B65CD01BBDCF8D002149B3 /* Icon-87.png in Resources */,
 				459A622F1BACEC93006425C9 /* card_hearts.png in Resources */,
 				4582945C1BA9762C00BE34AB /* video.mp4 in Resources */,
 			);
@@ -1051,6 +1071,8 @@
 			baseConfigurationReference = 0C1038231EDC348091DE6F38 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -1078,7 +1100,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/ios",
@@ -1102,6 +1124,8 @@
 			baseConfigurationReference = 8881E43601FF2D97C40A2307 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -1127,7 +1151,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/ios",
