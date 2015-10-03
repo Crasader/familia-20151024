@@ -12,6 +12,87 @@
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+class AudioSlider : public Node
+{
+public:
+    enum Direction {
+        Vertical,
+        Horizontal
+    };
+    
+    static AudioSlider *create(Direction direction)
+    {
+        auto ret = new (std::nothrow) AudioSlider(direction);
+        if (ret && !ret->init()) {
+            delete ret;
+            ret = nullptr;
+        }
+        ret->autorelease();
+        return ret;
+    }
+    
+    float getValue() const
+    {
+        return _slider->getValue();
+    }
+    
+    void setValue(float minValue, float maxValue, float value)
+    {
+        _slider->setMinimumValue(minValue);
+        _slider->setMaximumValue(maxValue);
+        _slider->setValue(value);
+        
+        char buffer[32];
+        
+        sprintf(buffer, "%.2f", minValue);
+        if (!_lblMinValue) {
+            _lblMinValue = Label::createWithTTF(buffer, "fonts/arial.ttf", 8);
+            addChild(_lblMinValue);
+            if (_direction == Vertical)
+                _lblMinValue->setPosition(12.0, -50.0);
+            else
+                _lblMinValue->setPosition(-50, 12.0);
+        } else {
+            _lblMinValue->setString(buffer);
+        }
+        
+        sprintf(buffer, "%.2f", maxValue);
+        if (!_lblMaxValue) {
+            _lblMaxValue = Label::createWithTTF(buffer, "fonts/arial.ttf", 8);
+            addChild(_lblMaxValue);
+            if (_direction == Vertical)
+                _lblMaxValue->setPosition(12.0, 50.0);
+            else
+                _lblMaxValue->setPosition(50, 12.0);
+        } else {
+            _lblMaxValue->setString(buffer);
+        }
+    }
+    
+private:
+    AudioSlider(Direction direction)
+    : _direction(direction)
+    , _slider(nullptr)
+    , _lblMinValue(nullptr)
+    , _lblMaxValue(nullptr)
+    {
+    }
+    
+    bool init()
+    {
+        _slider = extension::ControlSlider::create("extensions/sliderTrack.png","extensions/sliderProgress.png" ,"extensions/sliderThumb.png");
+        _slider->setScale(0.5);
+        if (_direction == Vertical)
+            _slider->setRotation(-90.0);
+        addChild(_slider);
+        return true;
+    }
+    
+    Direction _direction;
+    extension::ControlSlider *_slider;
+    Label *_lblMinValue;
+    Label *_lblMaxValue;
+};
 
 
 Scene* EquipmentController::scene()
@@ -78,20 +159,125 @@ void EquipmentController::initGame()
     
     
     _doorStatus = 0;
-    _sprite1 = Sprite::create("sts/room_unit_bath.png");
-    _sprite1->setScale(3.0f);
-    _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
+    _sprite1 = Sprite::create("sts/light_hakunetsu.png");
+    _sprite1->setScale(1.0f);
+    _sprite1->setPosition(Vec2(winSize.width/3, winSize.height*4/5));
     addChild(_sprite1);
+    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
+//    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
+    //画像を引き延ばさない設定
+    button->setAdjustBackgroundImage(false);
+    //ボタンの位置設定
+    button->setPosition(Vec2(winSize.width*4/5, winSize.height*4/5));
+    button->setScale(1.0f);
+    //ボタンをタップしたときに呼び出す関数の設定
+    button->addTargetWithActionForControlEvents(this,
+                                                cccontrol_selector(CookingController::onTapButton1),
+                                                Control::EventType::TOUCH_UP_INSIDE);
+    addChild(button);
 
-    Label *label = Label::createWithSystemFont("設備機器の状態制御", "Marker Felt.ttf", 30);
-    label->setScale(2.0f);
-    label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
-    this->addChild(label);
+    _sprite3 = Sprite::create("sts/lgi01a201409050200.png");
+    _sprite3->setScale(0.3f);
+    _sprite3->setPosition(Vec2(winSize.width/3, winSize.height*3/5));
+    addChild(_sprite3);
+    auto button2 = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
+    //    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
+    //画像を引き延ばさない設定
+    button2->setAdjustBackgroundImage(false);
+    //ボタンの位置設定
+    button2->setPosition(Vec2(winSize.width*4/5, winSize.height*3/5));
+    button2->setScale(1.0f);
+    //ボタンをタップしたときに呼び出す関数の設定
+    button2->addTargetWithActionForControlEvents(this,
+                                                cccontrol_selector(CookingController::onTapButton2),
+                                                Control::EventType::TOUCH_UP_INSIDE);
+    addChild(button2);
+
+    _sprite5 = Sprite::create("sts/kyutouki.png");
+    _sprite5->setScale(1.0f);
+    _sprite5->setPosition(Vec2(winSize.width/3, winSize.height*1/5));
+    addChild(_sprite5);
+    auto button3 = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
+    //    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
+    //画像を引き延ばさない設定
+    button3->setAdjustBackgroundImage(false);
+    //ボタンの位置設定
+    button3->setPosition(Vec2(winSize.width*4/5, winSize.height*1/5));
+    button3->setScale(1.0f);
+    //ボタンをタップしたときに呼び出す関数の設定
+    button3->addTargetWithActionForControlEvents(this,
+                                                 cccontrol_selector(CookingController::onTapButton2),
+                                                 Control::EventType::TOUCH_UP_INSIDE);
+    addChild(button3);
+
+    Label *label = Label::createWithSystemFont("温度", "Marker Felt.ttf", 30);
+    label->setPosition(Vec2(winSize.width/10, winSize.height*1/2));
+    addChild(label);
+    _sliderPitch = AudioSlider::create(AudioSlider::Horizontal);
+    _sliderPitch->setPosition(Vec2(winSize.width/2, winSize.height*1/2));
+    _sliderPitch->setScale(3.0f);
+    _sliderPitch->setValue(17, 32, 1);
+    addChild(_sliderPitch);
+
+    Label *label1 = Label::createWithSystemFont("湿度", "Marker Felt.ttf", 30);
+    label1->setPosition(Vec2(winSize.width/10, winSize.height*1/2-70));
+    addChild(label1);
+    _sliderPitch1 = AudioSlider::create(AudioSlider::Horizontal);
+    _sliderPitch1->setPosition(Vec2(winSize.width/2, winSize.height*1/2-70));
+    _sliderPitch1->setScale(3.0f);
+    _sliderPitch1->setValue(40, 60, 10);
+    addChild(_sliderPitch1);
+
+    Label *label2 = Label::createWithSystemFont("風量", "Marker Felt.ttf", 30);
+    label2->setPosition(Vec2(winSize.width/10, winSize.height*1/2-140));
+    addChild(label2);
+    _sliderPitch2 = AudioSlider::create(AudioSlider::Horizontal);
+    _sliderPitch2->setPosition(Vec2(winSize.width/2, winSize.height*1/2-140));
+    _sliderPitch2->setScale(3.0f);
+    _sliderPitch2->setValue(0, 6, 1);
+    addChild(_sliderPitch2);
+
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
     
     
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
+
+void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EquipmentController::onTapButton3(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    const float pitch = _sliderPitch->getValue();
+    const float pitch1 = _sliderPitch1->getValue();
+    const float pitch2 = _sliderPitch2->getValue();
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
 
 void EquipmentController::playEffect()
 {
@@ -168,7 +354,7 @@ bool EquipmentController::onTouchBegan(Touch *touch, Event *unused_event)
 
 void EquipmentController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    CCDirector::sharedDirector()->replaceScene(TransitionFade::create(3.0f,  HelloWorld::scene(), ccc3(0, 0, 0)));
+//    CCDirector::sharedDirector()->replaceScene(TransitionFade::create(3.0f,  HelloWorld::scene(), ccc3(0, 0, 0)));
 }
 
 
