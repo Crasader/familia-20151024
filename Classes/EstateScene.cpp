@@ -133,12 +133,17 @@ void EstateController::initGame(int type)
     //画面サイズを取得
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    _sprite1 = Sprite::create("sts/room_unit_bath.png");
+    _sprite1->setScale(3.0f);
+    _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
+    addChild(_sprite1);
+/*
     //CCSpriteクラスで画像を設定します。
     _sprite1 = Sprite::create("button.png");
     _sprite1->setScale(2.0f);
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
-
+*/
     std::string wording;
     switch (type) {
         case 1:

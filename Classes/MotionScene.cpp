@@ -154,7 +154,6 @@ Scene* MotionController::scene()
     return scene;
 }
 
-//HelloWorldクラスのレイヤーの初期化処理を行う
 bool MotionController::init()
 {
     if (!Layer::init())
@@ -293,13 +292,13 @@ void MotionController::initGame()
 
     auto item3 = MenuItemLabel::create(LabelTTF::create("[EXIT]", "Courier New.ttf", 51),
                                        [](Object *obj) {
-                                           CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
+                                           CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(1.0f,  HelloWorld::scene()));
                                        });
     
     
-    Menu *menu = Menu::create(item1, item2, NULL);
+    Menu *menu = Menu::create(item1, item2, item3, NULL);
 //    menu->alignItemsHorizontallyWithPadding(10);
-    menu->alignItemsVerticallyWithPadding(20);
+    menu->alignItemsVerticallyWithPadding(30);
     addChild(menu);
 
     Label *label = Label::createWithSystemFont("これは万歩計です", "Marker Felt.ttf", 30);
@@ -346,7 +345,7 @@ bool MotionController::onTouchBegan(Touch *touch, Event *unused_event)
 
 void MotionController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
+    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(1.0f,  HelloWorld::scene()));
 }
 
 

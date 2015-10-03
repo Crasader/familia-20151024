@@ -107,6 +107,7 @@
 		45B65CD01BBDCF8D002149B3 /* Icon-87.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CCF1BBDCF8D002149B3 /* Icon-87.png */; settings = {ASSET_TAGS = (); }; };
 		45B65CD21BBDCF98002149B3 /* Icon-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B65CD11BBDCF98002149B3 /* Icon-180.png */; settings = {ASSET_TAGS = (); }; };
 		45BD5E181BADA002001EFE49 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BD5E171BADA002001EFE49 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
+		45C509001BBF6DA90029F3F8 /* sts in Resources */ = {isa = PBXBuildFile; fileRef = 45C508FF1BBF6DA90029F3F8 /* sts */; settings = {ASSET_TAGS = (); }; };
 		45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C9626B1BB7CFB00064519E /* btn057_04.png */; settings = {ASSET_TAGS = (); }; };
@@ -350,6 +351,7 @@
 		45B65CCF1BBDCF8D002149B3 /* Icon-87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-87.png"; sourceTree = "<group>"; };
 		45B65CD11BBDCF98002149B3 /* Icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-180.png"; sourceTree = "<group>"; };
 		45BD5E171BADA002001EFE49 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_spades.png; sourceTree = "<group>"; };
+		45C508FF1BBF6DA90029F3F8 /* sts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sts; sourceTree = "<group>"; };
 		45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FamiliaScene.cpp; sourceTree = "<group>"; };
 		45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FamiliaScene.hpp; sourceTree = "<group>"; };
 		45C962681BB70F020064519E /* UIDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDialog.cpp; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45C508FF1BBF6DA90029F3F8 /* sts */,
 				45B65CCD1BBDC1A8002149B3 /* Images.xcassets */,
 				45906BA81BB9A94E0070D17C /* hotpepper-m.png */,
 				4537C2811BB83EB700CDF423 /* seaside-955948_640.png */,
@@ -918,6 +921,7 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				452414B01BAD9D19007BF272 /* ase.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				45C509001BBF6DA90029F3F8 /* sts in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				45B65CCC1BBDBE26002149B3 /* Icon.png in Resources */,
 				45B65CD21BBDCF98002149B3 /* Icon-180.png in Resources */,

@@ -78,8 +78,8 @@ void EquipmentController::initGame()
     
     
     _doorStatus = 0;
-    _sprite1 = Sprite::create("normal_door_close.png");
-    _sprite1->setScale(1.0f);
+    _sprite1 = Sprite::create("sts/room_unit_bath.png");
+    _sprite1->setScale(3.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     addChild(_sprite1);
 

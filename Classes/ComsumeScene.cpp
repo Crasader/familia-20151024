@@ -73,17 +73,17 @@ void ComsumeController::initGame()
      }else{
      */
     _doorStatus = 0;
-    _sprite1 = Sprite::create("normal_door_close.png");
-    _sprite1->setScale(1.0f);
+    _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
+    _sprite1->setScale(3.5f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     //    }
-    
     addChild(_sprite1);
+/*
     _sprite2 = Sprite::create("house-key.png");
     _sprite2->setScale(1.0f);
     _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
     addChild(_sprite2);
-    
+*/
     Label *label = Label::createWithSystemFont("電力消費量の予測", "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
