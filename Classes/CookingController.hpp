@@ -44,7 +44,7 @@ public:
     void onTapWebButton(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     
     void startWebView(std::string uri);
-
+    void getTargetStatus(char* result);
     
     
     //タップイベント

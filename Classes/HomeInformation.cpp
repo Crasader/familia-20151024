@@ -12,6 +12,8 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+std::string home_text_ext;
+std::string home_uri_ext;
 
 Scene* HomeInfoController::createScene()
 {
@@ -72,8 +74,12 @@ void HomeInfoController::getMessage(char* result)
 
 void HomeInfoController::initGame()
 {
-    char message[100];
-    getMessage(message);
+    home_text_ext.clear();
+    home_uri_ext.clear();
+    
+//    char message[100];
+//    getMessage(message);
+    getHomeInfoContent();
     Size winSize = Director::getInstance()->getVisibleSize();
     
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
@@ -88,8 +94,7 @@ void HomeInfoController::initGame()
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
     
-    Label *label = Label::createWithSystemFont("TEST", "Marker Felt.ttf", 30);
-    
+    Label *label = Label::createWithSystemFont(home_text_ext, "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->addChild(label);
@@ -104,6 +109,17 @@ void HomeInfoController::initGame()
     
 }
 
+void HomeInfoController::getHomeInfoContent()
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=7";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    home_text_ext = Json_getString(json, "text", "");
+    home_uri_ext = Json_getString(json, "apn", "");
+    
+    return;
+}
 
 void HomeInfoController::startWebView()
 {
@@ -113,7 +129,10 @@ void HomeInfoController::startWebView()
     webView->setAnchorPoint(Point(0.5f, 0.5f));
     webView->setContentSize(Size(visibleSize.width * 0.9f, visibleSize.height * 0.8f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
-    webView->loadURL("https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3");
+    if (home_uri_ext.size()==0) {
+        home_uri_ext = "https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3";
+    }
+    webView->loadURL(home_uri_ext);
     this->addChild(webView, 1);
     
 }

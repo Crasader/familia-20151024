@@ -11,6 +11,7 @@ int _sts_sprite2;
 int _emo_sprite1;
 int _emo_sprite2;
 bool _sts_btle_equipment;
+std::string FullName;
 
 bool CardSprite::init()
 {
@@ -439,7 +440,7 @@ void HelloWorld::initGame()
     sprite->setScale(2.5f);
     sprite->setPosition(Vec2(winSize.width/2, winSize.height*4/5));
     addChild(sprite);
-    cocos2d::Label* label = Label::createWithSystemFont("この端末のオーナー", "Marker Felt.ttf", 30);
+    cocos2d::Label* label = Label::createWithSystemFont("この端末のオーナー\n"+FullName, "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*8/9));
     this->addChild(label);
@@ -645,19 +646,34 @@ void HelloWorld::getTargetStatus(char* result)
 
     return;
 }
+
+int estateType;
 void HelloWorld::getHouseInfo(char* result)
 {
     const char *post_command;
     post_command = "http://127.0.0.1:3000/get_message?type=1";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
-    std::string firstname = Json_getString(json, "firstname", "");
-    std::string lastname = Json_getString(json, "lastname", "");
+    FullName = Json_getString(json, "firstname", "");
+    FullName += Json_getString(json, "lastname", "");
     std::string buildtype = Json_getString(json, "buildtype", "");
     std::string ownership = Json_getString(json, "ownership", "");
+    
+    estateType = 0;
+    if (ownership == "持家") {
+        if (buildtype=="戸建") {
+            estateType = 1;
+        }else{
+            estateType = 2;
+        }
+    }else{
+        if (buildtype=="戸建") {
+            estateType = 10;
+        }else{
+            estateType = 11;
+        }
+    }
 
-    
-    
     return;
 }
 
@@ -870,9 +886,13 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
                                                                             ccc3(0, 0, 0)));
         break;
     case 3: // 家族からのお知らせ
+            // ToDo 今回はしんどいので実装しない
+            showModal(0);
+/*
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
                                                                             FamiliaController::scene(),
                                                                             ccc3(0, 0, 0)));
+ */
         break;
     case 4: // ニュース
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,

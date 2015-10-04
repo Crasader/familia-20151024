@@ -13,6 +13,9 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+std::string service_text_ext;
+std::string service_uri_ext;
+
 
 Scene* ServiceController::scene()
 {
@@ -59,19 +62,25 @@ bool ServiceController::init()
 
 void ServiceController::initGame()
 {
+    service_text_ext.clear();
+    service_uri_ext.clear();
+    getServiceContent();
+
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    auto string_txt = "本日のサービスです\nタイトル：ネコなび<\n著者：杉本ペロ\n出版社：小学館";
-    
+    if(service_text_ext.size()==0){
+        service_text_ext = "本日のサービスです\nタイトル：ネコなび<\n著者：杉本ペロ\n出版社：小学館";
+    }
+
     //Scrollview
     auto *scroll = ScrollView::create(winSize);
     // 縦方向だけにスクロール
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    auto label = LabelTTF::create(string_txt, "Arial Rounded MT Bold", 36);
+    auto label = LabelTTF::create(service_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     
     // 文字の開始位置を画面の上に合わせる
@@ -130,8 +139,10 @@ void ServiceController::onTapButton1(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    std::string uri = "http://hon.jp/search/3.0/null/883546/";
-    startWebView(uri);
+    if (service_uri_ext.size()==0) {
+        service_uri_ext = "http://hon.jp/search/3.0/null/883546/";
+    }
+    startWebView(service_uri_ext);
     
     
     //update関数の呼び出しを開始
@@ -177,6 +188,19 @@ void ServiceController::onTapButton2(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
+
+void ServiceController::getServiceContent()
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=6";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    service_text_ext = Json_getString(json, "text", "");
+    service_uri_ext = Json_getString(json, "apn", "");
+    
+    return;
+}
+
 
 void ServiceController::startWebView(std::string uri)
 {

@@ -10,6 +10,9 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+std::string text_ext;
+std::string uri_ext;
+
 
 Scene* CookingController::scene()
 {
@@ -55,11 +58,18 @@ bool CookingController::init()
 
 void CookingController::initGame()
 {
+    text_ext.clear();
+    uri_ext.clear();
+    char commnad_name[2];
+    getTargetStatus(commnad_name);
+
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    auto string_txt = "本日のオススメのお店です\n店名：塚田農場 立川北口店\nジャンル：居酒屋 郷土料理\nメニュー：地頭鶏　地豚　冷汁　当地野菜\n平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）\nアクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分";
+    if(text_ext.size()==0){
+        text_ext = "本日のオススメのお店です\n店名：塚田農場 立川北口店\nジャンル：居酒屋 郷土料理\nメニュー：地頭鶏　地豚　冷汁　当地野菜\n平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）\nアクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分";
+    }
     
     //Scrollview
     auto *scroll = ScrollView::create(winSize);
@@ -67,7 +77,7 @@ void CookingController::initGame()
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    auto label = LabelTTF::create(string_txt, "Arial Rounded MT Bold", 36);
+    auto label = LabelTTF::create(text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     
     // 文字の開始位置を画面の上に合わせる
@@ -137,8 +147,10 @@ void CookingController::onTapButton1(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    std::string uri = "http://hpr.jp/strJ000711627/?uid=NULLGWDOCOMO&vos=hpp336";
-    startWebView(uri);
+    if (uri_ext.size()==0) {
+        uri_ext = "http://www.hotpepper.jp/";
+    }
+    startWebView(uri_ext);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -149,8 +161,10 @@ void CookingController::onTapButton3(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    std::string uri = "http://www.hotpepper.jp/";
-    startWebView(uri);
+    if (uri_ext.size()==0) {
+        uri_ext = "http://www.hotpepper.jp/";
+    }
+    startWebView(uri_ext);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -196,13 +210,27 @@ void CookingController::onTapButton2(Ref* sender, Control::EventType controlEven
     scheduleUpdate();
 }
 
+void CookingController::getTargetStatus(char* result)
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=5";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    text_ext = Json_getString(json, "text", "");
+    uri_ext = Json_getString(json, "apn", "");
+
+    return;
+}
+
 void CookingController::onTapWebButton(Ref* sender, Control::EventType controlEvent)
 {
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    std::string uri = "http://hpr.jp/strJ000711627/?uid=NULLGWDOCOMO&vos=hpp336";
-    startWebView(uri);
+    if (uri_ext.size()==0) {
+        uri_ext = "http://www.hotpepper.jp/";
+    }
+    startWebView(uri_ext);
     
     //update関数の呼び出しを開始
     scheduleUpdate();

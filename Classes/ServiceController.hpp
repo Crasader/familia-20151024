@@ -38,7 +38,7 @@ public:
     void showButton2();
     void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     void startWebView(std::string uri);
-
+    void getServiceContent();
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
