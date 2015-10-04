@@ -8,6 +8,8 @@ USING_NS_CC_EXT;
 
 int _sts_sprite1;
 int _sts_sprite2;
+int _emo_sprite1;
+int _emo_sprite2;
 bool _sts_btle_equipment;
 
 bool CardSprite::init()
@@ -590,12 +592,17 @@ void HelloWorld::Sequence2(int status)
 
 void HelloWorld::getHouseEquipmentStatus(char* result)
 {
-    bool door_status = false;
     const char *post_command;
     post_command = "http://127.0.0.1:3000/get_message?type=2";
-    door_status = Get(post_command)? true:false;
+    std::string recv = Get_data(post_command);
+    printf("getTargetStatus response data : %s",recv.c_str());
+    
+    Json* json = Json_create(recv.c_str());
+    //    std::string name = Json_getString(json, "value", "");
+    
+    int eq_sts = Json_getInt(json, "equipment", 0);
 
-    if (door_status==false && _sts_btle_equipment==false) {
+    if (eq_sts!=3 && _sts_btle_equipment==false) {
         // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
 /*  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
         CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
@@ -608,31 +615,45 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     return;
 }
 
+std::vector<std::string> split(const std::string &str, char sep)
+{
+    std::vector<std::string> v;        // 分割結果を格納するベクター
+    auto first = str.begin();              // テキストの最初を指すイテレータ
+    while( first != str.end() ) {         // テキストが残っている間ループ
+        auto last = first;                      // 分割文字列末尾へのイテレータ
+        while( last != str.end() && *last != sep )       // 末尾 or セパレータ文字まで進める
+            ++last;
+        v.push_back(std::string(first, last));       // 分割文字を出力
+        if( last != str.end() )
+            ++last;
+        first = last;          // 次の処理のためにイテレータを設定
+    }
+    return v;
+}
 void HelloWorld::getTargetStatus(char* result)
 {
     const char *post_command;
-    int val1 = 0;
-    int val2 = 0;
     post_command = "http://127.0.0.1:3000/get_message?type=3";
     std::string recv = Get_data(post_command);
-    printf("response data : %s",recv.c_str());
-    //レスポンス表示
-    if(std::string::npos != recv.find("target1")){
-        val1 = 0;
-    }
-    if(std::string::npos != recv.find("target2")){
-        val2 = 0;
-    }
+    printf("getTargetStatus response data : %s",recv.c_str());
 
-    
-    setTargetStatus(val1, val2);
+    Json* json = Json_create(recv.c_str());
+//    std::string name = Json_getString(json, "value", "");
+
+    _sts_sprite1 = Json_getInt(json, "sts1", 0);
+    _emo_sprite1 = Json_getInt(json, "emo1", 0);
+    _sts_sprite2 = Json_getInt(json, "sts2", 0);
+    _emo_sprite2 = Json_getInt(json, "emo2", 0);
+
     return;
 }
 
-void HelloWorld::setTargetStatus(int val1, int val2)
+void HelloWorld::setTargetStatus(int val1, int emo1, int val2, int emo2)
 {
     _sts_sprite1 = val1;
-    _sts_sprite2 = val2;
+    _sts_sprite2 = emo1;
+    _sts_sprite1 = val1;
+    _sts_sprite2 = emo2;
 }
 
 void HelloWorld::BTLEAction()

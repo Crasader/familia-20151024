@@ -32,6 +32,7 @@ static int writer(char *data, size_t size, size_t nmemb, std::string *buffer)
 void Post(const char *post_command){
     CURL *curl;
     CURLcode res = CURLE_FAILED_INIT;
+    buffer.clear();
     
     // POSTするデータ
     const char *post_data = "";//"/send_message?type=4";
@@ -74,6 +75,7 @@ bool Get(const char *get_command){
     CURL *curl;
     CURLcode res = CURLE_FAILED_INIT;
     bool result = false;
+    buffer.clear();
     
     curl = curl_easy_init();    
     if (curl) {
@@ -106,6 +108,7 @@ std::string Get_data(std::string get_command){
     CURL *curl;
     CURLcode res = CURLE_FAILED_INIT;
     std::string result;
+    buffer.clear();
     
     curl = curl_easy_init();
     if (curl) {

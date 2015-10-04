@@ -53,7 +53,7 @@ bool ComsumeController::init()
 void ComsumeController::powerSavingMode(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/api/send_message?type=54";
+    post_command = "http://127.0.0.1:3000/send_message?type=54";
     Post(post_command);
     return;
 }

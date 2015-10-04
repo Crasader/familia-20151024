@@ -103,13 +103,10 @@ static AppDelegate s_sharedApplication;
             int httpStatusCode = ((NSHTTPURLResponse *)response).statusCode;
             if (httpStatusCode == 404) {
                 NSLog(@"404 NOT FOUND ERROR. targetURL=%@", url);
-                // } else if (・・・) {
-                // 他にも処理したいHTTPステータスがあれば書く。
-                
             } else {
-                NSLog(@"success request!!");
-                NSLog(@"statusCode = %d", ((NSHTTPURLResponse *)response).statusCode);
-                NSLog(@"responseText = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                NSLog(@"receive data=%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                NSString *receive = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSArray *lines = [receive componentsSeparatedByString:@","];
                 
                 // ここはサブスレッドなので、メインスレッドで何かしたい場合には
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -125,52 +122,7 @@ static AppDelegate s_sharedApplication;
             }
         }
     }];
-    
-    
-    
 }
-
--(id)init_twilio_sub
-{
-    if ( self = [super init] )
-    {
-        // Replace the URL with your Capabilities Token URL
-        NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
-        NSURLResponse*  response = nil;
-        NSError*    error = nil;
-        NSData* data = [NSURLConnection sendSynchronousRequest:
-                        [NSURLRequest requestWithURL:url]
-                                             returningResponse:&response
-                                                         error:&error];
-        if (data)
-        {
-            NSHTTPURLResponse*  httpResponse = (NSHTTPURLResponse*)response;
-            
-            if (httpResponse.statusCode == 200)
-            {
-                NSString* capabilityToken = [[[NSString alloc] initWithData:data
-                                                                   encoding:NSUTF8StringEncoding]
-                                             autorelease];
-                
-                _phone = [[TCDevice alloc] initWithCapabilityToken:capabilityToken
-                                                           delegate:nil];
-            }
-            else
-            {
-                NSString*  errorString = [NSString stringWithFormat:
-                                          @"HTTP status code %d",
-                                          httpResponse.statusCode];
-                NSLog(@"Error logging in: %@", errorString);
-            }
-        }
-        else
-        {
-            NSLog(@"Error logging in: %@", [error localizedDescription]);
-        }
-    }
-    return self;
-}
-
 
 - (void)dialButtonPressed
 {
@@ -290,7 +242,7 @@ static AppDelegate s_sharedApplication;
 /*
 
  
- // コントローラ
+ // 近接センサーコントローラ
  self.proximityManager = [[ProximityViewController alloc] init];
  [self.proximityManager startProximityMonitor];
  [self.proximityManager stopProximityMonitor];

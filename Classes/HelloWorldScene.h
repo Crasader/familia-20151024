@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "SimpleAudioEngine.h"
+#include "spine/Json.h"
 
 #include "NetworkLibCurl.h"
 #include "MediaScene.h"
@@ -23,6 +24,8 @@
 #include "PowerSave.hpp"
 #include "EquipmentScene.hpp"
 #include "ComsumeScene.hpp"
+
+using namespace cocos2d::extension;
 
 #define CARD_NUM 13 //1種類あたりのカード枚数
 #define CARD_TYPE_NUM 4 //カードの種類
@@ -174,7 +177,7 @@ public:
 
     static void BTLEAction();
 
-    void setTargetStatus(int val1, int val2);
+    void setTargetStatus(int val1, int emo1, int val2, int emo2);
     void getTargetStatus(char* result);
     void getHouseEquipmentStatus(char* result);
 

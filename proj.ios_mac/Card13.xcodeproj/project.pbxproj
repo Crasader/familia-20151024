@@ -52,7 +52,6 @@
 		4537C2841BB83EB700CDF423 /* river-932131_640.png in Resources */ = {isa = PBXBuildFile; fileRef = 4537C2821BB83EB700CDF423 /* river-932131_640.png */; settings = {ASSET_TAGS = (); }; };
 		4537C2871BB8C40200CDF423 /* ServiceController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4537C2851BB8C40200CDF423 /* ServiceController.cpp */; settings = {ASSET_TAGS = (); }; };
 		4537C28A1BB8C42F00CDF423 /* CookingController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4537C2881BB8C42F00CDF423 /* CookingController.cpp */; settings = {ASSET_TAGS = (); }; };
-		45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45434CF91BAEBA1000279083 /* SecurityController.m */; settings = {ASSET_TAGS = (); }; };
 		45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		45434D021BAF13F400279083 /* BTLECentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45434CFF1BAF13F400279083 /* BTLECentralViewController.mm */; settings = {ASSET_TAGS = (); }; };
 		45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45434D031BAFAECD00279083 /* SecurityScene.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -109,6 +108,7 @@
 		45BD5E181BADA002001EFE49 /* card_spades.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BD5E171BADA002001EFE49 /* card_spades.png */; settings = {ASSET_TAGS = (); }; };
 		45C509001BBF6DA90029F3F8 /* sts in Resources */ = {isa = PBXBuildFile; fileRef = 45C508FF1BBF6DA90029F3F8 /* sts */; settings = {ASSET_TAGS = (); }; };
 		45C509051BC030510029F3F8 /* extensions in Resources */ = {isa = PBXBuildFile; fileRef = 45C509041BC030510029F3F8 /* extensions */; settings = {ASSET_TAGS = (); }; };
+		45C509081BC0F1190029F3F8 /* UserStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C509061BC0F1190029F3F8 /* UserStatus.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C9626B1BB7CFB00064519E /* btn057_04.png */; settings = {ASSET_TAGS = (); }; };
@@ -254,8 +254,6 @@
 		453F72651B94A43900011B2F /* TCDeviceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCDeviceDelegate.h; path = ios/TCDeviceDelegate.h; sourceTree = SOURCE_ROOT; };
 		453F72661B94A43900011B2F /* TCPresenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPresenceEvent.h; path = ios/TCPresenceEvent.h; sourceTree = SOURCE_ROOT; };
 		453F72671B94A43900011B2F /* TwilioClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwilioClient.h; path = ios/TwilioClient.h; sourceTree = SOURCE_ROOT; };
-		45434CF91BAEBA1000279083 /* SecurityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecurityController.m; path = ios/SecurityController.m; sourceTree = SOURCE_ROOT; };
-		45434CFB1BAEBA3300279083 /* SecurityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecurityController.h; path = ios/SecurityController.h; sourceTree = SOURCE_ROOT; };
 		45434CFC1BAF13F400279083 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		45434CFD1BAF13F400279083 /* BTLEPeripheralViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BTLEPeripheralViewController.mm; path = ../proj.ios_mac/ios/device_controller/BTLEPeripheralViewController.mm; sourceTree = "<group>"; };
 		45434CFE1BAF13F400279083 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTLEPeripheralViewController.h; path = ../proj.ios_mac/ios/device_controller/BTLEPeripheralViewController.h; sourceTree = "<group>"; };
@@ -354,6 +352,8 @@
 		45BD5E171BADA002001EFE49 /* card_spades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_spades.png; sourceTree = "<group>"; };
 		45C508FF1BBF6DA90029F3F8 /* sts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sts; sourceTree = "<group>"; };
 		45C509041BC030510029F3F8 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = extensions; sourceTree = "<group>"; };
+		45C509061BC0F1190029F3F8 /* UserStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserStatus.cpp; sourceTree = "<group>"; };
+		45C509071BC0F1190029F3F8 /* UserStatus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UserStatus.hpp; sourceTree = "<group>"; };
 		45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FamiliaScene.cpp; sourceTree = "<group>"; };
 		45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FamiliaScene.hpp; sourceTree = "<group>"; };
 		45C962681BB70F020064519E /* UIDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDialog.cpp; sourceTree = "<group>"; };
@@ -489,8 +489,6 @@
 				503AE0FD17EB989F00D1A890 /* Prefix.pch */,
 				503AE0FE17EB989F00D1A890 /* RootViewController.h */,
 				503AE0FF17EB989F00D1A890 /* RootViewController.mm */,
-				45434CF91BAEBA1000279083 /* SecurityController.m */,
-				45434CFB1BAEBA3300279083 /* SecurityController.h */,
 			);
 			name = ios;
 			path = Classes;
@@ -716,6 +714,8 @@
 				4599CEF41BBEC7D800840E66 /* EquipmentScene.hpp */,
 				4599CEF61BBEC7F000840E66 /* ComsumeScene.cpp */,
 				4599CEF71BBEC7F000840E66 /* ComsumeScene.hpp */,
+				45C509061BC0F1190029F3F8 /* UserStatus.cpp */,
+				45C509071BC0F1190029F3F8 /* UserStatus.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -1024,6 +1024,7 @@
 				457699B71BB426D90010FCDE /* ModalWindow.cpp in Sources */,
 				4518371A1BB57F9F00D2C899 /* MotionScene.cpp in Sources */,
 				45434D011BAF13F400279083 /* BTLEPeripheralViewController.mm in Sources */,
+				45C509081BC0F1190029F3F8 /* UserStatus.cpp in Sources */,
 				451837131BB55F2600D2C899 /* VisibleRect.cpp in Sources */,
 				4537C2871BB8C40200CDF423 /* ServiceController.cpp in Sources */,
 				45663D1E1B99CF4300548355 /* SpeedViewController.mm in Sources */,
@@ -1041,7 +1042,6 @@
 				45434D051BAFAECD00279083 /* SecurityScene.cpp in Sources */,
 				4582944A1BA5BF2D00BE34AB /* EstateScene.cpp in Sources */,
 				45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */,
-				45434CFA1BAEBA1000279083 /* SecurityController.m in Sources */,
 				45663D1B1B99CF4300548355 /* MotionActivityViewController.mm in Sources */,
 				457CA7331BB0E9170016AF15 /* OutgoingHome.cpp in Sources */,
 				458294471BA5BF0F00BE34AB /* MediaScene.cpp in Sources */,

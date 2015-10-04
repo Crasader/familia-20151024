@@ -55,7 +55,7 @@ bool SecurityController::getAutoDoorStatus(char* result)
 {
     bool door_status = true;
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/api/send_message?type=19";
+    post_command = "http://127.0.0.1:3000/send_message?type=19";
     door_status = Get(post_command)? true:false;
     return door_status;
 }
