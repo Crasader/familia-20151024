@@ -50,13 +50,6 @@ bool CookingController::init()
     
     initGame();
     
-    
-    Size winSize = Director::getInstance()->getVisibleSize();
-    auto img = Scale9Sprite::create("hotpepper-m.png");
-    img->setPosition(winSize.width*4/5-50, img->getContentSize().height+30);
-    img->setScale(3);
-    this->addChild(img);
-    
     return true;
 }
 
@@ -66,31 +59,44 @@ void CookingController::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    auto text = Label::createWithSystemFont("本日のオススメのお店です", "HiraKakuProN-W6", 48);
-    text->setPosition(Point(300, winSize.height-50));
-    this->addChild(text);
+    auto string_txt = "本日のオススメのお店です\n店名：塚田農場 立川北口店\nジャンル：居酒屋 郷土料理\nメニュー：地頭鶏　地豚　冷汁　当地野菜\n平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）\nアクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分";
     
-    auto store = Label::createWithSystemFont("店名：塚田農場 立川北口店", "HiraKakuProN-W6", 36);
-    store->setPosition(Point(300, winSize.height-200));
-    this->addChild(store);
-    auto store1 = Label::createWithSystemFont("ジャンル：居酒屋 郷土料理", "HiraKakuProN-W6", 36);
-    store1->setPosition(Point(300, winSize.height-250));
-    this->addChild(store1);
-    auto store2 = Label::createWithSystemFont("メニュー：地頭鶏　地豚　冷汁　当地野菜", "HiraKakuProN-W6", 36);
-    store2->setPosition(Point(300, winSize.height-300));
-    this->addChild(store2);
-    auto store3 = Label::createWithSystemFont("平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）", "HiraKakuProN-W6", 36);
-    store3->setPosition(Point(300, winSize.height-350));
-    this->addChild(store3);
-    auto store4 = Label::createWithSystemFont("アクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分", "HiraKakuProN-W6", 36);
-    store4->setPosition(Point(300, winSize.height-400));
-    this->addChild(store4);
-
-
+    //Scrollview
+    auto *scroll = ScrollView::create(winSize);
+    // 縦方向だけにスクロール
+    scroll->setDirection(ScrollView::Direction::VERTICAL);
+    addChild(scroll);
     
+    auto label = LabelTTF::create(string_txt, "Arial Rounded MT Bold", 36);
+    label->setColor(Color3B::WHITE);
+    
+    // 文字の開始位置を画面の上に合わせる
+    // 文字データは、一番左上から表示させたいので、widthは0
+    // heightはコンテンツサイズから画面縦を引いた負数にする
+    label->setDimensions(Size(winSize.width,0));
+    label->setDimensions
+    (Size(label->getContentSize().width, label->getContentSize().height));
+    // 左寄せにする
+    label->setHorizontalAlignment(TextHAlignment::LEFT);
+    
+    // スクロールされるラベルの調整
+    scroll->setContainer(label);
+    scroll->setContentOffset
+    (Point(0, 0 - (label->getContentSize().height - winSize.height)));
     
     showButton1();
     showButton2();
+    auto button2 = ControlButton::create(Scale9Sprite::create("hotpepper-m.png"));
+    //画像を引き延ばさない設定
+    button2->setAdjustBackgroundImage(false);
+    //ボタンの位置設定
+    button2->setPosition(winSize.width*4/5-50, button2->getContentSize().height+30);
+    button2->setScale(3.0f);
+    //ボタンをタップしたときに呼び出す関数の設定
+    button2->addTargetWithActionForControlEvents(this,
+                                                 cccontrol_selector(CookingController::onTapButton3),
+                                                 Control::EventType::TOUCH_UP_INSIDE);
+    addChild(button2);
 
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -132,6 +138,18 @@ void CookingController::onTapButton1(Ref* sender, Control::EventType controlEven
     unscheduleUpdate();
     
     std::string uri = "http://hpr.jp/strJ000711627/?uid=NULLGWDOCOMO&vos=hpp336";
+    startWebView(uri);
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void CookingController::onTapButton3(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    std::string uri = "http://www.hotpepper.jp/";
     startWebView(uri);
     
     //update関数の呼び出しを開始

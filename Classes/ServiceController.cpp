@@ -63,27 +63,33 @@ void ServiceController::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     
-    auto text = Label::createWithSystemFont("本日のサービスです", "HiraKakuProN-W6", 48);
-    text->setPosition(Point(300, winSize.height-50));
-    this->addChild(text);
+    auto string_txt = "本日のサービスです\nタイトル：ネコなび<\n著者：杉本ペロ\n出版社：小学館";
     
-    auto store = Label::createWithSystemFont("タイトル：ネコなび<", "HiraKakuProN-W6", 36);
-    store->setPosition(Point(300, winSize.height-200));
-    this->addChild(store);
-    auto store1 = Label::createWithSystemFont("著者：杉本ペロ", "HiraKakuProN-W6", 36);
-    store1->setPosition(Point(300, winSize.height-250));
-    this->addChild(store1);
-    auto store2 = Label::createWithSystemFont("出版社：小学館", "HiraKakuProN-W6", 36);
-    store2->setPosition(Point(300, winSize.height-300));
-    this->addChild(store2);
+    //Scrollview
+    auto *scroll = ScrollView::create(winSize);
+    // 縦方向だけにスクロール
+    scroll->setDirection(ScrollView::Direction::VERTICAL);
+    addChild(scroll);
     
+    auto label = LabelTTF::create(string_txt, "Arial Rounded MT Bold", 36);
+    label->setColor(Color3B::WHITE);
     
+    // 文字の開始位置を画面の上に合わせる
+    // 文字データは、一番左上から表示させたいので、widthは0
+    // heightはコンテンツサイズから画面縦を引いた負数にする
+    label->setDimensions(Size(winSize.width,0));
+    label->setDimensions
+    (Size(label->getContentSize().width, label->getContentSize().height));
+    // 左寄せにする
+    label->setHorizontalAlignment(TextHAlignment::LEFT);
     
+    // スクロールされるラベルの調整
+    scroll->setContainer(label);
+    scroll->setContentOffset
+    (Point(0, 0 - (label->getContentSize().height - winSize.height)));
     
     showButton1();
     showButton2();
-    
-    
     
     //update関数の呼び出しを開始
     scheduleUpdate();
