@@ -195,8 +195,10 @@ void ServiceController::getServiceContent()
     post_command = "http://127.0.0.1:3000/get_message?type=6";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
-    service_text_ext = Json_getString(json, "text", "");
-    service_uri_ext = Json_getString(json, "apn", "");
+    if (json) {
+        service_text_ext = Json_getString(json, "text", "");
+        service_uri_ext = Json_getString(json, "apn", "");
+    }
     
     return;
 }

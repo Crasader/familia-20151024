@@ -601,16 +601,18 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     std::string recv = Get_data(post_command);
     
     Json* json = Json_create(recv.c_str());
-    int eq_sts = Json_getInt(json, "equipment", 0);
-
-    if (eq_sts!=3 && _sts_btle_equipment==false) {
-        // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
-/*  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
-        CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
-        CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
-        CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
- */
+    if (json) {
+        int eq_sts = Json_getInt(json, "equipment", 0);
+        
+        if (eq_sts!=3 && _sts_btle_equipment==false) {
+            // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
+            /*  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
+             CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
+             CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
+             CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+             */
+        }
     }
 
     return;
@@ -637,12 +639,12 @@ void HelloWorld::getTargetStatus(char* result)
     post_command = "http://127.0.0.1:3000/get_message?type=3";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
-//    std::string name = Json_getString(json, "value", "");
-
-    _sts_sprite1 = Json_getInt(json, "sts1", 0);
-    _emo_sprite1 = Json_getInt(json, "emo1", 0);
-    _sts_sprite2 = Json_getInt(json, "sts2", 0);
-    _emo_sprite2 = Json_getInt(json, "emo2", 0);
+    if (json) {
+        _sts_sprite1 = Json_getInt(json, "sts1", 0);
+        _emo_sprite1 = Json_getInt(json, "emo1", 0);
+        _sts_sprite2 = Json_getInt(json, "sts2", 0);
+        _emo_sprite2 = Json_getInt(json, "emo2", 0);
+    }
 
     return;
 }
@@ -654,23 +656,24 @@ void HelloWorld::getHouseInfo(char* result)
     post_command = "http://127.0.0.1:3000/get_message?type=1";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
-    FullName = Json_getString(json, "firstname", "");
-    FullName += Json_getString(json, "lastname", "");
-    std::string buildtype = Json_getString(json, "buildtype", "");
-    std::string ownership = Json_getString(json, "ownership", "");
-    
-    estateType = 0;
-    if (ownership == "持家") {
-        if (buildtype=="戸建") {
-            estateType = 1;
+    if (json) {
+        FullName = Json_getString(json, "firstname", "");
+        FullName += Json_getString(json, "lastname", "");
+        std::string buildtype = Json_getString(json, "buildtype", "");
+        std::string ownership = Json_getString(json, "ownership", "");
+        
+        if (ownership == "持家") {
+            if (buildtype=="戸建") {
+                estateType = 1;
+            }else{
+                estateType = 2;
+            }
         }else{
-            estateType = 2;
-        }
-    }else{
-        if (buildtype=="戸建") {
-            estateType = 10;
-        }else{
-            estateType = 11;
+            if (buildtype=="戸建") {
+                estateType = 10;
+            }else{
+                estateType = 11;
+            }
         }
     }
 
