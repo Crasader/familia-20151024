@@ -291,6 +291,8 @@ bool HelloWorld::init()
         "randfather.png"
     };
     countCard = 0;
+    char commnad_name[1024];
+    getHouseInfo(commnad_name);
 
     
     //シングルタップイベント取得
@@ -308,7 +310,8 @@ bool HelloWorld::init()
     
     //ゲームを初期化する
     initGame();
-    
+
+
     return true;
 }
 
@@ -595,11 +598,8 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     const char *post_command;
     post_command = "http://127.0.0.1:3000/get_message?type=2";
     std::string recv = Get_data(post_command);
-    printf("getTargetStatus response data : %s",recv.c_str());
     
     Json* json = Json_create(recv.c_str());
-    //    std::string name = Json_getString(json, "value", "");
-    
     int eq_sts = Json_getInt(json, "equipment", 0);
 
     if (eq_sts!=3 && _sts_btle_equipment==false) {
@@ -635,8 +635,6 @@ void HelloWorld::getTargetStatus(char* result)
     const char *post_command;
     post_command = "http://127.0.0.1:3000/get_message?type=3";
     std::string recv = Get_data(post_command);
-    printf("getTargetStatus response data : %s",recv.c_str());
-
     Json* json = Json_create(recv.c_str());
 //    std::string name = Json_getString(json, "value", "");
 
@@ -645,6 +643,21 @@ void HelloWorld::getTargetStatus(char* result)
     _sts_sprite2 = Json_getInt(json, "sts2", 0);
     _emo_sprite2 = Json_getInt(json, "emo2", 0);
 
+    return;
+}
+void HelloWorld::getHouseInfo(char* result)
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=1";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    std::string firstname = Json_getString(json, "firstname", "");
+    std::string lastname = Json_getString(json, "lastname", "");
+    std::string buildtype = Json_getString(json, "buildtype", "");
+    std::string ownership = Json_getString(json, "ownership", "");
+
+    
+    
     return;
 }
 
@@ -1046,7 +1059,7 @@ void HelloWorld::showTimerLabel()
 
 void HelloWorld::update(float dt)
 {
-    char commnad_name[100];
+    char commnad_name[1024];
     _timer += dt;
     //時間の積算
     if (_timer > 6){
@@ -1054,6 +1067,4 @@ void HelloWorld::update(float dt)
         getHouseEquipmentStatus(commnad_name);
         getTargetStatus(commnad_name);
     }
-
-    
 }

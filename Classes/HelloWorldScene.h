@@ -180,7 +180,7 @@ public:
     void setTargetStatus(int val1, int emo1, int val2, int emo2);
     void getTargetStatus(char* result);
     void getHouseEquipmentStatus(char* result);
-
+    void getHouseInfo(char* result);
     
     
     
