@@ -10,6 +10,8 @@ int _sts_sprite1;
 int _sts_sprite2;
 int _emo_sprite1;
 int _emo_sprite2;
+std::string _pos_sprite1;
+std::string _pos_sprite2;
 bool _sts_btle_equipment;
 std::string FullName;
 
@@ -478,28 +480,9 @@ void HelloWorld::initGame()
     _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/12));
     this->addChild(_label2);
 
-    
-    
-    // １番目１回実行画像Runアクションスケジュール 2秒後
-    this->schedule(schedule_selector(HelloWorld::Action01), 30.0f);
-    // ２番目１回実行画像Runアクションスケジュール 4秒後
-    this->schedule(schedule_selector(HelloWorld::Action02), 30.0f);
+    this->schedule(schedule_selector(HelloWorld::Action01), 3.0f);
+    this->schedule(schedule_selector(HelloWorld::Action02), 3.0f);
 
-/*
-    //アニメーションを作成　MoveTo::create(時間, (X座標, Y座標));
-    auto action1 = MoveTo::create(45,
-                                  Vec2(winSize.width-_sprite1->getContentSize().width/2,
-                                       winSize.height/4));
-    auto action2 = MoveTo::create(30,
-                                  Vec2(winSize.width-_sprite2->getContentSize().width/2,
-                                       winSize.height/10));
-    //アニメーション開始
-    _sprite1->runAction(action1);
-    _sprite2->runAction(action2);
- */
-
-
-    
     //裏向いているカードを表示する
     showBackCards();
     
@@ -644,6 +627,9 @@ void HelloWorld::getTargetStatus(char* result)
         _emo_sprite1 = Json_getInt(json, "emo1", 0);
         _sts_sprite2 = Json_getInt(json, "sts2", 0);
         _emo_sprite2 = Json_getInt(json, "emo2", 0);
+        _pos_sprite1 = Json_getString(json, "desc1", "");
+        _pos_sprite2 = Json_getString(json, "desc2", "");
+
     }
 
     return;
@@ -698,14 +684,14 @@ void HelloWorld::Action01(float frame)
 {
     _sprite1_emotion->setTexture(emotion_status[_sts_sprite1]);
 
-    _label1->setString("外出中");
+    _label1->setString(_pos_sprite1);
 }
 
 // ２番目画像Runアクションメソッド
 void HelloWorld::Action02(float frame)
 {
     _sprite2_emotion->setTexture(emotion_status[_sts_sprite2]);
-    _label2->setString("外出中");
+    _label2->setString(_pos_sprite2);
 
 
 }

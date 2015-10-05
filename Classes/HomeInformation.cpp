@@ -115,36 +115,20 @@ void HomeInfoController::initGame()
     addChild(scroll);
     
     home_text_ext = Replace( home_text_ext, ",", "\n" );
+    home_text_ext = home_text_ext + "\n\n\nご子息の状態は";
+    home_text_ext = home_text_ext + "\n\n\n祖母の状態は";
     auto label = LabelTTF::create(home_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
-    
-    // 文字の開始位置を画面の上に合わせる
-    // 文字データは、一番左上から表示させたいので、widthは0
-    // heightはコンテンツサイズから画面縦を引いた負数にする
     label->setDimensions(Size(winSize.width,0));
     label->setDimensions
     (Size(label->getContentSize().width, label->getContentSize().height));
     // 左寄せにする
     label->setHorizontalAlignment(TextHAlignment::LEFT);
-    
     // スクロールされるラベルの調整
     scroll->setContainer(label);
     scroll->setContentOffset
     (Point(0, 0 - (label->getContentSize().height - winSize.height)));
 
-    
-/*
-    home_text_ext = Replace( home_text_ext, ",", "\n" );
-    Label *label = Label::createWithSystemFont(home_text_ext, "Marker Felt.ttf", 30);
-    label->setScale(2.0f);
-    label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    this->addChild(label);
-    
-    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/3, visibleSize.height/3));
-    
-    //アニメーションの実行
-    label->runAction(move);
-*/
     //update関数の呼び出しを開始
     scheduleUpdate();
     
