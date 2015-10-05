@@ -48,6 +48,17 @@ public:
     
     //create関数作成マクロ
     CREATE_FUNC(SmartCityController);
+
+    void showButton1();
+    void onTapButton1(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton2();
+    void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton3(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapWebButton(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    
+    void startWebView(std::string uri);
+    void getTargetStatus(char* result);
+    
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
