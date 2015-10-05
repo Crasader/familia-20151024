@@ -22,6 +22,9 @@ USING_NS_CC_EXT;
 #define VIEW_HEIGHT 320
 
 
+std::string news_text_ext;
+std::string news_uri_ext;
+
 
 
 bool NewsSprite::init()
@@ -263,6 +266,19 @@ void InfoController::getMessage(char* result)
     return;
 }
 
+void InfoController::getTargetStatus(char* result)
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=4";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    if (json) {
+        news_text_ext = Json_getString(json, "text", "");
+        news_uri_ext = Json_getString(json, "apn", "");
+    }
+    
+    return;
+}
 
 void InfoController::initGame()
 {

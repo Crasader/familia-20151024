@@ -72,6 +72,20 @@ void HomeInfoController::getMessage(char* result)
     return;
 }
 
+//  文字列を置換する
+std::string Replace( std::string String1, std::string String2, std::string String3 )
+{
+    std::string::size_type  Pos( String1.find( String2 ) );
+    
+    while( Pos != std::string::npos )
+    {
+        String1.replace( Pos, String2.length(), String3 );
+        Pos = String1.find( String2, Pos + String3.length() );
+    }
+    
+    return String1;
+}
+
 void HomeInfoController::initGame()
 {
     home_text_ext.clear();
@@ -94,6 +108,33 @@ void HomeInfoController::initGame()
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
     
+    //Scrollview
+    auto *scroll = ScrollView::create(winSize);
+    // 縦方向だけにスクロール
+    scroll->setDirection(ScrollView::Direction::VERTICAL);
+    addChild(scroll);
+    
+    home_text_ext = Replace( home_text_ext, ",", "\n" );
+    auto label = LabelTTF::create(home_text_ext, "Arial Rounded MT Bold", 36);
+    label->setColor(Color3B::WHITE);
+    
+    // 文字の開始位置を画面の上に合わせる
+    // 文字データは、一番左上から表示させたいので、widthは0
+    // heightはコンテンツサイズから画面縦を引いた負数にする
+    label->setDimensions(Size(winSize.width,0));
+    label->setDimensions
+    (Size(label->getContentSize().width, label->getContentSize().height));
+    // 左寄せにする
+    label->setHorizontalAlignment(TextHAlignment::LEFT);
+    
+    // スクロールされるラベルの調整
+    scroll->setContainer(label);
+    scroll->setContentOffset
+    (Point(0, 0 - (label->getContentSize().height - winSize.height)));
+
+    
+/*
+    home_text_ext = Replace( home_text_ext, ",", "\n" );
     Label *label = Label::createWithSystemFont(home_text_ext, "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
@@ -103,7 +144,7 @@ void HomeInfoController::initGame()
     
     //アニメーションの実行
     label->runAction(move);
-    
+*/
     //update関数の呼び出しを開始
     scheduleUpdate();
     

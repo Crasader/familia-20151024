@@ -74,7 +74,7 @@ void SmartCityController::initGame()
     this->addChild(_bg2);
     
     if(city_text_ext.size()==0){
-        city_text_ext = "本日のオススメのお店です\n店名：塚田農場 立川北口店\nジャンル：居酒屋 郷土料理\nメニュー：地頭鶏　地豚　冷汁　当地野菜\n平均価格：4000円（各種飲み放題付きコース等をご用意しております♪）\nアクセス：JR立川駅から徒歩2分/立川北駅から徒歩1分";
+        city_text_ext = "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html";
     }
     
     //Scrollview
@@ -85,10 +85,7 @@ void SmartCityController::initGame()
     
     auto label = LabelTTF::create(city_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
-    
-    // 文字の開始位置を画面の上に合わせる
-    // 文字データは、一番左上から表示させたいので、widthは0
-    // heightはコンテンツサイズから画面縦を引いた負数にする
+
     label->setDimensions(Size(winSize.width,0));
     label->setDimensions
     (Size(label->getContentSize().width, label->getContentSize().height));
@@ -102,18 +99,7 @@ void SmartCityController::initGame()
     
     showButton1();
     showButton2();
-    auto button2 = ControlButton::create(Scale9Sprite::create("hotpepper-m.png"));
-    //画像を引き延ばさない設定
-    button2->setAdjustBackgroundImage(false);
-    //ボタンの位置設定
-    button2->setPosition(winSize.width*4/5-50, button2->getContentSize().height+30);
-    button2->setScale(3.0f);
-    //ボタンをタップしたときに呼び出す関数の設定
-    button2->addTargetWithActionForControlEvents(this,
-                                                 cccontrol_selector(SmartCityController::onTapButton3),
-                                                 Control::EventType::TOUCH_UP_INSIDE);
-    addChild(button2);
-    
+
     //update関数の呼び出しを開始
     scheduleUpdate();
     
@@ -274,7 +260,7 @@ void SmartCityController::onTapButton2(Ref* sender, Control::EventType controlEv
 void SmartCityController::getTargetStatus(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=5";
+    post_command = "http://127.0.0.1:3000/get_message?type=9";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {

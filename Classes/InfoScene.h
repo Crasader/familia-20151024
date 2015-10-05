@@ -129,7 +129,7 @@ public:
     void createCard(BoxPosIndex posIndex);
     void showInitCards();
     NewsSprite* getTouchCard(cocos2d::Touch *touch);
-    
+    void getTargetStatus(char* result);
     void playEffect();
     
     //タップイベント
