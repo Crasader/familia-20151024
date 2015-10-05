@@ -13,6 +13,9 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+std::string com_text_ext;
+std::string com_uri_ext;
+
 
 Scene* ComsumeController::scene()
 {
@@ -45,6 +48,10 @@ bool ComsumeController::init()
     //イベントを追加する
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
+    com_text_ext.clear();
+    com_uri_ext.clear();
+    
+    getInfoContent();
     initGame();
     
     return true;
@@ -58,38 +65,73 @@ void ComsumeController::powerSavingMode(char* result)
     return;
 }
 
+void ComsumeController::getInfoContent()
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=10";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    if (json) {
+        com_text_ext = Json_getString(json, "text", "");
+        com_uri_ext = Json_getString(json, "apn", "");
+    }
+    
+    return;
+}
+
+//  文字列を置換する
+std::string Replace1( std::string String1, std::string String2, std::string String3 )
+{
+    std::string::size_type  Pos( String1.find( String2 ) );
+    
+    while( Pos != std::string::npos )
+    {
+        String1.replace( Pos, String2.length(), String3 );
+        Pos = String1.find( String2, Pos + String3.length() );
+    }
+    
+    return String1;
+}
+
 void ComsumeController::initGame()
 {
     char message[100];
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-    /*
-     if(getAutoDoorStatus(message)){
-     _doorStatus = 1;
-     _sprite1 = Sprite::create("normal_door.png");
-     _sprite1->setScale(1.0f);
-     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-     }else{
-     */
     _doorStatus = 0;
     _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
     _sprite1->setScale(3.5f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     //    }
     addChild(_sprite1);
-/*
-    _sprite2 = Sprite::create("house-key.png");
-    _sprite2->setScale(1.0f);
-    _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
-    addChild(_sprite2);
-*/
-    Label *label = Label::createWithSystemFont("電力消費量の予測", "Marker Felt.ttf", 30);
-    label->setScale(2.0f);
-    label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
-    this->addChild(label);
+
+    //Scrollview
+    auto *scroll = ScrollView::create(winSize);
+    // 縦方向だけにスクロール
+    scroll->setDirection(ScrollView::Direction::VERTICAL);
+    addChild(scroll);
     
-    //    platform::NativeBridge::executeNative();
+    com_text_ext = Replace1( com_text_ext, ",", "\n" );
+    if (com_text_ext.size()==0) {
+        com_text_ext = "電力消費量の予測";
+    }
+    auto label = LabelTTF::create(com_text_ext, "Arial Rounded MT Bold", 36);
+    label->setColor(Color3B::WHITE);
+    
+    // 文字の開始位置を画面の上に合わせる
+    // 文字データは、一番左上から表示させたいので、widthは0
+    // heightはコンテンツサイズから画面縦を引いた負数にする
+    label->setDimensions(Size(winSize.width,0));
+    label->setDimensions
+    (Size(label->getContentSize().width, label->getContentSize().height));
+    // 左寄せにする
+    label->setHorizontalAlignment(TextHAlignment::LEFT);
+    
+    // スクロールされるラベルの調整
+    scroll->setContainer(label);
+    scroll->setContentOffset
+    (Point(0, 0 - (label->getContentSize().height - winSize.height)));
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -160,7 +202,7 @@ void ComsumeController::startWebView()
     webView->setAnchorPoint(Point(0.5f, 0.5f));
     webView->setContentSize(Size(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
-    webView->loadURL("https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3");
+    webView->loadURL(com_text_ext);
     this->addChild(webView, 1);
 }
 

@@ -161,7 +161,7 @@ void EquipmentController::initGame()
     _doorStatus = 0;
     _sprite1 = Sprite::create("sts/light_hakunetsu.png");
     _sprite1->setScale(1.0f);
-    _sprite1->setPosition(Vec2(winSize.width/3, winSize.height*4/5));
+    _sprite1->setPosition(Vec2(winSize.width/3, winSize.height*4/5+30));
     addChild(_sprite1);
     auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
 //    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
@@ -178,7 +178,7 @@ void EquipmentController::initGame()
 
     _sprite3 = Sprite::create("sts/lgi01a201409050200.png");
     _sprite3->setScale(0.3f);
-    _sprite3->setPosition(Vec2(winSize.width/3, winSize.height*3/5));
+    _sprite3->setPosition(Vec2(winSize.width/3, winSize.height*3/5+50));
     addChild(_sprite3);
     auto button2 = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
     //    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
@@ -195,14 +195,14 @@ void EquipmentController::initGame()
 
     _sprite5 = Sprite::create("sts/kyutouki.png");
     _sprite5->setScale(1.0f);
-    _sprite5->setPosition(Vec2(winSize.width/3, winSize.height*1/5));
+    _sprite5->setPosition(Vec2(winSize.width/3, winSize.height*1/7));
     addChild(_sprite5);
     auto button3 = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_p.png"));
     //    auto button = ControlButton::create(Scale9Sprite::create("cocosui/btn_exercise02_n.png"));
     //画像を引き延ばさない設定
     button3->setAdjustBackgroundImage(false);
     //ボタンの位置設定
-    button3->setPosition(Vec2(winSize.width*4/5, winSize.height*1/5));
+    button3->setPosition(Vec2(winSize.width*4/5, winSize.height*1/7));
     button3->setScale(1.0f);
     //ボタンをタップしたときに呼び出す関数の設定
     button3->addTargetWithActionForControlEvents(this,
@@ -248,8 +248,8 @@ void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEv
     unscheduleUpdate();
     std::string post_command;
     post_command = "http://127.0.0.1:3000/send_message?type=16";
-    
-    
+    Post(post_command.c_str());
+
     //update関数の呼び出しを開始
     scheduleUpdate();
 }

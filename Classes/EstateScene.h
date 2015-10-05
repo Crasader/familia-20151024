@@ -81,7 +81,6 @@ public:
     //初期化処理を行う
     virtual bool init();
     void initGame(int type);
-    void getMessage(char* result);
     void startWebView(const char* uri);
     void showSPrite();
     void showModal();
@@ -90,6 +89,8 @@ public:
     
     //create関数作成マクロ
     CREATE_FUNC(EstateController);
+    
+    void getEstateInfoContent();
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);

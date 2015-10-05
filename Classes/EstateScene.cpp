@@ -106,22 +106,28 @@ void EstateController::showModal()
     addChild(dialog,31,30);
 }
 
-void EstateController::getMessage(char* result)
+void EstateController::getEstateInfoContent()
 {
     const char *post_command;
-    
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
-    
-    Get(post_command);
+    post_command = "http://127.0.0.1:3000/get_message?type=8";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    if (json) {
+        std::string text_ext = Json_getString(json, "text", "");
+        std::string uri_ext = Json_getString(json, "apn", "");
+        std::string latitude = Json_getString(json, "latitude", "");
+        std::string longitude = Json_getString(json, "longitude", "");
+        std::string annualincome = Json_getString(json, "annualincome", "");
+        std::string leisurecost = Json_getString(json, "leisurecost", "");
+    }
     
     return;
 }
 
 void EstateController::initGame(int type)
 {
-    char message[100];
-    getMessage(message);
     Size winSize = Director::getInstance()->getVisibleSize();
+    getEstateInfoContent();
     
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
     this->addChild(_bg2);

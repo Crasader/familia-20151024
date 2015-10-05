@@ -666,6 +666,20 @@ void HelloWorld::getHouseInfo(char* result)
     return;
 }
 
+//  文字列を置換する
+std::string HelloWorld::Replace( std::string String1, std::string String2, std::string String3 )
+{
+    std::string::size_type  Pos( String1.find( String2 ) );
+    
+    while( Pos != std::string::npos )
+    {
+        String1.replace( Pos, String2.length(), String3 );
+        Pos = String1.find( String2, Pos + String3.length() );
+    }
+    
+    return String1;
+}
+
 void HelloWorld::setTargetStatus(int val1, int emo1, int val2, int emo2)
 {
     _sts_sprite1 = val1;

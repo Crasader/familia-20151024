@@ -45,7 +45,8 @@ public:
     void showSPrite();
     void playEffect();
     void powerSavingMode(char* result);
-    
+    void getInfoContent();
+
     //create関数作成マクロ
     CREATE_FUNC(ComsumeController);
     

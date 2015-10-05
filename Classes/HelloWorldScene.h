@@ -183,6 +183,7 @@ public:
     void getHouseEquipmentStatus(char* result);
     void getHouseInfo(char* result);
     
+    std::string Replace( std::string String1, std::string String2, std::string String3 );
     
     //create関数作成マクロ
     CREATE_FUNC(HelloWorld);
