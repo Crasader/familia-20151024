@@ -1,13 +1,13 @@
 //
-//  EquipmentScene.hpp
+//  SmartCity.hpp
 //  Card13
 //
-//  Created by Hiroki Ariji on 2015/10/02.
+//  Created by Hiroki Ariji on 2015/10/05.
 //
 //
 
-#ifndef EquipmentScene_hpp
-#define EquipmentScene_hpp
+#ifndef SmartCity_hpp
+#define SmartCity_hpp
 
 #include <stdio.h>
 #include "cocos2d.h"
@@ -16,9 +16,8 @@
 #include "ui/UIVideoPlayer.h"
 #include "HelloWorldScene.h"
 
-class AudioSlider;
 
-class EquipmentController : public cocos2d::Layer
+class SmartCityController : public cocos2d::Layer
 {
 protected:
     
@@ -26,14 +25,6 @@ protected:
 public:
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
-    cocos2d::Sprite* _sprite3;
-    cocos2d::Sprite* _sprite4;
-    cocos2d::Sprite* _sprite5;
-    cocos2d::Sprite* _sprite6;
-    AudioSlider *_sliderPitch;
-    AudioSlider *_sliderPitch1;
-    AudioSlider *_sliderPitch2;
-
     
     static cocos2d::Scene* scene();
     
@@ -55,12 +46,8 @@ public:
     void playEffect();
     void powerSavingMode(char* result);
     
-    void menuStartCallback(Ref* Sender);
-    void dialogClose();
-    void showModal(int type);
-    
     //create関数作成マクロ
-    CREATE_FUNC(EquipmentController);
+    CREATE_FUNC(SmartCityController);
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -68,12 +55,8 @@ public:
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     
-    void onTapButton1(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
-    void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
-    void onTapButton3(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
-
     //毎フレーム呼ばれる関数
     void update(float dt) override;
 };
 
-#endif /* EquipmentScene_hpp */
+#endif /* SmartCity_hpp */

@@ -109,6 +109,7 @@
 		45C509001BBF6DA90029F3F8 /* sts in Resources */ = {isa = PBXBuildFile; fileRef = 45C508FF1BBF6DA90029F3F8 /* sts */; settings = {ASSET_TAGS = (); }; };
 		45C509051BC030510029F3F8 /* extensions in Resources */ = {isa = PBXBuildFile; fileRef = 45C509041BC030510029F3F8 /* extensions */; settings = {ASSET_TAGS = (); }; };
 		45C509081BC0F1190029F3F8 /* UserStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C509061BC0F1190029F3F8 /* UserStatus.cpp */; settings = {ASSET_TAGS = (); }; };
+		45C5090B1BC206D80029F3F8 /* SmartCity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C509091BC206D80029F3F8 /* SmartCity.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C7AE5D1BB7D99D00D1F391 /* FamiliaScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626A1BB70F020064519E /* UIDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C962681BB70F020064519E /* UIDialog.cpp */; settings = {ASSET_TAGS = (); }; };
 		45C9626C1BB7CFB00064519E /* btn057_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C9626B1BB7CFB00064519E /* btn057_04.png */; settings = {ASSET_TAGS = (); }; };
@@ -354,6 +355,8 @@
 		45C509041BC030510029F3F8 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = extensions; sourceTree = "<group>"; };
 		45C509061BC0F1190029F3F8 /* UserStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserStatus.cpp; sourceTree = "<group>"; };
 		45C509071BC0F1190029F3F8 /* UserStatus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UserStatus.hpp; sourceTree = "<group>"; };
+		45C509091BC206D80029F3F8 /* SmartCity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartCity.cpp; sourceTree = "<group>"; };
+		45C5090A1BC206D80029F3F8 /* SmartCity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmartCity.hpp; sourceTree = "<group>"; };
 		45C7AE5B1BB7D99D00D1F391 /* FamiliaScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FamiliaScene.cpp; sourceTree = "<group>"; };
 		45C7AE5C1BB7D99D00D1F391 /* FamiliaScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FamiliaScene.hpp; sourceTree = "<group>"; };
 		45C962681BB70F020064519E /* UIDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDialog.cpp; sourceTree = "<group>"; };
@@ -716,6 +719,8 @@
 				4599CEF71BBEC7F000840E66 /* ComsumeScene.hpp */,
 				45C509061BC0F1190029F3F8 /* UserStatus.cpp */,
 				45C509071BC0F1190029F3F8 /* UserStatus.hpp */,
+				45C509091BC206D80029F3F8 /* SmartCity.cpp */,
+				45C5090A1BC206D80029F3F8 /* SmartCity.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -1018,6 +1023,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				45663D131B99CF4300548355 /* AccelerometerViewController.mm in Sources */,
 				457699B81BB4487D0010FCDE /* ScrollMenu.cpp in Sources */,
+				45C5090B1BC206D80029F3F8 /* SmartCity.cpp in Sources */,
 				45663D1A1B99CF4300548355 /* LocationViewController.mm in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				45663D151B99CF4300548355 /* AudioViewController.mm in Sources */,

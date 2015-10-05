@@ -172,7 +172,7 @@ void EquipmentController::initGame()
     button->setScale(1.0f);
     //ボタンをタップしたときに呼び出す関数の設定
     button->addTargetWithActionForControlEvents(this,
-                                                cccontrol_selector(CookingController::onTapButton1),
+                                                cccontrol_selector(EquipmentController::onTapButton1),
                                                 Control::EventType::TOUCH_UP_INSIDE);
     addChild(button);
 
@@ -189,7 +189,7 @@ void EquipmentController::initGame()
     button2->setScale(1.0f);
     //ボタンをタップしたときに呼び出す関数の設定
     button2->addTargetWithActionForControlEvents(this,
-                                                cccontrol_selector(CookingController::onTapButton2),
+                                                cccontrol_selector(EquipmentController::onTapButton2),
                                                 Control::EventType::TOUCH_UP_INSIDE);
     addChild(button2);
 
@@ -206,7 +206,7 @@ void EquipmentController::initGame()
     button3->setScale(1.0f);
     //ボタンをタップしたときに呼び出す関数の設定
     button3->addTargetWithActionForControlEvents(this,
-                                                 cccontrol_selector(CookingController::onTapButton2),
+                                                 cccontrol_selector(EquipmentController::onTapButton3),
                                                  Control::EventType::TOUCH_UP_INSIDE);
     addChild(button3);
 
@@ -246,7 +246,8 @@ void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEv
 {
     //update関数の呼び出しを停止
     unscheduleUpdate();
-    
+    std::string post_command;
+    post_command = "http://127.0.0.1:3000/send_message?type=16";
     
     
     //update関数の呼び出しを開始
@@ -257,9 +258,14 @@ void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEv
 {
     //update関数の呼び出しを停止
     unscheduleUpdate();
-    
-    
-    
+    const float pitch = _sliderPitch->getValue();
+    const float pitch1 = _sliderPitch1->getValue();
+    const float pitch2 = _sliderPitch2->getValue();
+
+    std::string post_command;
+    post_command = "http://127.0.0.1:3000/send_message?type=2";
+    Post(post_command.c_str());
+
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
@@ -268,15 +274,57 @@ void EquipmentController::onTapButton3(Ref* sender, Control::EventType controlEv
 {
     //update関数の呼び出しを停止
     unscheduleUpdate();
-    
-    const float pitch = _sliderPitch->getValue();
-    const float pitch1 = _sliderPitch1->getValue();
-    const float pitch2 = _sliderPitch2->getValue();
-    
-    
+    showModal(0);
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
+
+void EquipmentController::menuStartCallback(Ref* Sender)
+{
+    MenuItem* menuItem = (MenuItem*)Sender;
+    log("%d",menuItem->getTag());
+    switch(menuItem->getTag()){
+        case 1:
+            break;
+        case 2:
+            break;
+    }
+    dialogClose();
+}
+void EquipmentController::dialogClose()
+{
+    UIDialog* dialog = static_cast<UIDialog*>(getChildByTag(30));
+    dialog->close();
+}
+
+void EquipmentController::showModal(int type)
+{
+    std::string title;
+    std::string content1;
+    std::string content2;
+    switch (type) {
+        case 0:
+            title = "他の機能を利用する";
+            content1 = "お知らせです";
+            content2 = "この機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            break;
+        case 1:
+            title = "メインへ戻る";
+            content1 = "工事中";
+            content2 = "遷移先の機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            break;
+            
+        default:
+            break;
+    }
+    cocos2d::ccMenuCallback action = CC_CALLBACK_1(EquipmentController::menuStartCallback,this);
+    std::vector<UIDialogButton*> buttons = {
+        new UIDialogButton(title,action,1),
+    };
+    auto* dialog = UIDialog::create(content1,content2, buttons);
+    addChild(dialog,31,30);
+}
+
 
 
 void EquipmentController::playEffect()

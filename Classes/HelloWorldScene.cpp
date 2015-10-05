@@ -28,13 +28,13 @@ bool CardSprite::init()
         "ニュース",
         "書籍情報",
         "ビデオ\nメッセージ",
-        "家の状態を\nお知らせ",
+        "家のこと\nお知らせ",
         "住宅情報",
-        "活動行動",
+        "ヘルスケア",
         "蓄電情報",
         "消費電力\nモード",
-        "設備機器\n情報",
-        "お出かけ\nまとめ処理",
+        "リモコン",
+        "まとめて\n戸締り",
         "帰宅支援\nGood\nTiming",
         "玄関カギ"
     };
@@ -881,7 +881,10 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
     switch(indetifier){
     case 1: // 自治体
             // ToDo 今回はしんどいので実装しない
-            showModal(0);
+            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
+                                                                                SmartCityController::scene(),
+                                                                                ccc3(0, 0, 0)));
+            
         break;
     case 2: // 料理、外食サイト
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
@@ -921,7 +924,7 @@ void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
         break;
     case 8: // 住宅情報　プロジぎょしゃへの送客
         CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(2.0f,
-                                                                            EstateController::scene(),
+                                                                            EstateController::scene(estateType),
                                                                             ccc3(0, 0, 0)));
         break;
     case 9: // 万歩計スタート & ストップ　行動履歴を取得するため

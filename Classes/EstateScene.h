@@ -75,12 +75,8 @@ protected:
     
 public:
     cocos2d::Sprite* _sprite1;
-
-    static cocos2d::Scene* createScene();
-    static cocos2d::Scene* scene();
-    
+    static cocos2d::Scene* scene(int type);
     int user_status;
-    
 
     //初期化処理を行う
     virtual bool init();

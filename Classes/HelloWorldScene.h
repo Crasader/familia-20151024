@@ -24,6 +24,8 @@
 #include "PowerSave.hpp"
 #include "EquipmentScene.hpp"
 #include "ComsumeScene.hpp"
+#include "SmartCity.hpp"
+
 
 using namespace cocos2d::extension;
 
@@ -141,7 +143,6 @@ protected:
     std::vector<std::string> family_menber;
     std::vector<int> card_sequence;
     int countCard;
-
     
     void initCards(); //カードを初期化する
     Card getCard(); //カードを取得する
@@ -181,7 +182,6 @@ public:
     void getTargetStatus(char* result);
     void getHouseEquipmentStatus(char* result);
     void getHouseInfo(char* result);
-    
     
     
     //create関数作成マクロ

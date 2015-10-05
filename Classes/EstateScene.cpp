@@ -13,28 +13,18 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-
-Scene* EstateController::createScene()
+int estate_type;
+Scene* EstateController::scene(int type)
 {
     auto scene = Scene::create();
     auto layer = EstateController::create();
     
     scene->addChild(layer);
+    estate_type = type;
     
     return scene;
 }
 
-Scene* EstateController::scene()
-{
-    auto scene = Scene::create();
-    auto layer = EstateController::create();
-    
-    scene->addChild(layer);
-    
-    return scene;
-}
-
-//HelloWorldクラスのレイヤーの初期化処理を行う
 bool EstateController::init()
 {
     if (!Layer::init())
@@ -98,15 +88,21 @@ void EstateController::dialogClose()
 void EstateController::showModal()
 {
     cocos2d::ccMenuCallback action = CC_CALLBACK_1(EstateController::menuStartCallback,this);
-    std::vector<UIDialogButton*> buttons = {
-        new UIDialogButton("住宅相談",action,1),
-        new UIDialogButton("住宅基礎知識について",action,2),
-        new UIDialogButton("賃貸住宅D-Room",action,3),
-        new UIDialogButton("住宅相談（機能面）",action,4),
-        new UIDialogButton("住宅リフォーム（機能面）",action,5),
-        new UIDialogButton("住宅リフォーム（金額面）",action,6),
-    };
-    auto* dialog = UIDialog::create("住宅に関するお知らせです","興味のある案内を選択しましょう", buttons);
+    std::vector<UIDialogButton*> buttons;
+    if (estate_type < 10) {
+        buttons = {
+            new UIDialogButton("住宅基礎知識について",action,2),
+            new UIDialogButton("住宅リフォーム（機能面）",action,5),
+            new UIDialogButton("住宅リフォーム（金額面）",action,6),
+        };
+    }else{
+        buttons = {
+            new UIDialogButton("住宅相談",action,1),
+            new UIDialogButton("住宅相談（機能面）",action,4),
+            new UIDialogButton("賃貸住宅D-Room",action,3),
+        };
+    }
+    auto* dialog = UIDialog::create("住宅に関するプロに出会えます","", buttons);
     addChild(dialog,31,30);
 }
 
@@ -144,6 +140,7 @@ void EstateController::initGame(int type)
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
 */
+
     std::string wording;
     switch (type) {
         case 1:
@@ -174,16 +171,39 @@ void EstateController::initGame(int type)
         default:
             break;
     }
-    Label *label = Label::createWithSystemFont(wording, "Marker Felt.ttf", 24);
     
-    label->setScale(1.0f);
-    label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    this->addChild(label);
+//    Label *label = Label::createWithSystemFont(wording, "Marker Felt.ttf", 24);
+//    label->setScale(1.5f);
+//    label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+//    this->addChild(label);
+
     
-    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/2, visibleSize.height/3));
+    //Scrollview
+    auto *scroll = ScrollView::create(winSize);
+    // 縦方向だけにスクロール
+    scroll->setDirection(ScrollView::Direction::VERTICAL);
+    addChild(scroll);
     
-    //アニメーションの実行
-    label->runAction(move);
+    auto labelcont = LabelTTF::create(wording, "Arial Rounded MT Bold", 36);
+    labelcont->setColor(Color3B::WHITE);
+    
+    // 文字の開始位置を画面の上に合わせる
+    // 文字データは、一番左上から表示させたいので、widthは0
+    // heightはコンテンツサイズから画面縦を引いた負数にする
+    labelcont->setDimensions(Size(winSize.width,0));
+    labelcont->setDimensions
+    (Size(labelcont->getContentSize().width, labelcont->getContentSize().height));
+    // 左寄せにする
+    labelcont->setHorizontalAlignment(TextHAlignment::LEFT);
+    
+    // スクロールされるラベルの調整
+    scroll->setContainer(labelcont);
+    scroll->setContentOffset
+    (Point(0, 0 - (labelcont->getContentSize().height - winSize.height)));
+    
+//    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/2, visibleSize.height*13/15));
+//    //アニメーションの実行
+//    labelcont->runAction(move);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
