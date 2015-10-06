@@ -61,17 +61,6 @@ bool HomeInfoController::init()
     return true;
 }
 
-void HomeInfoController::getMessage(char* result)
-{
-    const char *post_command;
-    
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
-    
-    Get(post_command);
-    
-    return;
-}
-
 //  文字列を置換する
 std::string Replace( std::string String1, std::string String2, std::string String3 )
 {
@@ -91,8 +80,6 @@ void HomeInfoController::initGame()
     home_text_ext.clear();
     home_uri_ext.clear();
     
-//    char message[100];
-//    getMessage(message);
     getHomeInfoContent();
     Size winSize = Director::getInstance()->getVisibleSize();
     
