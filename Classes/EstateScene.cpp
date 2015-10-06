@@ -128,13 +128,10 @@ void EstateController::initGame(int type)
 {
     Size winSize = Director::getInstance()->getVisibleSize();
     getEstateInfoContent();
-    
+
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
     this->addChild(_bg2);
 
-    //画面サイズを取得
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    
     _sprite1 = Sprite::create("sts/room_unit_bath.png");
     _sprite1->setScale(3.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
@@ -146,7 +143,6 @@ void EstateController::initGame(int type)
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
 */
-
     std::string wording;
     switch (type) {
         case 1:
@@ -173,49 +169,28 @@ void EstateController::initGame(int type)
             wording = "住宅リフォーム（金額面）";
             user_status = KEEP_PROCE100_BUILDING;
             break;
-            
         default:
             break;
     }
-    
-//    Label *label = Label::createWithSystemFont(wording, "Marker Felt.ttf", 24);
-//    label->setScale(1.5f);
-//    label->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-//    this->addChild(label);
 
-    
     //Scrollview
     auto *scroll = ScrollView::create(winSize);
     // 縦方向だけにスクロール
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
-    
+
     auto labelcont = LabelTTF::create(wording, "Arial Rounded MT Bold", 36);
     labelcont->setColor(Color3B::WHITE);
-    
-    // 文字の開始位置を画面の上に合わせる
-    // 文字データは、一番左上から表示させたいので、widthは0
-    // heightはコンテンツサイズから画面縦を引いた負数にする
     labelcont->setDimensions(Size(winSize.width,0));
-    labelcont->setDimensions
-    (Size(labelcont->getContentSize().width, labelcont->getContentSize().height));
-    // 左寄せにする
+    labelcont->setDimensions(Size(labelcont->getContentSize().width, labelcont->getContentSize().height));
     labelcont->setHorizontalAlignment(TextHAlignment::LEFT);
-    
+
     // スクロールされるラベルの調整
     scroll->setContainer(labelcont);
-    scroll->setContentOffset
-    (Point(0, 0 - (labelcont->getContentSize().height - winSize.height)));
-    
-//    auto move = MoveTo::create(MOVING_TIME, Vec2(visibleSize.width/2, visibleSize.height*13/15));
-//    //アニメーションの実行
-//    labelcont->runAction(move);
-    
+    scroll->setContentOffset(Point(0, 0 - (labelcont->getContentSize().height - winSize.height)));
     //update関数の呼び出しを開始
     scheduleUpdate();
-    
 }
-
 
 void EstateController::startWebView(const char* uri)
 {

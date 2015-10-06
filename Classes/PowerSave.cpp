@@ -64,26 +64,18 @@ void PowersaveController::initGame()
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-/*
-    if(getAutoDoorStatus(message)){
-        _doorStatus = 1;
-        _sprite1 = Sprite::create("normal_door.png");
-        _sprite1->setScale(1.0f);
-        _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-    }else{
-*/
-        _doorStatus = 0;
-        _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
-        _sprite1->setScale(1.0f);
-        _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-//    }
-    
+
+    _doorStatus = 0;
+    _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
+    _sprite1->setScale(2.0f);
+    _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
     addChild(_sprite1);
+/*
     _sprite2 = Sprite::create("house-key.png");
     _sprite2->setScale(1.0f);
     _sprite2->setPosition(Vec2(winSize.width/2-150, winSize.height/2));
     addChild(_sprite2);
-    
+*/
     Label *label = Label::createWithSystemFont("省電力モード切り替え", "Marker Felt.ttf", 30);
     label->setScale(2.0f);
     label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));

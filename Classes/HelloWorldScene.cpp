@@ -10,6 +10,9 @@ int _sts_sprite1;
 int _sts_sprite2;
 int _emo_sprite1;
 int _emo_sprite2;
+std::string _temp_indoor;
+std::string _temp_outdoor;
+std::string _temp_air;
 std::string _pos_sprite1;
 std::string _pos_sprite2;
 bool _sts_btle_equipment;
@@ -480,6 +483,11 @@ void HelloWorld::initGame()
     _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/12));
     this->addChild(_label2);
 
+    _label3 = Label::createWithSystemFont("- - -", "Marker Felt.ttf", 14);
+    _label3->setScale(2.0f);
+    _label3->setPosition(Vec2(winSize.width/2, winSize.height/25));
+    this->addChild(_label3);
+    
     this->schedule(schedule_selector(HelloWorld::Action01), 3.0f);
     this->schedule(schedule_selector(HelloWorld::Action02), 3.0f);
 
@@ -616,6 +624,7 @@ std::vector<std::string> split(const std::string &str, char sep)
     }
     return v;
 }
+
 void HelloWorld::getTargetStatus(char* result)
 {
     const char *post_command;
@@ -630,6 +639,14 @@ void HelloWorld::getTargetStatus(char* result)
         _pos_sprite1 = Json_getString(json, "desc1", "");
         _pos_sprite2 = Json_getString(json, "desc2", "");
 
+    }
+    post_command = "http://127.0.0.1:3000/get_message?type=12";
+    recv = Get_data(post_command);
+    json = Json_create(recv.c_str());
+    if (json) {
+        _temp_indoor = Json_getString(json, "indor_temp", "");
+        _temp_outdoor = Json_getString(json, "out_temp", "");
+        _temp_air = Json_getString(json, "elec_temp", "");
     }
 
     return;
@@ -707,7 +724,14 @@ void HelloWorld::Action02(float frame)
     _sprite2_emotion->setTexture(emotion_status[_sts_sprite2]);
     _label2->setString(_pos_sprite2);
 
-
+    std::ostringstream stream1;
+    std::ostringstream stream2;
+    std::ostringstream stream3;
+    stream1 << _temp_indoor;
+    stream2 << _temp_outdoor;
+    stream3 << _temp_air;
+    std::string temp = "室内：" + stream1.str() + "度：室外：" + stream2.str() + "度設定温度：" + stream2.str() + "度";
+    _label3->setString(temp);
 }
 
 CardSprite* HelloWorld::getTouchCard(Touch *touch)

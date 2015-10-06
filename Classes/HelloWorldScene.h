@@ -137,6 +137,7 @@ protected:
     cocos2d::Sprite* _sprite2_emotion;
     cocos2d::Label* _label1;
     cocos2d::Label* _label2;
+    cocos2d::Label* _label3;
     
     int _target_status[2];
     std::vector<std::string> emotion_status;
