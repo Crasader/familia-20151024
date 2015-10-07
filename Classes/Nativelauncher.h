@@ -17,6 +17,7 @@ class NativeLauncher
 public:
     static void launchNative();
     static void launchMotionController(int flag);
+    static void launchLocationController(int flag);
 
     static void connectPhamiliaPhone();
     static void disconnectPhamiliaPhone();

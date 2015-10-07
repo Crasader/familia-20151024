@@ -98,6 +98,8 @@ void ReserveRetunrHomeController::initGame()
 void ReserveRetunrHomeController::showSPrite()
 {
     char message[100];
+
+    NativeLauncher::launchLocationController(0);
     
     reserveEquipment(message);
     

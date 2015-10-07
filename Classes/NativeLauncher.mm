@@ -29,6 +29,15 @@ void NativeLauncher::launchMotionController(int flag)
     }
 }
 
+void NativeLauncher::launchLocationController(int flag)
+{
+    LocationViewController *locationManager = [[LocationViewController alloc] init];
+    if (flag == 0){
+        [locationManager startLocationManager];
+    }else{
+        [locationManager stopLocationManager];
+    }
+}
 
 void NativeLauncher::connectPhamiliaPhone()
 {

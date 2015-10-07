@@ -287,12 +287,12 @@ static AppDelegate s_sharedApplication;
      */
      //We don't need to call this method any more. It will interupt user defined game pause&resume logic
     /* cocos2d::Director::getInstance()->resume(); */
-
+/*
     // 位置情報コントローラ
     self.locationManager = [[LocationViewController alloc] init];
     [self.locationManager startLocationManager];
     //    [self.locationManager stopLocationManager];
-
+*/
     //加速度センサーを定義
     self.accelerometerManager = [[AccelerometerViewController alloc] init];
     [self.accelerometerManager control_accelerometer];
