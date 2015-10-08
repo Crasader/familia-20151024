@@ -371,7 +371,18 @@ void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
     }
 
     
+    
+    // カラーコーディネート
+    // btn_to01.gif
+    // http://www.daiwahouse.co.jp/column/lifestyle/coordinate/part02.html
 
+    
+    // メルマガ登録
+    // https://letter.daiwahouse.co.jp/form/31307-1070/
+
+
+    
+    
     startWebView(uri);
     return;
 }
