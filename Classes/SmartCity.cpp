@@ -16,6 +16,7 @@ USING_NS_CC_EXT;
 
 std::string city_text_ext;
 std::string city_uri_ext;
+int city_info_type;
 
 
 Scene* SmartCityController::scene()
@@ -189,7 +190,7 @@ void SmartCityController::onTapButton1(Ref* sender, Control::EventType controlEv
         city_uri_ext = "http://www.hotpepper.jp/";
     }
     startWebView(city_uri_ext);
-    
+    postUserInterest(city_info_type);
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
@@ -246,7 +247,19 @@ void SmartCityController::getTargetStatus(char* result)
     if (json) {
         city_text_ext = Json_getString(json, "text", "");
         city_uri_ext = Json_getString(json, "apn", "");
+        city_info_type = Json_getInt(json, "interest", 0);
     }
+    
+    return;
+}
+
+void SmartCityController::postUserInterest(int userType)
+{
+    std::string post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=65&userType=" + std::to_string(userType);
+    
+    Post(post_command.c_str());
     
     return;
 }

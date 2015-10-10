@@ -45,7 +45,7 @@ public:
     
     void startWebView(std::string uri);
     void getTargetStatus(char* result);
-    
+    void postUserInterest(int userType);
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);

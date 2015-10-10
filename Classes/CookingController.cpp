@@ -12,6 +12,7 @@ USING_NS_CC_EXT;
 
 std::string cooking_text_ext;
 std::string cooking_uri_ext;
+int cooking_info_type;
 
 
 Scene* CookingController::scene()
@@ -165,6 +166,7 @@ void CookingController::onTapButton3(Ref* sender, Control::EventType controlEven
         cooking_uri_ext = "http://www.hotpepper.jp/";
     }
     startWebView(cooking_uri_ext);
+    postUserInterest(cooking_info_type);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -222,8 +224,20 @@ void CookingController::getTargetStatus(char* result)
     if (json) {
         cooking_text_ext = Json_getString(json, "text", "");
         cooking_uri_ext = Json_getString(json, "apn", "");
+        cooking_info_type = Json_getInt(json, "interest", 0);
     }
 
+    return;
+}
+
+void CookingController::postUserInterest(int userType)
+{
+    std::string post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=67&userType=" + std::to_string(userType);
+    
+    Post(post_command.c_str());
+    
     return;
 }
 

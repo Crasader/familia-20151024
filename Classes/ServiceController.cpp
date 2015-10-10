@@ -15,7 +15,7 @@ USING_NS_CC_EXT;
 
 std::string service_text_ext;
 std::string service_uri_ext;
-
+int service_info_type;
 
 Scene* ServiceController::scene()
 {
@@ -143,7 +143,7 @@ void ServiceController::onTapButton1(Ref* sender, Control::EventType controlEven
         service_uri_ext = "http://hon.jp/search/3.0/null/883546/";
     }
     startWebView(service_uri_ext);
-    
+    postUserInterest(service_info_type);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -200,7 +200,19 @@ void ServiceController::getServiceContent()
     if (json) {
         service_text_ext = Json_getString(json, "text", "");
         service_uri_ext = Json_getString(json, "apn", "");
+        service_info_type = Json_getInt(json, "interest", 0);
     }
+    
+    return;
+}
+
+void ServiceController::postUserInterest(int userType)
+{
+    std::string post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=66&userType=" + std::to_string(userType);
+    
+    Post(post_command.c_str());
     
     return;
 }
