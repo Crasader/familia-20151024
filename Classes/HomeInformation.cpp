@@ -101,9 +101,6 @@ void HomeInfoController::initGame()
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    home_text_ext = Replace( home_text_ext, ",", "\n" );
-    home_text_ext = home_text_ext + "\n\n\nご子息の状態は";
-    home_text_ext = home_text_ext + "\n\n\n祖母の状態は";
     auto label = LabelTTF::create(home_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     label->setDimensions(Size(winSize.width,0));
@@ -121,6 +118,30 @@ void HomeInfoController::initGame()
     
 }
 
+/*
+emotion_status =
+{
+    "sumairu.png", // スマイル（通常）
+    "akuma.png", // 怒り
+    "ase.png",  // 汗（緊張）
+    "kiran.png", // キラーん（やる気）
+    "komaru.png", // 困り（トラブル）
+    "naki.png", // 泣き
+    "tehehe.png", // てへへ（いたずらしちゃった）
+    "tenshi.png", // 天使　（絶好調）
+    "tere.png", // てれる
+    "yattane.png" // やったね！
+};
+family_menber =
+{
+    "mother.png",
+    "grandmother.png",
+    "boy.png",
+    "brother.png",
+    "randfather.png"
+};
+*/
+
 void HomeInfoController::getHomeInfoContent()
 {
     const char *post_command;
@@ -130,6 +151,105 @@ void HomeInfoController::getHomeInfoContent()
     if (json) {
         home_text_ext = Json_getString(json, "text", "");
         home_uri_ext = Json_getString(json, "apn", "");
+        
+        home_text_ext = Replace( home_text_ext, ",", "\n" );
+        home_text_ext = home_text_ext + "\n\n\nご子息は現在" + Json_getString(json, "desc1", "") + "です\n";
+        int sts_sprite1 = Json_getInt(json, "sts1", 0);
+        switch (sts_sprite1) {
+            case 0:
+                // "sumairu.png", // スマイル（通常）
+                home_text_ext = home_text_ext + "今日はご機嫌のようですね！\n";
+                break;
+            case 1:
+                // "akuma.png", // 怒り
+                home_text_ext = home_text_ext + "今日は何か嫌なことがあったようです。\n";
+                break;
+            case 2:
+                // "ase.png",  // 汗（緊張）
+                home_text_ext = home_text_ext + "現在、大変緊張しているような状態のようです。\n";
+                break;
+            case 3:
+                // "kiran.png", // キラーん（やる気）
+                home_text_ext = home_text_ext + "現在、やる気のようですね！\n";
+                break;
+            case 4:
+                // "komaru.png", // 困り（トラブル）
+                home_text_ext = home_text_ext + "今、何か困っているようです！\n";
+                break;
+            case 5:
+                // "naki.png", // 泣き
+                home_text_ext = home_text_ext + "今、泣いているようです。そっとしておいてあげましょう。\n";
+                break;
+            case 6:
+                // "tehehe.png", // てへへ（いたずらしちゃった）
+                home_text_ext = home_text_ext + "何か、いたずらをしてしまったようですね。\n";
+                break;
+            case 7:
+                // "tehehe.png", // 天使　（絶好調）
+                home_text_ext = home_text_ext + "今日は調子がいいようですね！\n";
+                break;
+            case 8:
+                // "tehehe.png", // てれる
+                home_text_ext = home_text_ext + "今日は何かいいことあったようですね\n";
+                break;
+            case 9:
+                // "tehehe.png", // やったね！
+                home_text_ext = home_text_ext + "大成功のようです！\n";
+                break;
+            default:
+                break;
+        }
+        int emo_sprite1 = Json_getInt(json, "emo1", 0);
+
+        
+        home_text_ext = home_text_ext + "\n\n\n祖母は現在" + Json_getString(json, "desc2", "") + "です\n";
+        int sts_sprite2 = Json_getInt(json, "sts2", 0);
+        switch (sts_sprite2) {
+            case 0:
+                // "sumairu.png", // スマイル（通常）
+                home_text_ext = home_text_ext + "今日はご機嫌のようですね！\n";
+                break;
+            case 1:
+                // "akuma.png", // 怒り
+                home_text_ext = home_text_ext + "今日は何か嫌なことがあったようです\n";
+                break;
+            case 2:
+                // "ase.png",  // 汗（緊張）
+                home_text_ext = home_text_ext + "現在、大変緊張しているような状態のようです\n";
+                break;
+            case 3:
+                // "kiran.png", // キラーん（やる気）
+                home_text_ext = home_text_ext + "現在、やる気のようですね！\n";
+                break;
+            case 4:
+                // "komaru.png", // 困り（トラブル）
+                home_text_ext = home_text_ext + "今、何か困っているようです！電話してあげましょう！\n";
+                break;
+            case 5:
+                // "naki.png", // 泣き
+                home_text_ext = home_text_ext + "今、泣いているようです。さりげなく話を聞いてあげましょう。\n";
+                break;
+            case 6:
+                // "tehehe.png", // てへへ（いたずらしちゃった）
+                home_text_ext = home_text_ext + "何か、いたずらをしてしまったようですね。たいしたことなければいいのですが。\n";
+                break;
+            case 7:
+                // "tehehe.png", // 天使　（絶好調）
+                home_text_ext = home_text_ext + "今日は調子がいいようですね！\n";
+                break;
+            case 8:
+                // "tehehe.png", // てれる
+                home_text_ext = home_text_ext + "今日は何かいいことあったようですね\n";
+                break;
+            case 9:
+                // "tehehe.png", // やったね！
+                home_text_ext = home_text_ext + "大成功のようです！\n";
+                break;
+            default:
+                break;
+        }
+        int emo_sprite2 = Json_getInt(json, "emo2", 0);
+
     }
     
     return;

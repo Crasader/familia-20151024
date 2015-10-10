@@ -61,9 +61,20 @@ void CardSprite::onEnter()
 
 std::string CardSprite::getFileName(CardType cardType)
 {
+    
+    std::random_device device;
+    
+    std::mt19937 mt(device());
+    std::default_random_engine _engine = std::default_random_engine(mt());
+    
+    //取り出す値を設定(int型)
+    std::discrete_distribution<int>  distForNumbers = std::discrete_distribution<int>{0,1,2,3};
+    //実際に利用
+    int index = distForNumbers(_engine);
+
     //ファイル名の取得
     std::string filename;
-    switch (cardType)
+    switch (index)
     {
         case Clubs: filename = "card_clubs.png"; break;
         case Diamonds: filename = "card_diamonds.png"; break;
