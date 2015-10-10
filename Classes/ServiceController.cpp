@@ -183,7 +183,9 @@ void ServiceController::onTapButton2(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    
+    service_text_ext.clear();
+    service_uri_ext.clear();
+    getServiceContent();    
     
     //update関数の呼び出しを開始
     scheduleUpdate();

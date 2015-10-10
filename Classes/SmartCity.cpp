@@ -54,14 +54,6 @@ bool SmartCityController::init()
     return true;
 }
 
-void SmartCityController::powerSavingMode(char* result)
-{
-    const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=52";
-    Post(post_command);
-    return;
-}
-
 void SmartCityController::initGame()
 {
     city_text_ext.clear();
@@ -118,7 +110,6 @@ void SmartCityController::showSPrite()
 {
     char message[100];
     Size winSize = Director::getInstance()->getVisibleSize();
-    powerSavingMode(message);
     
     this->removeChild(_sprite1);
     if(_doorStatus == 0){
@@ -203,20 +194,6 @@ void SmartCityController::onTapButton1(Ref* sender, Control::EventType controlEv
     scheduleUpdate();
 }
 
-void SmartCityController::onTapButton3(Ref* sender, Control::EventType controlEvent)
-{
-    //update関数の呼び出しを停止
-    unscheduleUpdate();
-    
-    if (city_uri_ext.size()==0) {
-        city_uri_ext = "http://www.hotpepper.jp/";
-    }
-    startWebView(city_uri_ext);
-    
-    //update関数の呼び出しを開始
-    scheduleUpdate();
-}
-
 void SmartCityController::showButton2()
 {
     Size winSize = Director::getInstance()->getVisibleSize();
@@ -251,7 +228,10 @@ void SmartCityController::onTapButton2(Ref* sender, Control::EventType controlEv
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    
+    city_text_ext.clear();
+    city_uri_ext.clear();
+    char commnad_name[2];
+    getTargetStatus(commnad_name);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -269,20 +249,6 @@ void SmartCityController::getTargetStatus(char* result)
     }
     
     return;
-}
-
-void SmartCityController::onTapWebButton(Ref* sender, Control::EventType controlEvent)
-{
-    //update関数の呼び出しを停止
-    unscheduleUpdate();
-    
-    if (city_uri_ext.size()==0) {
-        city_uri_ext = "http://www.hotpepper.jp/";
-    }
-    startWebView(city_uri_ext);
-    
-    //update関数の呼び出しを開始
-    scheduleUpdate();
 }
 
 void SmartCityController::startWebView(std::string uri)

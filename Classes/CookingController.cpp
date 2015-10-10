@@ -204,7 +204,10 @@ void CookingController::onTapButton2(Ref* sender, Control::EventType controlEven
     //update関数の呼び出しを停止
     unscheduleUpdate();
     
-    
+    cooking_text_ext.clear();
+    cooking_uri_ext.clear();
+    char commnad_name[2];
+    getTargetStatus(commnad_name);
     
     //update関数の呼び出しを開始
     scheduleUpdate();

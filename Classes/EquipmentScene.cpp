@@ -368,7 +368,6 @@ void EquipmentController::showSPrite()
 {
     char message[100];
     Size winSize = Director::getInstance()->getVisibleSize();
-    powerSavingMode(message);
     
     this->removeChild(_sprite1);
     if(_doorStatus == 0){
