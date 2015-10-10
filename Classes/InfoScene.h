@@ -14,6 +14,13 @@
 #include "extensions/cocos-ext.h"
 #include "SimpleAudioEngine.h"
 
+#include "json/rapidjson.h"
+#include "json/document.h"
+#include "json/stringbuffer.h"
+#include "json/writer.h"
+
+#include <string.h>
+
 #include "NetworkLibCurl.h"
 #include "ui/UIVideoPlayer.h"
 #include "ui/UIWebView.h"
@@ -21,6 +28,7 @@
 #include "UIScene.h"
 #include "ui/UIScrollView.h"
 #include "Nativelauncher.h"
+
 
 
 
@@ -56,8 +64,7 @@ class NewsSprite : public cocos2d::Sprite
 protected:
     std::vector<NewsBox> _cards; //カード情報
     NewsSprite* _firstCard; //最初にタップされたカード
-    std::vector<std::string> news_type_name;
-    std::vector<std::string> estate_site_type_name;
+//    std::vector<std::string> news_type_name;
 
 public:
     virtual bool init(); //初期化処理
@@ -129,7 +136,8 @@ public:
     void createCard(BoxPosIndex posIndex);
     void showInitCards();
     NewsSprite* getTouchCard(cocos2d::Touch *touch);
-    void getTargetStatus(char* result);
+    void getTargetStatus();
+    void getTargetUri();
     void playEffect();
     
     //タップイベント

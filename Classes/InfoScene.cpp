@@ -22,9 +22,11 @@ USING_NS_CC_EXT;
 #define VIEW_HEIGHT 320
 
 
-std::string news_text_ext;
-std::string news_uri_ext;
-
+//std::string news_text_ext;
+//std::string news_uri_ext;
+int interest_type;
+std::vector<std::string> news_type_name;
+std::vector<std::string> news_type_uri;
 
 
 bool NewsSprite::init()
@@ -33,25 +35,6 @@ bool NewsSprite::init()
     {
         return false;
     }
-    
-    news_type_name =
-    {
-        "ビジネス＋ITニュース", // http://www.sbbit.jp/
-        "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
-        "スポーツナビ",  // http://sports.yahoo.co.jp/
-        "ニュース",
-        "書籍情報",
-        "ビデオメッセージ",
-        "メッセージ",
-        "住宅情報",
-        "yahooニュース"
-    };
-    
-    estate_site_type_name =
-    {
-        "テンポス", // http://www.temposmart.jp/
-        
-    };
 
     return true;
 }
@@ -255,26 +238,42 @@ bool InfoController::init()
     return true;
 }
 
-void InfoController::getMessage(char* result)
-{
-    const char *post_command;
-    
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
-    
-    Post(post_command);
-    
-    return;
-}
-
-void InfoController::getTargetStatus(char* result)
+void InfoController::getTargetStatus()
 {
     const char *post_command;
     post_command = "http://127.0.0.1:3000/get_message?type=4";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
-        news_text_ext = Json_getString(json, "text", "");
-        news_uri_ext = Json_getString(json, "apn", "");
+        news_type_name.push_back(Json_getString(json, "text1", ""));
+        news_type_name.push_back(Json_getString(json, "text2", ""));
+        news_type_name.push_back(Json_getString(json, "text3", ""));
+        news_type_name.push_back(Json_getString(json, "text4", ""));
+        news_type_name.push_back(Json_getString(json, "text5", ""));
+        news_type_name.push_back(Json_getString(json, "text6", ""));
+        news_type_name.push_back(Json_getString(json, "text7", ""));
+        news_type_name.push_back(Json_getString(json, "text8", ""));
+        news_type_name.push_back(Json_getString(json, "text9", ""));
+    }
+
+    return;
+}
+void InfoController::getTargetUri()
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=13";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    if (json) {
+        news_type_uri.push_back(Json_getString(json, "uri1", ""));
+        news_type_uri.push_back(Json_getString(json, "uri2", ""));
+        news_type_uri.push_back(Json_getString(json, "uri3", ""));
+        news_type_uri.push_back(Json_getString(json, "uri4", ""));
+        news_type_uri.push_back(Json_getString(json, "uri5", ""));
+        news_type_uri.push_back(Json_getString(json, "uri6", ""));
+        news_type_uri.push_back(Json_getString(json, "uri7", ""));
+        news_type_uri.push_back(Json_getString(json, "uri8", ""));
+        news_type_uri.push_back(Json_getString(json, "uri9", ""));
     }
     
     return;
@@ -285,35 +284,31 @@ void InfoController::initGame()
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
-
-    news_type_name =
+    news_type_name.clear();
+    news_type_uri.clear();
+    getTargetStatus();
+    getTargetUri();
+    if(news_type_name.size() == 0)
     {
-        "ビジネス＋ITニュース", // http://www.sbbit.jp/
-        "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
-        "スポーツナビ",  // http://sports.yahoo.co.jp/
-        "ニュース",
-        "書籍情報",
-        "ビデオメッセージ",
-        "メッセージ",
-        "住宅情報",
-        "yahooニュース"
-    };
-    news_type_uri =
-    {
-        "http://www.sbbit.jp/",
-        "http://business.nikkeibp.co.jp/?rt=nocnt",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/",
-        "http://sports.yahoo.co.jp/"
-    };
+        news_type_name =
+        {
+            "ビジネス＋ITニュース", // http://www.sbbit.jp/
+            "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
+            "スポーツナビ",  // http://sports.yahoo.co.jp/
+            "ニュース",
+            "書籍情報",
+            "ビデオメッセージ",
+            "メッセージ",
+            "住宅情報",
+            "yahooニュース"
+        };
+    }
 
     for (int i = 0; i < news_type_name.size(); i++) {
         showButton1(news_type_name[i], i);
     }
+    
+    
     
 //    initCards();
 //    showInitCards();
@@ -329,7 +324,7 @@ void InfoController::startWebView(int type)
     webView->setContentSize(Size(visibleSize.width * 0.85f, visibleSize.height * 0.85f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
     
-    webView->loadURL("http://sports.yahoo.co.jp/");
+    webView->loadURL(news_type_uri[type]);
 
     this->addChild(webView, 1);
 }
