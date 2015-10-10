@@ -131,6 +131,7 @@ protected:
     CardSprite* _firstCard; //最初にタップされたカード
     float _timer; //経過時間
 
+   
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
     cocos2d::Sprite* _sprite1_emotion;
@@ -185,7 +186,7 @@ public:
     void getHouseInfo(char* result);
     
     std::string Replace( std::string String1, std::string String2, std::string String3 );
-    
+
     //create関数作成マクロ
     CREATE_FUNC(HelloWorld);
 
@@ -198,5 +199,9 @@ public:
     //毎フレーム呼ばれる関数
     void update(float dt) override;
 };
+
+
+extern bool _reserveReturne;
+
 
 #endif // __HELLOWORLD_SCENE_H__

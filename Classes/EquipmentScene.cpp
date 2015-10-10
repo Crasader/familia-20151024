@@ -244,6 +244,8 @@ void EquipmentController::initGame()
 
 void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEvent)
 {
+    playEffect(1);
+
     //update関数の呼び出しを停止
     unscheduleUpdate();
     std::string post_command;
@@ -256,6 +258,8 @@ void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEv
 
 void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEvent)
 {
+    playEffect(2);
+    
     //update関数の呼び出しを停止
     unscheduleUpdate();
     const float pitch = _sliderPitch->getValue();
@@ -272,6 +276,8 @@ void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEv
 
 void EquipmentController::onTapButton3(Ref* sender, Control::EventType controlEvent)
 {
+    playEffect(3);
+    
     //update関数の呼び出しを停止
     unscheduleUpdate();
     showModal(0);
@@ -327,13 +333,35 @@ void EquipmentController::showModal(int type)
 
 
 
-void EquipmentController::playEffect()
+void EquipmentController::playEffect(int type)
 {
+    switch (type) {
+        case 1:
+            CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/switch1.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/switch1.mp3");
+            //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+            break;
+
+        case 2:
+            CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/select09.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/select09.mp3");
+            //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+            break;
+        
+        case 3:
+            CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/poka.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/poka.mp3");
+            //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
+            break;
+            
+        default:
+            break;
+    }
+
     
-    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/blackout_harp1.mp3");
-    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/blackout_harp1.mp3");
-    //    CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect("music/blackout_harp1.mp3");
 }
 
 void EquipmentController::showSPrite()
@@ -408,8 +436,6 @@ void EquipmentController::onTouchMoved(Touch *touch, Event *unused_event)
 
 void EquipmentController::onTouchEnded(Touch *touch, Event *unused_event)
 {
-    playEffect();
-    
     showSPrite();
     
     return;

@@ -48,13 +48,13 @@ bool ReserveRetunrHomeController::init()
     return true;
 }
 
-bool ReserveRetunrHomeController::reserveEquipment(char* result)
+void ReserveRetunrHomeController::reserveEquipment(char* result)
 {
-    bool door_status = true;
     const char *post_command;
     post_command = "http://127.0.0.1:3000/send_message?type=50";
-    door_status = Get(post_command)? true:false;
-    return door_status;
+    Post(post_command);
+    
+    return;
 }
 
 void ReserveRetunrHomeController::initGame()
@@ -78,15 +78,45 @@ void ReserveRetunrHomeController::initGame()
     //実際に利用
     int index = distForNumbers(_engine);
     
-    _sprite1 = Sprite::create(filename[index]);
-    _sprite1->setScale(1.0f);
-    _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-    addChild(_sprite1);
     
-    Label *label = Label::createWithSystemFont("帰宅受託設備予約", "Marker Felt.ttf", 30);
-    label->setScale(2.0f);
-    label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
-    this->addChild(label);
+    if(_reserveReturne){
+        Label *label = Label::createWithSystemFont("帰宅予約の案内中", "Marker Felt.ttf", 24);
+        label->setScale(2.0f);
+        label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
+        this->addChild(label);
+
+        Label *label1 = Label::createWithSystemFont("ご自宅までの残り時間と残り距離", "Marker Felt.ttf", 18);
+        label1->setScale(2.0f);
+        label1->setPosition(Vec2(winSize.width/2, winSize.height/2));
+        this->addChild(label1);
+        
+        NativeLauncher::getNewLocation_latitude();
+        NativeLauncher::getNewLocation_longitude();
+        NativeLauncher::getNewLocation_speed();
+        NativeLauncher::getNewLocation_course();
+
+        NativeLauncher::getDestance();
+
+        std::string temo = std::to_string(NativeLauncher::getDestance()) + "km\n" + std::to_string(NativeLauncher::getDestance()/NativeLauncher::getNewLocation_speed()) + "分";
+        Label *label3 = Label::createWithSystemFont(temo, "Marker Felt.ttf", 18);
+        label3->setScale(2.0f);
+        label3->setPosition(Vec2(winSize.width/2, winSize.height/2-70));
+        this->addChild(label3);
+        
+    }else{
+        _sprite1 = Sprite::create(filename[index]);
+        _sprite1->setScale(1.0f);
+        _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
+        addChild(_sprite1);
+
+        Label *label = Label::createWithSystemFont("帰宅予約を案内できます", "Marker Felt.ttf", 24);
+        label->setScale(2.0f);
+        label->setPosition(Vec2(winSize.width/2, winSize.height*3/4));
+        this->addChild(label);
+    }
+    
+    
+    
     
     //    platform::NativeBridge::executeNative();
     
@@ -162,6 +192,7 @@ void ReserveRetunrHomeController::onTouchMoved(Touch *touch, Event *unused_event
 void ReserveRetunrHomeController::onTouchEnded(Touch *touch, Event *unused_event)
 {
     showSPrite();
+    _reserveReturne = true;
     playEffect();
     return;
 }
@@ -174,5 +205,44 @@ void ReserveRetunrHomeController::onTouchCancelled(Touch *touch, Event *unused_e
 
 void ReserveRetunrHomeController::update(float dt)
 {
+    
+    const char *post_command;
+    if(_reserveReturne){
+        float remain = NativeLauncher::getDestance()/NativeLauncher::getNewLocation_speed();
+        if(remain > 0)
+        {
+            if(remain < 5){
+                // AirConditionaeer・５分前にエアコンスイッチ
+                post_command = "http://127.0.0.1:3000/send_message?type=2";
+                Post(post_command);
+            }
+    
+            if(remain < 1){
+                // LED・１分前にLEDスイッチ
+                post_command = "http://127.0.0.1:3000/send_message?type=16";
+                Post(post_command);
+            }
+
+            if(remain < 0.1){
+                //
+                post_command = "http://127.0.0.1:3000/send_message?type=22";
+                Post(post_command);
+                _reserveReturne = false;
+            }
+
+            if(remain < 0.5){
+                // ・目の間に着いたら、電動シャッター窓開放 : 輝度センサーで判断
+                post_command = "http://127.0.0.1:3000/send_message?type=27";
+                Post(post_command);
+                post_command = "http://127.0.0.1:3000/send_message?type=31";
+                Post(post_command);
+            }
+        }
+    
+    }
+    
+    
+    //         std::string temo = std::to_string(NativeLauncher::getDestance()) + "km\n" + std::to_string(NativeLauncher::getDestance()/NativeLauncher::getNewLocation_speed()) + "分";
+    
     
 }

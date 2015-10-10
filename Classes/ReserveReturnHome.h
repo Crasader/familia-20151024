@@ -36,7 +36,7 @@ public:
     void initGame();
     void dispatchThreadCallbacks();
     
-    bool reserveEquipment(char* result);
+    void reserveEquipment(char* result);
     
     void startWebView();
     void showSPrite();

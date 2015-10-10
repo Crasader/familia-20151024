@@ -52,7 +52,7 @@ public:
     
     void startWebView();
     void showSPrite();
-    void playEffect();
+    void playEffect(int type);
     void powerSavingMode(char* result);
     
     void menuStartCallback(Ref* Sender);

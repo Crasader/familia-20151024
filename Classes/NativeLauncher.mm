@@ -29,15 +29,78 @@ void NativeLauncher::launchMotionController(int flag)
     }
 }
 
+LocationViewController *_locationManager;
+float target_location_latitude;
+float target_location_longitude;
+float new_location_latitude;
+float new_location_longitude;
+float new_location_course;
+float new_location_speed;
+float new_destance;
+float old_location;
 void NativeLauncher::launchLocationController(int flag)
 {
-    LocationViewController *locationManager = [[LocationViewController alloc] init];
+    _locationManager = [[LocationViewController alloc] init];
     if (flag == 0){
-        [locationManager startLocationManager];
+        [_locationManager startLocationManager];
     }else{
-        [locationManager stopLocationManager];
+        [_locationManager stopLocationManager];
     }
 }
+
+void NativeLauncher::setDestance(float distance)
+{
+    new_destance = distance;
+}
+float NativeLauncher::getDestance()
+{
+    return new_destance;
+}
+void NativeLauncher::set_TargetLocationInfo_lati(float vl)
+{
+    target_location_latitude = vl;
+}
+void NativeLauncher::set_TargetLocationInfo_longi(float val)
+{
+    target_location_longitude = val;
+}
+float NativeLauncher::get_TargetLocationInfo_lati()
+{
+    return target_location_latitude;
+}
+float NativeLauncher::get_TargetLocationInfo_longi()
+{
+    return target_location_longitude;
+}
+
+void NativeLauncher::setNewLocation(float latitude,
+                                    float longitude,
+                                    float course,
+                                    float speed)
+{
+    new_location_latitude = latitude;
+    new_location_longitude = longitude;
+    new_location_course = course;
+    new_location_speed = speed;
+}
+
+float NativeLauncher::getNewLocation_latitude()
+{
+    return new_location_latitude;
+}
+float NativeLauncher::getNewLocation_longitude()
+{
+    return new_location_longitude;
+}
+float NativeLauncher::getNewLocation_course()
+{
+    return new_location_course;
+}
+float NativeLauncher::getNewLocation_speed()
+{
+    return new_location_speed;
+}
+
 
 void NativeLauncher::connectPhamiliaPhone()
 {

@@ -53,6 +53,22 @@ void OutgoingController::lockAllEquipment(char* result)
     const char *post_command;
     post_command = "http://127.0.0.1:3000/send_message?type=51";
     Post(post_command);
+
+    post_command = "http://127.0.0.1:3000/send_message?type=3";
+    Post(post_command);
+
+    post_command = "http://127.0.0.1:3000/send_message?type=17";
+    Post(post_command);
+
+    post_command = "http://127.0.0.1:3000/send_message?type=21";
+    Post(post_command);
+
+    post_command = "http://127.0.0.1:3000/send_message?type=26";
+    Post(post_command);
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=32";
+    Post(post_command);
+    
     return;
 }
 

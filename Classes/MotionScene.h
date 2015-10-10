@@ -22,6 +22,7 @@ class MotionController : public cocos2d::Layer
 protected:
     cocos2d::Label* _label1;
     cocos2d::Label* _label2;
+    float _timer;
     
     
 public:

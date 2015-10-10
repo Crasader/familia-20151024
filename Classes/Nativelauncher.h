@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 
-
 class NativeLauncher
 {
 public:
@@ -23,6 +22,21 @@ public:
     static void disconnectPhamiliaPhone();
     static void initSendBtlPeripheraManager();
     static void sendBtlPeripheraManager();
+
+    static void setNewLocation(float latitude,
+                        float longitude,
+                        float course,
+                        float speed);
+    static float getNewLocation_latitude();
+    static float getNewLocation_longitude();
+    static float getNewLocation_course();
+    static float getNewLocation_speed();
+    static void setDestance(float distance);
+    static float getDestance();
+    static void set_TargetLocationInfo_lati(float vl);
+    static void set_TargetLocationInfo_longi(float val);
+    static float get_TargetLocationInfo_lati();
+    static float get_TargetLocationInfo_longi();
 
 
 };

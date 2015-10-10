@@ -181,7 +181,6 @@ bool MotionController::init()
 
 void MotionController::postNumOfStep(char* result, int numOf)
 {
-//    const char *post_command;
     std::string post_command;
     
     post_command = "http://127.0.0.1:3000/send_message?type=64&numStep=" + std::to_string(foo::getNumOfStep(&f));
@@ -363,6 +362,11 @@ void MotionController::onTouchCancelled(Touch *touch, Event *unused_event)
 
 void MotionController::update(float dt)
 {
-    drawString();
-    
+    char commnad_name[1024];
+    _timer += dt;
+    //時間の積算
+    if (_timer > 6){
+        _timer=0;
+        drawString();
+    }
 }

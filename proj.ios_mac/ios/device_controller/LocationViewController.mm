@@ -85,19 +85,19 @@
 {
     printf("start locationManager");
 
-    newLocation.coordinate.latitude;
-    newLocation.coordinate.longitude;
-    newLocation.course;
-    newLocation.speed;
-    newLocation.timestamp;
+    NativeLauncher::setNewLocation(newLocation.coordinate.latitude,
+                                   newLocation.coordinate.longitude,
+                                   newLocation.course,
+                                   newLocation.speed);
     
+/*
     oldLocation.coordinate.latitude;
     oldLocation.coordinate.longitude;
     oldLocation.course;
     oldLocation.speed;
     oldLocation.timestamp;
-    
-    // Replace the URL with your Capabilities Token URL
+
+ // Replace the URL with your Capabilities Token URL
     NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=1"];
     NSURLResponse*  response = nil;
     NSError*    error = nil;
@@ -125,26 +125,30 @@
         NSLog(@"Error logging in: %@", [error localizedDescription]);
         return;
     }
+ */
 
     double curent_latitude = newLocation.coordinate.latitude;
     double curent_longitude = newLocation.coordinate.longitude;
-    double dest_latitude = 139.75313186645508;
-    double dest_longitude = 35.68525668970075;
+    double dest_latitude = NativeLauncher::get_TargetLocationInfo_lati();  // 139.75313186645508;
+    double dest_longitude = NativeLauncher::get_TargetLocationInfo_longi();  //35.68525668970075;
+    
     
     // 経緯・緯度からCLLocationを作成
     CLLocation *current_location = [[CLLocation alloc] initWithLatitude:curent_latitude longitude:curent_longitude];
     CLLocation *dest_location = [[CLLocation alloc] initWithLatitude:dest_latitude longitude:dest_longitude];
     CLLocationDistance distance = [current_location distanceFromLocation:dest_location];
     NSLog(@"distance:%f", distance);
+    NativeLauncher::setDestance(distance);
+
     [current_location release];
     [dest_location release];
 
     
     // Replace the URL with your Capabilities Token URL
-    url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=101"];
-    response = nil;
-    error = nil;
-    data = [NSURLConnection sendSynchronousRequest:
+    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=101"];
+    NSURLResponse*  response = nil;
+    NSError*    error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:
                     [NSURLRequest requestWithURL:url]
                                          returningResponse:&response
                                                      error:&error];

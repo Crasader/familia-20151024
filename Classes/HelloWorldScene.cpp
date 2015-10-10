@@ -10,6 +10,7 @@ int _sts_sprite1;
 int _sts_sprite2;
 int _emo_sprite1;
 int _emo_sprite2;
+bool _reserveReturne;
 std::string _temp_indoor;
 std::string _temp_outdoor;
 std::string _temp_air;
@@ -678,6 +679,15 @@ void HelloWorld::getHouseInfo(char* result)
                 estateType = 11;
             }
         }
+        
+        std::string latitude = Json_getString(json, "latitude", "");
+        std::string longitude = Json_getString(json, "longitude", "");
+
+        float val_latitude = std::stof(latitude);	// 10.5f
+        float val_longitude = std::stof(longitude); // -10.5f
+        NativeLauncher::set_TargetLocationInfo_lati(val_latitude);
+        NativeLauncher::set_TargetLocationInfo_longi(val_longitude);
+
     }
 
     return;
