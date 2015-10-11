@@ -75,6 +75,8 @@ void EstateController::menuStartCallback(Ref* Sender)
             break;
         case 6:
             initGame(6);
+        case 7:
+            CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
             break;
     }
     dialogClose();
@@ -94,15 +96,17 @@ void EstateController::showModal()
             new UIDialogButton("住宅基礎知識について",action,2),
             new UIDialogButton("住宅リフォーム（機能面）",action,5),
             new UIDialogButton("住宅リフォーム（金額面）",action,6),
+            new UIDialogButton("ホームに戻る",action,7),
         };
     }else{
         buttons = {
             new UIDialogButton("住宅相談",action,1),
             new UIDialogButton("住宅相談（機能面）",action,4),
             new UIDialogButton("賃貸住宅D-Room",action,3),
+            new UIDialogButton("ホームに戻る",action,7),
         };
     }
-    auto* dialog = UIDialog::create("住宅に関するプロに出会えます","", buttons);
+    auto* dialog = UIDialog::create("暮らしに関するプロに出会えます","", buttons);
     addChild(dialog,31,30);
 }
 
@@ -212,7 +216,7 @@ bool EstateController::onTouchBegan(Touch *touch, Event *unused_event)
 
 void EstateController::onTouchMoved(Touch *touch, Event *unused_event)
 {
-    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
+    CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  EstateController::scene(estate_type)));
 }
 
 

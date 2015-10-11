@@ -36,7 +36,7 @@ bool CardSprite::init()
         "書籍情報",
         "ビデオ\nメッセージ",
         "家のこと\nお知らせ",
-        "住宅情報",
+        "暮らし情報",
         "ヘルスケア",
         "蓄電情報",
         "消費電力\nモード",
@@ -779,7 +779,7 @@ void HelloWorld::Action02(float frame)
     stream1 << _temp_indoor;
     stream2 << _temp_outdoor;
     stream3 << _temp_air;
-    std::string temp = "室内：" + stream1.str() + "度：室外：" + stream2.str() + "度設定温度：" + stream2.str() + "度";
+    std::string temp = "室内：" + stream1.str() + "度：室外：" + stream2.str() + "度：設定温度：" + stream3.str() + "度";
     _label3->setString(temp);
 }
 

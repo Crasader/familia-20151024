@@ -304,6 +304,19 @@ void InfoController::initGame()
             "yahooニュース"
         };
     }
+    if (news_type_uri.size() == 0) {
+        news_type_uri =
+        {
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp",
+            "http://yahoo.co.jp"
+        };
+    }
 
     for (int i = 0; i < news_type_name.size(); i++) {
         showButton1(news_type_name[i], i);
