@@ -613,6 +613,7 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     Json* json = Json_create(recv.c_str());
     if (json) {
         int eq_sts = Json_getInt(json, "equipment", 0);
+        int emergency_sts = Json_getInt(json, "emergency", 0);
         
         //　よくわからん。HEMSシュミレータの不具合かな。調べる時間なし
         if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false) {
@@ -628,6 +629,18 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
             post_command = "http://127.0.0.1:3000/send_message?type=68&emergency=1";
             Post(post_command.c_str());
         }
+
+        if(_sts_hems_service==true && emergency_sts==1){
+            Size winSize = Director::getInstance()->getVisibleSize();
+            CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
+            CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+//            auto _bg2 = LayerColor::create(Color4B(0,0x55,0x55,0x55), winSize.width, winSize.height);
+//            this->addChild(_bg2);
+            showModal(2);
+        }
+
     }
 
     return;
@@ -862,6 +875,11 @@ void HelloWorld::showModal(int type)
             title = "メインへ戻る";
             content1 = "工事中";
             content2 = "遷移先の機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            break;
+        case 2:
+            title = "緊急事態です！";
+            content1 = "不正侵入がありました。";
+            content2 = "落ち着いて警察に電話しましょう。\nご家族の安否を確認してください";
             break;
             
         default:
