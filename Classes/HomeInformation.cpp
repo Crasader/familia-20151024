@@ -250,6 +250,8 @@ void HomeInfoController::getHomeInfoContent()
         }
         int emo_sprite2 = Json_getInt(json, "emo2", 0);
 
+    }else{
+        home_text_ext = "\n\nHEMSサービス利用停止中です。\nしばらくお待ちください。";
     }
     
     return;

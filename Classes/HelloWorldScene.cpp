@@ -614,13 +614,19 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     if (json) {
         int eq_sts = Json_getInt(json, "equipment", 0);
         
-        if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
+        //　よくわからん。HEMSシュミレータの不具合かな。調べる時間なし
+        if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false) {
+//            if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
             // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
             //  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
-             CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
-             CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
-             CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
-             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
+            CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
+
+            std::string post_command;
+            post_command = "http://127.0.0.1:3000/send_message?type=68&emergency=1";
+            Post(post_command.c_str());
         }
     }
 
