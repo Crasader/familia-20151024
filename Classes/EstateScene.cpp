@@ -75,6 +75,7 @@ void EstateController::menuStartCallback(Ref* Sender)
             break;
         case 6:
             initGame(6);
+            break;
         case 7:
             CCDirector::sharedDirector()->replaceScene(CCTransitionCrossFade::create(3.0f,  HelloWorld::scene()));
             break;
@@ -93,7 +94,7 @@ void EstateController::showModal()
     std::vector<UIDialogButton*> buttons;
     if (estate_type < 10) {
         buttons = {
-            new UIDialogButton("住宅基礎知識について",action,2),
+            new UIDialogButton("リフォームについて",action,2),
             new UIDialogButton("住宅リフォーム（機能面）",action,5),
             new UIDialogButton("住宅リフォーム（金額面）",action,6),
             new UIDialogButton("ホームに戻る",action,7),
@@ -118,11 +119,16 @@ void EstateController::getEstateInfoContent()
     Json* json = Json_create(recv.c_str());
     if (json) {
         std::string text_ext = Json_getString(json, "text", "");
-        std::string uri_ext = Json_getString(json, "apn", "");
-        std::string latitude = Json_getString(json, "latitude", "");
-        std::string longitude = Json_getString(json, "longitude", "");
         std::string annualincome = Json_getString(json, "annualincome", "");
         std::string leisurecost = Json_getString(json, "leisurecost", "");
+        std::string floorspace = Json_getString(json, "floorspace", "");
+        std::string buildyear = Json_getString(json, "buildyear", "");
+        std::string architect = Json_getString(json, "architect", "");
+        std::string roomsnum = Json_getString(json, "roomsnum", "");
+        std::string electype = Json_getString(json, "electype", "");
+        std::string waterheater = Json_getString(json, "waterheater", "");
+        std::string cookingdevice = Json_getString(json, "cookingdevice", "");
+        int recommend = Json_getInt(json, "recommend", 0);
     }
     
     return;
@@ -136,42 +142,77 @@ void EstateController::initGame(int type)
     auto _bg2 = LayerColor::create(Color4B(0,255,0,128), winSize.width, winSize.height);
     this->addChild(_bg2);
 
-    _sprite1 = Sprite::create("sts/room_unit_bath.png");
-    _sprite1->setScale(3.0f);
-    _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-    addChild(_sprite1);
-/*
-    //CCSpriteクラスで画像を設定します。
-    _sprite1 = Sprite::create("button.png");
-    _sprite1->setScale(2.0f);
-    _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    addChild(_sprite1);
-*/
     std::string wording;
+    std::vector<std::string> files;
     switch (type) {
         case 1:
             wording = "住宅相談";
             user_status = BUILD_SHOHIN_CONSULT;
+            files.push_back("res/iecoram.png");
+            files.push_back("res/ad.png");
+            showButton1(files);
             break;
         case 2:
-            wording = "リフォームしたいけど\n何から手をつけたらいいかわからない・・・。\nリフォームに関するおすすめ情報です";
+            wording = "リフォームに関するプロに出会えるおすすめ情報です";
             user_status = BASIC_REFORM_FLOW;
+            files.push_back("res/inspection.png");
+            files.push_back("res/mentschedule.png");
+            files.push_back("res/refflow.png");
+            files.push_back("res/refquestion.png");
+            showButton2(files);
             break;
         case 3:
             wording = "賃貸住宅D-Room";
             user_status = RENT_HOUSE;
+            files.push_back("res/d-room.png");
+            files.push_back("res/d-roomlife.png");
+            files.push_back("res/d-room-clum.png");
+            showButton3(files);
             break;
         case 4:
             wording = "住宅相談（機能面）";
             user_status = REGIST_KENCHIKU_CONSULT;
+            files.push_back("res/childhouse.png");
+            files.push_back("res/forwoman.png");
+            files.push_back("res/hiraya.png");
+            files.push_back("res/hospitakhouse.png");
+            files.push_back("res/kitchen.png");
+            files.push_back("res/makeplus.png");
+            files.push_back("res/parahouse.png");
+            files.push_back("res/pethouse.png");
+            files.push_back("res/powerfulsolor.png");
+            files.push_back("res/proofsound.png");
+            files.push_back("res/renthouse.png");
+            files.push_back("res/rentmayhome.png");
+            files.push_back("res/shunou.png");
+            files.push_back("res/smarteco.png");
+            files.push_back("res/taiyodiscount.png");
+            files.push_back("res/toshinaka.png");
+            showButton4(files);
             break;
         case 5:
             wording = "住宅リフォーム（機能面）";
             user_status = KEEP_LIVING_BUILDING;
+            files.push_back("res/genkan.png");
+            files.push_back("res/kabe.png");
+            files.push_back("res/washitu.png");
+            files.push_back("res/proof.png");
+            files.push_back("res/living.png");
+            files.push_back("res/toilet.png");
+            files.push_back("res/kitchen-ref.png");
+            files.push_back("res/bathroom.png");
+            showButton5(files);
             break;
         case 6:
             wording = "住宅リフォーム（金額面）";
             user_status = KEEP_PROCE100_BUILDING;
+            files.push_back("res/ref-under100.png");
+            files.push_back("res/ref-100-200.png");
+            files.push_back("res/ref-over200.png");
+            files.push_back("res/ref-300-500.png");
+            files.push_back("res/ref-500-1000.png");
+            files.push_back("res/ad.png");
+            showButton6(files);
             break;
         default:
             break;
@@ -195,6 +236,232 @@ void EstateController::initGame(int type)
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
+
+void EstateController::showButton1(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton1),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+    
+    
+    
+}
+
+void EstateController::onTapButton1(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EstateController::showButton2(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton2),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+}
+
+void EstateController::onTapButton2(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EstateController::showButton3(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton3),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+}
+
+void EstateController::onTapButton3(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EstateController::showButton4(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton4),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+}
+
+void EstateController::onTapButton4(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EstateController::showButton5(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton5),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+}
+
+void EstateController::onTapButton5(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
+void EstateController::showButton6(std::vector<std::string> filename)
+{
+    Size winSize = Director::getInstance()->getVisibleSize();
+    int temp_h = 0;
+    for (std::vector<std::string>::iterator it = filename.begin(); it != filename.end(); ++it) {
+        //        cout << *it << '\n';
+        //ボタンを作成する
+        auto button = ControlButton::create(Scale9Sprite::create(*it));
+        //画像を引き延ばさない設定
+        button->setAdjustBackgroundImage(false);
+        Size a = button->getContentSize();
+        //ボタンの位置設定
+        button->setPosition(winSize.width/2, winSize.height-temp_h-a.height);
+        temp_h += a.height;
+        button->setScale(1);
+        //ボタンをタップしたときに呼び出す関数の設定
+        button->addTargetWithActionForControlEvents(this,
+                                                    cccontrol_selector(EstateController::onTapButton6),
+                                                    Control::EventType::TOUCH_UP_INSIDE);
+        //ボタンに表示する文字
+        button->setTitleForState("", Control::State::NORMAL);
+        //画面に追加する
+        addChild(button);
+    }
+}
+
+void EstateController::onTapButton6(Ref* sender, Control::EventType controlEvent)
+{
+    //update関数の呼び出しを停止
+    unscheduleUpdate();
+    
+    
+    
+    //update関数の呼び出しを開始
+    scheduleUpdate();
+}
+
 
 void EstateController::startWebView(const char* uri)
 {
@@ -385,7 +652,11 @@ void EstateController::onTouchEnded(Touch *touch, Event *unused_event)
     // https://letter.daiwahouse.co.jp/form/31307-1070/
 
 
+//http://www.daiwahouse.co.jp/column/index.html
     
+    
+//http://www.daiwahouse.co.jp/jutaku/fair/index.html?page=column
+
     
     startWebView(uri);
     return;

@@ -638,7 +638,26 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
 //            auto _bg2 = LayerColor::create(Color4B(0,0x55,0x55,0x55), winSize.width, winSize.height);
 //            this->addChild(_bg2);
-            showModal(2);
+            switch (emergency_sts) {
+                case 1:
+                    showModal(2);
+                    break;
+                case 2:
+                    showModal(3);
+                    break;
+                case 3:
+                    showModal(4);
+                    break;
+                case 4:
+                    showModal(5);
+                    break;
+                case 5:
+                    showModal(6);
+                    break;
+                    
+                default:
+                    break;
+            }
         }
 
     }
@@ -880,6 +899,26 @@ void HelloWorld::showModal(int type)
             title = "緊急事態です！";
             content1 = "不正侵入がありました。";
             content2 = "落ち着いて警察に電話しましょう。\nご家族の安否を確認してください";
+            break;
+        case 3:
+            title = "緊急事態です！";
+            content1 = "電気の使用量が通常よりも少ないです。";
+            content2 = "ご家族の安否を確認してください";
+            break;
+        case 4:
+            title = "緊急事態です！";
+            content1 = "電気の使用量が通常よりも多いです。";
+            content2 = "ご家族の安否を確認してください";
+            break;
+        case 5:
+            title = "緊急事態です！";
+            content1 = "水道の使用量が通常と異なります";
+            content2 = "水道修理のプロに連絡をしましょう";
+            break;
+        case 6:
+            title = "緊急事態です！";
+            content1 = "ガスの使用量が通常と異なります";
+            content2 = "ガス修理のプロに連絡をしましょう";
             break;
             
         default:

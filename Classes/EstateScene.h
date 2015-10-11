@@ -87,6 +87,23 @@ public:
     void menuStartCallback(Ref* Sender);
     void dialogClose();
     
+    void showButton1(std::vector<std::string> filename);
+    void onTapButton1(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton2(std::vector<std::string> filename);
+    void onTapButton2(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton3(std::vector<std::string> filename);
+    void onTapButton3(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton4(std::vector<std::string> filename);
+    void onTapButton4(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton5(std::vector<std::string> filename);
+    void onTapButton5(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void showButton6(std::vector<std::string> filename);
+    void onTapButton6(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    
+    
+    
+    
+    
     //create関数作成マクロ
     CREATE_FUNC(EstateController);
     
