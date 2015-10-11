@@ -12,6 +12,7 @@
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+
 class AudioSlider : public Node
 {
 public:
@@ -95,6 +96,10 @@ private:
 };
 
 
+int temprature_strength;
+int huminity_strength;
+int wing_strength;
+
 Scene* EquipmentController::scene()
 {
     auto scene = Scene::create();
@@ -139,8 +144,24 @@ void EquipmentController::powerSavingMode(char* result)
     return;
 }
 
+void EquipmentController::getTargetStatus()
+{
+    const char *post_command;
+    post_command = "http://127.0.0.1:3000/get_message?type=14";
+    std::string recv = Get_data(post_command);
+    Json* json = Json_create(recv.c_str());
+    if (json) {
+        temprature_strength = Json_getInt(json, "temperature", 0);
+        huminity_strength = Json_getInt(json, "huminity", 0);
+        wing_strength = Json_getInt(json, "wing", 0);
+    }
+    
+    return;
+}
+
 void EquipmentController::initGame()
 {
+    getTargetStatus();
     Size winSize = Director::getInstance()->getVisibleSize();
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
@@ -216,7 +237,7 @@ void EquipmentController::initGame()
     _sliderPitch = AudioSlider::create(AudioSlider::Horizontal);
     _sliderPitch->setPosition(Vec2(winSize.width/2, winSize.height*1/2));
     _sliderPitch->setScale(3.0f);
-    _sliderPitch->setValue(17, 32, 1);
+    _sliderPitch->setValue(17, 32, temprature_strength);
     addChild(_sliderPitch);
 
     Label *label1 = Label::createWithSystemFont("湿度", "Marker Felt.ttf", 30);
@@ -225,7 +246,7 @@ void EquipmentController::initGame()
     _sliderPitch1 = AudioSlider::create(AudioSlider::Horizontal);
     _sliderPitch1->setPosition(Vec2(winSize.width/2, winSize.height*1/2-70));
     _sliderPitch1->setScale(3.0f);
-    _sliderPitch1->setValue(40, 60, 10);
+    _sliderPitch1->setValue(40, 60, huminity_strength);
     addChild(_sliderPitch1);
 
     Label *label2 = Label::createWithSystemFont("風量", "Marker Felt.ttf", 30);
@@ -234,7 +255,7 @@ void EquipmentController::initGame()
     _sliderPitch2 = AudioSlider::create(AudioSlider::Horizontal);
     _sliderPitch2->setPosition(Vec2(winSize.width/2, winSize.height*1/2-140));
     _sliderPitch2->setScale(3.0f);
-    _sliderPitch2->setValue(0, 6, 1);
+    _sliderPitch2->setValue(0, 6, wing_strength);
     addChild(_sliderPitch2);
 
     
@@ -267,7 +288,7 @@ void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEv
     const float pitch2 = _sliderPitch2->getValue();
 
     std::string post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=2";
+    post_command = "http://127.0.0.1:3000/send_message?type=2&temperature=" + std::to_string(pitch) + "&wing=" + std::to_string(pitch2) + "&huminity=" + std::to_string(pitch1) + "";
     Post(post_command.c_str());
 
     //update関数の呼び出しを開始

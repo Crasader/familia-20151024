@@ -58,7 +58,8 @@ public:
     void menuStartCallback(Ref* Sender);
     void dialogClose();
     void showModal(int type);
-    
+    void getTargetStatus();
+
     //create関数作成マクロ
     CREATE_FUNC(EquipmentController);
     
