@@ -99,7 +99,10 @@ public:
     void onTapButton5(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     void showButton6(std::vector<std::string> filename);
     void onTapButton6(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton7(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
+    void onTapButton8(Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     
+    void postBuildingInterest(int buldingType);
     
     
     
