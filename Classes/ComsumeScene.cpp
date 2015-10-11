@@ -15,7 +15,8 @@ USING_NS_CC_EXT;
 
 std::string com_text_ext;
 std::string com_uri_ext;
-
+std::string com_attend_ext;
+int com_attend_type;
 
 Scene* ComsumeController::scene()
 {
@@ -50,6 +51,7 @@ bool ComsumeController::init()
     
     com_text_ext.clear();
     com_uri_ext.clear();
+    com_attend_ext.clear();
     
     getInfoContent();
     initGame();
@@ -74,6 +76,8 @@ void ComsumeController::getInfoContent()
     if (json) {
         com_text_ext = Json_getString(json, "text", "");
         com_uri_ext = Json_getString(json, "apn", "");
+        com_attend_ext = Json_getString(json, "attention", "");
+        com_attend_type = Json_getInt(json, "attend_type", 0);
     }
     
     return;
@@ -100,10 +104,26 @@ void ComsumeController::initGame()
     auto _bg2 = LayerColor::create(Color4B(0,128,128,128), winSize.width, winSize.height);
     this->addChild(_bg2);
     _doorStatus = 0;
-    _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
-    _sprite1->setScale(3.5f);
+    switch (com_attend_type) {
+        case 1:
+            _sprite1 = Sprite::create("sts/sentakumono.png");
+            break;
+        case 2:
+            _sprite1 = Sprite::create("sts/jiko_jishin_himoto.png");
+            break;
+        case 3:
+            _sprite1 = Sprite::create("sts/mizumore_toilet.png");
+            break;
+        case 4:
+            _sprite1 = Sprite::create("sts/jiko_mizumore.png");
+            break;
+            
+        default:
+            _sprite1 = Sprite::create("sts/sentakumono.png");
+            break;
+    }
+    _sprite1->setScale(2.0f);
     _sprite1->setPosition(Vec2(winSize.width/2, winSize.height/2));
-    //    }
     addChild(_sprite1);
 
     //Scrollview
@@ -116,6 +136,7 @@ void ComsumeController::initGame()
     if (com_text_ext.size()==0) {
         com_text_ext = "電力消費量の予測";
     }
+    com_text_ext = com_text_ext + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + com_attend_ext;
     auto label = LabelTTF::create(com_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     
@@ -202,7 +223,7 @@ void ComsumeController::startWebView()
     webView->setAnchorPoint(Point(0.5f, 0.5f));
     webView->setContentSize(Size(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
-    webView->loadURL(com_text_ext);
+    webView->loadURL(com_uri_ext);
     this->addChild(webView, 1);
 }
 
