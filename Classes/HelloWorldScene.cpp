@@ -17,6 +17,7 @@ std::string _temp_air;
 std::string _pos_sprite1;
 std::string _pos_sprite2;
 bool _sts_btle_equipment;
+bool _sts_hems_service;
 std::string FullName;
 
 bool CardSprite::init()
@@ -462,46 +463,52 @@ void HelloWorld::initGame()
     label->setPosition(Vec2(winSize.width/2, winSize.height*8/9));
     this->addChild(label);
     
+    if(_sts_hems_service){
+        //CCSpriteクラスで画像を設定します。
+        _sts_sprite1 = 0;
+        _sts_sprite2 = 0;
+        _sprite1 = Sprite::create("boy.png");
+        _sprite1_emotion = Sprite::create(emotion_status[_sts_sprite1]);
+        _sprite1->setScale(2.5f);
+        _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/8));
+        _sprite1->setTag(TAG_BOY);
+        addChild(_sprite1);
+        _sprite1_emotion->setScale(2.0f);
+        _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/8+70));
+        addChild(_sprite1_emotion);
+        _sprite2 = Sprite::create("grandmother.png");
+        _sprite2_emotion = Sprite::create(emotion_status[_sts_sprite2]);
+        _sprite2->setScale(3.0f);
+        _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/8));
+        _sprite2->setTag(TAG_GRANDMOTHER);
+        addChild(_sprite2, 0);
+        _sprite2_emotion->setScale(2.0f);
+        _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/8+70));
+        addChild(_sprite2_emotion, 0);
     
-    //CCSpriteクラスで画像を設定します。
-    _sts_sprite1 = 0;
-    _sts_sprite2 = 0;
-    _sprite1 = Sprite::create("boy.png");
-    _sprite1_emotion = Sprite::create(emotion_status[_sts_sprite1]);
-    _sprite1->setScale(2.5f);
-    _sprite1->setPosition(Vec2(winSize.width*1/4, winSize.height/8));
-    _sprite1->setTag(TAG_BOY);
-    addChild(_sprite1);
-    _sprite1_emotion->setScale(2.0f);
-    _sprite1_emotion->setPosition(Vec2(winSize.width*1/4-80, winSize.height/8+70));
-    addChild(_sprite1_emotion);
-    _sprite2 = Sprite::create("grandmother.png");
-    _sprite2_emotion = Sprite::create(emotion_status[_sts_sprite2]);
-    _sprite2->setScale(3.0f);
-    _sprite2->setPosition(Vec2(winSize.width*3/4, winSize.height/8));
-    _sprite2->setTag(TAG_GRANDMOTHER);
-    addChild(_sprite2, 0);
-    _sprite2_emotion->setScale(2.0f);
-    _sprite2_emotion->setPosition(Vec2(winSize.width*3/4-80, winSize.height/8+70));
-    addChild(_sprite2_emotion, 0);
-    
-    _label1 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
-    _label1->setScale(2.0f);
-    _label1->setPosition(Vec2(winSize.width*1/4, winSize.height/12));
-    this->addChild(_label1);
+        _label1 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
+        _label1->setScale(2.0f);
+        _label1->setPosition(Vec2(winSize.width*1/4, winSize.height/12));
+        this->addChild(_label1);
 
-    _label2 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
-    _label2->setScale(2.0f);
-    _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/12));
-    this->addChild(_label2);
+        _label2 = Label::createWithSystemFont("検索中", "Marker Felt.ttf", 30);
+        _label2->setScale(2.0f);
+        _label2->setPosition(Vec2(winSize.width*3/4, winSize.height/12));
+        this->addChild(_label2);
 
-    _label3 = Label::createWithSystemFont("- - -", "Marker Felt.ttf", 14);
-    _label3->setScale(2.0f);
-    _label3->setPosition(Vec2(winSize.width/2, winSize.height/25));
-    this->addChild(_label3);
+        _label3 = Label::createWithSystemFont("- - -", "Marker Felt.ttf", 14);
+        _label3->setScale(2.0f);
+        _label3->setPosition(Vec2(winSize.width/2, winSize.height/25));
+        this->addChild(_label3);
     
-    this->schedule(schedule_selector(HelloWorld::Action01), 3.0f);
-    this->schedule(schedule_selector(HelloWorld::Action02), 3.0f);
+        this->schedule(schedule_selector(HelloWorld::Action01), 3.0f);
+        this->schedule(schedule_selector(HelloWorld::Action02), 3.0f);
+    }else{
+        _label3 = Label::createWithSystemFont("現在サービス利用停止中です", "Marker Felt.ttf", 24);
+        _label3->setScale(2.0f);
+        _label3->setPosition(Vec2(winSize.width/2, winSize.height/12));
+        this->addChild(_label3);
+    }
 
     //裏向いているカードを表示する
     showBackCards();
@@ -607,14 +614,13 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
     if (json) {
         int eq_sts = Json_getInt(json, "equipment", 0);
         
-        if (eq_sts!=3 && _sts_btle_equipment==false) {
+        if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
             // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
-            /*  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
+            //  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）
              CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
              CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("music/emargency_calling.mp3");
              CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
              CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
-             */
         }
     }
 
@@ -672,6 +678,7 @@ void HelloWorld::getHouseInfo(char* result)
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
+        _sts_hems_service = true;
         FullName = Json_getString(json, "firstname", "");
         FullName += Json_getString(json, "lastname", "");
         std::string buildtype = Json_getString(json, "buildtype", "");
@@ -699,6 +706,8 @@ void HelloWorld::getHouseInfo(char* result)
         NativeLauncher::set_TargetLocationInfo_lati(val_latitude);
         NativeLauncher::set_TargetLocationInfo_longi(val_longitude);
 
+    }else {
+        _sts_hems_service = false;
     }
 
     return;

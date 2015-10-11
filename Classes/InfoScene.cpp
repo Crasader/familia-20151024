@@ -107,7 +107,8 @@ void NewsSprite::moveToInitPos()
     auto scale1 = ScaleTo::create(MOVING_TIME / 2, 1, 1);
     auto func1 = CallFunc::create([&](){
         //画像の表示
-        setPosition(Vec2(visibleSize.width+250, visibleSize.height/2));
+        setPosition(Vec2(visibleSize.width+250, visibleSize.height/2+20));
+        
         setTexture(getFileName(_card.type));
         setTag(_card.number);
         
@@ -116,7 +117,7 @@ void NewsSprite::moveToInitPos()
         at.height = at.height/2;
         std::string temp = news_type_name[_card.number];
         if (temp.size() > 0){
-            auto number = Label::createWithSystemFont(temp, "Arial", 24);
+            auto number = Label::createWithSystemFont(temp, "Arial", 36);
             //        auto number = Label::createWithSystemFont("testtest", "Arial", 24);
             number->setPosition(Point(at));
             number->setTextColor((Color4B)Color4B::BLACK);
@@ -307,11 +308,7 @@ void InfoController::initGame()
     for (int i = 0; i < news_type_name.size(); i++) {
         showButton1(news_type_name[i], i);
     }
-    
-    
-    
-//    initCards();
-//    showInitCards();
+
 }
 
 
