@@ -1111,6 +1111,7 @@ void Director::resume()
 // updates the FPS every frame
 void Director::showStats()
 {
+    return;
     if (_isStatusLabelUpdated)
     {
         createStatsLabel();
