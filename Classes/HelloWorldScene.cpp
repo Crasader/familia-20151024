@@ -920,6 +920,16 @@ void HelloWorld::showModal(int type)
             content1 = "ガスの使用量が通常と異なります";
             content2 = "ガス修理のプロに連絡をしましょう";
             break;
+        case 7:
+            title = "緊急事態です！";
+            content1 = "お子様の安否が心配です。";
+            content2 = "ご家族の安否を確認してください";
+            break;
+        case 8:
+            title = "緊急事態です！";
+            content1 = "祖母の安否が心配です。";
+            content2 = "ご家族の安否を確認してください";
+            break;
             
         default:
             break;
