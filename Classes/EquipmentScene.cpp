@@ -151,9 +151,9 @@ void EquipmentController::getTargetStatus()
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
-        temprature_strength = Json_getInt(json, "temperature", 0);
-        huminity_strength = Json_getInt(json, "huminity", 0);
-        wing_strength = Json_getInt(json, "wing", 0);
+        temprature_strength = std::atoi(Json_getString(json, "temperature", "32"));
+        huminity_strength = std::atoi(Json_getString(json, "huminity", "60"));
+        wing_strength = std::atoi(Json_getString(json, "wing", "6"));
     }
     
     return;
