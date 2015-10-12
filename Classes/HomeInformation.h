@@ -38,7 +38,7 @@ public:
     void startWebView();
     void showSPrite();
     
-    
+    void postUserInterest(int userType);
     void getHomeInfoContent();
     
     

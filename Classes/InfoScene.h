@@ -139,6 +139,7 @@ public:
     void getTargetStatus();
     void getTargetUri();
     void playEffect();
+    void postUserInterest(int userType);
     
     //タップイベント
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);

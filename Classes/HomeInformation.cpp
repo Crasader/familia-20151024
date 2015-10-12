@@ -90,7 +90,7 @@ void HomeInfoController::initGame()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
     //CCSpriteクラスで画像を設定します。
-    _sprite1 = Sprite::create("button.png");
+    _sprite1 = Sprite::create("river-932131_640.png");
     _sprite1->setScale(2.0f);
     _sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(_sprite1);
@@ -257,6 +257,17 @@ void HomeInfoController::getHomeInfoContent()
     return;
 }
 
+void HomeInfoController::postUserInterest(int userType)
+{
+    std::string post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=71&userType=" + std::to_string(userType);
+    
+    Post(post_command.c_str());
+    
+    return;
+}
+
 void HomeInfoController::startWebView()
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -266,7 +277,7 @@ void HomeInfoController::startWebView()
     webView->setContentSize(Size(visibleSize.width * 0.9f, visibleSize.height * 0.8f));
     webView->setPosition(Vec2(visibleSize.width / 2, (visibleSize.height / 2)));
     if (home_uri_ext.size()==0) {
-        home_uri_ext = "https://www.daiwahouse.co.jp/smp/business/kenchiku/script/regist_kenchiku.asp?ken_toi_kbn=3";
+        home_uri_ext = "http://www.ienecons.jp/";
     }
     webView->loadURL(home_uri_ext);
     this->addChild(webView, 1);

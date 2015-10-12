@@ -293,13 +293,13 @@ void InfoController::initGame()
     {
         news_type_name =
         {
-            "ビジネス＋ITニュース", // http://www.sbbit.jp/
-            "日経ビジネス", // http://business.nikkeibp.co.jp/?rt=nocnt
-            "スポーツナビ",  // http://sports.yahoo.co.jp/
-            "ニュース",
-            "書籍情報",
-            "ビデオメッセージ",
-            "メッセージ",
+            "ビジネス＋ITニュース",
+            "日経ビジネス",
+            "スポーツナビ",
+            "日経新聞",
+            "読売新聞",
+            "毎日新聞",
+            "Naverまとめ",
             "住宅情報",
             "yahooニュース"
         };
@@ -307,13 +307,14 @@ void InfoController::initGame()
     if (news_type_uri.size() == 0) {
         news_type_uri =
         {
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
-            "http://yahoo.co.jp",
+            "http://www.sbbit.jp/",
+            "http://business.nikkeibp.co.jp/?rt=nocnt",
+            "http://sports.yahoo.co.jp/",
+            "http://mw.nikkei.com/sp/#!/",
+            "http://sp.yomiuri.co.jp/",
+            "http://sp.mainichi.jp/",
+            "http://matome.naver.jp/m/topic/1Hio8",
+            "http://www.jyuikulife.com/",
             "http://yahoo.co.jp"
         };
     }
@@ -324,6 +325,16 @@ void InfoController::initGame()
 
 }
 
+void InfoController::postUserInterest(int userType)
+{
+    std::string post_command;
+    
+    post_command = "http://127.0.0.1:3000/send_message?type=71&userType=" + std::to_string(userType);
+    
+    Post(post_command.c_str());
+    
+    return;
+}
 
 void InfoController::startWebView(int type)
 {
@@ -337,6 +348,7 @@ void InfoController::startWebView(int type)
     webView->loadURL(news_type_uri[type]);
 
     this->addChild(webView, 1);
+    postUserInterest(type);
 }
 
 NewsSprite* InfoController::getTouchCard(Touch *touch)
