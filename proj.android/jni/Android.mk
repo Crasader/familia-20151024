@@ -12,7 +12,35 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/HelloWorldScene.cpp
+                   ../../Classes/HelloWorldScene.cpp \
+                   ../../Classes/ComsumeScene.cpp \
+                   ../../Classes/controller.cpp \
+                   ../../Classes/CookingController.cpp \
+                   ../../Classes/EquipmentScene.cpp \
+                   ../../Classes/EstateScene.cpp \
+                   ../../Classes/FamiliaScene.cpp \
+                   ../../Classes/GameLayer.cpp \
+                   ../../Classes/HomeInformation.cpp \
+                   ../../Classes/InfoScene.cpp \
+                   ../../Classes/MediaScene.cpp \
+                   ../../Classes/ModalWindow.cpp \
+                   ../../Classes/MotionScene.cpp \
+                   ../../Classes/NetworkLibCurl.cpp \
+                   ../../Classes/OutgoingHome.cpp \
+                   ../../Classes/PowerSave.cpp \
+                   ../../Classes/ReserveReturnHome.cpp \
+                   ../../Classes/ScrollMenu.cpp \
+                   ../../Classes/ScrollMenuView.cpp \
+                   ../../Classes/SecurityScene.cpp \
+                   ../../Classes/ServiceController.cpp \
+                   ../../Classes/SmartCity.cpp \
+                   ../../Classes/UIDialog.cpp \
+                   ../../Classes/UIScene.cpp \
+                   ../../Classes/UISceneManager.cpp \
+                   ../../Classes/UserStatus.cpp \
+                   ../../Classes/VisibleRect.cpp
+
+
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

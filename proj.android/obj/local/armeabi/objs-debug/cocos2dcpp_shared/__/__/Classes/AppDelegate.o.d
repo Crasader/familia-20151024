@@ -426,6 +426,10 @@ obj/local/armeabi/objs-debug/cocos2dcpp_shared/__/__/Classes/AppDelegate.o: \
  jni/../../Classes/NetworkLibCurl.h jni/../../Classes/MediaScene.h \
  /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/cocos/3d/../ui/UIVideoPlayer.h \
  jni/../../Classes/EstateScene.h jni/../../Classes/InfoScene.h \
+ /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/rapidjson.h \
+ /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/stringbuffer.h \
+ /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/writer.h \
+ /Users/ariji.hiroki/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio \
  /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/cocos/3d/../ui/UIWebView.h \
  jni/../../Classes/UIScene.h \
  /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/cocos/3d/../ui/CocosGUI.h \
@@ -1372,6 +1376,14 @@ jni/../../Classes/MediaScene.h:
 jni/../../Classes/EstateScene.h:
 
 jni/../../Classes/InfoScene.h:
+
+/Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/rapidjson.h:
+
+/Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/stringbuffer.h:
+
+/Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/external/flatbuffers/../json/writer.h:
+
+/Users/ariji.hiroki/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio:
 
 /Users/ariji.hiroki/git/house-con/familia-20151024/proj.android/../cocos2d/cocos/3d/../ui/UIWebView.h:
 
