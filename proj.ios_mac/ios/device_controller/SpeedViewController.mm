@@ -75,7 +75,7 @@
     NSData *query = [[NSString stringWithFormat:@"type=62&new=%.2f&old=%.2f", new_value, old_value]
                      dataUsingEncoding: NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/send_message/"]
+                                    requestWithURL:[NSURL URLWithString:@"http://54.199.206.175:3000/send_message/"]
                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
                                     timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];

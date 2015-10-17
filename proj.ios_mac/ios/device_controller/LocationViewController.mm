@@ -145,7 +145,7 @@
 
     
     // Replace the URL with your Capabilities Token URL
-    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/send_message?type=101"];
+    NSURL* url = [NSURL URLWithString:@"http://54.199.206.175:3000/send_message?type=101"];
     NSURLResponse*  response = nil;
     NSError*    error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:

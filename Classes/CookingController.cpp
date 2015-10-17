@@ -12,6 +12,7 @@ USING_NS_CC_EXT;
 
 std::string cooking_text_ext;
 std::string cooking_uri_ext;
+std::string cooking_image_ext;
 int cooking_info_type;
 
 
@@ -61,6 +62,7 @@ void CookingController::initGame()
 {
     cooking_text_ext.clear();
     cooking_uri_ext.clear();
+    cooking_image_ext.clear();
     char commnad_name[2];
     getTargetStatus(commnad_name);
 
@@ -78,7 +80,7 @@ void CookingController::initGame()
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    auto label = LabelTTF::create(cooking_text_ext, "Arial Rounded MT Bold", 36);
+    label = LabelTTF::create(cooking_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     
     // 文字の開始位置を画面の上に合わせる
@@ -208,9 +210,11 @@ void CookingController::onTapButton2(Ref* sender, Control::EventType controlEven
     
     cooking_text_ext.clear();
     cooking_uri_ext.clear();
+    cooking_image_ext.clear();
     char commnad_name[2];
     getTargetStatus(commnad_name);
-    
+
+    label->setString(cooking_text_ext);
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
@@ -224,6 +228,7 @@ void CookingController::getTargetStatus(char* result)
     if (json) {
         cooking_text_ext = Json_getString(json, "text", "");
         cooking_uri_ext = Json_getString(json, "apn", "");
+        cooking_image_ext = Json_getString(json, "image", "");
         cooking_info_type = Json_getInt(json, "interest", 0);
     }
 

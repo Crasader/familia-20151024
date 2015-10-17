@@ -16,6 +16,7 @@ USING_NS_CC_EXT;
 
 std::string city_text_ext;
 std::string city_uri_ext;
+std::string city_image_ext;
 int city_info_type;
 
 
@@ -76,7 +77,7 @@ void SmartCityController::initGame()
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    auto label = LabelTTF::create(city_text_ext, "Arial Rounded MT Bold", 36);
+    label = LabelTTF::create(city_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
 
     label->setDimensions(Size(winSize.width,0));
@@ -231,9 +232,10 @@ void SmartCityController::onTapButton2(Ref* sender, Control::EventType controlEv
     
     city_text_ext.clear();
     city_uri_ext.clear();
+    city_uri_ext.clear();
     char commnad_name[2];
     getTargetStatus(commnad_name);
-    
+    label->setString(city_text_ext);
     //update関数の呼び出しを開始
     scheduleUpdate();
 }
@@ -241,6 +243,7 @@ void SmartCityController::onTapButton2(Ref* sender, Control::EventType controlEv
 void SmartCityController::getTargetStatus(char* result)
 {
     const char *post_command;
+//    post_command = "http://54.199.206.175:3000/get_message?type=9";
     post_command = "http://127.0.0.1:3000/get_message?type=9";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
@@ -257,7 +260,7 @@ void SmartCityController::postUserInterest(int userType)
 {
     std::string post_command;
     
-    post_command = "http://127.0.0.1:3000/send_message?type=65&userType=" + std::to_string(userType);
+    post_command = "http://54.199.206.175:3000/send_message?type=65&userType=" + std::to_string(userType);
     
     Post(post_command.c_str());
     

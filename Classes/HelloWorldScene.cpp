@@ -626,7 +626,7 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
 
             std::string post_command;
-            post_command = "http://127.0.0.1:3000/send_message?type=68&emergency=1";
+            post_command = "http://54.199.206.175:3000/send_message?type=68&emergency=1";
             Post(post_command.c_str());
         }
 

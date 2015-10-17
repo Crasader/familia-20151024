@@ -15,6 +15,7 @@ USING_NS_CC_EXT;
 
 std::string service_text_ext;
 std::string service_uri_ext;
+std::string service_image_ext;
 int service_info_type;
 
 Scene* ServiceController::scene()
@@ -64,6 +65,7 @@ void ServiceController::initGame()
 {
     service_text_ext.clear();
     service_uri_ext.clear();
+    service_image_ext.clear();
     getServiceContent();
 
     Size winSize = Director::getInstance()->getVisibleSize();
@@ -80,7 +82,7 @@ void ServiceController::initGame()
     scroll->setDirection(ScrollView::Direction::VERTICAL);
     addChild(scroll);
     
-    auto label = LabelTTF::create(service_text_ext, "Arial Rounded MT Bold", 36);
+    label = LabelTTF::create(service_text_ext, "Arial Rounded MT Bold", 36);
     label->setColor(Color3B::WHITE);
     
     // 文字の開始位置を画面の上に合わせる
@@ -185,7 +187,10 @@ void ServiceController::onTapButton2(Ref* sender, Control::EventType controlEven
     
     service_text_ext.clear();
     service_uri_ext.clear();
-    getServiceContent();    
+    service_image_ext.clear();
+    getServiceContent();
+
+    label->setString(service_text_ext);
     
     //update関数の呼び出しを開始
     scheduleUpdate();
@@ -200,6 +205,7 @@ void ServiceController::getServiceContent()
     if (json) {
         service_text_ext = Json_getString(json, "text", "");
         service_uri_ext = Json_getString(json, "apn", "");
+        service_image_ext = Json_getString(json, "image", "");
         service_info_type = Json_getInt(json, "interest", 0);
     }
     

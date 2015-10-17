@@ -27,6 +27,7 @@ protected:
 public:
     static cocos2d::Scene* scene();
     std::vector<std::string> menu_lists;
+    cocos2d::CCLabelTTF* label;
     
     //初期化処理を行う
     virtual bool init();

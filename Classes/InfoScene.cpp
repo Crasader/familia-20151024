@@ -246,15 +246,60 @@ void InfoController::getTargetStatus()
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
-        news_type_name.push_back(Json_getString(json, "text1", ""));
-        news_type_name.push_back(Json_getString(json, "text2", ""));
-        news_type_name.push_back(Json_getString(json, "text3", ""));
-        news_type_name.push_back(Json_getString(json, "text4", ""));
-        news_type_name.push_back(Json_getString(json, "text5", ""));
-        news_type_name.push_back(Json_getString(json, "text6", ""));
-        news_type_name.push_back(Json_getString(json, "text7", ""));
-        news_type_name.push_back(Json_getString(json, "text8", ""));
-        news_type_name.push_back(Json_getString(json, "text9", ""));
+        if (Json_getString(json, "text1", "")) {
+            news_type_name.push_back(Json_getString(json, "text1", ""));
+        }
+        if (Json_getString(json, "text2", "")) {
+            news_type_name.push_back(Json_getString(json, "text2", ""));
+        }
+        if (Json_getString(json, "text3", "")) {
+            news_type_name.push_back(Json_getString(json, "text3", ""));
+        }
+        if (Json_getString(json, "text4", "")) {
+            news_type_name.push_back(Json_getString(json, "text4", ""));
+        }
+        if (Json_getString(json, "text5", "")) {
+            news_type_name.push_back(Json_getString(json, "text5", ""));
+        }
+        if (Json_getString(json, "text6", "")) {
+            news_type_name.push_back(Json_getString(json, "text6", ""));
+        }
+        if (Json_getString(json, "text7", "")) {
+            news_type_name.push_back(Json_getString(json, "text7", ""));
+        }
+        if (Json_getString(json, "text8", "")) {
+            news_type_name.push_back(Json_getString(json, "text8", ""));
+        }
+        if (Json_getString(json, "text9", "")) {
+            news_type_name.push_back(Json_getString(json, "text9", ""));
+        }
+        if (Json_getString(json, "uri1", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri1", ""));
+        }
+        if (Json_getString(json, "uri2", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri2", ""));
+        }
+        if (Json_getString(json, "uri3", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri3", ""));
+        }
+        if (Json_getString(json, "uri4", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri4", ""));
+        }
+        if (Json_getString(json, "uri5", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri5", ""));
+        }
+        if (Json_getString(json, "uri6", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri6", ""));
+        }
+        if (Json_getString(json, "uri7", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri7", ""));
+        }
+        if (Json_getString(json, "uri8", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri8", ""));
+        }
+        if (Json_getString(json, "uri9", "")) {
+            news_type_uri.push_back(Json_getString(json, "uri9", ""));
+        }
     }
 
     return;
@@ -288,7 +333,7 @@ void InfoController::initGame()
     news_type_name.clear();
     news_type_uri.clear();
     getTargetStatus();
-    getTargetUri();
+//    getTargetUri();
     if(news_type_name.size() == 0)
     {
         news_type_name =

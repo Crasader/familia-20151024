@@ -25,6 +25,7 @@ protected:
 public:
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
+    cocos2d::CCLabelTTF* label;
     
     static cocos2d::Scene* scene();
     
