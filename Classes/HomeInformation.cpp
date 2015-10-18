@@ -145,7 +145,7 @@ family_menber =
 void HomeInfoController::getHomeInfoContent()
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=7";
+    post_command = "http://54.199.206.175:3000/get_message?type=7";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
@@ -261,7 +261,7 @@ void HomeInfoController::postUserInterest(int userType)
 {
     std::string post_command;
     
-    post_command = "http://127.0.0.1:3000/send_message?type=71&userType=" + std::to_string(userType);
+    post_command = "http://54.199.206.175:3000/send_message?type=71&userType=" + std::to_string(userType);
     
     Post(post_command.c_str());
     

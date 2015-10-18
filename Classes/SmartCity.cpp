@@ -243,8 +243,7 @@ void SmartCityController::onTapButton2(Ref* sender, Control::EventType controlEv
 void SmartCityController::getTargetStatus(char* result)
 {
     const char *post_command;
-//    post_command = "http://54.199.206.175:3000/get_message?type=9";
-    post_command = "http://127.0.0.1:3000/get_message?type=9";
+    post_command = "http://54.199.206.175:3000/get_message?type=9";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {

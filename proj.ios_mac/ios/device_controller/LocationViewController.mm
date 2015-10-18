@@ -98,7 +98,7 @@
     oldLocation.timestamp;
 
  // Replace the URL with your Capabilities Token URL
-    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=1"];
+    NSURL* url = [NSURL URLWithString:@"http://54.199.206.175:3000/get_message?type=1"];
     NSURLResponse*  response = nil;
     NSError*    error = nil;
     NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]

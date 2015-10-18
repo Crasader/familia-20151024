@@ -62,7 +62,7 @@ bool ComsumeController::init()
 void ComsumeController::powerSavingMode(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=54";
+    post_command = "http://54.199.206.175:3000/send_message?type=54";
     Post(post_command);
     return;
 }
@@ -70,7 +70,7 @@ void ComsumeController::powerSavingMode(char* result)
 void ComsumeController::getInfoContent()
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=10";
+    post_command = "http://54.199.206.175:3000/get_message?type=10";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {

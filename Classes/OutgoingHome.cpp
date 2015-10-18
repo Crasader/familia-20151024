@@ -51,22 +51,22 @@ bool OutgoingController::init()
 void OutgoingController::lockAllEquipment(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=51";
+    post_command = "http://54.199.206.175:3000/send_message?type=51";
     Post(post_command);
 
-    post_command = "http://127.0.0.1:3000/send_message?type=3";
+    post_command = "http://54.199.206.175:3000/send_message?type=3";
     Post(post_command);
 
-    post_command = "http://127.0.0.1:3000/send_message?type=17";
+    post_command = "http://54.199.206.175:3000/send_message?type=17";
     Post(post_command);
 
-    post_command = "http://127.0.0.1:3000/send_message?type=21";
+    post_command = "http://54.199.206.175:3000/send_message?type=21";
     Post(post_command);
 
-    post_command = "http://127.0.0.1:3000/send_message?type=26";
+    post_command = "http://54.199.206.175:3000/send_message?type=26";
     Post(post_command);
     
-    post_command = "http://127.0.0.1:3000/send_message?type=32";
+    post_command = "http://54.199.206.175:3000/send_message?type=32";
     Post(post_command);
     
     return;

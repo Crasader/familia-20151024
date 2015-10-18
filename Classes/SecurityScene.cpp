@@ -55,7 +55,7 @@ bool SecurityController::getAutoDoorStatus(char* result)
 {
     bool door_status = true;
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=11";
+    post_command = "http://54.199.206.175:3000/get_message?type=11";
     door_status = Get(post_command)? true:false;
     return door_status;
 }
@@ -63,7 +63,7 @@ bool SecurityController::getAutoDoorStatus(char* result)
 void SecurityController::lockAutoDoor(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=21";
+    post_command = "http://54.199.206.175:3000/send_message?type=21";
     Post(post_command);
     return;
 }
@@ -71,7 +71,7 @@ void SecurityController::lockAutoDoor(char* result)
 void SecurityController::unlockAutoDoor(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=22";
+    post_command = "http://54.199.206.175:3000/send_message?type=22";
     Post(post_command);
     return;
 }

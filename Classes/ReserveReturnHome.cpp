@@ -51,7 +51,7 @@ bool ReserveRetunrHomeController::init()
 void ReserveRetunrHomeController::reserveEquipment(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=50";
+    post_command = "http://54.199.206.175:3000/send_message?type=50";
     Post(post_command);
     
     return;
@@ -213,28 +213,28 @@ void ReserveRetunrHomeController::update(float dt)
         {
             if(remain < 300){
                 // AirConditionaeer・５分前にエアコンスイッチ
-                post_command = "http://127.0.0.1:3000/send_message?type=2";
+                post_command = "http://54.199.206.175:3000/send_message?type=2";
                 Post(post_command);
             }
     
             if(remain < 60){
                 // LED・１分前にLEDスイッチ
-                post_command = "http://127.0.0.1:3000/send_message?type=16";
+                post_command = "http://54.199.206.175:3000/send_message?type=16";
                 Post(post_command);
             }
 
             if(remain < 30){
                 //
-                post_command = "http://127.0.0.1:3000/send_message?type=22";
+                post_command = "http://54.199.206.175:3000/send_message?type=22";
                 Post(post_command);
                 _reserveReturne = false;
             }
 
             if(remain < 15){
                 // ・目の間に着いたら、電動シャッター窓開放 : 輝度センサーで判断
-                post_command = "http://127.0.0.1:3000/send_message?type=27";
+                post_command = "http://54.199.206.175:3000/send_message?type=27";
                 Post(post_command);
-                post_command = "http://127.0.0.1:3000/send_message?type=31";
+                post_command = "http://54.199.206.175:3000/send_message?type=31";
                 Post(post_command);
             }
         }

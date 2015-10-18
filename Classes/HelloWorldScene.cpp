@@ -504,7 +504,7 @@ void HelloWorld::initGame()
         this->schedule(schedule_selector(HelloWorld::Action01), 3.0f);
         this->schedule(schedule_selector(HelloWorld::Action02), 3.0f);
     }else{
-        _label3 = Label::createWithSystemFont("現在サービス利用停止中です", "Marker Felt.ttf", 24);
+        _label3 = Label::createWithSystemFont("このアプリはスマートホームを提案します", "Marker Felt.ttf", 24);
         _label3->setScale(2.0f);
         _label3->setPosition(Vec2(winSize.width/2, winSize.height/12));
         this->addChild(_label3);
@@ -607,7 +607,7 @@ void HelloWorld::Sequence2(int status)
 void HelloWorld::getHouseEquipmentStatus(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=2";
+    post_command = "http://54.199.206.175:3000/get_message?type=2";
     std::string recv = Get_data(post_command);
     
     Json* json = Json_create(recv.c_str());
@@ -616,6 +616,7 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
         int emergency_sts = Json_getInt(json, "emergency", 0);
         
         //　よくわからん。HEMSシュミレータの不具合かな。調べる時間なし
+        eq_sts = 1;
         if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false) {
 //            if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
             // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
@@ -684,7 +685,7 @@ std::vector<std::string> split(const std::string &str, char sep)
 void HelloWorld::getTargetStatus(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=3";
+    post_command = "http://54.199.206.175:3000/get_message?type=3";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
@@ -696,7 +697,7 @@ void HelloWorld::getTargetStatus(char* result)
         _pos_sprite2 = Json_getString(json, "desc2", "");
 
     }
-    post_command = "http://127.0.0.1:3000/get_message?type=12";
+    post_command = "http://54.199.206.175:3000/get_message?type=12";
     recv = Get_data(post_command);
     json = Json_create(recv.c_str());
     if (json) {
@@ -712,7 +713,7 @@ int estateType;
 void HelloWorld::getHouseInfo(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=1";
+    post_command = "http://54.199.206.175:3000/get_message?type=1";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
@@ -888,12 +889,12 @@ void HelloWorld::showModal(int type)
         case 0:
             title = "他の機能を利用する";
             content1 = "お知らせです";
-            content2 = "この機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            content2 = "現在投稿された伝言はございません。\nまたのご利用をお待ちしております※";
             break;
         case 1:
             title = "メインへ戻る";
             content1 = "工事中";
-            content2 = "遷移先の機能は現在利用できません\n運用が開始されるまでお待ち下さい※";
+            content2 = "現在検索しております。\n完了するまで他の機能をご利用ください※";
             break;
         case 2:
             title = "緊急事態です！";

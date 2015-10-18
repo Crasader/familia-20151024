@@ -66,7 +66,7 @@ static AppDelegate s_sharedApplication;
     //check out https://github.com/twilio/mobile-quickstart to get a server up quickly
 //    NSString *urlString = [NSString stringWithFormat:@"http://companyfoo.com/token?client=%@", name];
 //    NSURL *url = [NSURL URLWithString:urlString];
-    NSURL* url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
+    NSURL* url = [NSURL URLWithString:@"http://54.199.206.175:3000/get_message?type=100"];
     
 //    NSURL *url = [NSURL URLWithString:@"http://companyfoo.com/1b8b9fcacfbb0d596c5289457d2cc9e8"];
     NSError *error = nil;
@@ -82,7 +82,7 @@ static AppDelegate s_sharedApplication;
 
     
     // 送信するリクエストを生成する。
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:3000/get_message?type=100"];
+    NSURL *url = [NSURL URLWithString:@"http://54.199.206.175:3000/get_message?type=100"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
     // リクエストを送信する。
@@ -209,7 +209,7 @@ static AppDelegate s_sharedApplication;
     [[UIApplication sharedApplication] setStatusBarHidden:true];
 
     // Twilio 初期化
-    [self init_twilio];
+//    [self init_twilio];
     
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);

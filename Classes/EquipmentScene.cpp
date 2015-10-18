@@ -139,7 +139,7 @@ bool EquipmentController::init()
 void EquipmentController::powerSavingMode(char* result)
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=53";
+    post_command = "http://54.199.206.175:3000/send_message?type=53";
     Post(post_command);
     return;
 }
@@ -147,7 +147,7 @@ void EquipmentController::powerSavingMode(char* result)
 void EquipmentController::getTargetStatus()
 {
     const char *post_command;
-    post_command = "http://127.0.0.1:3000/get_message?type=14";
+    post_command = "http://54.199.206.175:3000/get_message?type=14";
     std::string recv = Get_data(post_command);
     Json* json = Json_create(recv.c_str());
     if (json) {
@@ -270,7 +270,7 @@ void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEv
     //update関数の呼び出しを停止
     unscheduleUpdate();
     std::string post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=16";
+    post_command = "http://54.199.206.175:3000/send_message?type=16";
     Post(post_command.c_str());
 
     //update関数の呼び出しを開始
@@ -288,7 +288,7 @@ void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEv
     const float pitch2 = _sliderPitch2->getValue();
 
     std::string post_command;
-    post_command = "http://127.0.0.1:3000/send_message?type=2&temperature=" + std::to_string(pitch) + "&wing=" + std::to_string(pitch2) + "&huminity=" + std::to_string(pitch1) + "";
+    post_command = "http://54.199.206.175:3000/send_message?type=2&temperature=" + std::to_string(pitch) + "&wing=" + std::to_string(pitch2) + "&huminity=" + std::to_string(pitch1) + "";
     Post(post_command.c_str());
 
     //update関数の呼び出しを開始
