@@ -52,9 +52,8 @@ bool PowersaveController::init()
 
 void PowersaveController::powerSavingMode(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=52";
-    Post(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=52";
+    Post(post_command.c_str());
     return;
 }
 

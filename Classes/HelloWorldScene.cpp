@@ -606,9 +606,8 @@ void HelloWorld::Sequence2(int status)
 
 void HelloWorld::getHouseEquipmentStatus(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=2";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=2";
+    std::string recv = Get_data(post_command.c_str());
     
     Json* json = Json_create(recv.c_str());
     if (json) {
@@ -626,8 +625,7 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
             CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(0.5f);
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/emargency_calling.mp3");
 
-            std::string post_command;
-            post_command = "http://54.199.206.175:3000/send_message?type=68&emergency=1";
+            std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=68&emergency=1";
             Post(post_command.c_str());
         }
 
@@ -684,9 +682,10 @@ std::vector<std::string> split(const std::string &str, char sep)
 
 void HelloWorld::getTargetStatus(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=3";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress();
+    post_command = post_command + "/get_message?type=3";
+    
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         _sts_sprite1 = Json_getInt(json, "sts1", 0);
@@ -697,8 +696,8 @@ void HelloWorld::getTargetStatus(char* result)
         _pos_sprite2 = Json_getString(json, "desc2", "");
 
     }
-    post_command = "http://54.199.206.175:3000/get_message?type=12";
-    recv = Get_data(post_command);
+    post_command = NativeLauncher::getNWAdress() + "/get_message?type=12";
+    recv = Get_data(post_command.c_str());
     json = Json_create(recv.c_str());
     if (json) {
         _temp_indoor = Json_getString(json, "indor_temp", "");
@@ -712,9 +711,8 @@ void HelloWorld::getTargetStatus(char* result)
 int estateType;
 void HelloWorld::getHouseInfo(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=1";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=1";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         _sts_hems_service = true;

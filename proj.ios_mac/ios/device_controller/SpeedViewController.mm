@@ -72,10 +72,13 @@
 - (void)sendSpeedLevel:(float)new_value
                    float:(float)old_value
 {
+    NSString *baseURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"APIBaseURL"];
+    NSString *str3 = [baseURLString stringByAppendingString:@"/send_message/"];
+
     NSData *query = [[NSString stringWithFormat:@"type=62&new=%.2f&old=%.2f", new_value, old_value]
                      dataUsingEncoding: NSUTF8StringEncoding];
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"http://54.199.206.175:3000/send_message/"]
+                                    requestWithURL:[NSURL URLWithString:str3]
                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
                                     timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];

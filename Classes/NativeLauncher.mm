@@ -128,3 +128,10 @@ void NativeLauncher::sendBtlPeripheraManager()
     [appController startAdvertising];
 }
 
+std::string NativeLauncher::getNWAdress()
+{
+    NSString *baseURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"APIBaseURL"];
+//    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    return [baseURLString UTF8String];
+}
+

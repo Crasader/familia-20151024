@@ -181,9 +181,7 @@ bool MotionController::init()
 
 void MotionController::postNumOfStep(char* result, int numOf)
 {
-    std::string post_command;
-    
-    post_command = "http://54.199.206.175:3000/send_message?type=64&numStep=" + std::to_string(foo::getNumOfStep(&f));
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=64&numStep=" + std::to_string(foo::getNumOfStep(&f));
     
     Post(post_command.c_str());
     

@@ -114,9 +114,8 @@ void EstateController::showModal()
 
 void EstateController::getEstateInfoContent()
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=8";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=8";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         std::string text_ext = Json_getString(json, "text", "");
@@ -621,10 +620,8 @@ void EstateController::onTapButton8(Ref* sender, Control::EventType controlEvent
 
 void EstateController::postBuildingInterest(int buldingType)
 {
-    std::string post_command;
-    
-    post_command = "http://54.199.206.175:3000/send_message?type=69&building=" + std::to_string(buldingType);
-    
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=69&building=" + std::to_string(buldingType);
+
     Post(post_command.c_str());
     
     return;

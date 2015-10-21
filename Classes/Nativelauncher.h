@@ -37,6 +37,8 @@ public:
     static void set_TargetLocationInfo_longi(float val);
     static float get_TargetLocationInfo_lati();
     static float get_TargetLocationInfo_longi();
+    
+    static std::string getNWAdress();
 
 
 };

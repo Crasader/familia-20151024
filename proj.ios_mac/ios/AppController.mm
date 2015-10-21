@@ -79,10 +79,11 @@ static AppDelegate s_sharedApplication;
 */
     
     
+    NSString *baseURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"APIBaseURL"];
+    NSString *str3 = [baseURLString stringByAppendingString:@"/get_message?type=100"];
 
-    
     // 送信するリクエストを生成する。
-    NSURL *url = [NSURL URLWithString:@"http://54.199.206.175:3000/get_message?type=100"];
+    NSURL *url = [NSURL URLWithString:str3];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     
     // リクエストを送信する。

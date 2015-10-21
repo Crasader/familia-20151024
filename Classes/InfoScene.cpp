@@ -241,9 +241,8 @@ bool InfoController::init()
 
 void InfoController::getTargetStatus()
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=4";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=4";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         if (Json_getString(json, "text1", "")) {
@@ -306,9 +305,8 @@ void InfoController::getTargetStatus()
 }
 void InfoController::getTargetUri()
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=13";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=13";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         news_type_uri.push_back(Json_getString(json, "uri1", ""));
@@ -372,12 +370,10 @@ void InfoController::initGame()
 
 void InfoController::postUserInterest(int userType)
 {
-    std::string post_command;
-    
-    post_command = "http://54.199.206.175:3000/send_message?type=71&userType=" + std::to_string(userType);
-    
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=71&userType=" + std::to_string(userType);
+
     Post(post_command.c_str());
-    
+
     return;
 }
 

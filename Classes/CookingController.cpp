@@ -221,9 +221,8 @@ void CookingController::onTapButton2(Ref* sender, Control::EventType controlEven
 
 void CookingController::getTargetStatus(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=5";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=5";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         cooking_text_ext = Json_getString(json, "text", "");
@@ -237,10 +236,8 @@ void CookingController::getTargetStatus(char* result)
 
 void CookingController::postUserInterest(int userType)
 {
-    std::string post_command;
-    
-    post_command = "http://54.199.206.175:3000/send_message?type=67&userType=" + std::to_string(userType);
-    
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=67&userType=" + std::to_string(userType);
+
     Post(post_command.c_str());
     
     return;

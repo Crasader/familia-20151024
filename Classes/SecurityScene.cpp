@@ -54,25 +54,22 @@ bool SecurityController::init()
 bool SecurityController::getAutoDoorStatus(char* result)
 {
     bool door_status = true;
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=11";
-    door_status = Get(post_command)? true:false;
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=11";
+    door_status = Get(post_command.c_str())? true:false;
     return door_status;
 }
 
 void SecurityController::lockAutoDoor(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=21";
-    Post(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=21";
+    Post(post_command.c_str());
     return;
 }
 
 void SecurityController::unlockAutoDoor(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=22";
-    Post(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=22";
+    Post(post_command.c_str());
     return;
 }
 

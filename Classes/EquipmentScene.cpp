@@ -138,17 +138,15 @@ bool EquipmentController::init()
 
 void EquipmentController::powerSavingMode(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=53";
-    Post(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=53";
+    Post(post_command.c_str());
     return;
 }
 
 void EquipmentController::getTargetStatus()
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/get_message?type=14";
-    std::string recv = Get_data(post_command);
+    std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=14";
+    std::string recv = Get_data(post_command.c_str());
     Json* json = Json_create(recv.c_str());
     if (json) {
         temprature_strength = std::atoi(Json_getString(json, "temperature", "32"));
@@ -269,8 +267,7 @@ void EquipmentController::onTapButton1(Ref* sender, Control::EventType controlEv
 
     //update関数の呼び出しを停止
     unscheduleUpdate();
-    std::string post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=16";
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=16";
     Post(post_command.c_str());
 
     //update関数の呼び出しを開始
@@ -287,8 +284,7 @@ void EquipmentController::onTapButton2(Ref* sender, Control::EventType controlEv
     const float pitch1 = _sliderPitch1->getValue();
     const float pitch2 = _sliderPitch2->getValue();
 
-    std::string post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=2&temperature=" + std::to_string(pitch) + "&wing=" + std::to_string(pitch2) + "&huminity=" + std::to_string(pitch1) + "";
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=2&temperature=" + std::to_string(pitch) + "&wing=" + std::to_string(pitch2) + "&huminity=" + std::to_string(pitch1) + "";
     Post(post_command.c_str());
 
     //update関数の呼び出しを開始

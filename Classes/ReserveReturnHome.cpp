@@ -50,10 +50,9 @@ bool ReserveRetunrHomeController::init()
 
 void ReserveRetunrHomeController::reserveEquipment(char* result)
 {
-    const char *post_command;
-    post_command = "http://54.199.206.175:3000/send_message?type=50";
-    Post(post_command);
-    
+    std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=50";
+    Post(post_command.c_str());
+
     return;
 }
 
@@ -206,36 +205,36 @@ void ReserveRetunrHomeController::onTouchCancelled(Touch *touch, Event *unused_e
 void ReserveRetunrHomeController::update(float dt)
 {
     
-    const char *post_command;
+    std::string post_command;
     if(_reserveReturne){
         float remain = (NativeLauncher::getDestance())/(NativeLauncher::getNewLocation_speed());
         if(remain > 0)
         {
             if(remain < 300){
                 // AirConditionaeer・５分前にエアコンスイッチ
-                post_command = "http://54.199.206.175:3000/send_message?type=2";
-                Post(post_command);
+                post_command = NativeLauncher::getNWAdress() + "/send_message?type=2";
+                Post(post_command.c_str());
             }
     
             if(remain < 60){
                 // LED・１分前にLEDスイッチ
-                post_command = "http://54.199.206.175:3000/send_message?type=16";
-                Post(post_command);
+                post_command = NativeLauncher::getNWAdress() + "/send_message?type=16";
+                Post(post_command.c_str());
             }
 
             if(remain < 30){
                 //
-                post_command = "http://54.199.206.175:3000/send_message?type=22";
-                Post(post_command);
+                post_command = NativeLauncher::getNWAdress() + "/send_message?type=22";
+                Post(post_command.c_str());
                 _reserveReturne = false;
             }
 
             if(remain < 15){
                 // ・目の間に着いたら、電動シャッター窓開放 : 輝度センサーで判断
-                post_command = "http://54.199.206.175:3000/send_message?type=27";
-                Post(post_command);
-                post_command = "http://54.199.206.175:3000/send_message?type=31";
-                Post(post_command);
+                post_command = NativeLauncher::getNWAdress() + "/send_message?type=27";
+                Post(post_command.c_str());
+                post_command = NativeLauncher::getNWAdress() + "/send_message?type=31";
+                Post(post_command.c_str());
             }
         }
     

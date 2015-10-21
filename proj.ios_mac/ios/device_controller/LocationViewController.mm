@@ -144,8 +144,11 @@
     [dest_location release];
 
     
+    NSString *baseURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"APIBaseURL"];
+    NSString *str3 = [baseURLString stringByAppendingString:@"/send_message?type=101"];
+
     // Replace the URL with your Capabilities Token URL
-    NSURL* url = [NSURL URLWithString:@"http://54.199.206.175:3000/send_message?type=101"];
+    NSURL* url = [NSURL URLWithString:str3];
     NSURLResponse*  response = nil;
     NSError*    error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:
