@@ -2,6 +2,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreLocation/CoreLocation.h>
 #import "TransferService.h"
+#import "sys/sysctl.h"
+
 
 @interface BTLECentralViewController () <CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate>
 
@@ -180,7 +182,7 @@
     NSLog(@"Scanning started");
 }
 
-
+bool _test_twilio_demo = false;
 /** This callback comes whenever a peripheral that is advertising the TRANSFER_SERVICE_UUID is discovered.
  *  We check the RSSI, to make sure it's close enough that we're interested in it, and if it is, 
  *  we start the connection process
@@ -198,10 +200,69 @@
         return;
     }
 
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = (char *)malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *deviceName = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
+    free(machine);
     
-    
-    // Phamilia CHECKING!!
-    HelloWorld::BTLEAction();
+    NSLog(@"デバイス名:%@", deviceName);
+    NSRange range = [deviceName rangeOfString:@"iPhone"];
+    if (_test_twilio_demo == false && range.location != NSNotFound) {
+        _test_twilio_demo = true;
+        // クライアント
+        NSString *baseURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"APIBaseURL"];
+        NSString *str3 = [baseURLString stringByAppendingString:@"/get_message?type=100"];
+        
+        // 送信するリクエストを生成する。
+        NSURL *url = [NSURL URLWithString:str3];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+        
+        // リクエストを送信する。
+        // 第３引数のブロックに実行結果が渡される。
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            if (error) {
+                // エラー処理を行う。
+                if (error.code == -1003) {
+                    NSLog(@"not found hostname. targetURL=%@", url);
+                } else if (-1019) {
+                    NSLog(@"auth error. reason=%@", error);
+                } else {
+                    NSLog(@"unknown error occurred. reason = %@", error);
+                }
+                
+            } else {
+                int httpStatusCode = ((NSHTTPURLResponse *)response).statusCode;
+                if (httpStatusCode == 404) {
+                    NSLog(@"404 NOT FOUND ERROR. targetURL=%@", url);
+                } else {
+                    NSLog(@"receive data=%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    NSString *receive = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSArray *lines = [receive componentsSeparatedByString:@","];
+                    
+                    // ここはサブスレッドなので、メインスレッドで何かしたい場合には
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // ここに何か処理を書く。
+                        NSError *error = nil;
+                        NSString *token = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+                        if (token == nil) {
+                            NSLog(@"Error retrieving token: %@", [error localizedDescription]);
+                        } else {
+//                            _phone = [[TCDevice alloc] initWithCapabilityToken:token delegate:nil];
+                        }
+                    });
+                }
+            }
+        }];
+    } else {
+        // Server
+        // Phamilia CHECKING!!
+//        NativeLauncher::sendBtlPeripheraManager();
+        HelloWorld::BTLEAction();
+    }
+
     
     
     printf("%d", RSSI.integerValue);

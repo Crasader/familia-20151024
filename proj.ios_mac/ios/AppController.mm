@@ -225,10 +225,16 @@ static AppDelegate s_sharedApplication;
         // クライアント
         self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
         [self.btlPeripheraManager initBtlPeripheraManager];
+        HelloWorld::BTLEAction();
+        self.btlCentralManager = [[BTLECentralViewController alloc] init];
+        [self.btlCentralManager initBtlCentralManager];
     } else {
         // Server
         self.btlCentralManager = [[BTLECentralViewController alloc] init];
         [self.btlCentralManager initBtlCentralManager];
+
+        self.btlPeripheraManager = [[BTLEPeripheralViewController alloc] init];
+        [self.btlPeripheraManager initBtlPeripheraManager];
     }
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);

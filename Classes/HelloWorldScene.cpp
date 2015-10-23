@@ -604,6 +604,8 @@ void HelloWorld::Sequence2(int status)
     _sprite2->runAction(sequence2);
 }
 
+bool _test_flag = false;
+
 void HelloWorld::getHouseEquipmentStatus(char* result)
 {
     std::string post_command = NativeLauncher::getNWAdress() + "/get_message?type=2";
@@ -615,7 +617,6 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
         int emergency_sts = Json_getInt(json, "emergency", 0);
         
         //　よくわからん。HEMSシュミレータの不具合かな。調べる時間なし
-        eq_sts = 1;
         if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false) {
 //            if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
             // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
@@ -627,6 +628,12 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
 
             std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=68&emergency=1";
             Post(post_command.c_str());
+            if(_test_flag == false){
+                // start! BTLE!!
+                NativeLauncher::sendBtlPeripheraManager();
+                _test_flag = true;
+                showModal(9);
+            }
         }
 
         if(_sts_hems_service==true && emergency_sts==1){
@@ -928,6 +935,11 @@ void HelloWorld::showModal(int type)
             title = "緊急事態です！";
             content1 = "祖母の安否が心配です。";
             content2 = "ご家族の安否を確認してください";
+            break;
+        case 9:
+            title = "不正侵入発見！";
+            content1 = "警察に通報しました。";
+            content2 = "おとなしくしていてください。";
             break;
             
         default:
