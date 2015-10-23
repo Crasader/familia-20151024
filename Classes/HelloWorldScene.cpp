@@ -605,6 +605,12 @@ void HelloWorld::Sequence2(int status)
 }
 
 bool _test_flag = false;
+int demo_open_security = false;
+
+void HelloWorld::setDemoOpenSecurity()
+{
+    demo_open_security = true;
+}
 
 void HelloWorld::getHouseEquipmentStatus(char* result)
 {
@@ -617,7 +623,8 @@ void HelloWorld::getHouseEquipmentStatus(char* result)
         int emergency_sts = Json_getInt(json, "emergency", 0);
         
         //　よくわからん。HEMSシュミレータの不具合かな。調べる時間なし
-        if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false) {
+        if (_sts_hems_service==true && _sts_btle_equipment==false && demo_open_security == true) {
+//        if (_sts_hems_service==true && eq_sts==0 && _sts_btle_equipment==false && demo_open_security == true) {
 //            if (_sts_hems_service==true && eq_sts!=3 && _sts_btle_equipment==false) {
             // 異常警報！ 開けっ放しでお出かけとか、不審侵入とか異常検知
             //  最終的にはコメントアウトは外す（今は、環境ができていないので常に異常事態になってしまうので。）

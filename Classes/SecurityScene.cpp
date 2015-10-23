@@ -63,6 +63,7 @@ void SecurityController::lockAutoDoor(char* result)
 {
     std::string post_command = NativeLauncher::getNWAdress() + "/send_message?type=21";
     Post(post_command.c_str());
+    HelloWorld::setDemoOpenSecurity();
     return;
 }
 

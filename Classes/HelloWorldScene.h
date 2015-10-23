@@ -179,6 +179,7 @@ public:
     void dialogClose();
 
     static void BTLEAction();
+    static void setDemoOpenSecurity();
 
     void setTargetStatus(int val1, int emo1, int val2, int emo2);
     void getTargetStatus(char* result);
